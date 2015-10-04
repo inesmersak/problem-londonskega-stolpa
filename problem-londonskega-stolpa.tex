@@ -1,9 +1,9 @@
 \documentclass[12pt,a4paper]{amsart}
 % ukazi za delo s slovenscino -- izberi kodiranje, ki ti ustreza
 \usepackage[slovene]{babel}
-\usepackage[cp1250]{inputenc}
+%\usepackage[cp1250]{inputenc}
 %\usepackage[T1]{fontenc}
-%\usepackage[utf8]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{url}
 %\usepackage[normalem]{ulem}
@@ -43,10 +43,10 @@
 
 % naslednje ukaze ustrezno popravi
 \newcommand{\program}{Matematika} % ime studijskega programa: Matematika/Finan"cna matematika
-\newcommand{\imeavtorja}{Ime Priimek} % ime avtorja
-\newcommand{\imementorja}{prof.~dr./doc.~dr. Ime Priimek} % akademski naziv in ime mentorja
-\newcommand{\naslovdela}{Naslov dela diplomskega seminarja}
-\newcommand{\letnica}{2012} %letnica diplome
+\newcommand{\imeavtorja}{Ines Meršak} % ime avtorja
+\newcommand{\imementorja}{prof.~dr. Sandi Klavžar} % akademski naziv in ime mentorja
+\newcommand{\naslovdela}{Problem londonskega stolpa}
+\newcommand{\letnica}{2016} %letnica diplome
 
 
 % vstavi svoje definicije ...
@@ -89,7 +89,7 @@ Ljubljana, \letnica}
 V povzetku na kratko opi"si vsebinske rezultate dela. Sem ne sodi razlaga organizacije dela -- v katerem poglavju/razdelku je kaj, pa"c pa le opis vsebine.
 \vfill
 \begin{center}
-{\bf Angle"ski naslov dela}\\[3mm] % prevod slovenskega naslova dela 
+{\bf The Tower of London problem}\\[3mm] % prevod slovenskega naslova dela 
 {\sc Abstract}
 \end{center}
 % tekst povzetka v anglescini
@@ -102,11 +102,31 @@ Prevod zgornjega povzetka v angle"s"cino.
 \pagebreak
 
 
-
+ 
 % tu se zacne tekst seminarja
-%\section{}
+\section{Osnovni pojmi teorije grafov}
 
+\begin{definicija}
+	\emph{Graf} $G$ je urejen par $(V(G), E(G))$, kjer je $V(G)$ končna množica \emph{vozlišč}, $E(G)$ pa množica \emph{povezav} grafa. Povezave so predstavljene kot neurejeni pari vozlišč (neusmerjeni grafi).
+\end{definicija}
 
+Obstajajo variacije zgornje definicije, graf je lahko npr.\ usmerjen (povezave so usmerjeni pari) -- tedaj govorimo o \emph{digrafih}, ima neskončno število vozlišč ali pa več povezav med dvema vozliščima.
+
+Vozlišča grafa predstavimo s točkami v ravnini, povezavo med dvema vozliščima pa kot enostavno krivuljo med ustreznima točkama v ravnini.
+
+\begin{definicija}
+	Pot v grafu, ki vsebuje vsa vozlišča tega grafa, se imenuje \emph{Hamiltonova pot}.
+	\emph{Hamiltonov cikel} nekega grafa $G$ je cikel v $G$, ki poteka skozi vsa vozlišča tega grafa.
+	Graf je \emph{Hamiltonov}, če vsebuje Hamiltonov cikel.
+\end{definicija}
+
+\begin{izrek}
+	Naj bo $G$ Hamiltonov graf. Za vsako podmnožico vozlišč $X \subseteq V(G)$ velja, da ima graf $G - X$ kvečjemu $|X|$ komponent.
+\end{izrek}
+
+\begin{proof}
+	Blabla tukaj je dokaz.
+\end{proof}
 
 
 
