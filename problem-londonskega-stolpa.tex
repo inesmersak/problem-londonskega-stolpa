@@ -49,7 +49,11 @@
 \newcommand{\letnica}{2016} %letnica diplome
 
 
-% vstavi svoje definicije ...
+% commands
+\newcommand{\graf}[1]{\ensuremath{#1 = (V(#1), E(#1))}}
+
+% operatorji
+\DeclareMathOperator {\stopnja} {deg}
 
 
 
@@ -104,6 +108,15 @@ Prevod zgornjega povzetka v angle"s"cino.
 
  
 % tu se zacne tekst seminarja
+\section{Uvod}
+Test londonskega stolpa je ena izmed variacij Hanojskih stolpov. Izumil ga je britanski nevropsiholog Tim Shallice leta 1982. Pogosto je uporabljen v psihologiji, saj s pomočjo te igre ugotavljajo stanje pacientove psihe, opazujejo pa lahko tudi napredek bolezni pri npr.\ Parkinsonovih bolnikih.
+
+Osnovna verzija londonskega stolpa vsebuje tri enako velike krogle različnih barv in tri palice. Na prvo palico lahko postavimo samo eno kroglo, na drugo le dve krogli, na tretjo pa tri. Cilj igre je priti iz nekega danega stanja v neko drugo želeno stanje s čim manj koraki.
+
+(Viri: wikipedia (TS), KlavžarHinz knjiga)
+
+Vsa možna stanja in prehode med njimi lahko zelo elegantno opišemo s pomočjo grafov, zato si najprej poglejmo nekaj osnovnih pojmov teorije grafov.
+
 \section{Osnovni pojmi teorije grafov}
 
 \begin{definicija}
@@ -115,6 +128,47 @@ Obstajajo variacije zgornje definicije, graf je lahko npr.\ usmerjen (povezave s
 Vozlišča grafa predstavimo s točkami v ravnini, povezavo med dvema vozliščima pa kot enostavno krivuljo med ustreznima točkama v ravnini.
 
 \begin{definicija}
+	Če je $e = \{ u,v \}$ povezava, tedaj sta $u$ in $v$ \emph{krajišči} povezave $e$, pišemo tudi $e = uv$; rečemo, da sta $u$ in $v$ \emph{sosednji vozlišči}.
+	
+	\emph{Soseščina} vozlišča $u$ je množica 
+	\[ N(u) = \{ x\colon ux \in E(G) \} .\]
+	\emph{Stopnja vozlišča} $u$ je število vseh vozlišč, ki so mu sosednji: $\stopnja u = |N(u)|$.
+\end{definicija}
+
+\begin{definicija}
+	Graf $\graf{H}$ je \emph{podgraf} grafa $\graf{G}$, če velja 
+	\[ V(H) \subseteq V(G) \text{ in } E(H) \subseteq E(G). \]
+\end{definicija}
+
+\begin{definicija}
+	\emph{Pot} na $n$ vozliščih je graf, ki ima dva vozlišča stopnje $1$, medtem ko so preostala vozlišča stopnje $2$. TODO
+	
+	\emph{Cikel} na $n$ vozliščih (označimo ga s $C_n$) je graf, ki ga dobimo iz poti na $n$ vozliščih tako, da dodamo povezavo med vozliščema stopnje $1$.
+\end{definicija}
+
+\begin{primer}
+	Sem pride primer poti in cikla za $n=6$ (recimo).
+\end{primer}
+
+\begin{definicija}
+	Naj bosta $\graf{G}$ in $\graf{H}$ grafa. 
+	Preslikava $f\colon V(G) \longrightarrow V(H)$ je \emph{izomorfizem}, če je bijektivna in velja
+	\[ uv \in E(G) \iff f(u)f(v) \in E(H),\quad \forall u, v \in E(G). \]
+	Grafa $G$ in $H$ sta \emph{izomorfna}, če obstaja izomorfizem $G \longrightarrow H$. Oznaka: $G \cong H$.
+\end{definicija}
+
+\begin{definicija}
+	\emph{Pot v grafu} $G$ je podgraf grafa $G$, ki je izomorfen poti.
+	\emph{Cikel v grafu} $G$ je podgraf grafa $G$, ki je izomorfen ciklu. 
+\end{definicija}
+
+TODO: povezanost
+
+\begin{definicija}
+	Naj bo $G$ povezan graf. Tedaj je \emph{razdalja} $d_G(u,v)$ med vozliščema $u$ in $v$ najmanjše možno število povezav na neki $u,v$-poti.
+\end{definicija}
+
+\begin{definicija}
 	Pot v grafu, ki vsebuje vsa vozlišča tega grafa, se imenuje \emph{Hamiltonova pot}.
 	\emph{Hamiltonov cikel} nekega grafa $G$ je cikel v $G$, ki poteka skozi vsa vozlišča tega grafa.
 	Graf je \emph{Hamiltonov}, če vsebuje Hamiltonov cikel.
@@ -124,11 +178,19 @@ Vozlišča grafa predstavimo s točkami v ravnini, povezavo med dvema vozlišči
 	Naj bo $G$ Hamiltonov graf. Za vsako podmnožico vozlišč $X \subseteq V(G)$ velja, da ima graf $G - X$ kvečjemu $|X|$ komponent.
 \end{izrek}
 
-\begin{proof}
-	Blabla tukaj je dokaz.
-\end{proof}
+\proof
+	Blabla tukaj je dokaz. Blabla tukaj je dokaz. Blabla tukaj je dokaz. Blabla tukaj je dokaz. Blabla tukaj je dokaz.
+\endproof
 
+\begin{definicija}
+	Graf je \emph{ravninski}, če ga lahko narišemo v ravnini tako, da se nobeni povezavi ne križata.
+\end{definicija}
 
+\begin{definicija}
+	\emph{Barvanje} grafa $\graf{G}$ je preslikava 
+	\[ c\colon V(G) \longrightarrow \N, \text{ tako da velja } av \in E(G) \implies c(a) \neq c(v). \]
+	Če je $c\colon V(G) \longrightarrow [k]$, rečemo, da je $c$ $k$-barvanje. \emph{Kromatično število} grafa $G$, $\mathcal{X}(G)$, je najmanjši $k$, za katerega obstaja $k$-barvanje grafa G.
+\end{definicija}
 
 % seznam uporabljene literature
 \begin{thebibliography}{99}
