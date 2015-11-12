@@ -58,11 +58,11 @@
 \begin{frame}{Osnovne definicije teorije grafov}
     \begin{itemize}
         \item graf $ G = (V, E) $
-        \item \alert{soseščina} vozlišča $u$ je $N(u) = \{x \in V;\ ux \in E\}$
+        \item \alert{soseščina} vozlišča $u$: $N(u) = \{x \in V;\ ux \in E\}$
         \item \alert{stopnja} vozlišča $u$: $\stopnja u  = \lvert N(u) \rvert$
-        \item \alert{sprehod} v grafu je zaporedje vozlišč $v_1,\ldots v_k$, da za vsak $i$ velja $v_i v_{i+1} \in E$
+        \item \alert{sprehod} v grafu je zaporedje vozlišč $v_1,\ldots, v_k$, da za vsak $i$ velja $v_i v_{i+1} \in E$
         \item graf je \alert{povezan}, če za poljuben par vozlišč obstaja sprehod med njima
-        \item \alert{diameter} grafa je najmanjše maksimalno število povezav, ki jih moramo prepotovati, da pridemo od poljubnega vozlišča do nekega drugega vozlišča v temu grafu
+        \item \alert{premer} grafa je največja minimalna razdalja med pari vozlišč
     \end{itemize}
 \end{frame}
 
@@ -85,8 +85,8 @@
 \begin{frame}{Lastnosti grafa}
     \begin{itemize}
         \item 36 vozlišč (36 možnih stanj)
-        \item utežene stopnje vozlišč
-        \item diameter grafa je 8
+        \item 12 vozlišč stopnje 2, 3, 4
+        \item premer grafa je 8
         \item ravninski
         \item vsebuje Hamiltonovo pot
     \end{itemize}
@@ -94,20 +94,25 @@
 
 \section{Posplošen londonski stolp}
 \begin{frame}{Oznake}
-%    \begin{itemize}
-%        \item J.\ R.\ Tunstall prvi predlagal razširitev na 4 krogle s podaljšanimi palicami
-%    \end{itemize}
-    Imamo $p$ palic in $n$ krogel različne barve, pri čemer je $p \geq 3 \text{ in } n \geq 2$. Vsako palico označimo s številom $k \in [p]$, pri čemer je $h_k$ višina palice. Veljati mora $n \leq \sum_{k=1}^p h_k$. Poteza je veljavna, če vrhnjo kroglo neke palice prestavimo na vrh druge, pod pogojem, da je na tej palici manj kot $h_k$ krogel.
-    
-    Vsako stanje krogel lahko enolično predstavimo s permutacijo $s \in S_{n+p}$.
+    \begin{itemize}
+        \item J.\ R.\ Tunstall prva predlagala razširitev na 4 krogle s podaljšanimi palicami
+        \item $n$ krogel različne barve, $n \geq 2$
+        \item $p$ palic, $p \geq 3$
+        \item vsako palico označimo s številom $k \in [p]$, njeno višino pa s $h_k$
+        \item veljati mora $n \leq \sum_{k=1}^p h_k$
+        \item veljavnost poteze
+        \item vsako stanje lahko enolično predstavimo s permutacijo $s \in S_{n+p}$
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Definicija}
     \begin{block}{Definicija}
-        $p \geq 3,\ n \geq 2,\ h \in [n]^p,\  \sum_{k=1}^p h_k \geq n$. \\
-        Množica vozlišč \alert{Londonskega grafa}, označimo ga z $L_h^n$, je sestavljena iz vseh $s \in S_{n+p}$, za katere velja:
-        \[\forall k \in [p]:\ 1 \leq s_{n+k} - s_{n+k-1} \leq h_k + 1,\ s_{n+p} = n + p .\]
-        Vsaka povezava Londonskega grafa je sestavljena iz takega para vozlišč, da lahko s pomočjo ene veljavne poteze pridemo iz stanja, ki pripada prvemu vozlišču, v stanje, ki pripada drugemu vozlišču.
+        \alert{Londonski graf} $L_h^n$, kjer je $p \geq 3,\ n \geq 2,\ h \in [n]^p,\  \sum_{k=1}^p h_k \geq n$:
+        \begin{itemize}
+            \item vozlišča: vse permutacije $s \in S_{n+p}$, za katere velja:
+            \[\forall k \in [p]:\ 1 \leq s_{n+k} - s_{n+k-1} \leq h_k + 1,\ s_{n+p} = n + p ,\]
+            \item povezave: vsaki dve stanji (oz.\ pripadajoči permutaciji), med katerima lahko prehajamo z veljavno potezo, sta povezani
+        \end{itemize}
     \end{block}
 
 \end{frame}
@@ -124,10 +129,10 @@
 \section{Uporaba}
 \begin{frame}{Primeri uporabe}
     \begin{itemize}
-        \item problem londonskega stolpa je bil razvit z namenom merjenja sposobnosti načrtovanja in reševanja problemov v bolnikih s poškodbami čelnega režnja možganov
-        \item slabo reševanje londonskega stolpa se interpretira kot nezmožnost učinkovitega načrtovanja
-        \item uporabljen za ocenjevanje napredka bolezni pri bolnikih z Alzheimerjevo in Parkinsonovo boleznijo
-        \item uporabljen za opazovanje vedenja majhnih otrok pri reševanju problemov
+        \item Problem londonskega stolpa je bil razvit z namenom merjenja sposobnosti načrtovanja in reševanja problemov pri bolnikih s poškodbami čelnega režnja možganov.
+        \item Slabo reševanje londonskega stolpa se interpretira kot nezmožnost učinkovitega načrtovanja.
+        \item Uporabljen je bil za ocenjevanje napredka bolezni pri bolnikih z Alzheimerjevo in Parkinsonovo boleznijo.
+        \item Uporabljen je bil tudi za opazovanje vedenja majhnih otrok pri reševanju problemov.
     \end{itemize}
 \end{frame}
 
