@@ -50,8 +50,9 @@
 
 
 % commands
-\newcommand{\graf}[1]{\ensuremath{#1 = (V(#1), E(#1))}}
-
+\newcommand{\graf}[1][G]{\ensuremath{#1 = (V(#1), E(#1))}}
+\newcommand{\vozlisca}[1][G]{\ensuremath{V(#1)}}
+\newcommand{\povezave}[1][G]{\ensuremath{E(#1)}}
 % operatorji
 \DeclareMathOperator {\stopnja} {deg}
 
@@ -120,70 +121,101 @@ Vsa možna stanja in prehode med njimi lahko zelo elegantno opišemo s pomočjo 
 \section{Osnovni pojmi teorije grafov}
 
 \begin{definicija}
-	\emph{Graf} $G$ je urejen par $(V(G), E(G))$, kjer je $V(G)$ končna množica \emph{vozlišč}, $E(G)$ pa množica \emph{povezav} grafa. Povezave so predstavljene kot neurejeni pari vozlišč (neusmerjeni grafi).
+	\emph{Graf} $G$ je urejen par $(\vozlisca, \povezave)$, kjer je $\vozlisca$ končna množica \emph{vozlišč}, $\povezave$ pa množica \emph{povezav} grafa. Povezave so predstavljene kot neurejeni pari vozlišč (neusmerjeni grafi).
 \end{definicija}
 
-Obstajajo variacije zgornje definicije, graf je lahko npr.\ usmerjen (povezave so usmerjeni pari) -- tedaj govorimo o \emph{digrafih}, ima neskončno število vozlišč ali pa več povezav med dvema vozliščima.
+Obstajajo variacije zgornje definicije, graf je lahko npr.\ usmerjen (povezave so usmerjeni pari) -- tedaj govorimo o \emph{digrafih} -- ima neskončno število vozlišč ali pa več povezav med dvema vozliščema.
 
-Vozlišča grafa predstavimo s točkami v ravnini, povezavo med dvema vozliščima pa kot enostavno krivuljo med ustreznima točkama v ravnini.
+Vozlišča grafa predstavimo s točkami v ravnini, povezavo med dvema vozliščema pa kot enostavno krivuljo med ustreznima točkama v ravnini.
+
+\begin{figure}[h]
+    %\includegraphics[width=200pt]{img/basicgraph.png}
+    \caption{Možna predstavitev grafa v ravnini.}
+\end{figure}
+    
+Če je $e = \{ u,v \}$ povezava, tedaj sta $u$ in $v$ \emph{krajišči} povezave $e$, pišemo tudi $e = uv$; rečemo, da sta $u$ in $v$ \emph{sosednji vozlišči}.
 
 \begin{definicija}
-	Če je $e = \{ u,v \}$ povezava, tedaj sta $u$ in $v$ \emph{krajišči} povezave $e$, pišemo tudi $e = uv$; rečemo, da sta $u$ in $v$ \emph{sosednji vozlišči}.
-	
-	\emph{Soseščina} vozlišča $u$ je množica 
-	\[ N(u) = \{ x\colon ux \in E(G) \} .\]
+	\emph{Soseščina} vozlišča $u$ je množica vseh sosednjih vozlišč vozlišča $u$:
+	\[ N(u) = \{ x\colon ux \in \povezave \} .\]
 	\emph{Stopnja vozlišča} $u$ je število vseh vozlišč, ki so mu sosednji: $\stopnja u = |N(u)|$.
 \end{definicija}
 
-\begin{definicija}
-	Graf $\graf{H}$ je \emph{podgraf} grafa $\graf{G}$, če velja 
-	\[ V(H) \subseteq V(G) \text{ in } E(H) \subseteq E(G). \]
-	Podgraf H grafa G je \emph{inducirani} podgraf, če za vsaki dve vozlišči $x,y\in V(H)$ velja: $xy \in E(G) \implies xy \in E(H)$.
-\end{definicija}
-
-\begin{definicija}
-	\emph{Pot} na $n$ vozliščih je graf, ki ima dva vozlišča stopnje $1$, medtem ko so preostala vozlišča stopnje $2$. TODO
-	
-	\emph{Cikel} na $n$ vozliščih (označimo ga s $C_n$) je graf, ki ga dobimo iz poti na $n$ vozliščih tako, da dodamo povezavo med vozliščema stopnje $1$.
-\end{definicija}
-
 \begin{primer}
-	Sem pride primer poti in cikla za $n=6$ (recimo).
+    \label{primer:sosedi}
+    Naj bo graf $G$ podan z \[\vozlisca = \{ 1,2,3,4,5 \}, \quad \povezave = \left\{ \{1,4\},\{1,5\},\{2,5\},\{3,4\},\{3,5\} \right\}.\]
+    \begin{figure}[h]
+%        \includegraphics[width=200pt]{img/primer1.png}
+        \caption{Graf $G$.}
+    \end{figure}
+    Soseščina vozlišča 5 je $N(5) = \{1,2,3\}$.
 \end{primer}
 
 \begin{definicija}
-	Naj bosta $\graf{G}$ in $\graf{H}$ grafa. 
-	Preslikava $f\colon V(G) \longrightarrow V(H)$ je \emph{izomorfizem}, če je bijektivna in velja
-	\[ uv \in E(G) \iff f(u)f(v) \in E(H),\quad \forall u, v \in E(G). \]
-	Grafa $G$ in $H$ sta \emph{izomorfna}, če obstaja izomorfizem $G \longrightarrow H$. Oznaka: $G \cong H$.
+	Graf $\graf[H]$ je \emph{podgraf} grafa $\graf$, če velja 
+	\[ \vozlisca[H] \subseteq \vozlisca \text{ in } \povezave[H] \subseteq \povezave. \]
+	Podgraf H grafa G je \emph{inducirani} podgraf, če za vsaki dve vozlišči $x,y\in \vozlisca[H]$ velja: $xy \in \povezave \implies xy \in \povezave[H]$.
 \end{definicija}
 
+\begin{primer}
+    Če vzamemo graf $G$ iz prejšnjega primera \ref{primer:sosedi}, potem je graf $H$, ki ima
+    
+    \[ \vozlisca[H] = \{2,3,4,5\},\quad \povezave[H] = \left\{ \{2,3\},\{2,5\},\{3,4\},\{3,5\} \right\} \]
+    
+    induciran podgraf grafa $G$.
+    
+    \begin{figure}[h]
+        %     \includegraphics[width=200pt]{img/primer1.png}
+%        \includegraphics[width=200pt]{img/primer2.png}
+        \caption{Graf $H$ je induciran podgraf grafa $G$.}
+    \end{figure}
+\end{primer}
+
+Poglejmo si nekaj razredov grafov, ki nam bodo prišli prav v kasnejših definicijah. 
+
+\emph{Pot} na $n$ vozliščih je graf, ki ima dva vozlišča stopnje $1$, medtem ko so preostala vozlišča stopnje $2$.
+
+\emph{Cikel} na $n$ vozliščih (označimo ga s $C_n$) je graf, ki ga dobimo iz poti na $n$ vozliščih tako, da dodamo povezavo med vozliščema stopnje $1$.
+
+\emph{Polni graf} na $n$ vozliščih (označimo ga s $K_n$) je graf, za katerega velja 
+\[ uv \in \povezave[K_n] \quad \forall u,v \in \vozlisca[K_n].\] 
+Z besedami, vsa vozlišča polnega grafa so med sabo povezana.
+
+\begin{figure}[h]
+%    \includegraphics[width=200pt]{img/pot6.png}
+%    \includegraphics[width=200pt]{img/cikel6.png}
+    \caption{Primer poti (levo) in cikla (desno) na šestih vozliščih.}
+\end{figure}
+
+
 \begin{definicija}
-	\emph{Pot v grafu} $G$ je podgraf grafa $G$, ki je izomorfen poti.
-	\emph{Cikel v grafu} $G$ je podgraf grafa $G$, ki je izomorfen ciklu. 
+	Naj bosta $\graf$ in $\graf[H]$ grafa. 
+	Preslikava $f\colon \vozlisca \to \vozlisca[H]$ je \emph{izomorfizem}, če je bijektivna in velja
+	\[ uv \in \povezave \iff f(u)f(v) \in \povezave[H],\quad \forall u, v \in \povezave. \]
+	Grafa $G$ in $H$ sta \emph{izomorfna}, če obstaja izomorfizem $G \to H$. Oznaka: $G \cong H$.
 \end{definicija}
 
+\emph{Pot v grafu} $G$ je podgraf grafa $G$, ki je izomorfen poti.
+\emph{Cikel v grafu} $G$ je podgraf grafa $G$, ki je izomorfen ciklu. 
+
+\emph{Sprehod} v grafu $G$ je zaporedje vozlišč $v_1, v_2, \ldots, v_k$, tako da velja $v_i v_{i+1} \in E(G),$ pri čemer je $1 \leq i \leq k-1$. Če označimo $x = x_1$ in $y = x_k$, potem takemu sprehodu rečemo $x,y$-sprehod.
+
+Sprehod je \emph{enostaven}, če so vsa njegova vozlišča različna. Enostaven sprehod inducira podgraf, ki je izomorfen poti.
+
+\begin{figure}[h]
+%    \includegraphics[width=200pt]{img/enostaven-sprehod1.png}
+%    \includegraphics[width=200pt]{img/enostaven-sprehod2.png}
+    \caption{Enostaven sprehod in pot v grafu, ki jo inducira.}
+\end{figure}
+
+Naj bo $G$ graf in $\sim$ relacija, definirana na kartezičnem produktu $\vozlisca \times \vozlisca$:
+\[ x \sim y \ \stackrel{\text{def}}{\equiv} \ \exists \ x,y \text{-sprehod.} \]
+
+Preprosto lahko preverimo, da je relacija $\sim$ ekvivalenčna. Sledi, da relacija $\sim$ množico vozlišč grafa G razbije na ekvivalenčne razrede. Podgrafi, inducirani s temi razredi, so \emph{komponente} grafa $G$. Definiramo lahko:
+
 \begin{definicija}
-	\emph{Sprehod} v grafu $G$ je zaporedje vozlišč $v_1, v_2, \ldots, v_k$, tako da velja $v_i v_{i+1} \in E(G),\ 1 \leq i \leq k-1$. Če označimo $x = x_1$ in $y = x_k$, potem takemu sprehodu rečemo $x,y$-sprehod.
-
-	Sprehod je \emph{enostaven}, če so vsa njegova vozlišča različna. Enostaven sprehod inducira podgraf, ki je izomorfen poti.
-\end{definicija}
-
-\begin{definicija}
-	Naj bo $G$ graf in $\sim$ relacija, definirana na $V(G) \times V(G)$:
-	\[ x \sim y \ \stackrel{\text{def}}{\equiv} \ \exists \ x,y \text{-sprehod.} \]
-\end{definicija}
-
-Preprosto lahko preverimo, da je relacija $\sim$ ekvivalenčna. Torej sledi:
-
-\begin{definicija}
-	Relacija $\sim$ množico vozlišč grafa G $V(G)$ razbije na ekvivalenčne razrede. Podgrafi, inducirani s temi razredi, so \emph{komponente} grafa $G$.
-	
 	Graf je \emph{povezan}, če ima le eno komponento.
-\end{definicija}
-
-\begin{definicija}
-	Naj bo $G$ povezan graf. Tedaj je \emph{razdalja} $d_G(u,v)$ med vozliščema $u$ in $v$ najmanjše možno število povezav na neki $u,v$-poti.
+    Naj bo $G$ povezan graf. Tedaj je \emph{razdalja} $d_G(u,v)$ med vozliščema $u$ in $v$ najmanjše možno število povezav na neki $u,v$-poti.
 \end{definicija}
 
 \begin{definicija}
