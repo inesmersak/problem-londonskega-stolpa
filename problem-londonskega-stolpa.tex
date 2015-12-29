@@ -2,12 +2,13 @@
 % ukazi za delo s slovenscino -- izberi kodiranje, ki ti ustreza
 \usepackage[slovene]{babel}
 %\usepackage[cp1250]{inputenc}
-%\usepackage[T1]{fontenc}
+\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{url}
 %\usepackage[normalem]{ulem}
 \usepackage[dvipsnames,usenames]{color}
+\usepackage{graphicx}
 
 % ne spreminjaj podatkov, ki vplivajo na obliko strani
 \textwidth 15cm
@@ -53,6 +54,8 @@
 \newcommand{\graf}[1][G]{\ensuremath{#1 = (V(#1), E(#1))}}
 \newcommand{\vozlisca}[1][G]{\ensuremath{V(#1)}}
 \newcommand{\povezave}[1][G]{\ensuremath{E(#1)}}
+\newcommand{\bd}{\ensuremath{|\,}}
+\newcommand{\ed}{\ensuremath{\,|}}
 % operatorji
 \DeclareMathOperator {\stopnja} {deg}
 
@@ -248,7 +251,7 @@ Eno izmed zanimivih vprašanj v teoriji grafov je, ali je možno najti neko pot/
 Za Hamiltonove grafe velja naslednji izrek, ki je tudi potreben pogoj za to, da graf vsebuje Hamiltonov cikel.
 
 \begin{izrek}
-	Naj bo $G$ Hamiltonov graf. Za vsako podmnožico vozlišč $X \subseteq V(G)$ velja, da ima graf $G - X$ kvečjemu $|X|$ komponent.
+	Naj bo $G$ Hamiltonov graf. Za vsako podmnožico vozlišč $X \subseteq V(G)$ velja, da ima graf $G \setminus X$ kvečjemu $|X|$ komponent.
 \end{izrek}
 
 \proof
@@ -326,6 +329,36 @@ Iz definicije je razvidno, da je tak $H$ ravninski natanko tedaj, ko je $G$ ravn
 %	\[ c\colon \vozlisca \to \N, \text{ tako da velja } av \in \povezave \implies c(a) \neq c(v). \]
 %	Če je $c\colon \vozlisca \to [k]$, rečemo, da je $c$ $k$-barvanje. \emph{Kromatično število} grafa $G$, $\mathcal{X}(G)$, je najmanjši $k$, za katerega obstaja $k$-barvanje grafa G.
 %\end{definicija}
+
+\section{Klasični problem londonskega stolpa}
+Pri klasičnem londonskem stolpu imamo tri enako velike krogle različnih barv in tri palice različnih velikosti: na prvo lahko postavimo eno kroglo, na drugo dve, na tretjo pa tri (temu bomo rekli, da imajo palice višine 1, 2 in 3). Cilj igre je priti iz nekega začetnega stanja v neko vnaprej določeno končno stanje.
+
+\begin{figure}[h]
+    \includegraphics[width=250pt]{img/london-tower.png}
+    \caption{Na sliki sta prikazani dve možni stanji londonskega stolpa.}
+    \label{fig:stanji}
+\end{figure}
+
+Stanja in prehode med njimi si najlažje predstavljamo, če narišemo graf. V ta namen vpeljemo naslednje oznake:
+krogle bomo označili s številkami 1, 2, 3 -- npr.\ modra krogla naj ima oznako 1, rdeča 2, rumena pa 3 -- s simbolom ``|'' pa bomo označili konec prejšnje palice in začetek nove. Krogle bomo naštevali od vrha palice navzdol.
+
+\begin{primer}
+    Začetno stanje na sliki \ref{fig:stanji} lahko torej opišemo z $\bd 3 \ed 12$, končno stanje pa z $\bd 21 \ed 3$.
+\end{primer}
+
+S pomočjo teh oznak lahko opišemo vsako možno stanje in narišemo graf londonskega stolpa (označimo ga z $L$), pri čemer so vozlišča stanja, povezave pa so med tistimi stanji, med katerimi lahko prehajamo z eno potezo (enim veljavnim premikom krogle).
+
+\begin{figure}[h]
+    \includegraphics[width=300pt]{img/tolgraph.png}
+    \caption{Graf $L$ klasičnega Londonskega stolpa.}
+    \label{fig:tolgraph}
+\end{figure}
+
+Število vseh možnih stanj je 36, torej ima $L$ 36 vozlišč. Očitno je graf ravninski, saj je na zgornji sliki narisan v ravnini brez križanja povezav. Hitro vidimo tudi, da je 12 vozlišč grafa $L$ stopnje 2, drugih 12 je stopnje 3, zadnjih 12 pa stopnje 4.
+
+\begin{primer}
+    S pomočjo grafa na sliki \ref{fig:tolgraph} lahko hitro ugotovimo, da za prehod med stanjema na sliki \ref{fig:stanji} potrebujemo minimalno 4 poteze in da je to edina najkrajše možno zaporedje potez.
+\end{primer}
 
 % seznam uporabljene literature
 \begin{thebibliography}{99}
