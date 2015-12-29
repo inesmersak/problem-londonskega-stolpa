@@ -110,15 +110,16 @@ Prevod zgornjega povzetka v angle"s"cino.
  
 % tu se zacne tekst seminarja
 \section{Uvod}
-Test londonskega stolpa je ena izmed variacij Hanojskih stolpov. Izumil ga je britanski nevropsiholog Tim Shallice leta 1982. Pogosto je uporabljen v psihologiji, saj s pomočjo te igre ugotavljajo stanje pacientove psihe, opazujejo pa lahko tudi napredek bolezni pri npr.\ Parkinsonovih bolnikih.
+Test londonskega stolpa je ena izmed variacij Hanojskih stolpov. Izumil ga je britanski nevropsiholog Tim Shallice leta 1982. Pogosto je uporabljen v psihologiji, saj s pomočjo te igre ugotavljajo stanje pacientove psihe, opazujejo pa lahko tudi napredek bolezni pri npr.\ Parkinsonovih bolnikih. \cite{bib:wikishal}
 
-Osnovna verzija londonskega stolpa vsebuje tri enako velike krogle različnih barv in tri palice. Na prvo palico lahko postavimo samo eno kroglo, na drugo le dve krogli, na tretjo pa tri. Cilj igre je priti iz nekega danega stanja v neko drugo želeno stanje s čim manj koraki.
+Osnovna verzija londonskega stolpa vsebuje tri enako velike krogle različnih barv in tri palice. Na prvo palico lahko postavimo samo eno kroglo, na drugo le dve krogli, na tretjo pa tri. Cilj igre je priti iz nekega danega stanja v neko drugo želeno stanje s čim manj koraki. Stanja (in prehode med njimi) lahko opišemo s pomočjo teorije grafov.
 
-(Viri: wikipedia (TS), KlavžarHinz knjiga)
+Diplomska naloga je razdeljena na tri dele: v prvem delu bom najprej opisala vse pojme, navedla (in nekatere tudi dokazale) vse trditve, izreke in posledice teorije grafov, ki mi bodo v pomoč pri obravnavi problema londoskega stolpa. V drugem delu bom podrobneje opisala klasični londonski stolp in lastnosti pripadajočega grafa, v zadnjem delu pa bom obravnavala posplošeni problem londonskega stolpa.
 
-Vsa možna stanja in prehode med njimi lahko zelo elegantno opišemo s pomočjo grafov, zato si najprej poglejmo nekaj osnovnih pojmov teorije grafov.
 
 \section{Osnovni pojmi teorije grafov}
+
+Vsa možna stanja londonskega stolpa in prehode med njimi lahko zelo elegantno opišemo s pomočjo grafov, zato si najprej poglejmo nekaj osnovnih pojmov teorije grafov.
 
 \begin{definicija}
 	\emph{Graf} $G$ je urejen par $(\vozlisca, \povezave)$, kjer je $\vozlisca$ končna množica \emph{vozlišč}, $\povezave$ pa množica \emph{povezav} grafa. Povezave so predstavljene kot neurejeni pari vozlišč (neusmerjeni grafi).
@@ -184,7 +185,7 @@ Z besedami, vsa vozlišča polnega grafa so med sabo povezana.
 \begin{figure}[h]
 %    \includegraphics[width=200pt]{img/pot6.png}
 %    \includegraphics[width=200pt]{img/cikel6.png}
-    \caption{Primer poti (levo) in cikla (desno) na šestih vozliščih.}
+    \caption{Primer poti (levo), cikla (sredina) in polnega grafa (desno) na šestih vozliščih.}
 \end{figure}
 
 
@@ -200,7 +201,7 @@ Z besedami, vsa vozlišča polnega grafa so med sabo povezana.
 
 \emph{Sprehod} v grafu $G$ je zaporedje vozlišč $v_1, v_2, \ldots, v_k$, tako da velja $v_i v_{i+1} \in E(G),$ pri čemer je $1 \leq i \leq k-1$. Če označimo $x = x_1$ in $y = x_k$, potem takemu sprehodu rečemo $x,y$-sprehod.
 
-Sprehod je \emph{enostaven}, če so vsa njegova vozlišča različna. Enostaven sprehod inducira podgraf, ki je izomorfen poti.
+Sprehod je \emph{enostaven}, če so vsa njegova vozlišča različna. Enostaven sprehod inducira podgraf, ki je izomorfen poti (torej pot v grafu).
 
 \begin{figure}[h]
 %    \includegraphics[width=200pt]{img/enostaven-sprehod1.png}
@@ -211,18 +212,40 @@ Sprehod je \emph{enostaven}, če so vsa njegova vozlišča različna. Enostaven 
 Naj bo $G$ graf in $\sim$ relacija, definirana na kartezičnem produktu $\vozlisca \times \vozlisca$:
 \[ x \sim y \ \stackrel{\text{def}}{\equiv} \ \exists \ x,y \text{-sprehod.} \]
 
-Preprosto lahko preverimo, da je relacija $\sim$ ekvivalenčna. Sledi, da relacija $\sim$ množico vozlišč grafa G razbije na ekvivalenčne razrede. Podgrafi, inducirani s temi razredi, so \emph{komponente} grafa $G$. Definiramo lahko:
+Preprosto lahko preverimo, da je relacija $\sim$ ekvivalenčna. Sledi, da relacija $\sim$ množico vozlišč grafa G razbije na ekvivalenčne razrede. Podgrafi, inducirani s temi razredi, so \emph{komponente} grafa $G$.
 
 \begin{definicija}
-	Graf je \emph{povezan}, če ima le eno komponento.
-    Naj bo $G$ povezan graf. Tedaj je \emph{razdalja} $d_G(u,v)$ med vozliščema $u$ in $v$ najmanjše možno število povezav na neki $u,v$-poti.
+	Graf je \emph{povezan}, če ima le eno komponento. Povedano drugače, za poljuben par vozlišč mora obstajati sprehod med njima.
 \end{definicija}
+
+\begin{figure}[h]
+%    \includegraphics[width=200pt]{img/povezan-graf.png}
+%    \includegraphics[width=200pt]{img/nepovezan-graf.png}
+    \caption{Povezan (levo) in nepovezan (desno) graf.}
+\end{figure}
+
+Če je $G$ povezan graf, lahko definiramo \emph{razdaljo} $d_G(u,v)$ med vozliščema $u$ in $v$ kot najmanjše možno število povezav na neki $u,v$-poti.
+
+\begin{definicija}
+    Graf $G$ je \emph{dvodelen}, če lahko množico njegovih vozlišč razbijemo na dva dela ($V_1,V_2$) tako, da ima vsaka povezava grafa $G$ eno krajišče v $V_1$ in drugo v $V_2$.
+\end{definicija}
+
+Pri polnem dvodelnem grafu z $n$ vozlišči v prvi množici, recimo ji $V_1$, in $m$ vozlišči v drugi množici, recimo ji $V_2$, je vsako vozlišče iz množice $V_1$ povezano z vsakim iz $V_2$, medtem ko znotraj množic vozlišča niso povezana. Tak graf označimo s $K_{n,m}$.
+
+\begin{figure}[h]
+%    \includegraphics[width=200pt]{img/polni-dvodelni-graf.png}
+    \caption{Na sliki je polni dvodelni graf $K_{2,4}$.}
+\end{figure}
+
+Eno izmed zanimivih vprašanj v teoriji grafov je, ali je možno najti neko pot/cikel v grafu, ki vsebuje vsa vozlišča tega grafa. S tem problemom se je ukvarjal tudi Hamilton, po katerem so take poti in cikli poimenovani; njega je zanimalo predvsem, ali je mogoče poiskati cikel, ki vsebuje vsa vozlišča, v dodekaedru \cite{bib:wikihamilpath}.
 
 \begin{definicija}
 	Pot v grafu, ki vsebuje vsa vozlišča tega grafa, se imenuje \emph{Hamiltonova pot}.
 	\emph{Hamiltonov cikel} nekega grafa $G$ je cikel v $G$, ki poteka skozi vsa vozlišča tega grafa.
 	Graf je \emph{Hamiltonov}, če vsebuje Hamiltonov cikel.
 \end{definicija}
+
+Za Hamiltonove grafe velja naslednji izrek, ki je tudi potreben pogoj za to, da graf vsebuje Hamiltonov cikel.
 
 \begin{izrek}
 	Naj bo $G$ Hamiltonov graf. Za vsako podmnožico vozlišč $X \subseteq V(G)$ velja, da ima graf $G - X$ kvečjemu $|X|$ komponent.
@@ -232,21 +255,88 @@ Preprosto lahko preverimo, da je relacija $\sim$ ekvivalenčna. Sledi, da relaci
 	Blabla tukaj je dokaz. Blabla tukaj je dokaz. Blabla tukaj je dokaz. Blabla tukaj je dokaz. Blabla tukaj je dokaz.
 \endproof
 
-\begin{definicija}
-	Graf je \emph{ravninski}, če ga lahko narišemo v ravnini tako, da se nobeni povezavi ne križata.
-\end{definicija}
+V diplomski nalogi se bom ukvarjala tudi s tem, kdaj je graf, s pomočjo katerega predstavimo londonski stolp, ravninski.
 
 \begin{definicija}
-	\emph{Barvanje} grafa $\graf{G}$ je preslikava 
-	\[ c\colon V(G) \longrightarrow \N, \text{ tako da velja } av \in E(G) \implies c(a) \neq c(v). \]
-	Če je $c\colon V(G) \longrightarrow [k]$, rečemo, da je $c$ $k$-barvanje. \emph{Kromatično število} grafa $G$, $\mathcal{X}(G)$, je najmanjši $k$, za katerega obstaja $k$-barvanje grafa G.
+    Graf je \emph{ravninski}, če ga lahko narišemo v ravnini tako, da se nobeni povezavi ne križata.
 \end{definicija}
+
+Če je graf narisan v ravnini brez križanja povezav, rečemo, da je graf vložen v ravnino.
+
+\begin{figure}[h]
+%    \includegraphics[width=200pt]{img/k4.png}
+    \caption{Ravninskost grafa $K_4$ ni očitna.}
+\end{figure}
+
+Hitro lahko vidimo, da grafa $K_5$ in $K_{3,3}$ nista ravninska (poskusimo ju narisati v ravnini, a kmalu ugotovimo, da to ne bo mogoče). To dejstvo sledi tudi kot posledica ene izmed posledic Eulerjeve formule.
+
+Za začetek moram najprej definirati \emph{lica vložitve}. To so sklenjena območja, ki jih omejuje risba grafa, vloženega v ravnino.
+
+\begin{izrek}[Eulerjeva formula]
+    Naj bo $G$ povezan ravninski graf z $n$ vozlišči in $m$ povezavami. Naj ima risba grafa $G$, vloženega v ravnino, $f$ lic. Potem velja
+    \[ n - m + f = 2 .\]
+\end{izrek}
+
+Eulerjevo formulo dokažemo z indukcijo na število povezav, zaradi jedrnatosti besedila bomo dokaz tukaj izpustili. Oglejmo si raje posledico Eulerjeve formule:
+
+\begin{posledica}
+    Če je $G$ ravninski graf na $n$ vozliščih in $m$ povezavah, velja
+    \[ m \leq 3n - 6 .\]
+\end{posledica}
+
+\proof
+    Če za vsako lice upoštevamo le tri povezave (to je minimalno število povezav, ki omejuje lice), bomo dobili kvečjemu manj, kot če preštejemo vse povezave dvakrat. Torej velja neenakost
+    \[ 3f \leq 2m .\]
+    Če iz Eulerjeve formule izrazimo $f$ in ga vstavimo v zgornjo neenakost, dobimo
+    \begin{align*}
+        3\cdot(2-n+m) &\leq 2m \\
+        6 - 3n + 3m &\leq 2m \\
+        m &\leq 3n - 6
+    \end{align*}
+    
+\endproof
+
+Z uporabo zgornje formule, ki torej mora veljati, če je graf ravninski, lahko torej dokažemo:
+\begin{posledica}
+    \label{posl:neravninska-grafa}
+    $K_5$ in $K_{3,3}$ nista ravninska grafa.
+\end{posledica}
+
+Sedaj želimo ugotoviti, kakšnim pogojem mora ustrezati graf, da bo ravninski. Očitno velja naslednja trditev:
+
+\begin{trditev}
+    \label{trd:podgraf}
+    Če je graf ravninski, potem je tudi vsak njegov podgraf ravninski. \cite{bib:potocnik}
+\end{trditev}
+
+Operacija ``podgraf'' torej ohranja ravninskost grafa.
+Pogledali si bomo še operacijo \emph{subdivizije}, ki prav tako ohranja lastnost ravninskosti.
+
+\begin{definicija}
+    Graf $H$ je \emph{subdivizija} grafa $G$, če ga lahko dobimo iz $G$ tako, da povezave grafa $G$ nadomestimo s paroma notranje disjunktnimi potmi.
+\end{definicija}
+
+Iz definicije je razvidno, da je tak $H$ ravninski natanko tedaj, ko je $G$ ravninski. Iz tega dejstva, trditve \ref{trd:podgraf} in posledice \ref{posl:neravninska-grafa} lahko zaključimo, da graf zagotovo ni ravninski, če vsebuje subdivizijo $K_5$ ali $K_{3,3}$. Zanimivo pa je, da velja tudi obratno; dokaz tega dejstva je netrivialen in ga lahko najdete v [TODO vir].
+
+\begin{izrek}[Kuratowski]
+    Graf G je ravninski natanko tedaj, ko ne vsebuje subdivizije $K_5$ niti subdivizije $K_{3,3}$.
+\end{izrek}
+%\begin{definicija}
+%	\emph{Barvanje} grafa $\graf$ je preslikava 
+%	\[ c\colon \vozlisca \to \N, \text{ tako da velja } av \in \povezave \implies c(a) \neq c(v). \]
+%	Če je $c\colon \vozlisca \to [k]$, rečemo, da je $c$ $k$-barvanje. \emph{Kromatično število} grafa $G$, $\mathcal{X}(G)$, je najmanjši $k$, za katerega obstaja $k$-barvanje grafa G.
+%\end{definicija}
 
 % seznam uporabljene literature
 \begin{thebibliography}{99}
 
-%\bibitem{}
+\bibitem{bib:tohmyths} A. M. Hinz, S. Klavžar, U. Milutinović in C. Petr, \emph{The Tower of Hanoi – Myths and Maths}, Birkhäuser, Basel, 2013.
 
+\bibitem{bib:potocnik} P. Potočnik, \emph{Zapiski predavanj iz Diskretne Matematike I}, 1.~izdaja, [ogled 29.~12.~15], dostopno na \url{http://www.fmf.uni-lj.si/~potocnik/Ucbeniki/DM-Zapiski2010.pdf}
+
+\bibitem{bib:wikishal} \emph{Tim Shallice}, [ogled 8.~10.~2015], dostopno na \url{https://en.wikipedia.org/wiki/Tim_Shallice}.
+
+\bibitem{bib:wikihamilpath} \emph{Hamiltonian path}, [ogled 28.~12.~2015], dostopno na \url{https://en.wikipedia.org/wiki/Hamiltonian_path}.
 \end{thebibliography}
 
 \end{document}
