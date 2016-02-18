@@ -191,6 +191,16 @@ Z besedami, vsa vozlišča polnega grafa so med sabo povezana.
     \caption{Primer poti (levo), cikla (sredina) in polnega grafa (desno) na šestih vozliščih.}
 \end{figure}
 
+\begin{definicija}
+    Graf $G$ je \emph{dvodelen}, če lahko množico njegovih vozlišč razbijemo na dva dela ($V_1,V_2$) tako, da ima vsaka povezava grafa $G$ eno krajišče v $V_1$ in drugo v $V_2$.
+\end{definicija}
+
+Pri polnem dvodelnem grafu z $n$ vozlišči v prvi množici, recimo ji $V_1$, in $m$ vozlišči v drugi množici, recimo ji $V_2$, je vsako vozlišče iz množice $V_1$ povezano z vsakim iz $V_2$, medtem ko znotraj množic vozlišča niso povezana. Tak graf označimo s $K_{n,m}$.
+
+\begin{figure}[h]
+    %    \includegraphics[width=200pt]{img/polni-dvodelni-graf.png}
+    \caption{Na sliki je polni dvodelni graf $K_{2,4}$.}
+\end{figure}
 
 \begin{definicija}
 	Naj bosta $\graf$ in $\graf[H]$ grafa. 
@@ -201,6 +211,8 @@ Z besedami, vsa vozlišča polnega grafa so med sabo povezana.
 
 \emph{Pot v grafu} $G$ je podgraf grafa $G$, ki je izomorfen poti.
 \emph{Cikel v grafu} $G$ je podgraf grafa $G$, ki je izomorfen ciklu. 
+
+\subsection{Povezanost grafa}
 
 \emph{Sprehod} v grafu $G$ je zaporedje vozlišč $v_1, v_2, \ldots, v_k$, tako da velja $v_i v_{i+1} \in E(G),$ pri čemer je $1 \leq i \leq k-1$. Če označimo $x = x_1$ in $y = x_k$, potem takemu sprehodu rečemo $x,y$-sprehod.
 
@@ -229,16 +241,7 @@ Preprosto lahko preverimo, da je relacija $\sim$ ekvivalenčna. Sledi, da relaci
 
 Če je $G$ povezan graf, lahko definiramo \emph{razdaljo} $d_G(u,v)$ med vozliščema $u$ in $v$ kot najmanjše možno število povezav na neki $u,v$-poti.
 
-\begin{definicija}
-    Graf $G$ je \emph{dvodelen}, če lahko množico njegovih vozlišč razbijemo na dva dela ($V_1,V_2$) tako, da ima vsaka povezava grafa $G$ eno krajišče v $V_1$ in drugo v $V_2$.
-\end{definicija}
-
-Pri polnem dvodelnem grafu z $n$ vozlišči v prvi množici, recimo ji $V_1$, in $m$ vozlišči v drugi množici, recimo ji $V_2$, je vsako vozlišče iz množice $V_1$ povezano z vsakim iz $V_2$, medtem ko znotraj množic vozlišča niso povezana. Tak graf označimo s $K_{n,m}$.
-
-\begin{figure}[h]
-%    \includegraphics[width=200pt]{img/polni-dvodelni-graf.png}
-    \caption{Na sliki je polni dvodelni graf $K_{2,4}$.}
-\end{figure}
+\subsection{Hamiltonovi grafi}
 
 Eno izmed zanimivih vprašanj v teoriji grafov je, ali je možno najti neko pot/cikel v grafu, ki vsebuje vsa vozlišča tega grafa. S tem problemom se je ukvarjal tudi Hamilton, po katerem so take poti in cikli poimenovani; njega je zanimalo predvsem, ali je mogoče poiskati cikel, ki vsebuje vsa vozlišča, v dodekaedru \cite{bib:wikihamilpath}.
 
@@ -255,8 +258,10 @@ Za Hamiltonove grafe velja naslednji izrek, ki je tudi potreben pogoj za to, da 
 \end{izrek}
 
 \proof
-	Blabla tukaj je dokaz. Blabla tukaj je dokaz. Blabla tukaj je dokaz. Blabla tukaj je dokaz. Blabla tukaj je dokaz.
+
 \endproof
+
+\subsection{Ravninski grafi}
 
 V diplomski nalogi se bom ukvarjala tudi s tem, kdaj je graf, s pomočjo katerega predstavimo londonski stolp, ravninski.
 
@@ -273,7 +278,7 @@ V diplomski nalogi se bom ukvarjala tudi s tem, kdaj je graf, s pomočjo katereg
 
 Hitro lahko vidimo, da grafa $K_5$ in $K_{3,3}$ nista ravninska (poskusimo ju narisati v ravnini, a kmalu ugotovimo, da to ne bo mogoče). To dejstvo sledi tudi kot posledica ene izmed posledic Eulerjeve formule.
 
-Za začetek moram najprej definirati \emph{lica vložitve}. To so sklenjena območja, ki jih omejuje risba grafa, vloženega v ravnino.
+Za začetek moramo najprej definirati \emph{lica vložitve}. To so sklenjena območja, ki jih omejuje risba grafa, vloženega v ravnino.
 
 \begin{izrek}[Eulerjeva formula]
     Naj bo $G$ povezan ravninski graf z $n$ vozlišči in $m$ povezavami. Naj ima risba grafa $G$, vloženega v ravnino, $f$ lic. Potem velja
@@ -357,9 +362,42 @@ S pomočjo teh oznak lahko opišemo vsako možno stanje in narišemo graf london
 Število vseh možnih stanj je 36, torej ima $L$ 36 vozlišč. Očitno je graf ravninski, saj je na zgornji sliki narisan v ravnini brez križanja povezav. Hitro vidimo tudi, da je 12 vozlišč grafa $L$ stopnje 2, drugih 12 je stopnje 3, zadnjih 12 pa stopnje 4.
 
 \begin{primer}
-    S pomočjo grafa na sliki \ref{fig:tolgraph} lahko hitro ugotovimo, da za prehod med stanjema na sliki \ref{fig:stanji} potrebujemo minimalno 4 poteze in da je to edina najkrajše možno zaporedje potez.
+    S pomočjo grafa na sliki \ref{fig:tolgraph} lahko hitro ugotovimo, da za prehod med stanjema na sliki \ref{fig:stanji} potrebujemo minimalno 4 poteze in da je to edino najkrajše možno zaporedje potez.
 \end{primer}
 
+\bigskip
+
+\begin{trditev}
+    Graf $L$ vsebuje Hamiltonovo pot, ne pa tudi Hamiltonovega cikla.
+\end{trditev}
+
+\section{Posplošen londonski stolp}
+
+\subsection{Definicija in osnovne lastnosti}
+
+\begin{definicija}
+    Za \emph{londonski graf} $L_h^n$, kjer je $p \geq 3,\ n \geq 2,\ h \in [n]^p,\  \sum_{k=1}^p h_k \geq n$ velja:
+    \begin{itemize}
+        \item vozlišča so vse permutacije $s \in S_{n+p}$, za katere velja:
+        \[\forall k \in [p]:\ 1 \leq s_{n+k} - s_{n+k-1} \leq h_k + 1,\ s_{n+p} = n + p ,\]
+        \item vsaki dve stanji (oz.\ pripadajoči permutaciji), med katerima lahko prehajamo z veljavno potezo, sta povezani
+    \end{itemize}
+\end{definicija}
+
+Potreben pogoj za povezanost londonskega grafa je 
+\[ n \leq \sum_{k=1}^{p-1} h_k. \]
+\begin{izrek}
+    Londonski graf $L_h^n$ je povezan natanko tedaj, ko velja pogoj
+    \[ n \leq \sum_{k=1}^{p-1} h_k. \]
+\end{izrek}
+
+\subsection{Ravninskost londonskega grafa}
+
+\begin{trditev}
+    Naj bo $p=3$. Tedaj so londonski grafi $L_h^2, L_{122}^3,L_{123}^3$ in $ L_{133}^3$ ravninski.
+\end{trditev}
+
+\subsection{Simetrija londonskega stolpa}
 % seznam uporabljene literature
 \begin{thebibliography}{99}
 
