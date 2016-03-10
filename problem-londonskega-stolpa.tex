@@ -128,7 +128,7 @@ Vsa možna stanja londonskega stolpa in prehode med njimi lahko zelo elegantno o
 	\emph{Graf} $G$ je urejen par $(\vozlisca, \povezave)$, kjer je $\vozlisca$ končna množica \emph{vozlišč}, $\povezave$ pa množica \emph{povezav} grafa. Povezave so predstavljene kot neurejeni pari vozlišč (neusmerjeni grafi).
 \end{definicija}
 
-Obstajajo variacije zgornje definicije, graf je lahko npr.\ usmerjen (povezave so usmerjeni pari) -- tedaj govorimo o \emph{digrafih} -- ima neskončno število vozlišč ali pa več povezav med dvema vozliščema.
+Obstajajo variacije zgornje definicije, graf je lahko npr.\ usmerjen (povezave so urejeni pari) -- tedaj govorimo o \emph{digrafih}, ima neskončno število vozlišč ali pa več povezav med dvema vozliščema. Dopuščamo lahko tudi zanke: to je povezava oblike $\{v,v\}$, pri čemer je $v$ vozlišče.
 
 Vozlišča grafa predstavimo s točkami v ravnini, povezavo med dvema vozliščema pa kot enostavno krivuljo med ustreznima točkama v ravnini.
 
@@ -177,7 +177,7 @@ Vozlišča grafa predstavimo s točkami v ravnini, povezavo med dvema vozlišče
 
 Poglejmo si nekaj razredov grafov, ki nam bodo prišli prav v kasnejših definicijah. 
 
-\emph{Pot} na $n$ vozliščih je graf, ki ima dva vozlišča stopnje $1$, medtem ko so preostala vozlišča stopnje $2$.
+\emph{Pot} na $n$ vozliščih je graf, ki ima dve vozlišči stopnje $1$, medtem ko so preostala vozlišča stopnje $2$.
 
 \emph{Cikel} na $n$ vozliščih (označimo ga s $C_n$) je graf, ki ga dobimo iz poti na $n$ vozliščih tako, da dodamo povezavo med vozliščema stopnje $1$.
 
@@ -251,7 +251,7 @@ Eno izmed zanimivih vprašanj v teoriji grafov je, ali je možno najti neko pot/
 	Graf je \emph{Hamiltonov}, če vsebuje Hamiltonov cikel.
 \end{definicija}
 
-Za Hamiltonove grafe velja naslednji izrek, ki je tudi potreben pogoj za to, da graf vsebuje Hamiltonov cikel.
+Za Hamiltonove grafe velja naslednji izrek, ki je tudi potrebni pogoj za to, da graf vsebuje Hamiltonov cikel.
 
 \begin{izrek}
 	Naj bo $G$ Hamiltonov graf. Za vsako podmnožico vozlišč $X \subseteq V(G)$ velja, da ima graf $G \setminus X$ kvečjemu $|X|$ komponent.
@@ -292,19 +292,18 @@ Eulerjevo formulo dokažemo z indukcijo na število povezav, zaradi jedrnatosti 
     \[ m \leq 3n - 6 .\]
 \end{posledica}
 
-\proof
-    Če za vsako lice upoštevamo le tri povezave (to je minimalno število povezav, ki omejuje lice), bomo dobili kvečjemu manj, kot če preštejemo vse povezave dvakrat. Torej velja neenakost
+\begin{proof}
+    Če za vsako lice upoštevamo le tri povezave (to je minimalno število povezav, ki omejujejo lice), bomo dobili kvečjemu manj, kot če preštejemo vse povezave dvakrat. Torej velja neenakost
     \[ 3f \leq 2m .\]
     Če iz Eulerjeve formule izrazimo $f$ in ga vstavimo v zgornjo neenakost, dobimo
     \begin{align*}
         3\cdot(2-n+m) &\leq 2m \\
         6 - 3n + 3m &\leq 2m \\
-        m &\leq 3n - 6
+        m &\leq 3n - 6 \qedhere
     \end{align*}
-    
-\endproof
+\end{proof}
 
-Z uporabo zgornje formule, ki torej mora veljati, če je graf ravninski, lahko torej dokažemo:
+Z uporabo zgornje formule, ki torej mora veljati, če je graf ravninski, lahko dokažemo:
 \begin{posledica}
     \label{posl:neravninska-grafa}
     $K_5$ in $K_{3,3}$ nista ravninska grafa.
@@ -324,7 +323,7 @@ Pogledali si bomo še operacijo \emph{subdivizije}, ki prav tako ohranja lastnos
     Graf $H$ je \emph{subdivizija} grafa $G$, če ga lahko dobimo iz $G$ tako, da povezave grafa $G$ nadomestimo s paroma notranje disjunktnimi potmi.
 \end{definicija}
 
-Iz definicije je razvidno, da je tak $H$ ravninski natanko tedaj, ko je $G$ ravninski. Iz tega dejstva, trditve \ref{trd:podgraf} in posledice \ref{posl:neravninska-grafa} lahko zaključimo, da graf zagotovo ni ravninski, če vsebuje subdivizijo $K_5$ ali $K_{3,3}$. Zanimivo pa je, da velja tudi obratno; dokaz tega dejstva je netrivialen in ga lahko najdete v [TODO vir].
+Iz definicije je razvidno, da je tak $H$ ravninski natanko tedaj, ko je $G$ ravninski. Iz tega dejstva, trditve \ref{trd:podgraf} in posledice \ref{posl:neravninska-grafa} lahko zaključimo, da graf zagotovo ni ravninski, če vsebuje subdivizijo $K_5$ ali $K_{3,3}$. Zanimivo pa je, da velja tudi obratno; dokaz tega dejstva je netrivialen in ga lahko najdemo v [TODO vir].
 
 \begin{izrek}[Kuratowski]
     Graf G je ravninski natanko tedaj, ko ne vsebuje subdivizije $K_5$ niti subdivizije $K_{3,3}$.
@@ -353,13 +352,13 @@ krogle bomo označili s številkami 1, 2, 3 -- npr.\ modra krogla naj ima oznako
 
 S pomočjo teh oznak lahko opišemo vsako možno stanje in narišemo graf londonskega stolpa (označimo ga z $L$), pri čemer so vozlišča stanja, povezave pa so med tistimi stanji, med katerimi lahko prehajamo z eno potezo (enim veljavnim premikom krogle).
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \includegraphics[width=300pt]{img/tolgraph.png}
     \caption{Graf $L$ klasičnega Londonskega stolpa.}
     \label{fig:tolgraph}
 \end{figure}
 
-Število vseh možnih stanj je 36, torej ima $L$ 36 vozlišč. Očitno je graf ravninski, saj je na zgornji sliki narisan v ravnini brez križanja povezav. Hitro vidimo tudi, da je 12 vozlišč grafa $L$ stopnje 2, drugih 12 je stopnje 3, zadnjih 12 pa stopnje 4.
+Število vseh možnih stanj je 36, torej ima $L$ 36 vozlišč. Očitno je graf ravninski, saj je na sliki~\ref{fig:tolgraph} narisan v ravnini brez križanja povezav. Hitro vidimo tudi, da je 12 vozlišč grafa $L$ stopnje 2, drugih 12 je stopnje 3, zadnjih 12 pa stopnje 4.
 
 \begin{primer}
     S pomočjo grafa na sliki \ref{fig:tolgraph} lahko hitro ugotovimo, da za prehod med stanjema na sliki \ref{fig:stanji} potrebujemo minimalno 4 poteze in da je to edino najkrajše možno zaporedje potez.
@@ -371,7 +370,7 @@ S pomočjo teh oznak lahko opišemo vsako možno stanje in narišemo graf london
     Graf $L$ vsebuje Hamiltonovo pot, ne pa tudi Hamiltonovega cikla.
 \end{trditev}
 
-\section{Posplošen londonski stolp}
+\section{Posplošeni londonski stolp}
 
 \subsection{Definicija in osnovne lastnosti}
 
@@ -405,9 +404,9 @@ Potreben pogoj za povezanost londonskega grafa je
 
 \bibitem{bib:potocnik} P. Potočnik, \emph{Zapiski predavanj iz Diskretne Matematike I}, 1.~izdaja, [ogled 29.~12.~15], dostopno na \url{http://www.fmf.uni-lj.si/~potocnik/Ucbeniki/DM-Zapiski2010.pdf}
 
-\bibitem{bib:wikishal} \emph{Tim Shallice}, [ogled 8.~10.~2015], dostopno na \url{https://en.wikipedia.org/wiki/Tim_Shallice}.
+\bibitem{bib:wikishal} \emph{Tim Shallice}, v: Wikipedia: The Free Encyclopedia, [ogled 8.~10.~2015], dostopno na\\ \url{https://en.wikipedia.org/wiki/Tim_Shallice}.
 
-\bibitem{bib:wikihamilpath} \emph{Hamiltonian path}, [ogled 28.~12.~2015], dostopno na \url{https://en.wikipedia.org/wiki/Hamiltonian_path}.
+\bibitem{bib:wikihamilpath} \emph{Hamiltonian path}, v: Wikipedia: The Free Encyclopedia, [ogled 28.~12.~2015], dostopno na \url{https://en.wikipedia.org/wiki/Hamiltonian_path}.
 \end{thebibliography}
 
 \end{document}
