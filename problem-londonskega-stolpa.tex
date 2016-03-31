@@ -411,7 +411,7 @@ S pomočjo teh oznak lahko opišemo vsako možno stanje in narišemo graf london
             \item druga palica je polna (na njej sta dve krogli), na tretji palici pa je ena krogla.
         \end{itemize}
     \end{enumerate}
-    Po pravilu vsote imamo torej, če se ne oziroma na barve krogel, $3+3=6$ možnih postavitev krogel.
+    Po pravilu vsote imamo torej, če se ne oziramo na barve krogel, $3+3=6$ možnih postavitev krogel.
     V vsaki od teh lahko še premešamo barve krogel, torej imamo za vsako postavitev $3!$ možnosti. Sledi, da je vseh možnih stanj $3! \cdot 6 = 6 \cdot 6 = 36$.\qedhere
 \end{proof}
 
@@ -426,6 +426,10 @@ Iz leme sledi, da ima $L$ ima 36 vozlišč. Graf je očitno ravninski, saj je na
 \begin{trditev}
     Graf $L$ vsebuje Hamiltonovo pot, ne pa tudi Hamiltonovega cikla.
 \end{trditev}
+
+\begin{proof}
+    TODO. \qedhere
+\end{proof}
 
 \section{Posplošeni londonski stolp}
 
@@ -446,6 +450,34 @@ Potreben pogoj za povezanost londonskega grafa je
     Londonski graf $L_h^n$ je povezan natanko tedaj, ko velja pogoj
     \[ n \leq \sum_{k=1}^{p-1} h_k. \]
 \end{izrek}
+
+\subsection{Oxfordski graf}
+
+\emph{Oxfordski graf} je poseben primer londonskega grafa, za katerega velja, da so vse palice velikosti $n$, pri čemer je $n$ število krogel. Oxfordski graf označimo z $O^n_p$, zanj torej velja $O^n_p := L^n_{n^p}$.
+
+Medtem ko je v splošnem težko določiti število vozlišč londonskega grafa, pa je to precej bolj preprosto za oxfordski graf. Še več, določimo lahko tudi število povezav.
+
+\begin{trditev}
+    Število vozlišč oxfordskega grafa $O^n_p$ je enako \[\frac{(n+p-1)!}{(p-1)!}.\]
+\end{trditev}
+
+\begin{proof}
+    Iščemo število vseh možnih stanj pri oxfordskemu stolpu, saj je ta enaka številu vozlišč oxfordskega grafa.
+    Podobno kot pri dokazu števila stanj klasičnega londonskega stolpa najprej pozabimo na različne barve krogel (delamo se, da so krogle enake) in se osredotočimo samo na njihovo postavitev. 
+    
+    Na koliko načinov lahko $n$ enakih krogel razvrstimo na $p$ palic višine $n$? Pri tem nimamo nobenih omejitev, saj so palice dovolj visoke, da lahko vse krogle postavimo tudi na eno samo palico. Lahko si predstavljamo, da imamo vse krogle zložene v vrsto, označene naj bodo z 0, nato pa na poljubna mesta (s ponavljanjem) vrivamo 1, ki naj pomeni konec neke palice in začetek neke druge. Ko vrinemo $p-1$ enic, smo določili $p$ palic in s tem razporeditev krogel. 
+    
+    Sedaj lahko na problem pogledamo malo drugače: na $n+p-1$ mest razporejamo $n$ ničel, ki predstavljajo krogle, in $p-1$ enic, ki predstavljajo začetek nove palice. Če razporedimo vse enice, bodo na vsa preostala mesta prišle ničle, razporeditev bo s tem določena. $p-1$ mest izmed $n+p-1$ položajev lahko izberemo na ${n+p-1 \choose p-1}$ načinov. S tem je položaj krogel na palicah točno določen, torej imamo ${n+p-1 \choose p-1}$ vseh možnih razporeditev, če privzamemo, da so krogle enake. 
+    
+    Ker je vsaka krogla drugačne barve, imamo za vsako razporeditev še $n!$ možnih permutacij barv. Število vseh stanj, in zato tudi število vozlišč je tako enako
+    
+    \[ n! \cdot {n+p-1 \choose p-1} = n! \cdot \frac{(n+p-1)!}{n!(p-1)!} = \frac{(n+p-1)!}{(p-1)!}. \] \qedhere
+\end{proof}
+
+\begin{trditev}
+    Število povezav oxfordskega grafa $O^n_p$ je enako
+    \[ \frac{np}{2} \frac{(p-2+n)!}{(p-2)!} .\]
+\end{trditev}
 
 \subsection{Ravninskost londonskega grafa}
 
