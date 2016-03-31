@@ -9,6 +9,7 @@
 %\usepackage[normalem]{ulem}
 \usepackage[dvipsnames,usenames]{color}
 \usepackage{graphicx}
+\usepackage{enumitem}
 
 % ne spreminjaj podatkov, ki vplivajo na obliko strani
 \textwidth 15cm
@@ -27,6 +28,8 @@
 \newtheorem{primer}[definicija]{Primer}
 \newtheorem{opomba}[definicija]{Opomba}
 
+\renewcommand\endprimer{\hfill$\diamondsuit$}
+
 \theoremstyle{plain} % tekst napisan posevno
 \newtheorem{lema}[definicija]{Lema}
 \newtheorem{izrek}[definicija]{Izrek}
@@ -41,6 +44,10 @@
 \newcommand{\C}{\mathbb C}
 \newcommand{\Q}{\mathbb Q}
 
+% ukaz za slovarsko geslo
+\newlength{\odstavek}
+\setlength{\odstavek}{\parindent}
+\newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2}
 
 % naslednje ukaze ustrezno popravi
 \newcommand{\program}{Matematika} % ime studijskega programa: Matematika/Finan"cna matematika
@@ -130,7 +137,7 @@ Vsa možna stanja londonskega stolpa in prehode med njimi lahko zelo elegantno o
 
 Obstajajo variacije zgornje definicije, graf je lahko npr.\ usmerjen (povezave so urejeni pari) -- tedaj govorimo o \emph{digrafih}, ima neskončno število vozlišč ali pa več povezav med dvema vozliščema. Dopuščamo lahko tudi zanke: to je povezava oblike $\{v,v\}$, pri čemer je $v$ vozlišče.
 
-Vozlišča grafa predstavimo s točkami v ravnini, povezavo med dvema vozliščema pa kot enostavno krivuljo med ustreznima točkama v ravnini.
+Vozlišča grafa predstavimo s točkami v ravnini, povezavo med dvema vozliščema pa kot enostavno krivuljo med ustreznima točkama v ravnini. Preslikavi, ki grafu priredi ustrezne točke in krivulje v ravnini, pravimo \emph{risba grafa} (včasih pa s tem mislimo kar na predstavitev grafa v ravnini).
 
 \begin{figure}[h]
     %\includegraphics[width=200pt]{img/basicgraph.png}
@@ -289,7 +296,15 @@ Eulerjevo formulo dokažemo z indukcijo na število povezav, zaradi jedrnatosti 
 
 \begin{posledica}
     Če je $G$ ravninski graf na $n$ vozliščih in $m$ povezavah, velja
-    \[ m \leq 3n - 6 .\]
+    \begin{equation} 
+    \label{eq:posledica-euler-formula}
+    m \leq 3n - 6.
+    \end{equation}
+    Če $G$ ne vsebuje trikotnikov, pa velja formula
+    \begin{equation} 
+    \label{eq:posledica-euler-formula-trik}
+    m \leq 2n - 4.
+    \end{equation}
 \end{posledica}
 
 \begin{proof}
@@ -309,11 +324,23 @@ Z uporabo zgornje formule, ki torej mora veljati, če je graf ravninski, lahko d
     $K_5$ in $K_{3,3}$ nista ravninska grafa.
 \end{posledica}
 
+\begin{proof}
+    Polni graf na petih vozliščih $K_5$ ima {$5 \choose 2$} = 10 povezav. $n$ je torej v tem primeru enak
+    5, $m$ pa je 10. Če bi bil $K_5$ ravninski, bi morala veljati formula~\ref{eq:posledica-euler-formula},
+    a temu ni tako:
+    \[ 10 = m \nleq 3n - 6 = 9 \]
+    Torej $K_5$ ni ravninski.
+    
+    Podobno lahko pokažemo tudi za poln dvodelni graf $K_{3,3}$, pri čemer je $n$ enak 6, število povezav $m$ pa 9. Če bi bil ta graf ravninski, bi morala veljati formula~\ref{eq:posledica-euler-formula-trik}, a to ne drži:
+    \[ 9 = m \nleq 2n - 4 = 8. \] 
+    Graf $K_{3,3}$ torej ni ravninski. \qedhere
+\end{proof}
+
 Sedaj želimo ugotoviti, kakšnim pogojem mora ustrezati graf, da bo ravninski. Očitno velja naslednja trditev:
 
 \begin{trditev}
     \label{trd:podgraf}
-    Če je graf ravninski, potem je tudi vsak njegov podgraf ravninski. \cite{bib:potocnik}
+    Če je graf ravninski, potem je tudi vsak njegov podgraf ravninski. %\cite{bib:potocnik}
 \end{trditev}
 
 Operacija ``podgraf'' torej ohranja ravninskost grafa.
@@ -358,7 +385,37 @@ S pomočjo teh oznak lahko opišemo vsako možno stanje in narišemo graf london
     \label{fig:tolgraph}
 \end{figure}
 
-Število vseh možnih stanj je 36, torej ima $L$ 36 vozlišč. Očitno je graf ravninski, saj je na sliki~\ref{fig:tolgraph} narisan v ravnini brez križanja povezav. Hitro vidimo tudi, da je 12 vozlišč grafa $L$ stopnje 2, drugih 12 je stopnje 3, zadnjih 12 pa stopnje 4.
+\begin{lema}
+    Število vseh možnih stanj klasičnega londonskega stolpa je 36.
+\end{lema}
+
+\begin{proof}
+    Najprej si oglejmo vse možne postavitve krogel, pri čemer se ne oziramo na barvo.
+    Imamo dve možnosti:
+    \begin{enumerate}
+        \item \textbf{Na prvi (najkrajši) palici je krogla.}
+        Preostali dve krogli lahko razdelimo na drugi dve palici tako, da:
+        \begin{itemize}[label={-}]
+            \item je prazna druga palica,
+            \item je prazna tretja palica,
+            \item ima vsaka palica po eno kroglo.
+        \end{itemize}
+        Torej imamo v tem primeru tri možnosti.
+        
+        \item \textbf{Na prvi (najkrajši) palici ni krogle.}
+        Na drugi dve palici moramo torej razdeliti vse tri krogle.
+        Ponovno imamo tri možnosti:
+        \begin{itemize}[label={-}]
+            \item druga palica je prazna, tretja palica pa polna (na njej so tri krogle),
+            \item na drugi palici je ena krogla, na tretji palici pa dve krogli,
+            \item druga palica je polna (na njej sta dve krogli), na tretji palici pa je ena krogla.
+        \end{itemize}
+    \end{enumerate}
+    Po pravilu vsote imamo torej, če se ne oziroma na barve krogel, $3+3=6$ možnih postavitev krogel.
+    V vsaki od teh lahko še premešamo barve krogel, torej imamo za vsako postavitev $3!$ možnosti. Sledi, da je vseh možnih stanj $3! \cdot 6 = 6 \cdot 6 = 36$.\qedhere
+\end{proof}
+
+Iz leme sledi, da ima $L$ ima 36 vozlišč. Graf je očitno ravninski, saj je na sliki~\ref{fig:tolgraph} narisan v ravnini brez križanja povezav. Hitro vidimo tudi, da je 12 vozlišč grafa $L$ stopnje 2, drugih 12 je stopnje 3, zadnjih 12 pa stopnje 4.
 
 \begin{primer}
     S pomočjo grafa na sliki \ref{fig:tolgraph} lahko hitro ugotovimo, da za prehod med stanjema na sliki \ref{fig:stanji} potrebujemo minimalno 4 poteze in da je to edino najkrajše možno zaporedje potez.
@@ -397,6 +454,15 @@ Potreben pogoj za povezanost londonskega grafa je
 \end{trditev}
 
 \subsection{Simetrija londonskega stolpa}
+
+% slovar
+\section*{Slovar strokovnih izrazov}
+
+%\geslo{}{}
+%
+%\geslo{}{}
+%
+
 % seznam uporabljene literature
 \begin{thebibliography}{99}
 
