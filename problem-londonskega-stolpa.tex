@@ -248,6 +248,8 @@ Preprosto lahko preverimo, da je relacija $\sim$ ekvivalenčna. Sledi, da relaci
 
 Če je $G$ povezan graf, lahko definiramo \emph{razdaljo} $d_G(u,v)$ med vozliščema $u$ in $v$ kot najmanjše možno število povezav na neki $u,v$-poti.
 
+Definirajmo še \emph{premer} grafa kot največjo minimalno razdaljo med pari vozlišč. Enostavneje povedano to pomeni: če vzamemo poljubno vozlišče v grafu, potem lahko pridemo do drugega poljubnega vozlišča preko $d$ ali manj povezav, kjer je $d$ premer grafa.
+
 \subsection{Hamiltonovi grafi}
 
 Eno izmed zanimivih vprašanj v teoriji grafov je, ali je možno najti neko pot/cikel v grafu, ki vsebuje vsa vozlišča tega grafa. S tem problemom se je ukvarjal tudi Hamilton, po katerem so take poti in cikli poimenovani; njega je zanimalo predvsem, ali je mogoče poiskati cikel, ki vsebuje vsa vozlišča, v dodekaedru \cite{bib:wikihamilpath}.
@@ -386,6 +388,7 @@ S pomočjo teh oznak lahko opišemo vsako možno stanje in narišemo graf london
 \end{figure}
 
 \begin{lema}
+    \label{lem:stanja-klas-lond}
     Število vseh možnih stanj klasičnega londonskega stolpa je 36.
 \end{lema}
 
@@ -415,7 +418,7 @@ S pomočjo teh oznak lahko opišemo vsako možno stanje in narišemo graf london
     V vsaki od teh lahko še premešamo barve krogel, torej imamo za vsako postavitev $3!$ možnosti. Sledi, da je vseh možnih stanj $3! \cdot 6 = 6 \cdot 6 = 36$.\qedhere
 \end{proof}
 
-Iz leme sledi, da ima $L$ ima 36 vozlišč. Graf je očitno ravninski, saj je na sliki~\ref{fig:tolgraph} narisan v ravnini brez križanja povezav. Hitro vidimo tudi, da je 12 vozlišč grafa $L$ stopnje 2, drugih 12 je stopnje 3, zadnjih 12 pa stopnje 4.
+Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ ima 36 vozlišč. Graf je očitno ravninski, saj je na sliki~\ref{fig:tolgraph} narisan v ravnini brez križanja povezav. Hitro vidimo, da je 12 vozlišč grafa $L$ stopnje 2, drugih 12 je stopnje 3, zadnjih 12 pa stopnje 4. Preverimo lahko tudi, da je premer klasičnega londonskega grafa enak 8.
 
 \begin{primer}
     S pomočjo grafa na sliki \ref{fig:tolgraph} lahko hitro ugotovimo, da za prehod med stanjema na sliki \ref{fig:stanji} potrebujemo minimalno 4 poteze in da je to edino najkrajše možno zaporedje potez.
@@ -428,7 +431,14 @@ Iz leme sledi, da ima $L$ ima 36 vozlišč. Graf je očitno ravninski, saj je na
 \end{trditev}
 
 \begin{proof}
-    TODO. \qedhere
+    Hitro lahko dokažemo, da $L$ vsebuje Hamiltonovo pot: poiščemo jo. Ena izmed Hamiltonovih poti v grafu $L$ je prikazana na sliki.
+    
+    Da bi dokazali, da graf ni Hamiltonov, moramo najprej opaziti nekaj lastnosti tega grafa. Opazimo, da je soseščina vsakega vozlišča stopnje 2 sestavljena iz enega vozlišča stopnje 3 in enega stopnje 4, in da je presek soseščin poljubnih dveh vozlišč stopnje 2 prazen -- vsako vozlišče stopnje 2 ima torej ``svoje'' vozlišče stopnje 3 in stopnje 4. Nadalje lahko iz grafa vidimo, da poljubni dve vozlišči stopnje 3 nista sosednji.
+    
+    Sledi, da na ciklu $C$ v grafu, ki bi vseboval vsa vozlišča, nobeni dve vozlišči stopnje 4 nista sosednji (ker je vozlišč 12).
+    
+    TODO
+    \qedhere
 \end{proof}
 
 \section{Posplošeni londonski stolp}
