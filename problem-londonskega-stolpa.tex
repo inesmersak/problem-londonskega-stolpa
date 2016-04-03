@@ -449,8 +449,50 @@ Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ ima 36 vozlišč. Graf je o
 \end{proof}
 
 \section{Posplošeni londonski stolp}
+Graf klasičnega problema londonskega stolpa je majhen, zato je za testiranje popolnoma zdravih odraslih ljudi naloga včasih prelahka. Jenny R. Tunstall je prva
+predlagala razširitev klasičnega londonskega stolpa na 4 krogle s podaljšanimi palicami (vsaka je podaljšana
+za eno enoto), mi pa si bomo v tem razdelku pogledali ta problem v splošnem, s $p \geq 3$ palicami in $n \geq 2$ kroglami.
 
-\subsection{Definicija in osnovne lastnosti}
+\subsection{Definicija}
+
+Posplošen londonski stolp ima $n \geq 2$ krogel, označimo jih s številkami $1,\ldots,n$, in $p \geq 3$ palic, katerih višino označimo s $h_k$ -- toliko krogel lahko postavimo na $k$-to palico. Seveda velja, da mora biti število vseh krogel manjše ali enako vsoti višin vseh palic, sicer vseh krogel ne moremo razporediti na palice. Veljati mora torej:
+\[ n \leq \sum_{k=1}^{p} h_k.\]
+Edina omejitev premikov krogel je ponovno višina palic, prav tako je enak cilj igre, priti iz začetnega stanja v končno stanje s čim manj premiki.
+
+Še pred definicijo splošnega londonskega grafa vpeljimo oznake, ki jih bomo uporabljali za opis stanja nekega posplošenega londonskega stolpa. Enoličen zapis lahko dosežemo, če vsako stanje predstavimo s permutacijo $s$ iz simetrijske grupe $S_{n+p}$. Pri tem $i$-ta števka permutacije predstavlja
+
+\[ s_i =
+\begin{cases}
+    \text{položaj krogle } i, & i \in [n] \\
+    \text{položaj dna palice } i-n, & i \in [n+p] \setminus [n]
+\end{cases}
+\]
+
+Položaje oštevilčimo od leve palice proti desni, z vrha palice proti dnu. Tako bo s številko 1 oštevilčen položaj krogle, ki je postavljena najvišje na prvi palici; če na prvi palici ni nobene krogle, bo imelo položaj 1 dno te palice.
+
+\begin{primer}
+    Poiščimo permutacijo za začetni položaj na sliki~\ref{fig:stanji}, ki smo ga označili z $|3|12|$. 
+    Predstavljajmo si, da oštevilčujemo krogle in dna palice, in začnimo oštevilčevati od leve proti desni, z vrha palice proti dnu, tako kot je prikazano na sliki~\ref{}.
+    
+    \begin{figure}[h]
+        \caption{Položaji krogel in palic za stanje $|3|12|$.}
+    \end{figure}
+    
+    Sedaj le preberemo položaje vseh krogel (od prve do tretje) in vseh palic (od leve proti desni) -- prva (modra) krogla je oštevilčena s 4, druga (rdeča) s 5,\ldots
+    To stanje lahko torej predstavimo s permutacijo $s=452136$.
+\end{primer}
+
+Hitro vidimo, da mora veljati 
+\[\forall k \in [p]\colon s_{n+k} - s_{n+k-1} \geq 1 \]
+saj je $s_{n+k}$ položaj dna palice $k$, $s_{n+k-1}$ pa položaj dna palice $k-1$, torej se mora njun položaj razlikovati najmanj za 1 -- to se zgodi, če na palici $k$ ni nobene krogle.
+
+Prav tako pa mora veljati tudi 
+\[\forall k \in [p]\colon s_{n+k} - s_{n+k-1} \leq h_k + 1,\]
+kar se zgodi v primeru, če je na $k$-ti palici $h_k$ krogel.
+
+Opazimo še, da je položaj dna zadnje palice, $s_{n+p}$, vedno enak $n+p$, saj smo pred tem že oštevilčili položaje vseh $n$ krogel in ostalih $p-1$ palic.
+
+V splošnem je londonski graf, katerega vozlišča so vsa stanja pripadajočega londonskega stolpa, torej smiselno definirati takole:
 
 \begin{definicija}
     Za \emph{londonski graf} $L_h^n$, kjer je $p \geq 3,\ n \geq 2,\ h \in [n]^p,\  \sum_{k=1}^p h_k \geq n$ velja:
@@ -461,12 +503,10 @@ Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ ima 36 vozlišč. Graf je o
     \end{itemize}
 \end{definicija}
 
-Potreben pogoj za povezanost londonskega grafa je 
-\[ n \leq \sum_{k=1}^{p-1} h_k. \]
-\begin{izrek}
-    Londonski graf $L_h^n$ je povezan natanko tedaj, ko velja pogoj
-    \[ n \leq \sum_{k=1}^{p-1} h_k. \]
-\end{izrek}
+S pogojem, da so vse palice visoke največ $n$, ne izgubimo splošnosti, saj razporejamo le $n$ krogel.
+
+Očitno je klasičen londonski graf $L$ enak $L_{123}^3$, saj imamo 3 krogle in 3 palice, ki so velikosti 1, 2 in 3.
+Če smo v tem primeru lahko izračunali število vozlišč, pa je v splošnem za londonske stolpe to precej težko. V naslednjem podrazdelku bom obravnavala poseben primer, za katerega je formula za število vozlišč znana. 
 
 \subsection{Oxfordski graf}
 
@@ -496,7 +536,16 @@ Medtem ko je v splošnem težko določiti število vozlišč londonskega grafa, 
     \[ \frac{np}{2} \frac{(p-2+n)!}{(p-2)!} .\]
 \end{trditev}
 
-\subsection{Ravninskost londonskega grafa}
+\subsection{Povezanost}
+
+Potreben pogoj za povezanost londonskega grafa je 
+\[ n \leq \sum_{k=1}^{p-1} h_k. \]
+\begin{izrek}
+    Londonski graf $L_h^n$ je povezan natanko tedaj, ko velja pogoj
+    \[ n \leq \sum_{k=1}^{p-1} h_k. \]
+\end{izrek}
+
+\subsection{Ravninskost}
 
 \begin{trditev}
     Naj bo $p=3$. Tedaj so londonski grafi $L_h^2, L_{122}^3,L_{123}^3$ in $ L_{133}^3$ ravninski.
