@@ -10,6 +10,10 @@
 \usepackage[dvipsnames,usenames]{color}
 \usepackage{graphicx}
 \usepackage{enumitem}
+\usepackage{tikz}
+%\usetikzlibrary{arrows.meta}
+%\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{positioning}
 
 % ne spreminjaj podatkov, ki vplivajo na obliko strani
 \textwidth 15cm
@@ -124,7 +128,7 @@ Test londonskega stolpa je ena izmed variacij Hanojskih stolpov. Izumil ga je br
 
 Osnovna verzija londonskega stolpa vsebuje tri enako velike krogle različnih barv in tri palice. Na prvo palico lahko postavimo samo eno kroglo, na drugo le dve krogli, na tretjo pa tri. Cilj igre je priti iz nekega danega stanja v neko drugo želeno stanje s čim manj koraki. Stanja (in prehode med njimi) lahko opišemo s pomočjo teorije grafov.
 
-Diplomska naloga je razdeljena na tri dele: v prvem delu bom najprej opisala vse pojme, navedla (in nekatere tudi dokazale) vse trditve, izreke in posledice teorije grafov, ki mi bodo v pomoč pri obravnavi problema londoskega stolpa. V drugem delu bom podrobneje opisala klasični londonski stolp in lastnosti pripadajočega grafa, v zadnjem delu pa bom obravnavala posplošeni problem londonskega stolpa.
+Diplomska naloga je razdeljena na tri dele: v prvem delu bom najprej opisala vse pojme, navedla (in nekatere tudi dokazale) vse trditve, izreke in posledice teorije grafov, ki mi bodo v pomoč pri obravnavi problema londonskega stolpa. V drugem delu bom podrobneje opisala klasični londonski stolp in lastnosti pripadajočega grafa, v zadnjem delu pa bom obravnavala posplošeni problem londonskega stolpa.
 
 
 \section{Osnovni pojmi teorije grafov}
@@ -137,10 +141,9 @@ Vsa možna stanja londonskega stolpa in prehode med njimi lahko zelo elegantno o
 
 Obstajajo variacije zgornje definicije, graf je lahko npr.\ usmerjen (povezave so urejeni pari) -- tedaj govorimo o \emph{digrafih}, ima neskončno število vozlišč ali pa več povezav med dvema vozliščema. Dopuščamo lahko tudi zanke: to je povezava oblike $\{v,v\}$, pri čemer je $v$ vozlišče.
 
-Vozlišča grafa predstavimo s točkami v ravnini, povezavo med dvema vozliščema pa kot enostavno krivuljo med ustreznima točkama v ravnini. Preslikavi, ki grafu priredi ustrezne točke in krivulje v ravnini, pravimo \emph{risba grafa} (včasih pa s tem mislimo kar na predstavitev grafa v ravnini).
+Vozlišča grafa predstavimo s točkami v ravnini, povezavo med dvema vozliščema pa kot enostavno krivuljo med ustreznima točkama v ravnini. Preslikavi, ki grafu priredi ustrezne točke in krivulje v ravnini, pravimo \emph{risba grafa} (včasih pa s tem mislimo kar na predstavitev grafa v ravnini). Graf ima lahko več različnih možnih risb -- razlikujejo se lahko npr.\ po tem, katere točke priredimo katerim vozliščem.
 
 \begin{figure}[h]
-    %\includegraphics[width=200pt]{img/basicgraph.png}
     \caption{Možna predstavitev grafa v ravnini.}
 \end{figure}
     
@@ -156,7 +159,22 @@ Vozlišča grafa predstavimo s točkami v ravnini, povezavo med dvema vozlišče
     \label{primer:sosedi}
     Naj bo graf $G$ podan z \[\vozlisca = \{ 1,2,3,4,5 \}, \quad \povezave = \left\{ \{1,4\},\{1,5\},\{2,5\},\{3,4\},\{3,5\} \right\}.\]
     \begin{figure}[h]
-%        \includegraphics[width=200pt]{img/primer1.png}
+        \begin{tikzpicture}
+        \begin{scope}[every node/.style={circle,thick,draw}]
+        \node (1) at (-1,-1) {$1$};
+        \node (2) at (1,-1) {$2$};
+        \node (3) at (1,1) {$3$};
+        \node (4) at (-1,1) {$4$};
+        \node (5) at (0,0) {$5$};
+        \end{scope}
+        
+        \path[-,draw,thick] 
+        (1) edge (4)
+        (1) edge (5)
+        (2) edge (5)
+        (3) edge (4)
+        (3) edge (5);
+        \end{tikzpicture}
         \caption{Graf $G$.}
     \end{figure}
     Soseščina vozlišča 5 je $N(5) = \{1,2,3\}$.
@@ -176,9 +194,23 @@ Vozlišča grafa predstavimo s točkami v ravnini, povezavo med dvema vozlišče
     induciran podgraf grafa $G$.
     
     \begin{figure}[h]
-        %     \includegraphics[width=200pt]{img/primer1.png}
-%        \includegraphics[width=200pt]{img/primer2.png}
-        \caption{Graf $H$ je induciran podgraf grafa $G$.}
+        \begin{tikzpicture}
+        \begin{scope}[every node/.style={red,circle,thick,draw}]
+        \node (1)[black] at (-1,-1) {$1$};
+        \node (2) at (1,-1) {$2$};
+        \node (3) at (1,1) {$3$};
+        \node (4) at (-1,1) {$4$};
+        \node (5) at (0,0) {$5$};
+        \end{scope}
+        
+        \path[red,-,draw,thick] 
+        (1) edge[black] (4)
+        (1) edge[black] (5)
+        (2) edge (5)
+        (3) edge (4)
+        (3) edge (5);
+        \end{tikzpicture}
+        \caption{Graf $H$ (označen z rdečo barvo) je induciran podgraf grafa $G$.}
     \end{figure}
 \end{primer}
 
@@ -193,8 +225,59 @@ Poglejmo si nekaj razredov grafov, ki nam bodo prišli prav v kasnejših definic
 Z besedami, vsa vozlišča polnega grafa so med sabo povezana.
 
 \begin{figure}[h]
-%    \includegraphics[width=200pt]{img/pot6.png}
-%    \includegraphics[width=200pt]{img/cikel6.png}
+    \begin{tikzpicture}
+    \pgfmathtruncatemacro{\N}{6}
+    \begin{scope}[every node/.style={circle,thick,draw}, every edge/.style={draw,thick}]
+        \foreach \x in {1,...,\N}
+            \node (\x) at (\x - 4,0) {};
+
+        \foreach \x [remember=\x as \lastx (initially 1)] in {1,...,\N}
+            \path (\x) edge (\lastx);
+    \end{scope}
+
+    \pgfmathtruncatemacro{\r}{1.1}
+    \begin{scope}[xshift=4.5cm, every node/.style={circle,thick,draw}, every edge/.style={draw,thick}]
+        \foreach \x in {1,...,\N}
+            \node (\x) at (\x*360/\N:\r cm) {};
+        \foreach \x [remember=\x as \lastx (initially 1)] in {1,...,\N,1}
+            \path (\x) edge (\lastx);
+    \end{scope}
+    
+    \begin{scope}[xshift=8.5cm, every node/.style={circle,thick,draw}, every edge/.style={draw,thick}]
+        \foreach \x in {1,...,\N}
+            \node (\x) at (\x*360/\N:\r cm) {};
+        \foreach \x in {1,...,\N}{%
+            \foreach \y in {1,...,\N}{%
+                \path (\x) edge (\y);
+            }
+        }
+    \end{scope}
+    
+%    \begin{scope}[xshift=8.5cm, every node/.style={circle,thick,draw}]
+%    \node (1) at (-0.7,1) {};
+%    \node (2) at (0.7,1) {};
+%    \node (3) at (1.5,0) {};
+%    \node (4) at (0.7,-1) {};
+%    \node (5) at (-0.7,-1) {};
+%    \node (6) at (-1.5,0) {};
+%    \path[-,draw,thick]
+%    (1) edge (2)
+%    (1) edge (3)
+%    (1) edge (4)
+%    (1) edge (5)
+%    (1) edge (6)
+%    (2) edge (3)
+%    (2) edge (4)
+%    (2) edge (5)
+%    (2) edge (6)
+%    (3) edge (4)
+%    (3) edge (5)
+%    (3) edge (6)
+%    (4) edge (5)
+%    (4) edge (6)
+%    (5) edge (6);
+%    \end{scope}    
+    \end{tikzpicture}
     \caption{Primer poti (levo), cikla (sredina) in polnega grafa (desno) na šestih vozliščih.}
 \end{figure}
 
@@ -205,7 +288,20 @@ Z besedami, vsa vozlišča polnega grafa so med sabo povezana.
 Pri polnem dvodelnem grafu z $n$ vozlišči v prvi množici, recimo ji $V_1$, in $m$ vozlišči v drugi množici, recimo ji $V_2$, je vsako vozlišče iz množice $V_1$ povezano z vsakim iz $V_2$, medtem ko znotraj množic vozlišča niso povezana. Tak graf označimo s $K_{n,m}$.
 
 \begin{figure}[h]
-    %    \includegraphics[width=200pt]{img/polni-dvodelni-graf.png}
+    \begin{tikzpicture}
+    \pgfmathtruncatemacro{\M}{2}
+    \pgfmathtruncatemacro{\N}{4}
+    \begin{scope}[every node/.style={circle,thick,draw}, every edge/.style={draw,thick}]
+        \foreach \x in {1,...,\N}
+            \node (\x) at (\x,1) {};
+        \foreach \x [count=\xi from \N+1] in {1,...,\M}
+            \node (\xi) at (\x,-1) {};
+        
+        \foreach \x in {1,...,\N}
+            \foreach \y [count=\yi from \N+1] in {1,...,\M}
+                \path (\x) edge (\yi);
+    \end{scope}
+    \end{tikzpicture}
     \caption{Na sliki je polni dvodelni graf $K_{2,4}$.}
 \end{figure}
 
@@ -241,8 +337,25 @@ Preprosto lahko preverimo, da je relacija $\sim$ ekvivalenčna. Sledi, da relaci
 \end{definicija}
 
 \begin{figure}[h]
-%    \includegraphics[width=200pt]{img/povezan-graf.png}
-%    \includegraphics[width=200pt]{img/nepovezan-graf.png}
+    \begin{tikzpicture}
+        \begin{scope}[every node/.style={circle,thick,draw}, every edge/.style={draw,thick}]
+        \pgfmathtruncatemacro{\N}{5}
+            \foreach \x in {1,...,\N}
+                \node (\x) at (\x*360/\N:1.5cm) {};
+            
+            \foreach \x[remember=\x as \lastx (initially 3)] in {1,2,4,5}
+                \path (\x) edge (\lastx);
+        \end{scope}
+        
+        \begin{scope}[xshift=5cm,every node/.style={circle,thick,draw}, every edge/.style={draw,thick}]
+            \pgfmathtruncatemacro{\N}{5}
+            \foreach \x in {1,...,\N}
+                \node (\x) at (\x*360/\N:1.5cm) {};
+        
+            \foreach \x[remember=\x as \lastx (initially 5)] in {1,2,4,5}
+                \path (\x) edge (\lastx);
+        \end{scope}
+    \end{tikzpicture}
     \caption{Povezan (levo) in nepovezan (desno) graf.}
 \end{figure}
 
@@ -266,22 +379,52 @@ Za Hamiltonove grafe velja naslednji izrek, ki je tudi potrebni pogoj za to, da 
 	Naj bo $G$ Hamiltonov graf. Za vsako podmnožico vozlišč $X \subseteq V(G)$ velja, da ima graf $G \setminus X$ kvečjemu $|X|$ komponent.
 \end{izrek}
 
-\proof
-
-\endproof
+\begin{proof}
+    
+\end{proof}
 
 \subsection{Ravninski grafi}
 
 V diplomski nalogi se bom ukvarjala tudi s tem, kdaj je graf, s pomočjo katerega predstavimo londonski stolp, ravninski.
 
 \begin{definicija}
-    Graf je \emph{ravninski}, če ga lahko narišemo v ravnini tako, da se nobeni povezavi ne križata.
+    Graf je \emph{ravninski}, če ga lahko narišemo v ravnini tako, da se nobeni povezavi ne križata -- torej če obstaja risba grafa, kjer se nobeni dve povezavi ne križata.
 \end{definicija}
 
 Če je graf narisan v ravnini brez križanja povezav, rečemo, da je graf vložen v ravnino.
 
 \begin{figure}[h]
-%    \includegraphics[width=200pt]{img/k4.png}
+    \begin{tikzpicture}
+    \begin{scope}[every node/.style={circle,thick,draw}]
+        \node (1) at (-1,-1) {};
+        \node (2) at (-1,1) {};
+        \node (3) at (1,1) {};
+        \node (4) at (1,-1) {};
+    \end{scope}
+    
+    \path[-,draw,thick] 
+        (1) edge (2)
+        (1) edge (3)
+        (1) edge (4)
+        (2) edge (3)
+        (2) edge (4)
+        (3) edge (4);
+    
+    \begin{scope}[xshift=4cm, every node/.style={circle,thick,draw}]
+        \node (5) at (0,-0.2) {};
+        \node (6) at (-1.2,-1) {};
+        \node (7) at (1.2,-1) {};
+        \node (8) at (0, 1) {};
+        \path[-,draw,thick]
+            (5) edge (6)
+            (5) edge (7)
+            (5) edge (8)
+            (6) edge (7)
+            (6) edge (8)
+            (7) edge (8);
+    \end{scope}
+    \end{tikzpicture}
+
     \caption{Ravninskost grafa $K_4$ ni očitna.}
 \end{figure}
 
@@ -431,6 +574,8 @@ Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ ima 36 vozlišč. Graf je o
 \end{trditev}
 
 \begin{proof}
+    TODO
+    
     Hitro lahko dokažemo, da $L$ vsebuje Hamiltonovo pot: poiščemo jo. Ena izmed Hamiltonovih poti v grafu $L$ je prikazana na sliki.
     
     Da bi dokazali, da graf ni Hamiltonov, moramo najprej opaziti nekaj lastnosti tega grafa. Opazimo, da je soseščina vsakega vozlišča stopnje 2 sestavljena iz enega vozlišča stopnje 3 in enega stopnje 4, in da je presek soseščin poljubnih dveh vozlišč stopnje 2 prazen -- vsako vozlišče stopnje 2 ima torej ``svoje'' vozlišče stopnje 3 in stopnje 4. Nadalje lahko iz grafa vidimo, da poljubni dve vozlišči stopnje 3 nista sosednji.
