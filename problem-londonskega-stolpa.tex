@@ -430,14 +430,70 @@ V diplomski nalogi se bom ukvarjala tudi s tem, kdaj je graf, s pomočjo katereg
 
 Hitro lahko vidimo, da grafa $K_5$ in $K_{3,3}$ nista ravninska (poskusimo ju narisati v ravnini, a kmalu ugotovimo, da to ne bo mogoče). To dejstvo sledi tudi kot posledica ene izmed posledic Eulerjeve formule.
 
-Za začetek moramo najprej definirati \emph{lica vložitve}. To so sklenjena območja, ki jih omejuje risba grafa, vloženega v ravnino.
+Spomnimo se, da je risba grafa predstavitev grafa v ravnini, pri čemer vozlišča ustrezajo točkam v ravnini, povezave pa enostavnim krivuljam med točkami. Te točke in enostavne krivulje lahko ravnino razdelijo na več delov -- takim območjem pravimo \emph{lica vložitve}. Lice, ki je neomejeno in obdaja celotno risbo grafa, je \emph{zunanje}.
+
+\begin{figure}[h]
+    \caption{Zunanje lice grafa.}
+\end{figure}
 
 \begin{izrek}[Eulerjeva formula]
+    \label{izr:euler-formula}
     Naj bo $G$ povezan ravninski graf z $n$ vozlišči in $m$ povezavami. Naj ima risba grafa $G$, vloženega v ravnino, $f$ lic. Potem velja
     \[ n - m + f = 2 .\]
 \end{izrek}
 
-Eulerjevo formulo dokažemo z indukcijo na število povezav, zaradi jedrnatosti besedila bomo dokaz tukaj izpustili. Oglejmo si raje posledico Eulerjeve formule:
+Za dokaz Eulerjeve formule bomo potrebovali še definicijo drevesa:
+
+\begin{definicija}
+    \emph{Drevo} je povezan graf brez ciklov.
+\end{definicija}
+
+Vidimo lahko, da risba drevesa premore le eno lice -- zunanje.
+
+\begin{figure}[h]
+    \caption{Drevo na 7 vozliščih.}
+\end{figure}
+
+Za vsako drevo z vsaj dvema vozliščema velja, da vsebuje vozlišče stopnje 1 -- takemu vozlišču v drevesu pravimo \emph{list} -- saj bi v nasprotnem primeru graf vseboval neskončno pot ali cikel. Za drevesa velja tudi:
+
+\begin{lema}
+    Če je T drevo z $n$ vozlišči in $m$ povezavami, je $m=n-1$.
+\end{lema}
+
+\begin{proof}
+    Lemo bomo dokazali z indukcijo na število vozlišč.
+    
+    Baza indukcije: Če ima drevo le eno vozlišče, nima nobene povezave (velja $n = 1$ $m = 0 = n-1$).
+    
+    Indukcijska predpostavka: Drevo z $n-1$ vozlišči ima $n-2$ povezav.
+    
+    Indukcijski korak: Vzamemo drevo z $n$ vozlišči in $m$ povezavami. Vemo ($n \geq 2$), da vsebuje vsaj en list -- označimo ga z $x$. Če $x$ odstranimo iz grafa, dobimo novo drevo z $n-1$ vozlišči in $m-1$ povezavami, saj je bilo vozlišče $x$ stopnje 1. Po indukcijski predpostavki za novo drevo velja:
+    \begin{align*}
+        (m-1) &= (n-1) - 1 \\
+        m     &= n - 1 \qedhere
+    \end{align*}
+\end{proof}
+
+Če želimo, da velja tudi obratno, pa moramo zahtevati še, da je graf povezan. Graf je torej drevo natanko tedaj, ko je povezan in je število njegovih povezav $m$ enako $n-1$. Dokaz tega dejstva je naveden v~\cite[str.~57]{bib:potocnik}.
+
+\begin{proof}[Dokaz izreka~\ref{izr:euler-formula}]
+    Formulo dokažemo z indukcijo na število povezav.
+    
+    Naj bo $m = n-1$. Imamo torej drevo, za katerega vemo, da njegova risba premore le zunanje lice, $f$ je torej enak 1. Sledi
+    \[ n - (n-1) + 1 = 2. \]
+    
+    Predpostavimo, da formula velja za vsak graf na $n$ vozliščih in $m-1$ povezavah.
+    
+    Če sedaj vzamemo graf $G$ z $m \geq n$ povezavami, graf torej vsebuje vsaj en cikel. Izberimo nek cikel v grafu in ga označimo s $C$, lice, ki ga ta cikel omejuje, pa označimo z $F$. Če iz grafa odstranimo eno od povezav $e$ cikla $C$, nimamo več cikla, zato preostanek $C \setminus e$ ne omejuje več tega lica. Označimo $G' = G \setminus e$. $G'$ ima še vedno $n'=n$ vozlišč, a eno povezavo in lice manj kot prej ($m'=m-1$, $f'=f-1$). Po indukcijski predpostavki sledi
+    
+    \begin{align*}
+        n' - m' + f'      &= 2 \\
+        n - (m-1) + (f-1) &= 2 \\
+        n - m + f         &= 2 \qedhere
+    \end{align*}
+\end{proof}
+
+Naslednja posledica Eulerjeve formule nam bo pomagala pri dokazu dejstva, da grafa $K_5$ in $K_{3,3}$ nista ravninska.
 
 \begin{posledica}
     Če je $G$ ravninski graf na $n$ vozliščih in $m$ povezavah, velja
@@ -453,14 +509,20 @@ Eulerjevo formulo dokažemo z indukcijo na število povezav, zaradi jedrnatosti 
 \end{posledica}
 
 \begin{proof}
-    Če za vsako lice upoštevamo le tri povezave (to je minimalno število povezav, ki omejujejo lice), bomo dobili kvečjemu manj, kot če preštejemo vse povezave dvakrat. Torej velja neenakost
+    Če za vsako lice upoštevamo le tri povezave (to je minimalno število povezav, ki omejujejo lice, ki ni zunanje), bomo dobili kvečjemu manj, kot če preštejemo vse povezave dvakrat.
+    Vsaka povezava namreč omejuje največ dve lici; če bi po vseh licih sešteli število povezav, ki omejujejo neko lice, bi torej dobili dvakratno vrednost števila povezav.
+    Torej velja neenakost
     \[ 3f \leq 2m .\]
     Če iz Eulerjeve formule izrazimo $f$ in ga vstavimo v zgornjo neenakost, dobimo
     \begin{align*}
         3\cdot(2-n+m) &\leq 2m \\
         6 - 3n + 3m &\leq 2m \\
-        m &\leq 3n - 6 \qedhere
+        m &\leq 3n - 6
     \end{align*}
+    
+    Na podoben način pokažemo formulo~\eqref{eq:posledica-euler-formula-trik}, le da začnemo z neenakostjo 
+    \[ 4f \leq 2m, \]
+    saj je zaradi predpostavke, da graf ne vsebuje trikotnikov, minimalno število povezav, ki omejuje lice, enako 4. 
 \end{proof}
 
 Z uporabo zgornje formule, ki torej mora veljati, če je graf ravninski, lahko dokažemo:
@@ -471,12 +533,12 @@ Z uporabo zgornje formule, ki torej mora veljati, če je graf ravninski, lahko d
 
 \begin{proof}
     Polni graf na petih vozliščih $K_5$ ima {$5 \choose 2$} = 10 povezav. $n$ je torej v tem primeru enak
-    5, $m$ pa je 10. Če bi bil $K_5$ ravninski, bi morala veljati formula~\ref{eq:posledica-euler-formula},
+    5, $m$ pa je 10. Če bi bil $K_5$ ravninski, bi morala veljati formula~\eqref{eq:posledica-euler-formula},
     a temu ni tako:
     \[ 10 = m \nleq 3n - 6 = 9 \]
     Torej $K_5$ ni ravninski.
     
-    Podobno lahko pokažemo tudi za poln dvodelni graf $K_{3,3}$, pri čemer je $n$ enak 6, število povezav $m$ pa 9. Če bi bil ta graf ravninski, bi morala veljati formula~\ref{eq:posledica-euler-formula-trik}, a to ne drži:
+    Podobno lahko pokažemo tudi za poln dvodelni graf $K_{3,3}$, pri čemer je $n$ enak 6, število povezav $m$ pa 9. Če bi bil ta graf ravninski, bi morala veljati formula~\eqref{eq:posledica-euler-formula-trik}, a to ne drži:
     \[ 9 = m \nleq 2n - 4 = 8. \] 
     Graf $K_{3,3}$ torej ni ravninski. \qedhere
 \end{proof}
@@ -489,13 +551,13 @@ Sedaj želimo ugotoviti, kakšnim pogojem mora ustrezati graf, da bo ravninski. 
 \end{trditev}
 
 Operacija ``podgraf'' torej ohranja ravninskost grafa.
-Pogledali si bomo še operacijo \emph{subdivizije}, ki prav tako ohranja lastnost ravninskosti.
+Pogledali si bomo še operacijo \emph{subdivizije}, ki prav tako ohranja lastnost ravninskosti. Če vzamemo neko povezavo $e$ grafa $G$ in na sredino te povezave dodamo še eno vozlišče (v ravnini ga predstavlja točka), na tak način dobimo nov graf z operacijo subdivizije. \cite[str.~66]{bib:potocnik}
 
 \begin{definicija}
-    Graf $H$ je \emph{subdivizija} grafa $G$, če ga lahko dobimo iz $G$ tako, da povezave grafa $G$ nadomestimo s paroma notranje disjunktnimi potmi.
+    Graf $H$ je \emph{subdivizija} grafa $G$, če ga lahko dobimo iz $G$ z zaporednim \emph{subdiviziranjem} povezav grafa $G$.\cite[str.~66]{bib:potocnik}
 \end{definicija}
 
-Iz definicije je razvidno, da je tak $H$ ravninski natanko tedaj, ko je $G$ ravninski. Iz tega dejstva, trditve \ref{trd:podgraf} in posledice \ref{posl:neravninska-grafa} lahko zaključimo, da graf zagotovo ni ravninski, če vsebuje subdivizijo $K_5$ ali $K_{3,3}$. Zanimivo pa je, da velja tudi obratno; dokaz tega dejstva je netrivialen in ga lahko najdemo v [TODO vir].
+Iz definicije je razvidno, da je tak $H$ ravninski natanko tedaj, ko je $G$ ravninski. Iz tega dejstva, trditve~\ref{trd:podgraf} in posledice~\ref{posl:neravninska-grafa} lahko zaključimo, da graf zagotovo ni ravninski, če vsebuje subdivizijo $K_5$ ali $K_{3,3}$. Zanimivo pa je, da velja tudi obratno; dokaz tega dejstva je netrivialen in ga lahko najdemo v [TODO vir].
 
 \begin{izrek}[Kuratowski]
     Graf G je ravninski natanko tedaj, ko ne vsebuje subdivizije $K_5$ niti subdivizije $K_{3,3}$.
