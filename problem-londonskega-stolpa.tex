@@ -155,6 +155,35 @@ Vozlišča grafa predstavimo s točkami v ravnini, povezavo med dvema vozlišče
 	\emph{Stopnja vozlišča} $u$ je število vseh vozlišč, ki so mu sosednji: $\stopnja u = |N(u)|$.
 \end{definicija}
 
+Če imamo podano stopnjo vseh vozlišč grafa, lahko na enostaven način izračunamo število povezav tega grafa, velja sledeča lema:
+
+\begin{lema}[Lema o rokovanju]
+    \label{lema:rokovanje}
+    Za vsak graf \graf velja formula
+    \begin{equation}
+        \sum_{u \in V(G)}\! \stopnja u = 2 \cdot |E(G)|.
+        \label{eq:lema-o-rokovanju}
+    \end{equation}
+\end{lema}
+
+\begin{proof}
+    Naredimo si tabelo vozlišč in povezav:
+    
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{c|ccc}
+            & \ldots & $e_j$ & \ldots \\ \hline
+            \vdots & & \vdots & \\
+            $v_i$ & \ldots & 1 / 0 & \\
+            \vdots & & &
+        \end{tabular}
+    \end{table}
+    
+    V prvem stolpcu so našteta vozlišča grafa, v prvi vrstici pa povezave. Na mestu $i,j$ v tabeli zapišemo enico, če je vozlišče $v_i$ eno izmed krajišče povezave $e_j$, in ničlo v nasprotnem primeru. 
+    
+    Vemo, da ima vsaka povezava dve krajišči, torej sta v vsakem stolpcu natanko dve enici. Če po drugi strani pogledamo število enic v neki vrstici $i$, nam to pove ravno stopnjo vozlišča $v_i$. Ker mora biti rezultat enak, če seštejemo ničle in enice po stolpcih oziroma po vrsticah, sledi formula \eqref{eq:lema-o-rokovanju}.
+\end{proof}
+
 \begin{primer}
     \label{primer:sosedi}
     Naj bo graf $G$ podan z \[\vozlisca = \{ 1,2,3,4,5 \}, \quad \povezave = \left\{ \{1,4\},\{1,5\},\{2,5\},\{3,4\},\{3,5\} \right\}.\]
@@ -373,16 +402,6 @@ Eno izmed zanimivih vprašanj v teoriji grafov je, ali je možno najti neko pot/
 	Graf je \emph{Hamiltonov}, če vsebuje Hamiltonov cikel.
 \end{definicija}
 
-Za Hamiltonove grafe velja naslednji izrek, ki je tudi potrebni pogoj za to, da graf vsebuje Hamiltonov cikel.
-
-\begin{izrek}
-	Naj bo $G$ Hamiltonov graf. Za vsako podmnožico vozlišč $X \subseteq V(G)$ velja, da ima graf $G \setminus X$ kvečjemu $|X|$ komponent.
-\end{izrek}
-
-\begin{proof}
-    
-\end{proof}
-
 \subsection{Ravninski grafi}
 
 V diplomski nalogi se bom ukvarjala tudi s tem, kdaj je graf, s pomočjo katerega predstavimo londonski stolp, ravninski.
@@ -583,6 +602,7 @@ krogle bomo označili s številkami 1, 2, 3 -- npr.\ modra krogla naj ima oznako
 \begin{primer}
     Začetno stanje na sliki~\ref{fig:stanji} lahko torej opišemo z $\bd 3 \ed 12$, končno stanje pa z $\bd 21 \ed 3$.
 \end{primer}
+\medskip
 
 S pomočjo teh oznak lahko opišemo vsako možno stanje in narišemo graf londonskega stolpa (označimo ga z $L$), pri čemer so vozlišča stanja, povezave pa so med tistimi stanji, med katerimi lahko prehajamo z eno potezo (enim veljavnim premikom krogle).
 
@@ -623,7 +643,7 @@ S pomočjo teh oznak lahko opišemo vsako možno stanje in narišemo graf london
     V vsaki od teh lahko še premešamo barve krogel, torej imamo za vsako postavitev $3!$ možnosti. Sledi, da je vseh možnih stanj $3! \cdot 6 = 6 \cdot 6 = 36$.\qedhere
 \end{proof}
 
-Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ ima 36 vozlišč. Graf je očitno ravninski, saj je na sliki~\ref{fig:tolgraph} narisan v ravnini brez križanja povezav. Hitro vidimo, da je 12 vozlišč grafa $L$ stopnje 2, drugih 12 je stopnje 3, zadnjih 12 pa stopnje 4. Preverimo lahko tudi, da je premer klasičnega londonskega grafa enak 8.
+Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ ima 36 vozlišč. Graf je ravninski, saj je na sliki~\ref{fig:tolgraph} narisan v ravnini brez križanja povezav. Hitro vidimo, da je 12 vozlišč grafa $L$ stopnje 2, drugih 12 je stopnje 3, zadnjih 12 pa stopnje 4. Preverimo lahko tudi, da je premer klasičnega londonskega grafa enak 8.
 
 \begin{primer}
     S pomočjo grafa na sliki~\ref{fig:tolgraph} lahko hitro ugotovimo, da za prehod med stanjema na sliki~\ref{fig:stanji} potrebujemo minimalno 4 poteze in da je to edino najkrajše možno zaporedje potez.
@@ -648,7 +668,7 @@ Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ ima 36 vozlišč. Graf je o
     Cikel $C$ mora torej gotovo iti skozi vsa vozlišča stopnje 2, kar je možno le na en način: če imamo vozlišče stopnje 2 $v$ s sosedoma $u$ stopnje 3 in $z$ stopnje 4, mora $C$ vsebovati pot $u,v,z$.
     Če začnemo pri vozlišču stopnje 2 $||\,123$, mora graf torej vsebovati pot $1||23, ||123, |1|23$. Slednje je vozlišče stopnje 4, za nadaljevanje cikla pa imamo dve možnosti: vozlišče $2|1|3$ ali $|21|3$. Ker je prvo stopnje 4 in smo že prej opazili, da dve vozlišči iste stopnje ne bosta sosednji na ciklu $C$, cikel nadaljujemo z $|21|3$. Sosed tega vozlišča je vozlišče $3|21|$ stopnje 2, zato moramo cikel gotovo nadaljevati skozi njega. Pridemo do vozlišča $3|1|2$. Imamo dve možnosti: 
     \begin{itemize}[label={-}]
-        \item Nadaljujemo z vozliščem stopnje 3 $|31|2$, ki je na notranjem ciklu. V tem primeru ne bomo notranjega cikla nikoli zapustili, saj je notranji cikel oblike: vozlišče stopnje 2, vozlišče stopnje 3 (povezano samo z vozlišči na notranjem ciklu), vozlišče stopnje 4, ki je nato povezano z vozliščem stopnje 2, skozi katerega moramo iti. Nato pa sledita vozlišče stopnje 3 $a$ (povezano z notranjim ciklom in vozliščem stopnje 4 $w$ na zunanjem ciklu) in vozlišče stopnje 4 $b$(povezan z vozliščem stopnje 2 $c$ in še dvema drugima na notranjem ciklu ter vozliščem $w$). Ker moramo iti skozi vozlišče $c$, moramo tudi skozi $b$, od prej pa vemo, da moramo nujno tudi skozi $a$, saj je sosed vozlišča stopnje 2. Torej lahko pot speljemo le skozi $a,b,c$, saj je $w$ stopnje 4 in na ciklu zato ne sme biti soseden $b$, ki je prav tako stopnje 4.
+        \item Nadaljujemo z vozliščem $|31|2$, ki je stopnje 3 in je na notranjem ciklu. V tem primeru ne bomo notranjega cikla nikoli zapustili, saj je notranji cikel oblike: vozlišče stopnje 2, vozlišče stopnje 3 (povezano samo z vozlišči na notranjem ciklu), vozlišče stopnje 4, ki je nato povezano z vozliščem stopnje 2, skozi katerega moramo iti. Nato pa sledita vozlišče $a$ stopnje 3 (povezano z notranjim ciklom in vozliščem stopnje $w$ 4 na zunanjem ciklu) in vozlišče $b$ stopnje 4 (povezan z vozliščem $c$ stopnje 2 in še dvema drugima na notranjem ciklu ter vozliščem $w$). Ker moramo iti skozi vozlišče $c$, moramo tudi skozi $b$, od prej pa vemo, da moramo nujno tudi skozi $a$, saj je sosed vozlišča stopnje 2. Torej lahko pot speljemo le skozi $a,b,c$, saj je $w$ stopnje 4 in na ciklu zato ne sme biti soseden $b$, ki je prav tako stopnje 4.
         \item Pot torej nadaljujemo z vozliščem stopnje 3 na zunanjem ciklu $3||12$, in tudi v nadaljevanju ostanemo na zunanjem ciklu, saj vemo, da bomo v nasprotnem primeru ostali na notranjem ciklu.
     \end{itemize}
     Torej ne moremo konstruirati cikla, bi vseboval vsa vozlišča našega grafa $L$ natanko enkrat. $L$ torej ni Hamiltonov.
@@ -656,9 +676,8 @@ Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ ima 36 vozlišč. Graf je o
 \end{proof}
 
 \section{Posplošeni londonski stolp}
-Graf klasičnega problema londonskega stolpa je majhen, zato je za testiranje popolnoma zdravih odraslih ljudi naloga včasih prelahka. Jenny R. Tunstall je prva
-predlagala razširitev klasičnega londonskega stolpa na 4 krogle s podaljšanimi palicami (vsaka je podaljšana
-za eno enoto), mi pa si bomo v tem razdelku pogledali ta problem v splošnem, s $p \geq 3$ palicami in $n \geq 2$ kroglami.
+Graf klasičnega problema londonskega stolpa je majhen, zato je za psihološka testiranja naloga včasih prelahka. 
+Jenny R. Tunstall je prva predlagala razširitev klasičnega londonskega stolpa na 4 krogle s podaljšanimi palicami (vsaka je podaljšana za eno enoto), mi pa si bomo v tem razdelku pogledali ta problem v splošnem, s $p \geq 3$ palicami in $n \geq 2$ kroglami.
 
 \subsection{Definicija}
 
@@ -686,7 +705,7 @@ Položaje oštevilčimo od leve palice proti desni, z vrha palice proti dnu. Tak
         \label{fig:ostev-stanji}
     \end{figure}
     
-    Sedaj le preberemo položaje vseh krogel (od prve do tretje) in vseh palic (od leve proti desni) -- prva (modra) krogla je oštevilčena s 4, druga (rdeča) s 5,\ldots
+    Sedaj le preberemo položaje vseh krogel (od prve do tretje) in vseh palic (od leve proti desni) -- prva (modra) krogla je oštevilčena s 4, druga (rdeča) s 5, \ldots
     To stanje lahko torej predstavimo s permutacijo $s=452136$.
 \end{primer}
 
@@ -707,14 +726,14 @@ V splošnem je londonski graf, katerega vozlišča so vsa stanja pripadajočega 
     \begin{itemize}
         \item vozlišča so vse permutacije $s \in S_{n+p}$, za katere velja:
         \[\forall k \in [p]:\ 1 \leq s_{n+k} - s_{n+k-1} \leq h_k + 1,\ s_{n+p} = n + p ,\]
-        \item vsaki dve stanji (oz.\ pripadajoči permutaciji), med katerima lahko prehajamo z veljavno potezo, sta povezani
+        \item vsaki dve stanji (oz.\ pripadajoči permutaciji), med katerima lahko prehajamo z veljavno potezo, sta povezani.
     \end{itemize}
 \end{definicija}
 
 S pogojem, da so vse palice visoke največ $n$, ne izgubimo splošnosti, saj razporejamo le $n$ krogel.
 
 Očitno je klasičen londonski graf $L$ enak $L_{123}^3$, saj imamo 3 krogle in 3 palice, ki so velikosti 1, 2 in 3.
-Če smo v tem primeru lahko izračunali število vozlišč, pa je v splošnem za londonske stolpe to precej težko. V naslednjem podrazdelku bom obravnavala poseben primer londonskih grafov, za katerega je formula za število vozlišč znana. 
+Če smo v tem primeru lahko izračunali število vozlišč, pa je v splošnem za londonske stolpe to precej težko. V naslednjem podrazdelku bomo obravnavali poseben primer londonskih grafov, za katerega je znana formula za število vozlišč. 
 
 \subsection{Oxfordski graf}
 
@@ -727,14 +746,14 @@ Medtem ko je v splošnem težko določiti število vozlišč londonskega grafa, 
 \end{trditev}
 
 \begin{proof}
-    Iščemo število vseh možnih stanj pri oxfordskemu stolpu, saj je ta enaka številu vozlišč oxfordskega grafa.
+    Iščemo število vseh možnih stanj pri oxfordskemu stolpu, saj je to enako številu vozlišč oxfordskega grafa.
     Podobno kot pri dokazu števila stanj klasičnega londonskega stolpa najprej pozabimo na različne barve krogel (delamo se, da so krogle enake) in se osredotočimo samo na njihovo postavitev. 
     
     Na koliko načinov lahko $n$ enakih krogel razvrstimo na $p$ palic višine $n$? Pri tem nimamo nobenih omejitev, saj so palice dovolj visoke, da lahko vse krogle postavimo tudi na eno samo palico. Lahko si predstavljamo, da imamo vse krogle zložene v vrsto, označene naj bodo z 0, nato pa na poljubna mesta (s ponavljanjem) vrivamo 1, ki naj pomeni konec neke palice in začetek neke druge. Ko vrinemo $p-1$ enic, smo določili $p$ palic in s tem razporeditev krogel. 
     
     Sedaj lahko na problem pogledamo malo drugače: na $n+p-1$ mest razporejamo $n$ ničel, ki predstavljajo krogle, in $p-1$ enic, ki predstavljajo začetek nove palice. Če razporedimo vse enice, bodo na vsa preostala mesta prišle ničle, razporeditev bo s tem določena. $p-1$ mest izmed $n+p-1$ položajev lahko izberemo na ${n+p-1 \choose p-1}$ načinov. S tem je položaj krogel na palicah točno določen, torej imamo ${n+p-1 \choose p-1}$ vseh možnih razporeditev, če privzamemo, da so krogle enake. 
     
-    Ker je vsaka krogla drugačne barve, imamo za vsako razporeditev še $n!$ možnih permutacij barv. Število vseh stanj, in zato tudi število vozlišč je tako enako
+    Ker je vsaka krogla drugačne barve, imamo za vsako razporeditev še $n!$ možnih permutacij barv. Število vseh stanj, in zato tudi število vozlišč, je tako enako
     
     \[ n! \cdot {n+p-1 \choose p-1} = n! \cdot \frac{(n+p-1)!}{n!(p-1)!} = \frac{(n+p-1)!}{(p-1)!}. \] \qedhere
 \end{proof}
@@ -744,10 +763,14 @@ Medtem ko je v splošnem težko določiti število vozlišč londonskega grafa, 
     \[ \frac{np}{2} \frac{(p-2+n)!}{(p-2)!} .\]
 \end{trditev}
 
+\begin{proof}
+    TODO.
+\end{proof}
+
 \subsection{Povezanost}
 
 Zaželjeno je, da lahko pri londonskem stolpu, s pomočjo katerega opravljajo teste v psihologiji, prehajamo med poljubnima dvema stanjema. To velja, če je pripadajoči londonski graf povezan, kar je zato ena pomembnejših lastnosti tega grafa.
-V nadaljevanju bomo privzeli, da so palice urejene po velikosti naraščajoče, velja torej $h_1 \leq h_2 \ldots \leq h_p$.
+V nadaljevanju bomo privzeli, da so palice urejene po velikosti naraščajoče, velja torej $h_1 \leq h_2 \leq \cdots \leq h_p$.
 Potreben pogoj za povezanost londonskega grafa je očitno 
 \[ n \leq \sum_{k=1}^{p-1} h_k, \]
 oziroma z besedami, da lahko krogle razporedimo tako, da najvišja palica ostane prazna. V nasprotnem primeru bi, po tem ko bi razporedili maksimalno možno število krogel na vse preostale (manjše) palice, na največji ostalo še nekaj krogel, ki jih nikoli ne bi mogli premakniti na kakšno drugo palico.
@@ -777,7 +800,7 @@ Izkaže se, da je ta pogoj tudi zadosten za povezanost londonskega grafa.
     
     \begin{enumerate}
         \item \textbf{Krogla $b$ je na prvi palici.}
-        Vrhnjo kroglo druge palice, označimo jo s $c$, premaknemo na največjo ($p$-to) palico. Nato kroglo $a$ premaknemo na vrh druge palice, preostale krogle na prvi palici z do vključno kroglo $b$ pa premaknemo (seveda eno naenkrat) na največjo palico. $a$ lahko sedaj zasede svoj pravi položaj na prvi palici, $b$ pa premaknemo iz vrha največje palice na vrh druge. Sedaj lahko vrnemo vse preostale krogle (razen $c$) na prejšnje mesto na prvi palici, nato lahko na vrh prve palice postavimo $b$, ki tako zavzame prejšnji položaj krogle $a$. Za konec premaknemo še kroglo $c$ z največje palice na vrh druge palice.
+        Vrhnjo kroglo druge palice, označimo jo s $c$, premaknemo na največjo ($p$-to) palico. Nato kroglo $a$ premaknemo na vrh druge palice, preostale krogle na prvi palici z do vključno kroglo $b$ pa premaknemo (seveda eno naenkrat) na največjo palico. Krogla $a$ lahko sedaj zasede svoj pravi položaj na prvi palici, $b$ pa premaknemo iz vrha največje palice na vrh druge. Sedaj lahko vrnemo vse preostale krogle (razen $c$) na prejšnje mesto na prvi palici, nato lahko na vrh prve palice postavimo $b$, ki tako zavzame prejšnji položaj krogle $a$. Za konec premaknemo še kroglo $c$ z največje palice na vrh druge palice.
         \item \textbf{Krogla $b$ ni na prvi palici.}
         V tem primeru je postopek še nekoliko lažji: najprej vse krogle nad $b$ premaknemo na največjo palico, nato na vrh največje palice premaknemo tudi $b$. Sedaj lahko kroglo $a$ prestavimo na njeno pravo mesto (kjer je bil prej $b$), $b$ na vrh prve palice, vse preostale krogle na največji palici pa postavimo nazaj na prejšnja mesta, nad kroglo $a$.
     \end{enumerate}
@@ -790,7 +813,7 @@ Izkaže se, da je ta pogoj tudi zadosten za povezanost londonskega grafa.
     Naj bo $p=3$. Tedaj so londonski grafi $L_h^2, L_{122}^3,L_{123}^3$ in $ L_{133}^3$ ravninski.
 \end{trditev}
 
-\subsection{Simetrija londonskega stolpa}
+\subsection{Simetrije londonskega stolpa}
 
 % slovar
 \section*{Slovar strokovnih izrazov}
