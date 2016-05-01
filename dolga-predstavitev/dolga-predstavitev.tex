@@ -59,7 +59,6 @@
         \item 3 enako velike krogle različnih barv
         \item 3 palice različnih velikosti
         \item cilj igre je priti iz trenutnega stanja v neko dano stanje z minimalnim številom potez
-%        \item najboljši način za vizualizacijo tega problema je s pomočjo grafov
     \end{itemize}
 \end{frame}
 
@@ -70,6 +69,7 @@
         \item \alert{stopnja} vozlišča $u$: $\stopnja u  = \lvert N(u) \rvert$
         \item \alert{sprehod} v grafu je zaporedje vozlišč $v_1,\ldots, v_k$, da za vsak $i$ velja $v_i v_{i+1} \in E$
         \item graf je \alert{povezan}, če za poljuben par vozlišč obstaja sprehod med njima
+        \item \alert{razdalja} $d_G(u,v)$ je najmanjše možno število povezav na nekem sprehodu, ki se začne v $u$ in konča v $v$
         \item \alert{premer} grafa je največja minimalna razdalja med pari vozlišč
     \end{itemize}
 \end{frame}
@@ -78,18 +78,11 @@
     \begin{itemize}
         \item \alert{ravninski} graf je graf, ki ga lahko narišemo v ravnini brez križanja povezav
         \item pot v grafu, ki vsebuje vsa vozlišča, je \alert{Hamiltonova pot}
+        \item \alert{Hamiltonov cikel} je cikel v grafu, ki poteka skozi vsa vozlišča
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Lema o rokovanju}
-	\begin{block}{Lema}
-		Za vsak graf $\graf$ velja formula
-		\begin{equation}
-		\sum_{u \in V(G)}\! \stopnja u = 2 \cdot |E(G)|.
-		\label{eq:lema-o-rokovanju}
-		\end{equation}
-	\end{block}
-\end{frame}
+
 
 \begin{frame}{Graf klasičnega problema londonskega stolpa}
 %    Označimo krogle s številkami 1, 2, 3, pri čemer je npr.\ krogla 1 modra, krogla 2 rdeča, krogla 3 pa rumena. Začetek nove palice bomo nakazali z |, krogle pa bomo naštevali od vrha proti dnu palice.
@@ -119,6 +112,21 @@
    	\end{block}
 \end{frame}
 
+\begin{frame}
+    \begin{figure}
+        \centering
+        \includegraphics[height=190pt]{../img/tolgraph-ham-path.png}
+        \caption{Hamiltonova pot v klasičnem londonskem grafu.}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \begin{figure}
+        \centering
+        \includegraphics[height=190pt]{../img/tolgraph-ham-cycle.png}
+    \end{figure}
+\end{frame}
+
 \section{Posplošen londonski stolp}
 \begin{frame}{Oznake}
     \begin{itemize}
@@ -129,6 +137,7 @@
         \item veljati mora $n \leq \sum_{k=1}^p h_k$
         \item veljavnost poteze
         \item vsako stanje lahko enolično predstavimo s permutacijo $s \in S_{n+p}$
+        \item položaje oštevilčimo od leve palice proti desni, z vrha palice proti dnu
     \end{itemize}
 \end{frame}
 
@@ -152,6 +161,8 @@
 \end{frame}
 
 \begin{frame}{Povezanost grafa}
+    V nadaljevanju bomo privzeli, da so palice urejene po velikosti naraščajoče, velja torej $h_1 \leq h_2 \leq \cdots \leq h_p$.
+    
     Potreben pogoj za povezanost Londonskega grafa je 
     \[ n \leq \sum_{k=1}^{p-1} h_k. \]
     \begin{block}{Izrek}
@@ -160,19 +171,28 @@
     \end{block}
 \end{frame}
 
-\begin{frame}{Ravninskost grafa}
-	Nekaj o ravninskosti...
-\end{frame}
+%\begin{frame}{Ravninskost grafa}
+%	Nekaj o ravninskosti...
+%\end{frame}
 
 \section{Oxfordski graf}
 \begin{frame}{Oxfordski graf}
-	Poseben primer londonskih grafov.
+	\alert{Oxfordski graf} je poseben primer londonskega grafa, za katerega velja, da so vse palice velikosti $n$, pri čemer je $n$ število krogel. Oxfordski graf označimo z $O^n_p$, zanj torej velja $O^n_p := L^n_{n^p}$.
+   	\begin{block}{Trditev}
+        Število vozlišč oxfordskega grafa $O^n_p$ je enako \[\frac{(n+p-1)!}{(p-1)!}.\]
+    \end{block}
+    
 \end{frame}
+
 \begin{frame}{Lastnosti}
-	\begin{block}{Trditev}
-		Število vozlišč oxfordskega grafa $O^n_p$ je enako \[\frac{(n+p-1)!}{(p-1)!}.\]
-	\end{block}
-	
+    \begin{block}{Lema o rokovanju}
+        Za vsak graf $\graf$ velja formula
+        \begin{equation}
+        \sum_{u \in V(G)}\! \stopnja u = 2 \cdot |E(G)|.
+        \label{eq:lema-o-rokovanju}
+        \end{equation}
+    \end{block}
+
 	\begin{block}{Trditev}
 		Število povezav oxfordskega grafa $O^n_p$ je enako
 		\[ \frac{np}{2} \frac{(p-2+n)!}{(p-2)!} .\]

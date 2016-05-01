@@ -1,10 +1,10 @@
-\documentclass[12pt,a4paper]{amsart}
+\documentclass[11pt,a4paper]{article}
 % ukazi za delo s slovenscino -- izberi kodiranje, ki ti ustreza
 \usepackage[slovene]{babel}
 %\usepackage[cp1250]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
 \usepackage{url}
 %\usepackage[normalem]{ulem}
 \usepackage[dvipsnames,usenames]{color}
@@ -71,163 +71,60 @@
 
  
 % tu se zacne tekst seminarja
-\section{Uvod}
-Test londonskega stolpa je ena izmed variacij Hanojskih stolpov. Izumil ga je britanski nevropsiholog Tim Shallice leta 1982. Pogosto je uporabljen v psihologiji, saj s pomočjo te igre ugotavljajo stanje pacientove psihe, opazujejo pa lahko tudi napredek bolezni pri npr.\ Parkinsonovih bolnikih. \cite{bib:wikishal}
+\section{Klasični problem Londonskega stolpa}
 
-Osnovna verzija londonskega stolpa vsebuje tri enako velike krogle različnih barv in tri palice. Na prvo palico lahko postavimo samo eno kroglo, na drugo le dve krogli, na tretjo pa tri. Cilj igre je priti iz nekega danega stanja v neko drugo želeno stanje s čim manj koraki. Stanja (in prehode med njimi) lahko opišemo s pomočjo teorije grafov.
+\begin{itemize}
+    \item izumil Tim Shallice, profesor nevropsihologije, leta 1982
+    \item tri enako velike krogle različnih barv
+    \item tri palice različnih velikosti
+    \item na prvo palico lahko postavimo samo eno kroglo, na drugo le dve krogli, na tretjo pa tri
+    \item cilj igre je priti iz nekega danega stanja v neko drugo želeno stanje z minimalnim številom potez
+\end{itemize}
+    
+Stanja (in prehode med njimi) lahko elegantno opišemo s pomočjo teorije grafov.
 
-Diplomska naloga je razdeljena na tri dele: v prvem delu bom najprej opisala vse pojme, navedla (in nekatere tudi dokazale) vse trditve, izreke in posledice teorije grafov, ki mi bodo v pomoč pri obravnavi problema londonskega stolpa. V drugem delu bom podrobneje opisala klasični londonski stolp in lastnosti pripadajočega grafa, v zadnjem delu pa bom obravnavala posplošeni problem londonskega stolpa.
+\subsection{Osnovne definicije teorije grafov}
 
+\begin{itemize}
+	\item \emph{graf} $G$ je urejen par $(\vozlisca, \povezave)$, kjer je $\vozlisca$ končna množica \emph{vozlišč}, $\povezave$ pa množica \emph{povezav} grafa (neurejeni pari vozlišč)
+    \item $u$ in $v$ sta \emph{sosednji vozlišči}, če obstaja povezava med njima
+	\item \emph{soseščina} vozlišča $u$ je množica vseh sosednjih vozlišč vozlišča $u$:
+	\( N(u) = \{ x\colon ux \in \povezave \} .\)
+	\item \emph{stopnja vozlišča} $u$ je število vseh vozlišč, ki so mu sosednji: $\stopnja u = |N(u)|$.
+    \item \emph{sprehod} v grafu $G$ je zaporedje vozlišč $v_1, v_2, \ldots, v_k$, tako da velja $v_i v_{i+1} \in E(G),$ pri čemer je $1 \leq i \leq k-1$
+    \item graf je \emph{povezan}, če za poljuben par vozlišč obstaja sprehod med njima
+    \item \emph{razdalja} $d_G(u,v)$ med poljubnima vozliščema $u$ in $v$ v povezanem grafu $G$ je najmanjše možno število povezav na nekem sprehodu, ki se začne v $u$ in konča v $v$
+    \item \emph{premer} grafa je največjo minimalna razdalja med pari vozlišč; če vzamemo poljubno vozlišče v grafu, potem lahko pridemo do drugega poljubnega vozlišča preko $d$ ali manj povezav, kjer je $d$ premer grafa
+    \item graf je \emph{ravninski}, če ga lahko narišemo v ravnini tako, da se nobeni povezavi ne križata
+    \item \emph{pot} na $n$ vozliščih je graf, ki ima dve vozlišči stopnje $1$, medtem ko so preostala vozlišča stopnje $2$
+    \item \emph{cikel} na $n$ vozliščih je graf, ki ga dobimo iz poti na $n$ vozliščih tako, da dodamo povezavo med vozliščema stopnje $1$
+    \item \emph{Hamiltonova pot} je pot v grafu, ki vsebuje vsa vozlišča
+    \item \emph{Hamiltonov cikel} nekega grafa $G$ je cikel v $G$, ki poteka skozi vsa vozlišča tega grafa
 
-\section{Osnovni pojmi teorije grafov}
+\end{itemize}
 
-Vsa možna stanja londonskega stolpa in prehode med njimi lahko zelo elegantno opišemo s pomočjo grafov, zato si najprej poglejmo nekaj osnovnih pojmov teorije grafov.
-
-\begin{definicija}
-	\emph{Graf} $G$ je urejen par $(\vozlisca, \povezave)$, kjer je $\vozlisca$ končna množica \emph{vozlišč}, $\povezave$ pa množica \emph{povezav} grafa. Povezave so predstavljene kot neurejeni pari vozlišč (neusmerjeni grafi).
-\end{definicija}
-
-Obstajajo variacije zgornje definicije, graf je lahko npr.\ usmerjen (povezave so urejeni pari) -- tedaj govorimo o \emph{digrafih}, ima neskončno število vozlišč ali pa več povezav med dvema vozliščema. Dopuščamo lahko tudi zanke: to je povezava oblike $\{v,v\}$, pri čemer je $v$ vozlišče.
-
-Vozlišča grafa predstavimo s točkami v ravnini, povezavo med dvema vozliščema pa kot enostavno krivuljo med ustreznima točkama v ravnini. Preslikavi, ki grafu priredi ustrezne točke in krivulje v ravnini, pravimo \emph{risba grafa} (včasih pa s tem mislimo kar na predstavitev grafa v ravnini). Graf ima lahko več različnih možnih risb -- razlikujejo se lahko npr.\ po tem, katere točke priredimo katerim vozliščem.
+\subsection{Graf klasičnega problema londonskega stolpa}
+Označimo krogle s številkami 1, 2, 3, pri čemer je npr.\ krogla 1 modra, krogla 2 rdeča, krogla 3 pa rumena. Začetek naslednje palice bomo nakazali z |, krogle pa bomo naštevali od vrha proti dnu palice.
+Na primer: stanja na prejšnji sliki so |3|12 in |21|3.
+Vidimo, da je minimalno število potez pri tem primeru 4 in da obstaja samo eno najkrajše zaporedje potez.
+S pomočjo teh oznak lahko opišemo vsako možno stanje in narišemo graf londonskega stolpa, pri čemer so vozlišča stanja, povezave pa so med tistimi stanji, med katerimi lahko prehajamo z eno potezo (enim veljavnim premikom krogle).
 
 \begin{figure}[h]
-    \caption{Možna predstavitev grafa v ravnini.}
-\end{figure}
-    
-Če je $e = \{ u,v \}$ povezava, tedaj sta $u$ in $v$ \emph{krajišči} povezave $e$, pišemo tudi $e = uv$; rečemo, da sta $u$ in $v$ \emph{sosednji vozlišči}.
-
-\begin{definicija}
-	\emph{Soseščina} vozlišča $u$ je množica vseh sosednjih vozlišč vozlišča $u$:
-	\[ N(u) = \{ x\colon ux \in \povezave \} .\]
-	\emph{Stopnja vozlišča} $u$ je število vseh vozlišč, ki so mu sosednji: $\stopnja u = |N(u)|$.
-\end{definicija}
-
-Če imamo podano stopnjo vseh vozlišč grafa, lahko na enostaven način izračunamo število povezav tega grafa, velja sledeča lema:
-
-\begin{lema}[Lema o rokovanju]
-    \label{lema:rokovanje}
-    Za vsak graf \graf velja formula
-    \begin{equation}
-        \sum_{u \in V(G)}\! \stopnja u = 2 \cdot |E(G)|.
-        \label{eq:lema-o-rokovanju}
-    \end{equation}
-\end{lema}
-
-\begin{proof}
-    Naredimo si tabelo vozlišč in povezav:
-    
-    \begin{table}[h]
-        \centering
-        \begin{tabular}{c|ccc}
-            & \ldots & $e_j$ & \ldots \\ \hline
-            \vdots & & \vdots & \\
-            $v_i$ & \ldots & 1 / 0 & \\
-            \vdots & & &
-        \end{tabular}
-    \end{table}
-    
-    V prvem stolpcu so našteta vozlišča grafa, v prvi vrstici pa povezave. Na mestu $i,j$ v tabeli zapišemo enico, če je vozlišče $v_i$ eno izmed krajišče povezave $e_j$, in ničlo v nasprotnem primeru. 
-    
-    Vemo, da ima vsaka povezava dve krajišči, torej sta v vsakem stolpcu natanko dve enici. Če po drugi strani pogledamo število enic v neki vrstici $i$, nam to pove ravno stopnjo vozlišča $v_i$. Ker mora biti rezultat enak, če seštejemo ničle in enice po stolpcih oziroma po vrsticah, sledi formula \eqref{eq:lema-o-rokovanju}.
-\end{proof}
-
-
-\subsection{Povezanost grafa}
-
-\emph{Sprehod} v grafu $G$ je zaporedje vozlišč $v_1, v_2, \ldots, v_k$, tako da velja $v_i v_{i+1} \in E(G),$ pri čemer je $1 \leq i \leq k-1$. Če označimo $x = x_1$ in $y = x_k$, potem takemu sprehodu rečemo $x,y$-sprehod.
-
-Sprehod je \emph{enostaven}, če so vsa njegova vozlišča različna. Enostaven sprehod inducira podgraf, ki je izomorfen poti (torej pot v grafu).
-
-\begin{figure}[h]
-%    \includegraphics[width=200pt]{img/enostaven-sprehod1.png}
-%    \includegraphics[width=200pt]{img/enostaven-sprehod2.png}
-    \caption{Enostaven sprehod in pot v grafu, ki jo inducira.}
+    \centering
+    \includegraphics[height=200pt]{../img/tolgraph.png}
 \end{figure}
 
-\begin{definicija}
-	Graf je \emph{povezan}, če ima le eno komponento. Povedano drugače, za poljuben par vozlišč mora obstajati sprehod med njima.
-\end{definicija}
+%\begin{lema}
+%    \label{lem:stanja-klas-lond}
+%    Število vseh možnih stanj klasičnega londonskega stolpa je 36.
+%\end{lema}
 
-Če je $G$ povezan graf, lahko definiramo \emph{razdaljo} $d_G(u,v)$ med vozliščema $u$ in $v$ kot najmanjše možno število povezav na neki $u,v$-poti.
-
-Definirajmo še \emph{premer} grafa kot največjo minimalno razdaljo med pari vozlišč. Enostavneje povedano to pomeni: če vzamemo poljubno vozlišče v grafu, potem lahko pridemo do drugega poljubnega vozlišča preko $d$ ali manj povezav, kjer je $d$ premer grafa.
-
-\subsection{Hamiltonovi grafi}
-
-Eno izmed zanimivih vprašanj v teoriji grafov je, ali je možno najti neko pot/cikel v grafu, ki vsebuje vsa vozlišča tega grafa. S tem problemom se je ukvarjal tudi Hamilton, po katerem so take poti in cikli poimenovani; njega je zanimalo predvsem, ali je mogoče poiskati cikel, ki vsebuje vsa vozlišča, v dodekaedru \cite{bib:wikihamilpath}.
-
-\begin{definicija}
-	Pot v grafu, ki vsebuje vsa vozlišča tega grafa, se imenuje \emph{Hamiltonova pot}.
-	\emph{Hamiltonov cikel} nekega grafa $G$ je cikel v $G$, ki poteka skozi vsa vozlišča tega grafa.
-	Graf je \emph{Hamiltonov}, če vsebuje Hamiltonov cikel.
-\end{definicija}
-
-\subsection{Ravninski grafi}
-
-V diplomski nalogi se bom ukvarjala tudi s tem, kdaj je graf, s pomočjo katerega predstavimo londonski stolp, ravninski.
-
-\begin{definicija}
-    Graf je \emph{ravninski}, če ga lahko narišemo v ravnini tako, da se nobeni povezavi ne križata -- torej če obstaja risba grafa, kjer se nobeni dve povezavi ne križata.
-\end{definicija}
-
-Če je graf narisan v ravnini brez križanja povezav, rečemo, da je graf vložen v ravnino.
-
-Pogledali si bomo še operacijo \emph{subdivizije}, ki prav tako ohranja lastnost ravninskosti. Če vzamemo neko povezavo $e$ grafa $G$ in na sredino te povezave dodamo še eno vozlišče (v ravnini ga predstavlja točka), na tak način dobimo nov graf z operacijo subdivizije. \cite[str.~66]{bib:potocnik}
-
-\begin{definicija}
-    Graf $H$ je \emph{subdivizija} grafa $G$, če ga lahko dobimo iz $G$ z zaporednim \emph{subdiviziranjem} povezav grafa $G$.\cite[str.~66]{bib:potocnik}
-\end{definicija}
-
-Iz definicije je razvidno, da je tak $H$ ravninski natanko tedaj, ko je $G$ ravninski. Iz tega dejstva, trditve~\ref{trd:podgraf} in posledice~\ref{posl:neravninska-grafa} lahko zaključimo, da graf zagotovo ni ravninski, če vsebuje subdivizijo $K_5$ ali $K_{3,3}$. Zanimivo pa je, da velja tudi obratno; dokaz tega dejstva je netrivialen in ga lahko najdemo v [TODO vir].
-
-\begin{izrek}[Kuratowski]
-    Graf G je ravninski natanko tedaj, ko ne vsebuje subdivizije $K_5$ niti subdivizije $K_{3,3}$.
-\end{izrek}
-%\begin{definicija}
-%	\emph{Barvanje} grafa $\graf$ je preslikava 
-%	\[ c\colon \vozlisca \to \N, \text{ tako da velja } av \in \povezave \implies c(a) \neq c(v). \]
-%	Če je $c\colon \vozlisca \to [k]$, rečemo, da je $c$ $k$-barvanje. \emph{Kromatično število} grafa $G$, $\mathcal{X}(G)$, je najmanjši $k$, za katerega obstaja $k$-barvanje grafa G.
-%\end{definicija}
-
-\section{Klasični problem londonskega stolpa}
-Pri klasičnem londonskem stolpu imamo tri enako velike krogle različnih barv in tri palice različnih velikosti: na prvo lahko postavimo eno kroglo, na drugo dve, na tretjo pa tri (temu bomo rekli, da imajo palice višine 1, 2 in 3). Cilj igre je priti iz nekega začetnega stanja v neko vnaprej določeno končno stanje.
-
-\begin{figure}[h]
-%    \includegraphics[width=250pt]{img/london-tower.png}
-    \caption{Na sliki sta prikazani dve možni stanji londonskega stolpa.}
-    \label{fig:stanji}
-\end{figure}
-
-Stanja in prehode med njimi si najlažje predstavljamo, če narišemo graf. V ta namen vpeljemo naslednje oznake:
-krogle bomo označili s številkami 1, 2, 3 -- npr.\ modra krogla naj ima oznako 1, rdeča 2, rumena pa 3 -- s simbolom ``|'' pa bomo označili konec prejšnje palice in začetek nove. Krogle bomo naštevali od vrha palice navzdol.
-
-\begin{primer}
-    Začetno stanje na sliki~\ref{fig:stanji} lahko torej opišemo z $\bd 3 \ed 12$, končno stanje pa z $\bd 21 \ed 3$.
-\end{primer}
-\medskip
-
-S pomočjo teh oznak lahko opišemo vsako možno stanje in narišemo graf londonskega stolpa (označimo ga z $L$), pri čemer so vozlišča stanja, povezave pa so med tistimi stanji, med katerimi lahko prehajamo z eno potezo (enim veljavnim premikom krogle).
-
-\begin{figure}[h!]
-%    \includegraphics[width=300pt]{img/tolgraph.png}
-    \caption{Graf $L$ klasičnega Londonskega stolpa.}
-    \label{fig:tolgraph}
-\end{figure}
-
-\begin{lema}
-    \label{lem:stanja-klas-lond}
-    Število vseh možnih stanj klasičnega londonskega stolpa je 36.
-\end{lema}
-
-
-Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ ima 36 vozlišč. Graf je ravninski, saj je na sliki~\ref{fig:tolgraph} narisan v ravnini brez križanja povezav. Hitro vidimo, da je 12 vozlišč grafa $L$ stopnje 2, drugih 12 je stopnje 3, zadnjih 12 pa stopnje 4. Preverimo lahko tudi, da je premer klasičnega londonskega grafa enak 8.
-
-\begin{primer}
-    S pomočjo grafa na sliki~\ref{fig:tolgraph} lahko hitro ugotovimo, da za prehod med stanjema na sliki~\ref{fig:stanji} potrebujemo minimalno 4 poteze in da je to edino najkrajše možno zaporedje potez.
-\end{primer}
-
-\bigskip
+\begin{itemize}
+    \item 36 vozlišč (sledi iz leme~\ref{lem:stanja-klas-lond})
+    \item 12 vozlišč stopnje 2, 3, 4
+    \item premer grafa je 8
+    \item ravninski (narisan je v ravnini, povezave se nikjer ne križajo)
+\end{itemize}
 
 \begin{trditev}
     Graf $L$ vsebuje Hamiltonovo pot, ne pa tudi Hamiltonovega cikla.
@@ -253,39 +150,27 @@ Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ ima 36 vozlišč. Graf je r
     \qedhere
 \end{proof}
 
+
 \section{Posplošeni londonski stolp}
-Graf klasičnega problema londonskega stolpa je majhen, zato je za psihološka testiranja naloga včasih prelahka. 
-Jenny R. Tunstall je prva predlagala razširitev klasičnega londonskega stolpa na 4 krogle s podaljšanimi palicami (vsaka je podaljšana za eno enoto), mi pa si bomo v tem razdelku pogledali ta problem v splošnem, s $p \geq 3$ palicami in $n \geq 2$ kroglami.
+Graf klasičnega problema je majhen, možnih stanj je malo, zato je za testiranje odraslih ljudi naloga včasih prelahka; Jenny R.\ Tunstall je prva predlagala razširitev na 4 krogle s podaljšanimi palicami (vsaka je podaljšana za eno enoto).
 
 \subsection{Definicija}
 
-Posplošen londonski stolp ima $n \geq 2$ krogel, označimo jih s številkami $1,\ldots,n$, in $p \geq 3$ palic, katerih višino označimo s $h_k$ -- toliko krogel lahko postavimo na $k$-to palico. Seveda velja, da mora biti število vseh krogel manjše ali enako vsoti višin vseh palic, sicer vseh krogel ne moremo razporediti na palice. Veljati mora torej:
-\[ n \leq \sum_{k=1}^{p} h_k.\]
-Edina omejitev premikov krogel je ponovno višina palic, prav tako je enak cilj igre, priti iz začetnega stanja v končno stanje s čim manj premiki.
+Poglejmo si posplošitev tega problema na $p$ palic in $n$ krogel različne barve, pri čemer je $p \geq 3 \text{ in } n \geq 2$. Vsako palico označimo s številom $k \in [p]$, pri čemer je $h_k$ višina palice (ta predstavlja število krogel, ki jih drži palica). Krogle označimo z 1 do $n$ -- te lahko razporejamo na palice. Veljati mora $n \leq \sum_{k=1}^p h_k$. Poteza je veljavna, če vrhnjo kroglo neke palice prestavimo na vrh druge, pod pogojem, da je na tej palici manj kot $h_k$ krogel.
 
-Še pred definicijo splošnega londonskega grafa vpeljimo oznake, ki jih bomo uporabljali za opis stanja nekega posplošenega londonskega stolpa. Enoličen zapis lahko dosežemo, če vsako stanje predstavimo s permutacijo $s$ iz simetrijske grupe $S_{n+p}$. Pri tem $i$-ta števka permutacije predstavlja
+Vsako stanje krogel lahko enolično predstavimo s permutacijo $s \in S_{n+p}$, $S$ je simetrijska grupa. Pri tem je $s_i$ položaj krogle $i$, če $i \in [n] $, ali dna palice $i-n$, če je $i \in [n+p] \setminus [n] $. Položaje oštevilčimo od leve palice proti desni, z vrha palice proti dnu (kot pri klasičnem problemu). Tako bo s številko 1 oštevilčen položaj krogle, ki je postavljena najvišje na prvi palici; če na prvi palici ni nobene krogle, bo imelo položaj 1 dno te palice.
 
-\[ s_i =
-\begin{cases}
-    \text{položaj krogle } i, & i \in [n] \\
-    \text{položaj dna palice } i-n, & i \in [n+p] \setminus [n]
-\end{cases}
-\]
+Naš primer: $s = 452136$.
+{\small $s$ bomo zapisali v obliki $ \sum_1 | \ldots | \sum_p $, kjer je $\sum_k$ niz oznak krogel v položajih od $s_{n+k-1} + 1$ do $s_{n+k}-1$ od vrha palice navzdol. $s_{n+0} = 0$ in ne $s_n$. Vertikalne pipe spet označujejo začetek dna palice.}
 
-Položaje oštevilčimo od leve palice proti desni, z vrha palice proti dnu. Tako bo s številko 1 oštevilčen položaj krogle, ki je postavljena najvišje na prvi palici; če na prvi palici ni nobene krogle, bo imelo položaj 1 dno te palice.
-
-\begin{primer}
-    Poiščimo permutacijo za začetni položaj na sliki~\ref{fig:stanji}, ki smo ga označili z $|3|12|$. 
-    Predstavljajmo si, da oštevilčujemo krogle in dna palice, in začnimo oštevilčevati od leve proti desni, z vrha palice proti dnu, tako kot je prikazano na sliki~\ref{fig:ostev-stanji}.
-    
-    \begin{figure}[h]
-        \caption{Položaji krogel in palic za stanje $|3|12|$.}
-        \label{fig:ostev-stanji}
-    \end{figure}
-    
-    Sedaj le preberemo položaje vseh krogel (od prve do tretje) in vseh palic (od leve proti desni) -- prva (modra) krogla je oštevilčena s 4, druga (rdeča) s 5, \ldots
-    To stanje lahko torej predstavimo s permutacijo $s=452136$.
-\end{primer}
+\begin{definicija}
+    \emph{Londonski graf} $L_h^n$, kjer je $p \geq 3,\ n \geq 2,\ h \in [n]^p,\  \sum_{k=1}^p h_k \geq n$:
+    \begin{itemize}
+        \item vozlišča: vse permutacije $s \in S_{n+p}$, za katere velja:
+        \[\forall k \in [p]:\ 1 \leq s_{n+k} - s_{n+k-1} \leq h_k + 1,\ s_{n+p} = n + p ,\]
+        \item povezave: vsaki dve stanji (oz.\ pripadajoči permutaciji), med katerima lahko prehajamo z veljavno potezo, sta povezani
+    \end{itemize}
+\end{definicija}
 
 Hitro vidimo, da mora veljati 
 \[\forall k \in [p]\colon s_{n+k} - s_{n+k-1} \geq 1 \]
@@ -295,28 +180,13 @@ Prav tako pa mora veljati tudi
 \[\forall k \in [p]\colon s_{n+k} - s_{n+k-1} \leq h_k + 1,\]
 kar se zgodi v primeru, če je na $k$-ti palici $h_k$ krogel.
 
-Opazimo še, da je položaj dna zadnje palice, $s_{n+p}$, vedno enak $n+p$, saj smo pred tem že oštevilčili položaje vseh $n$ krogel in ostalih $p-1$ palic.
-
-V splošnem je londonski graf, katerega vozlišča so vsa stanja pripadajočega londonskega stolpa, torej smiselno definirati takole:
-
-\begin{definicija}
-    Za \emph{londonski graf} $L_h^n$, kjer je $p \geq 3,\ n \geq 2,\ h \in [n]^p,\  \sum_{k=1}^p h_k \geq n$ velja:
-    \begin{itemize}
-        \item vozlišča so vse permutacije $s \in S_{n+p}$, za katere velja:
-        \[\forall k \in [p]:\ 1 \leq s_{n+k} - s_{n+k-1} \leq h_k + 1,\ s_{n+p} = n + p ,\]
-        \item vsaki dve stanji (oz.\ pripadajoči permutaciji), med katerima lahko prehajamo z veljavno potezo, sta povezani.
-    \end{itemize}
-\end{definicija}
-
 S pogojem, da so vse palice visoke največ $n$, ne izgubimo splošnosti, saj razporejamo le $n$ krogel.
 
-Očitno je klasičen londonski graf $L$ enak $L_{123}^3$, saj imamo 3 krogle in 3 palice, ki so velikosti 1, 2 in 3.
-Če smo v tem primeru lahko izračunali število vozlišč, pa je v splošnem za londonske stolpe to precej težko. V naslednjem podrazdelku bomo obravnavali poseben primer londonskih grafov, za katerega je znana formula za število vozlišč. 
-
+Če smo v primeru klasičnega londonskega stolpa lahko izračunali število vozlišč, pa je v splošnem za londonske stolpe to precej težko. Kasneje bom obravnavala poseben primer londonskih grafov, za katerega je znana formula za število vozlišč. 
 
 \subsection{Povezanost}
+Zaželjeno je, da lahko pri londonskem stolpu prehajamo med poljubnima dvema stanjema, saj se problem uporablja za psihološka testiranja. To velja, če je pripadajoči londonski graf povezan, kar je zato ena pomembnejših lastnosti tega grafa.
 
-Zaželjeno je, da lahko pri londonskem stolpu, s pomočjo katerega opravljajo teste v psihologiji, prehajamo med poljubnima dvema stanjema. To velja, če je pripadajoči londonski graf povezan, kar je zato ena pomembnejših lastnosti tega grafa.
 V nadaljevanju bomo privzeli, da so palice urejene po velikosti naraščajoče, velja torej $h_1 \leq h_2 \leq \cdots \leq h_p$.
 Potreben pogoj za povezanost londonskega grafa je očitno 
 \[ n \leq \sum_{k=1}^{p-1} h_k, \]
@@ -355,12 +225,23 @@ Izkaže se, da je ta pogoj tudi zadosten za povezanost londonskega grafa.
 \end{proof}
 
 \subsection{Ravninskost}
+\begin{itemize}
+    \item operacija \emph{subdivizije} ohranja ravninskost: vzamemo neko povezavo $e$ grafa $G$ in na sredino te povezave dodamo še eno vozlišče 
+    \item graf $H$ je \emph{subdivizija} grafa $G$, če ga lahko dobimo iz $G$ z zaporednim \emph{subdiviziranjem} povezav grafa $G$; očitno je tak $H$ ravninski natanko tedaj, ko je $G$ ravninski
+    \item hitro lahko vidimo, da grafa $K_5$ in $K_{3,3}$ nista ravninska (poskusimo ju narisati v ravnini, a kmalu ugotovimo, da to ne bo mogoče)
+    \item graf torej zagotovo ni ravninski, če vsebuje subdivizijo $K_5$ ali $K_{3,3}$; zanimivo pa je, da velja tudi obratno; dokaz tega dejstva je netrivialen in ga bom preskočila
+\end{itemize}
+
+\begin{izrek}[Kuratowski]
+    Graf G je ravninski natanko tedaj, ko ne vsebuje subdivizije $K_5$ niti subdivizije $K_{3,3}$.
+\end{izrek}
 
 \begin{trditev}
     Naj bo $p=3$. Tedaj so londonski grafi $L_h^2, L_{122}^3,L_{123}^3$ in $ L_{133}^3$ ravninski.
 \end{trditev}
 
-\subsection{Oxfordski graf}
+
+\section{Oxfordski graf}
 
 \emph{Oxfordski graf} je poseben primer londonskega grafa, za katerega velja, da so vse palice velikosti $n$, pri čemer je $n$ število krogel. Oxfordski graf označimo z $O^n_p$, zanj torej velja $O^n_p := L^n_{n^p}$.
 
@@ -381,6 +262,35 @@ Medtem ko je v splošnem težko določiti število vozlišč londonskega grafa, 
 	Ker je vsaka krogla drugačne barve, imamo za vsako razporeditev še $n!$ možnih permutacij barv. Število vseh stanj, in zato tudi število vozlišč, je tako enako
 	
 	\[ n! \cdot {n+p-1 \choose p-1} = n! \cdot \frac{(n+p-1)!}{n!(p-1)!} = \frac{(n+p-1)!}{(p-1)!}. \] \qedhere
+\end{proof}
+
+Pred dokazom formule za število povezav bomo potrebovali osnovno lemo teorije grafov, s pomočjo katere lahko na enostaven način izračunamo število povezav tega grafa, če imamo podano stopnjo vseh vozlišč grafa.
+
+\begin{lema}[Lema o rokovanju]
+    \label{lema:rokovanje}
+    Za vsak graf \graf velja formula
+    \begin{equation}
+    \sum_{u \in V(G)}\! \stopnja u = 2 \cdot |E(G)|.
+    \label{eq:lema-o-rokovanju}
+    \end{equation}
+\end{lema}
+
+\begin{proof}
+    Naredimo si tabelo vozlišč in povezav:
+    
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{c|ccc}
+            & \ldots & $e_j$ & \ldots \\ \hline
+            \vdots & & \vdots & \\
+            $v_i$ & \ldots & 1 / 0 & \\
+            \vdots & & &
+        \end{tabular}
+    \end{table}
+    
+    V prvem stolpcu so našteta vozlišča grafa, v prvi vrstici pa povezave. Na mestu $i,j$ v tabeli zapišemo enico, če je vozlišče $v_i$ eno izmed krajišče povezave $e_j$, in ničlo v nasprotnem primeru. 
+    
+    Vemo, da ima vsaka povezava dve krajišči, torej sta v vsakem stolpcu natanko dve enici. Če po drugi strani pogledamo število enic v neki vrstici $i$, nam to pove ravno stopnjo vozlišča $v_i$. Ker mora biti rezultat enak, če seštejemo ničle in enice po stolpcih oziroma po vrsticah, sledi formula \eqref{eq:lema-o-rokovanju}.
 \end{proof}
 
 \begin{trditev}
