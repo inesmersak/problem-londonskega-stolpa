@@ -69,7 +69,7 @@
         \item \alert{stopnja} vozlišča $u$: $\stopnja u  = \lvert N(u) \rvert$
         \item \alert{sprehod} v grafu je zaporedje vozlišč $v_1,\ldots, v_k$, da za vsak $i$ velja $v_i v_{i+1} \in E$
         \item graf je \alert{povezan}, če za poljuben par vozlišč obstaja sprehod med njima
-        \item \alert{razdalja} $d_G(u,v)$ je najmanjše možno število povezav na nekem sprehodu, ki se začne v $u$ in konča v $v$
+        \item \alert{razdalja} $d_G(u,v)$ je najmanjše možno število povezav na nekem sprehodu, ki se začne v vozlišču $u$ in konča v vozlišču $v$
         \item \alert{premer} grafa je največja minimalna razdalja med pari vozlišč
     \end{itemize}
 \end{frame}
@@ -177,26 +177,32 @@
 
 \section{Oxfordski graf}
 \begin{frame}{Oxfordski graf}
-	\alert{Oxfordski graf} je poseben primer londonskega grafa, za katerega velja, da so vse palice velikosti $n$, pri čemer je $n$ število krogel. Oxfordski graf označimo z $O^n_p$, zanj torej velja $O^n_p := L^n_{n^p}$.
-   	\begin{block}{Trditev}
-        Število vozlišč oxfordskega grafa $O^n_p$ je enako \[\frac{(n+p-1)!}{(p-1)!}.\]
-    \end{block}
+	\alert{Oxfordski graf} je poseben primer londonskega grafa, kjer velja, da so vse palice velikosti $n$, pri čemer je $n$ število krogel. Oxfordski graf označimo z $O^n_p$, zanj torej velja $O^n_p := L^n_{n^p}$.
     
 \end{frame}
 
 \begin{frame}{Lastnosti}
+    \begin{block}{Trditev}
+           Število vozlišč oxfordskega grafa $O^n_p$ je enako \[\frac{(n+p-1)!}{(p-1)!}.\]
+    \end{block}    
+	\begin{block}{Trditev}
+        Število povezav oxfordskega grafa $O^n_p$ je enako
+        \[ \frac{np}{2} \frac{(p-2+n)!}{(p-2)!} .\]
+    \end{block}
+    
+
+\end{frame}
+
+\begin{frame}{Dokaz formule za število povezav oxfordskega grafa}
     \begin{block}{Lema o rokovanju}
         Za vsak graf $\graf$ velja formula
-        \begin{equation}
-        \sum_{u \in V(G)}\! \stopnja u = 2 \cdot |E(G)|.
-        \label{eq:lema-o-rokovanju}
-        \end{equation}
+        \begin{equation*}
+        \sum_{u \in V(G)}\!\! \stopnja u = 2 \cdot |E(G)|.
+        \end{equation*}
     \end{block}
-
-	\begin{block}{Trditev}
-		Število povezav oxfordskega grafa $O^n_p$ je enako
-		\[ \frac{np}{2} \frac{(p-2+n)!}{(p-2)!} .\]
-	\end{block}
+    
+    Spomnimo se še, da velja formula 
+    \[ {b+w \choose l} = \sum_{k=0}^{l}{b \choose k}{w \choose l-k} \]
 \end{frame}
 
 %\section{Uporaba}
