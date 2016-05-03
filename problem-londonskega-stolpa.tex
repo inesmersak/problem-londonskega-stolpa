@@ -742,7 +742,12 @@ Očitno je klasičen londonski graf $L$ enak $L_{123}^3$, saj imamo 3 krogle in 
 Medtem ko je v splošnem težko določiti število vozlišč londonskega grafa, pa je to precej bolj preprosto za oxfordski graf. Še več, določimo lahko tudi število povezav.
 
 \begin{trditev}
-    Število vozlišč oxfordskega grafa $O^n_p$ je enako \[\frac{(n+p-1)!}{(p-1)!}.\]
+    Število vozlišč oxfordskega grafa $O^n_p$ je enako 
+    \begin{equation}
+        \label{eq:oxford-vozl}
+        \frac{(n+p-1)!}{(p-1)!}.
+    \end{equation}
+
 \end{trditev}
 
 \begin{proof}
@@ -764,19 +769,26 @@ Medtem ko je v splošnem težko določiti število vozlišč londonskega grafa, 
 \end{trditev}
 
 \begin{proof}
-    Vzemimo stanje (vozlišče), pri katerem je $q$ palic nepraznih, $1 \leq q \leq p$ in $n \geq q$. Vsako vrhnjo kroglo ene izmed $q$ palic lahko premaknemo na katerokoli palico, razen trenutne; izberemo torej eno izmed $q$ palic, s katere premaknemo kroglo, in eno izmed preostalih $p-1$ palic, kamor kroglo premaknemo. Tako vozlišče je torej stopnje $q(p-1)$. (Pri tem upoštevajmo, da je povezava med dvema vozliščema grafa pravzaprav veljavna poteza med dvema stanjema.)
+    Vzemimo stanje (vozlišče), pri katerem je $q$ palic nepraznih, $1 \leq q \leq p$ in $n \geq q$. Vsako vrhnjo kroglo ene izmed $q$ palic lahko premaknemo na katerokoli palico, razen trenutne; izberemo torej eno izmed $q$ palic, s katere premaknemo kroglo, in eno izmed preostalih $p-1$ palic, kamor kroglo premaknemo. Tako vozlišče je torej stopnje $q(p-1)$. (Pri tem upoštevamo, da je povezava med dvema vozliščema grafa pravzaprav veljavna poteza med dvema stanjema.)
     
     Vseh stanj, ki imajo točno $q$ nepraznih palic, je enako
-    \[{p \choose q} \frac{n!}{(n-q)!} \cdot |O^{n-q}_q|.\]
-    Najprej izberemo $q$ izmed $p$ palic, ki bodo neprazne, kar lahko storimo na ${p \choose q}$ načinov. Na vsako izmed teh $q$ palic moramo nujno postaviti vsaj eno kroglo, kar lahko naredimo na $n \cdot (n-1) \cdot \ldots \cdot (n-q) = \frac{n!}{(n-q)!}$ (za prvo izmed $q$ palic imamo na voljo $n$ krogel, za drugo $n-1$ krogel,\ldots). Preostalih $n-q$ krogel pa lahko razporedimo poljubno na $q$ palic, kar je brez škode za splošnost enako številu razporeditev $n-q$ krogel na $q$ palic velikosti $n-q$, torej $|O^{n-q}_q|$.
-    Če poračunamo, dobimo, da je število takih stanj enako
+    \[{p \choose q} \frac{n!}{(n-q)!} \cdot |V(O^{n-q}_q)|.\]
+    Najprej izberemo $q$ izmed $p$ palic, ki bodo neprazne, kar lahko storimo na ${p \choose q}$ načinov. Na vsako izmed teh $q$ palic moramo nujno postaviti vsaj eno kroglo, kar lahko naredimo na $n \cdot (n-1) \cdot \ldots \cdot (n-q+1) = \frac{n!}{(n-q)!}$ (za prvo izmed $q$ palic imamo na voljo $n$ krogel, za drugo $n-1$ krogel,\ldots). Preostalih $n-q$ krogel pa lahko razporedimo poljubno na $q$ palic, kar je brez škode za splošnost enako številu razporeditev $n-q$ krogel na $q$ palic velikosti $n-q$, torej $|V(O^{n-q}_q)|$.
+    Če uporabimo formulo za število vozlišč oxfordskega grafa~\eqref{eq:oxford-vozl} in poračunamo, dobimo, da je število takih stanj enako
     \begin{align*}
-        {p \choose q} \frac{n!}{(n-q)!} \cdot |O^{n-q}_q| &=
+        {p \choose q} \frac{n!}{(n-q)!} \cdot |V(O^{n-q}_q)| &=
         {p \choose q} \frac{n!}{(n-q)!} \frac{(n-q+q-1)!}{(q-1)!} \\ &= n! {p \choose q} \frac{(n-1)!}{(q-1)!\,(n-q)!} \\ &=
         n! {p \choose q} {n-1 \choose q-1}
     \end{align*}
     
-    Sedaj po $q$ seštejemo stopnje vseh vozlišč (upoštevamo, da imajo vsa vozlišča, kjer je nepraznih $q$ palic, enako stopnjo) in uporabimo formulo~\ref{eq:lema-o-rokovanju} iz leme o rokovanju:
+    Za dokaz formule bomo potrebovali še sledečo formulo za binomske simbole, ki jo privzemimo kot znano [bolje dokaz -- TODO]:
+    
+    \begin{equation}
+        \label{eq:binom}
+        {b+w \choose l} = \sum_{k=0}^{l}{b \choose k}{w \choose l-k}
+    \end{equation}
+    
+    Sedaj po $q$ seštejemo stopnje vseh vozlišč (upoštevamo, da imajo vsa vozlišča, kjer je nepraznih točno $q$ palic, enako stopnjo) in uporabimo formulo~\eqref{eq:lema-o-rokovanju} iz leme o rokovanju:
     \begin{align*}
         |E(O^n_p)|
         &= \frac{1}{2} \sum_{q=1}^{p} \overbrace{q(p-1)}^{\text{stopnja vozlišča}} 
@@ -786,7 +798,7 @@ Medtem ko je v splošnem težko določiti število vozlišč londonskega grafa, 
         &= \frac{1}{2} (p-1) n! \sum_{q=1}^{p} p \frac{(p-1)!}{(q-1)! \, (p-q)!} {n-1 \choose q-1} \\
         &= \frac{1}{2} p (p-1) n! \sum_{q=1}^{p} {p-1 \choose q-1} {n-1 \choose q-1}
     \end{align*}
-    Sedaj uvedemo nov indeks $k = q-1$, upoštevamo lastnosti binomskih simbolov in uporabimo formulo~[TODO]:
+    Sedaj uvedemo nov indeks $k = q-1$, upoštevamo lastnosti binomskih simbolov in uporabimo formulo~\eqref{eq:binom}:
     \begin{align*}
         |E(O^n_p)|
         &= \frac{1}{2} p (p-1) n! \sum_{k=0}^{p-1} {p-1 \choose k} {n-1 \choose k} \\
@@ -795,6 +807,7 @@ Medtem ko je v splošnem težko določiti število vozlišč londonskega grafa, 
         &= \frac{1}{2} p (p-1) n! {n + p - 2 \choose p-1} \\
         &= \frac{1}{2} p (p-1) n! \frac{(n+p-2)!}{(p-1)!\,(n-1)!} \\
         &= \frac{1}{2} p n \frac{(n+p-2)!}{(p-2)!} \\
+        &= \frac{np}{2} \frac{(p-2+n)!}{(p-2)!} \qedhere
     \end{align*}
 \end{proof}
 
