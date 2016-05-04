@@ -853,6 +853,19 @@ Izkaže se, da je ta pogoj tudi zadosten za povezanost londonskega grafa.
 
 \subsection{Ravninskost}
 
+Omenili smo že, da se problem londonskega stolpa pogosto uporablja kot psihološki test. Psihologi rezultate testov radi prikažejo kar na grafu uporabljenega problema, zato je zanimivo tudi vprašanje ravninskosti londonskih grafov -- križanje povezav namreč lahko vodi do zmede pri prikazu rezultatov. Ker se za testiranje uporablja le londonski stolp s tremi palicami, se bomo tudi pri obravnavi ravninskosti omejili na ta primer, torej naj bo $p=3$.
+
+Najprej obravnavajmo primer londonskega stolpa z dvema kroglama ($n=2$, to so torej grafi $L^2_h$). V tem primeru imamo grafe 
+$L^2_{111}, L^2_{112}, L^2_{122}$ in $L^2_{222} = O^2_3$ (še vedno predpostavljamo, da so palice razvrščene po velikosti naraščajoče). Hitro lahko vidimo, da je npr.\ $L^2_{111}$ podgraf $L^2_{112}$: iz prvega lahko pridemo do drugega tako, da dodamo vozlišči, kjer sta obe krogli na največji palici, in ustrezno dodamo povezave z že obstoječimi stanji. Če s $ \subset $ označimo relacijo podgraf, lahko vidimo sledeče:
+\[ L^2_{111} \subset L^2_{112} \subset L^2_{122} \subset L^2_{222} = O^2_3 .\]
+S slike~\ref{fig:graf-2krogli}, na kateri je narisan graf $O^2_3$, lahko zaključimo, da je ta graf ravninski. Iz tega seveda sledi, da so ravninski tudi vsi njegovi podgrafi, saj z brisanjem vozlišč in povezav ne moremo ustvariti križanj povezav. Torej so vsi londonski grafi za $n=2$ in $p=3$ ravninski.
+Na sliki~\ref{fig:graf-2krogli} so pravzaprav prikazani grafi vseh londonskih stolpov z dvema kroglama -- rdeča barva označuje najmanjši graf, $L^2_{111}$, nato pa z zaporednim dodajanjem vozlišč in povezav dobimo še ostale: če dodamo zelena vozlišča, dobimo $L^2_{112}$, če nato dodamo še modra vozlišča, dobimo $L^2_{122}$; celoten graf pa (kot že omenjeno) predstavlja $O^2_3$ .
+
+\begin{figure}[h]
+    \includegraphics[width=170pt]{img/tolgraph-2balls.png}
+    \caption{Vsi londonski grafi s $p=3$ in $n=2$ so ravninski.}
+    \label{fig:graf-2krogli}
+\end{figure}
 \begin{trditev}
     Naj bo $p=3$. Tedaj so londonski grafi $L_h^2, L_{122}^3,L_{123}^3$ in $ L_{133}^3$ ravninski.
 \end{trditev}
