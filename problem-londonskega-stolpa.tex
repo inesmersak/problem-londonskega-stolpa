@@ -579,6 +579,7 @@ Pogledali si bomo še operacijo \emph{subdivizije}, ki prav tako ohranja lastnos
 Iz definicije je razvidno, da je tak $H$ ravninski natanko tedaj, ko je $G$ ravninski. Iz tega dejstva, trditve~\ref{trd:podgraf} in posledice~\ref{posl:neravninska-grafa} lahko zaključimo, da graf zagotovo ni ravninski, če vsebuje subdivizijo $K_5$ ali $K_{3,3}$. Zanimivo pa je, da velja tudi obratno; dokaz tega dejstva je netrivialen in ga lahko najdemo v [TODO vir].
 
 \begin{izrek}[Kuratowski]
+    \label{izr:kuratowski}
     Graf G je ravninski natanko tedaj, ko ne vsebuje subdivizije $K_5$ niti subdivizije $K_{3,3}$.
 \end{izrek}
 %\begin{definicija}
@@ -867,15 +868,53 @@ Na sliki~\ref{fig:graf-2krogli} so pravzaprav prikazani grafi vseh londonskih st
     \label{fig:graf-2krogli}
 \end{figure}
 
-Če si sedaj pogledamo problem londonskega stolpa s tremi kroglami ($n=3$), na podoben način kot za dve krogli dobimo sledeče:
+Če si sedaj pogledamo problem londonskega stolpa s tremi kroglami ($n=3$), na podoben način kot za dve krogli dobimo sledečo shemo:
 
-[TODO]
+\begin{equation}
+\label{eq:grafi-3krogle}
+\begin{matrix}
+    & & L & & & & \\
+    & & \parallel & & & & \\
+    L_{122}^3 & \subset & L_{123}^3 & \subset & L_{133}^3 & & \\
+    \cap & & \cap & & \cap & & \\
+    L_{222}^3 & \subset & L_{223}^3 & \subset & L_{233}^3 & \subset & L_{333}^3 \\
+    & & & & & & \parallel \\
+    & & & & & & O^3_3 \\
+\end{matrix}
+\end{equation}
+
+\smallskip
 
 Videli smo že, da je klasični londonski graf $L$ ravninski. Torej je ravninski tudi njegov podgraf $L_{122}^3$, saj do njega pridemo tako, da iz $L$ zbrišemo tistih šest vozlišč, kjer so vse tri krogle na največji palici, in pripadajoče povezave. 
 Če pa grafu $L$ dodamo vozlišča, kjer so vse tri krogle na srednji palici, lahko s slike~\ref{} vidimo, da je tudi $L_{133}^3$ ravninski.
+
 \begin{trditev}
-    Naj bo $p=3$. Tedaj so londonski grafi $L_h^2, L_{122}^3,L_{123}^3$ in $ L_{133}^3$ ravninski.
+    Naj bo $p=3$. Tedaj so ravninski londonski grafi natanko grafi $L_h^2, L_{122}^3, L_{123}^3$ in $L_{133}^3$.
 \end{trditev}
+
+\begin{opomba}
+    Še vedno predpostavljamo, da so londonski grafi povezani, torej zadostujejo pogoju~\eqref{eq:pogoj-povezanosti}.
+\end{opomba}
+
+\begin{proof}
+    Videli smo že, da so grafi $L_h^2, L_{122}^3, L_{123}^3$ in $L_{133}^3$ ravninski. Dokazati moramo, da vsi ostali grafi za $n=3$ in vsi grafi za $n \geq 4$ niso ravninski. Pri tem nam bo v pomoč izrek~\ref{izr:kuratowski}, ki pravi, da je graf ravninski natanko tedaj, ko ne vsebuje subdivizije $K_5$ ali $K_{3,3}$. A v grafu $L_{222}^3$ lahko najdemo subdivizijo $K_{3,3}$, ki je na sliki~\ref{} prikazana z rdečo barvo. 
+    \begin{figure}[h]
+        \centering
+%        \includegraphics[]{}
+        \caption{Graf $L_{222}^3$ vsebuje subdivizijo $K_{3,3}$.}
+    \end{figure}
+    Iz tega po izreku~\ref{izr:kuratowski} sledi, da $L_{222}^3$ ni ravninski. Ker vsi preostali grafi z $n = 3$ vsebujejo graf $L_{222}^3$ (kot lahko vidimo na shemi~\eqref{eq:grafi-3krogle}), tudi $L_{223}^3, L_{233}^3, L_{333}^3=O^3_3$ niso ravninski.
+    
+    Dokazati moramo le še, da tudi londonski grafi za $n\geq 4$ niso ravninski.
+    Ker $L_{222}^3$ ni ravninski in je vsebovan v grafu $L_{222}^4$, sledi, da $L_{222}^4$ ni ravninski. Pokazali bi lahko, da tudi graf $L_{133}^4$ ni ravninski, vendar si pri tem ne moremo pomagati z njegovim ravninskim podgrafom $L_{133}^3$, zato bi morali znotraj $L_{133}^4$ poiskati subdivizijo $K_{3,3}$. Ta naloga je precej mučna zaradi velikosti grafa, zato jo bomo izpustili.
+    Ker mora vsak graf $L_h^4$ vsebovati ali $L_{133}^4$ ali $L_{222}^4$, ki nista ravninska, to sledi tudi za preostale grafe z $n=4$.
+    
+    Za $n \geq 4$ torej noben graf ni ravninski, saj vsak $L_h^n$ dobimo z dodajanjem krogel enemu izmed $L_h^4$, za katere pa zdaj vemo, da niso ravninski.
+\end{proof}
+
+\begin{opomba}
+    [TODO] toroidalnost
+\end{opomba}
 
 \subsection{Simetrije londonskega stolpa}
 

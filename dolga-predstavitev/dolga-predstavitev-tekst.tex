@@ -225,12 +225,21 @@ Izkaže se, da je ta pogoj tudi zadosten za povezanost londonskega grafa.
 \end{proof}
 
 \subsection{Ravninskost}
+
+Omenili smo že, da se problem londonskega stolpa pogosto uporablja kot psihološki test. Psihologi rezultate testov radi prikažejo kar na grafu uporabljenega problema, zato je zanimivo tudi vprašanje ravninskosti londonskih grafov -- križanje povezav namreč lahko vodi do zmede pri prikazu rezultatov. Ker se za testiranje uporablja le londonski stolp s tremi palicami, se bomo tudi pri obravnavi ravninskosti omejili na ta primer, torej naj bo $p=3$.
+
+Najprej si poglejmo problem za dve krogli ($n=2$): vsi grafi so ravninski, kot je prikazano na sliki.
+
+Preden si ogledamo problem za $n=3$, vpeljimo novo operacijo na grafih:
+
 \begin{itemize}
     \item operacija \emph{subdivizije} ohranja ravninskost: vzamemo neko povezavo $e$ grafa $G$ in na sredino te povezave dodamo še eno vozlišče 
     \item graf $H$ je \emph{subdivizija} grafa $G$, če ga lahko dobimo iz $G$ z zaporednim \emph{subdiviziranjem} povezav grafa $G$; očitno je tak $H$ ravninski natanko tedaj, ko je $G$ ravninski
     \item hitro lahko vidimo, da grafa $K_5$ in $K_{3,3}$ nista ravninska (poskusimo ju narisati v ravnini, a kmalu ugotovimo, da to ne bo mogoče)
     \item graf torej zagotovo ni ravninski, če vsebuje subdivizijo $K_5$ ali $K_{3,3}$; zanimivo pa je, da velja tudi obratno; dokaz tega dejstva je netrivialen in ga bom preskočila
 \end{itemize}
+
+\medskip
 
 \begin{izrek}[Kuratowski]
     Graf G je ravninski natanko tedaj, ko ne vsebuje subdivizije $K_5$ niti subdivizije $K_{3,3}$.
@@ -239,6 +248,20 @@ Izkaže se, da je ta pogoj tudi zadosten za povezanost londonskega grafa.
 \begin{trditev}
     Naj bo $p=3$. Tedaj so londonski grafi $L_h^2, L_{122}^3,L_{123}^3$ in $ L_{133}^3$ ravninski.
 \end{trditev}
+
+Za $n=3$ dobimo sledečo shemo:
+
+\[
+\begin{matrix}
+& & L & & & & \\
+& & \parallel & & & & \\
+L_{122}^3 & \subset & L_{123}^3 & \subset & L_{133}^3 & & \\
+\cap & & \cap & & \cap & & \\
+L_{222}^3 & \subset & L_{223}^3 & \subset & L_{233}^3 & \subset & L_{333}^3 \\
+& & & & & & \parallel \\
+& & & & & & O^3_3 \\
+\end{matrix}
+\]
 
 
 \section{Oxfordski graf}
@@ -276,6 +299,7 @@ Pred dokazom formule za število povezav bomo potrebovali osnovno lemo teorije g
 \end{lema}
 
 \begin{proof}
+    \small
     Naredimo si tabelo vozlišč in povezav:
     
     \begin{table}[h]

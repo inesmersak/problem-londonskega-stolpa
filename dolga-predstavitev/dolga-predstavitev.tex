@@ -103,7 +103,7 @@
 \begin{frame}{Lastnosti grafa}
     \begin{itemize}
         \item 36 vozlišč (36 možnih stanj)
-        \item 12 vozlišč stopnje 2, 3, 4
+        \item po 12 vozlišč stopnje 2, 3, 4
         \item premer grafa je 8
         \item ravninski
     \end{itemize}
@@ -116,7 +116,6 @@
     \begin{figure}
         \centering
         \includegraphics[height=190pt]{../img/tolgraph-ham-path.png}
-        \caption{Hamiltonova pot v klasičnem londonskem grafu.}
     \end{figure}
 \end{frame}
 
@@ -131,7 +130,7 @@
 \begin{frame}{Oznake}
     \begin{itemize}
         \item J.\ R.\ Tunstall je prva predlagala razširitev na 4 krogle s podaljšanimi palicami
-        \item $n$ krogel različne barve, $n \geq 2$
+        \item $n$ krogel različnih barv, $n \geq 2$
         \item $p$ palic, $p \geq 3$
         \item vsako palico označimo s številom $k \in [p]$, njeno višino pa s $h_k$
         \item veljati mora $n \leq \sum_{k=1}^p h_k$
@@ -163,7 +162,7 @@
 \begin{frame}{Povezanost grafa}
     V nadaljevanju bomo privzeli, da so palice urejene po velikosti naraščajoče, velja torej $h_1 \leq h_2 \leq \cdots \leq h_p$.
     
-    Potreben pogoj za povezanost Londonskega grafa je 
+    Potreben pogoj za povezanost londonskega grafa je 
     \[ n \leq \sum_{k=1}^{p-1} h_k. \]
     \begin{block}{Izrek}
         Londonski graf $L_h^n$ je povezan natanko tedaj, ko velja pogoj
@@ -179,18 +178,15 @@
 \end{frame}
 
 \begin{frame}
+    Operacija \alert{subdivizije} ohranja ravninskost.
     \begin{block}{Izrek Kuratowskega}
            	Graf G je ravninski natanko tedaj, ko ne vsebuje subdivizije $K_5$ niti subdivizije $K_{3,3}$.
     \end{block}
 
     \begin{block}{Trditev}
-           	Naj bo $p=3$. Tedaj so ravninski londonski grafi $L_h^2, L_{122}^3,L_{123}^3 = L$ in $ L_{133}^3$.
+           	Naj bo $p=3$. Tedaj so ravninski londonski grafi natanko grafi $L_h^2, L_{122}^3,L_{123}^3 = L$ in $ L_{133}^3$.
     \end{block}
 
-    \begin{figure}[h]
-        %\includegraphics[width=170pt]{}
-        \caption{Graf $K_{3,3}$ je toroidalen.}
-    \end{figure}
 \end{frame}
 
 \begin{frame}
