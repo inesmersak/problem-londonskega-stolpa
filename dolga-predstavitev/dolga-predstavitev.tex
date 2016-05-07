@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[dvipsnames]{beamer}
 
 \usepackage[slovene]{babel}
 \usepackage[T1]{fontenc}
@@ -7,6 +7,8 @@
 
 \usepackage{amssymb}
 \usepackage{amsmath}
+
+\usepackage{xcolor}
 
 \usepackage{enumerate}
 \usepackage{graphicx}
@@ -173,7 +175,11 @@
 \begin{frame}{Ravninskost grafa}
     \begin{figure}[h]
         \includegraphics[width=150pt]{../img/tolgraph-2balls.png}
-        \caption{Vsi londonski grafi s $p=3$ in $n=2$ so ravninski. Prikazani so: $L^2_{111}, L^2_{112}, L^2_{122}$ in $L^2_{222} = O^2_3$.}
+        \caption{Vsi londonski grafi s $p=3$ in $n=2$ so ravninski. Prikazani so: 
+            ${\color{Red} L^2_{111}} + 
+            {\color{Green}L^2_{112}} + 
+            {\color{NavyBlue}L^2_{122}} + 
+            {\color{Yellow}L^2_{222} = O^2_3}$.}
     \end{figure}
 \end{frame}
 
@@ -191,7 +197,7 @@
 
 \begin{frame}
     \begin{figure}[h]
-        %\includegraphics[width=170pt]{}
+        \includegraphics[width=190pt]{../img/tolgraph-O^3_222-subdivision.png}
         \caption{Rdeči podgraf grafa $L_{222}^3$ je subdivizija grafa $K_{3,3}$.}
     \end{figure}
 \end{frame}
