@@ -764,6 +764,24 @@ Medtem ko je v splošnem težko določiti število vozlišč londonskega grafa, 
     \[ n! \cdot {n+p-1 \choose p-1} = n! \cdot \frac{(n+p-1)!}{n!(p-1)!} = \frac{(n+p-1)!}{(p-1)!}. \] \qedhere
 \end{proof}
 
+Preden si ogledamo formulo za število povezav londonskega grafa, pa si na hitro oglejmo še sledečo lemo, ki jo bomo potrebovali pri dokazu formule za število povezav:
+
+\begin{lema}
+    Velja formula
+    \begin{equation}
+        \label{eq:binom}
+        {b+w \choose l} = \sum_{k=0}^{l}{b \choose k}{w \choose l-k}.
+    \end{equation}
+\end{lema}
+
+\begin{proof}
+    Formulo najlažje dokažemo kombinatorično. Predstavljajmo si, da imamo v posodi $b$ črnih in $w$ belih krogel, iz posode pa izbiramo $l$ krogel.
+    
+    Leva stran enakosti nam predstavlja vse možne načine, kako lahko izberemo $l$ krogel izmed $b+w$ krogel (brez vračanja). 
+    
+    Na to pa lahko gledamo tudi malo drugače: najprej določimo neko fiksno število $k$, toliko krogel bomo izbrali izmed črnih, preostanek pa bomo izbrali iz belih krogel. Za fiksen $k$ je število možnih izbir ravno ${b \choose k}{w \choose l-k}$. Če to sedaj seštejemo po vseh možnih $k$-jih, bomo dobili ravno vse možne načine izbire $l$ krogel izmed $b+w$ krogel, formula~\eqref{eq:binom} torej velja.
+\end{proof}
+
 \begin{trditev}
     Število povezav oxfordskega grafa $O^n_p$ je enako
     \[ \frac{np}{2} \frac{(p-2+n)!}{(p-2)!} .\]
@@ -783,11 +801,6 @@ Medtem ko je v splošnem težko določiti število vozlišč londonskega grafa, 
     \end{align*}
     
     Za dokaz formule bomo potrebovali še sledečo formulo za binomske simbole, ki jo privzemimo kot znano [bolje dokaz -- TODO]:
-    
-    \begin{equation}
-        \label{eq:binom}
-        {b+w \choose l} = \sum_{k=0}^{l}{b \choose k}{w \choose l-k}
-    \end{equation}
     
     Sedaj po $q$ seštejemo stopnje vseh vozlišč (upoštevamo, da imajo vsa vozlišča, kjer je nepraznih točno $q$ palic, enako stopnjo) in uporabimo formulo~\eqref{eq:lema-o-rokovanju} iz leme o rokovanju:
     \begin{align*}
