@@ -752,22 +752,31 @@ Medtem ko je v splošnem težko določiti število vozlišč londonskega grafa, 
 \end{trditev}
 
 \begin{proof}
-    Iščemo število vseh možnih stanj pri oxfordskemu stolpu, saj je to enako številu vozlišč oxfordskega grafa.
-    Podobno kot pri dokazu števila stanj klasičnega londonskega stolpa najprej pozabimo na različne barve krogel (delamo se, da so krogle enake) in se osredotočimo samo na njihovo postavitev. 
+    Iščemo število vseh možnih stanj krogel oxfordskega stolpa, saj je to enako številu vozlišč oxfordskega grafa.
+    Podobno kot pri dokazu števila stanj klasičnega londonskega stolpa najprej pozabimo na različne barve krogel (pretvarjamo se, da so krogle enake) in se osredotočimo samo na njihovo postavitev. 
     
-    Na koliko načinov lahko $n$ enakih krogel razvrstimo na $p$ palic višine $n$? Pri tem nimamo nobenih omejitev, saj so palice dovolj visoke, da lahko vse krogle postavimo tudi na eno samo palico. Lahko si predstavljamo, da imamo vse krogle zložene v vrsto, označene naj bodo z 0, nato pa na poljubna mesta (s ponavljanjem) vrivamo 1, ki naj pomeni konec neke palice in začetek neke druge. Ko vrinemo $p-1$ enic, smo določili $p$ palic in s tem razporeditev krogel. 
+    Na koliko načinov lahko $n$ enakih krogel razporedimo na $p$ palic višine $n$? Pri tem nimamo nobenih omejitev, saj so palice dovolj visoke, da lahko vse krogle postavimo tudi na eno samo palico. Lahko si predstavljamo, da imamo vse krogle zložene v vrsto, označene naj bodo z 0, nato pa na poljubna mesta (s ponavljanjem) vrivamo 1, ki naj pomeni konec neke palice in začetek neke druge. Ko vrinemo $p-1$ enic, smo določili $p$ palic in s tem razporeditev krogel. 
     
-    Sedaj lahko na problem pogledamo malo drugače: na $n+p-1$ mest razporejamo $n$ ničel, ki predstavljajo krogle, in $p-1$ enic, ki predstavljajo začetek nove palice. Če razporedimo vse enice, bodo na vsa preostala mesta prišle ničle, razporeditev bo s tem določena. $p-1$ mest izmed $n+p-1$ položajev lahko izberemo na ${n+p-1 \choose p-1}$ načinov. S tem je položaj krogel na palicah točno določen, torej imamo ${n+p-1 \choose p-1}$ vseh možnih razporeditev, če privzamemo, da so krogle enake. 
+    Sedaj lahko na problem pogledamo malo drugače: na $n+p-1$ mest razporejamo $n$ ničel, ki predstavljajo krogle, in $p-1$ enic, ki predstavljajo začetek nove palice. Če razporedimo vse enice, bodo vsa preostala mesta zasedle ničle, razporeditev bo s tem točno določena. Načinov za izbiro $p-1$ mest za enice izmed $n+p-1$ položajev je ${n+p-1 \choose p-1}$. Če privzamemo, da so vse krogle enake, je vseh možnih razporeditev torej ${n+p-1 \choose p-1}$.
     
     Ker je vsaka krogla drugačne barve, imamo za vsako razporeditev še $n!$ možnih permutacij barv. Število vseh stanj, in zato tudi število vozlišč, je tako enako
     
     \[ n! \cdot {n+p-1 \choose p-1} = n! \cdot \frac{(n+p-1)!}{n!(p-1)!} = \frac{(n+p-1)!}{(p-1)!}. \] \qedhere
 \end{proof}
 
-Preden si ogledamo formulo za število povezav londonskega grafa, pa si na hitro oglejmo še sledečo lemo, ki jo bomo potrebovali pri dokazu formule za število povezav:
+\begin{trditev}
+    Število povezav oxfordskega grafa $O^n_p$ je enako
+    \begin{equation}
+        \label{eq:povezave-oxf}
+        \frac{np}{2} \frac{(p-2+n)!}{(p-2)!}
+    \end{equation}
+    \label{trd:povezave-oxf}
+\end{trditev}
+
+Preden si ogledamo izpeljavo formule~\eqref{eq:povezave-oxf}, pa si na hitro oglejmo še sledečo lemo, ki jo bomo potrebovali pri dokazu.
 
 \begin{lema}
-    Velja formula
+    Velja naslednja lastnost binomskih simbolov:
     \begin{equation}
         \label{eq:binom}
         {b+w \choose l} = \sum_{k=0}^{l}{b \choose k}{w \choose l-k}.
@@ -777,17 +786,12 @@ Preden si ogledamo formulo za število povezav londonskega grafa, pa si na hitro
 \begin{proof}
     Formulo najlažje dokažemo kombinatorično. Predstavljajmo si, da imamo v posodi $b$ črnih in $w$ belih krogel, iz posode pa izbiramo $l$ krogel.
     
-    Leva stran enakosti nam predstavlja vse možne načine, kako lahko izberemo $l$ krogel izmed $b+w$ krogel (brez vračanja). 
+    Leva stran enakosti nam predstavlja vse možne načine izbire $l$ krogel izmed $b+w$ krogel (brez vračanja). 
     
     Na to pa lahko gledamo tudi malo drugače: najprej določimo neko fiksno število $k$, toliko krogel bomo izbrali izmed črnih, preostanek pa bomo izbrali iz belih krogel. Za fiksen $k$ je število možnih izbir ravno ${b \choose k}{w \choose l-k}$. Če to sedaj seštejemo po vseh možnih $k$-jih, bomo dobili ravno vse možne načine izbire $l$ krogel izmed $b+w$ krogel, formula~\eqref{eq:binom} torej velja.
 \end{proof}
 
-\begin{trditev}
-    Število povezav oxfordskega grafa $O^n_p$ je enako
-    \[ \frac{np}{2} \frac{(p-2+n)!}{(p-2)!} .\]
-\end{trditev}
-
-\begin{proof}
+\begin{proof}[Dokaz trditve~\ref{trd:povezave-oxf}]
     Vzemimo stanje (vozlišče), pri katerem je $q$ palic nepraznih, $1 \leq q \leq p$ in $n \geq q$. Vsako vrhnjo kroglo ene izmed $q$ palic lahko premaknemo na katerokoli palico, razen trenutne; izberemo torej eno izmed $q$ palic, s katere premaknemo kroglo, in eno izmed preostalih $p-1$ palic, kamor kroglo premaknemo. Tako vozlišče je torej stopnje $q(p-1)$. (Pri tem upoštevamo, da je povezava med dvema vozliščema grafa pravzaprav veljavna poteza med dvema stanjema.)
     
     Vseh stanj, ki imajo točno $q$ nepraznih palic, je enako
@@ -799,9 +803,7 @@ Preden si ogledamo formulo za število povezav londonskega grafa, pa si na hitro
         {p \choose q} \frac{n!}{(n-q)!} \frac{(n-q+q-1)!}{(q-1)!} \\ &= n! {p \choose q} \frac{(n-1)!}{(q-1)!\,(n-q)!} \\ &=
         n! {p \choose q} {n-1 \choose q-1}
     \end{align*}
-    
-    Za dokaz formule bomo potrebovali še sledečo formulo za binomske simbole, ki jo privzemimo kot znano [bolje dokaz -- TODO]:
-    
+
     Sedaj po $q$ seštejemo stopnje vseh vozlišč (upoštevamo, da imajo vsa vozlišča, kjer je nepraznih točno $q$ palic, enako stopnjo) in uporabimo formulo~\eqref{eq:lema-o-rokovanju} iz leme o rokovanju:
     \begin{align*}
         |E(O^n_p)|
@@ -812,7 +814,7 @@ Preden si ogledamo formulo za število povezav londonskega grafa, pa si na hitro
         &= \frac{1}{2} (p-1) n! \sum_{q=1}^{p} p \frac{(p-1)!}{(q-1)! \, (p-q)!} {n-1 \choose q-1} \\
         &= \frac{1}{2} p (p-1) n! \sum_{q=1}^{p} {p-1 \choose q-1} {n-1 \choose q-1}
     \end{align*}
-    Sedaj uvedemo nov indeks $k = q-1$, upoštevamo lastnosti binomskih simbolov in uporabimo formulo~\eqref{eq:binom}:
+    Sedaj uvedemo nov indeks $k = q-1$, upoštevamo lastnosti binomskih simbolov in uporabimo zgoraj dokazano formulo~\eqref{eq:binom}:
     \begin{align*}
         |E(O^n_p)|
         &= \frac{1}{2} p (p-1) n! \sum_{k=0}^{p-1} {p-1 \choose k} {n-1 \choose k} \\
