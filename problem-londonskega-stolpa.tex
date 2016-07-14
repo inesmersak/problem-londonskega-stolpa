@@ -792,12 +792,13 @@ Preden si ogledamo izpeljavo formule~\eqref{eq:povezave-oxf}, pa si na hitro ogl
 \end{proof}
 
 \begin{proof}[Dokaz trditve~\ref{trd:povezave-oxf}]
-    Vzemimo stanje (vozlišče), pri katerem je $q$ palic nepraznih, $1 \leq q \leq p$ in $n \geq q$. Vsako vrhnjo kroglo ene izmed $q$ palic lahko premaknemo na katerokoli palico, razen trenutne; izberemo torej eno izmed $q$ palic, s katere premaknemo kroglo, in eno izmed preostalih $p-1$ palic, kamor kroglo premaknemo. Tako vozlišče je torej stopnje $q(p-1)$. (Pri tem upoštevamo, da je povezava med dvema vozliščema grafa pravzaprav veljavna poteza med dvema stanjema.)
+    Vzemimo stanje (vozlišče) s $q$ nepraznimi palicami, pri čemer je $q$ fiksen ter velja $1 \leq q \leq p$ in $n \geq q$. Preštejmo vse veljavne poteze, ki jih lahko naredimo ob takem stanju krogel. Vsako vrhnjo kroglo ene izmed $q$ palic lahko premaknemo na katerokoli palico, razen trenutne; izberemo torej eno izmed $q$ palic, s katere premaknemo kroglo, in eno izmed preostalih $p-1$ palic, kamor kroglo premaknemo. Tako vozlišče je torej stopnje $q(p-1)$. (Pri tem upoštevamo, da je povezava med dvema vozliščema grafa pravzaprav veljavna poteza med dvema stanjema.)
     
-    Vseh stanj, ki imajo točno $q$ nepraznih palic, je enako
+    Ugotovili smo, da so vsa stanja oziroma pripadajoča vozlišča, ki imajo točno $q$ nepraznih palic, enake stopnje. Ker želimo uporabiti lemo o rokovanju, moramo najprej prešteti, koliko je takih stanj. 
+    Izberemo $q$ izmed $p$ palic, ki bodo neprazne, kar lahko storimo na ${p \choose q}$ načinov. Na vsako izmed teh $q$ palic moramo nujno postaviti vsaj eno kroglo, kar lahko naredimo na $n \cdot (n-1) \cdot \ldots \cdot (n-q+1) = \frac{n!}{(n-q)!}$ (za prvo izmed $q$ palic imamo na voljo $n$ krogel, za drugo $n-1$ krogel,\ldots). S tem zagotovimo, da je točno $q$ palic res nepraznih. Preostalih $n-q$ krogel pa lahko razporedimo poljubno na $q$ palic, kar je brez škode za splošnost enako številu razporeditev $n-q$ krogel na $q$ palic velikosti $n-q$, torej $|V(O^{n-q}_q)|$.
+    Iz tega razmisleka sledi, da je število vseh stanj, ki imajo točno $q$ nepraznih palic, torej enako
     \[{p \choose q} \frac{n!}{(n-q)!} \cdot |V(O^{n-q}_q)|.\]
-    Najprej izberemo $q$ izmed $p$ palic, ki bodo neprazne, kar lahko storimo na ${p \choose q}$ načinov. Na vsako izmed teh $q$ palic moramo nujno postaviti vsaj eno kroglo, kar lahko naredimo na $n \cdot (n-1) \cdot \ldots \cdot (n-q+1) = \frac{n!}{(n-q)!}$ (za prvo izmed $q$ palic imamo na voljo $n$ krogel, za drugo $n-1$ krogel,\ldots). Preostalih $n-q$ krogel pa lahko razporedimo poljubno na $q$ palic, kar je brez škode za splošnost enako številu razporeditev $n-q$ krogel na $q$ palic velikosti $n-q$, torej $|V(O^{n-q}_q)|$.
-    Če uporabimo formulo za število vozlišč oxfordskega grafa~\eqref{eq:oxford-vozl} in poračunamo, dobimo, da je število takih stanj enako
+    Če uporabimo še formulo za število vozlišč oxfordskega grafa~\eqref{eq:oxford-vozl} in poračunamo, dobimo, da je število takih stanj enako
     \begin{align*}
         {p \choose q} \frac{n!}{(n-q)!} \cdot |V(O^{n-q}_q)| &=
         {p \choose q} \frac{n!}{(n-q)!} \frac{(n-q+q-1)!}{(q-1)!} \\ &= n! {p \choose q} \frac{(n-1)!}{(q-1)!\,(n-q)!} \\ &=
