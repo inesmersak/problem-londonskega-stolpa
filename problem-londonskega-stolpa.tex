@@ -950,7 +950,18 @@ Zamislimo si za trenutek problem londonskega stolpa, pri katerem so vse palice r
 Če pa pri našem problemu obstaja nekaj palic, ki so enake višine, pa so simetrije grafa tudi permutacije palic enake višine.
 V temu poglavju bomo najprej omenili simetrije klasičnega problema londonskega stolpa, nato pa preučili še simetrije nekaterih ostalih problemov s tremi palicami, z uporabo simetrijskih lastnosti pa bomo potem sklepali nekaj več o lastnostih pripadajočih grafov.
 
-Pri klasičnem problemu londonskega stolpa imamo $3$ palice različne višine, torej so edine možne simetrije permutacije barv krogel. Spomnimo se, naloga je sestavljena iz začetnega stanja krogel in končnega stanja krogel, matematično jo torej lahko opišemo kot urejen par dveh možnih stanj. Klasični problem ima 36 možnih stanj, torej imamo $36 \cdot 35$ možnih nalog. 
+Pri klasičnem problemu londonskega stolpa imamo $3$ palice različne višine, torej so edine možne simetrije permutacije barv krogel. 
+Izračunali smo že, da je število vseh možnih stanj krogel za ta primer enak 36, pri tem pa vemo, da imamo zaradi treh krogel $3! = 6$ možnih barvnih permutacij. Med temi $36$ stanji je torej pravzaprav le $6$ različnih geometrijskih razporeditev krogel (neupoštevajoč barve), vsaka izmed teh razporeditev pa ima potem še $6$ permutacij barv krogel.
+
+\begin{figure}
+    \caption{Na slikah so prikazane vse možne geometrijske razporeditve krogel za klasični problem $L_{123}^3$.}
+\end{figure}
+
+Spomnimo se, da je naloga pri problemu londonskega stolpa sestavljena iz začetnega in končnega stanja krogel, matematično jo torej lahko opišemo kot urejen par dveh možnih stanj. Ker ima klasični problem 36 možnih stanj, je število vseh nalog enako $36 \cdot 35$. Razdelimo jih lahko v $6$ blokov glede na barvno permutacijo, ki jim pripada -- če ne upoštevamo barv, imamo tako na voljo le $210$ različnih nalog, vsaka izmed njih je predstavnik enega ekvivalenčnega razreda na množici vseh nalog glede na permutacije barv krogle. Vsak tak ekvivalenčni razred je velikosti $6$, saj imamo toliko možnih barvnih permutacij. Rešitve nalog, ki spadajo v isti ekvivalenčni razred (``izo-naloge''), so sestavljene iz enakih potez;  razlikujejo se le v barvah krogel, ki jih premikamo. \cite[str.\ 591]{bib:tolspatial}
+
+\begin{opomba}
+    Matematično gledano so vse naloge, ki so del istega ekvivalenčnega razreda, enako težke. Ni pa nujno, da jih tako dojema tudi oseba, ki nalogo rešuje.
+\end{opomba}
 
 % slovar
 \section*{Slovar strokovnih izrazov}
@@ -965,7 +976,10 @@ Pri klasičnem problemu londonskega stolpa imamo $3$ palice različne višine, t
 
 \bibitem{bib:tohmyths} A. M. Hinz, S. Klavžar, U. Milutinović in C. Petr, \emph{The Tower of Hanoi – Myths and Maths}, Birkhäuser, Basel, 2013.
 
-\bibitem{bib:potocnik} P. Potočnik, \emph{Zapiski predavanj iz Diskretne Matematike I}, 1.~izdaja, [ogled 29.~12.~15], dostopno na \url{http://www.fmf.uni-lj.si/~potocnik/Ucbeniki/DM-Zapiski2010.pdf}
+\bibitem{bib:tolspatial}
+W. K. Berg in D. L. Byrd, \emph{The Tower of London spatial problem-solving task: Enchancing clinical and research implementation}, Journal of Clinical and Experimental Neuropsychology \textbf{24} (2002) 586--604,
+dostopno tudi na \\ \url{https://www.researchgate.net/publication/11201010_The_Tower_of_London_Spatial_Problem-Solving_Task_Enhancing_Clinical_and_Research_Implementation}.
+\bibitem{bib:potocnik} P. Potočnik, \emph{Zapiski predavanj iz Diskretne Matematike I}, 1.~izdaja, [ogled 29.~12.~15], dostopno na \url{http://www.fmf.uni-lj.si/~potocnik/Ucbeniki/DM-Zapiski2010.pdf}.
 
 \bibitem{bib:wikishal} \emph{Tim Shallice}, v: Wikipedia: The Free Encyclopedia, [ogled 8.~10.~2015], dostopno na\\ \url{https://en.wikipedia.org/wiki/Tim_Shallice}.
 
