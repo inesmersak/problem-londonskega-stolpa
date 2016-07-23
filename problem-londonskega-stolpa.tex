@@ -69,6 +69,7 @@
 \newcommand{\ed}{\ensuremath{\,|}}
 % operatorji
 \DeclareMathOperator {\stopnja} {deg}
+\DeclareMathOperator {\id} {id}
 
 
 
@@ -962,6 +963,25 @@ Spomnimo se, da je naloga pri problemu londonskega stolpa sestavljena iz začetn
 \begin{opomba}
     Matematično gledano so vse naloge, ki so del istega ekvivalenčnega razreda, enako težke. Ni pa nujno, da jih tako dojema tudi oseba, ki nalogo rešuje.
 \end{opomba}
+
+Ogledali si bomo, kako lahko z upoštevanjem simetrij enostavno ugotovimo nekatere metrične lastnosti grafa, npr.~povprečno razdaljo. Za učinkovitejšo preučevanje večjih, bolj zakompliciranih londonskih grafov definirajmo grupo $(\Gamma_{np}, \cdot, 1_{np})$, pri čemer velja $\Gamma_{np} = S_n \times S_p$; grupa $S_n$ bo pri tem predstavljala vse možne permutacije (barv) krogel, $S_p$ pa vse možne permutacije palic. Operacijo $\cdot$ definiramo takole:
+
+\[ (\chi_1,\pi_1) \cdot (\chi_2,\pi_2) = (\chi_1 \circ \chi_2,\pi_1 \circ \pi_2), \]
+
+enota pa je kar urejen par enot grupe $S_n$ (označimo jo z $\id_n$) in $S_p$ (označimo jo z $\id_p$), velja torej $1_{np} = (\id_n, \id_p) $. Enostavno lahko preverimo, da za tako definirano operacijo $\cdot$ in enoto $1_{np}$ res dobimo grupo. Seveda velja, da je velikost naše grupe simetrij $|\Gamma_{np}|$ enaka kar produktu velikosti množic $S_n$ in $S_p$, torej $|\Gamma_{np}| = n! \cdot p!$. 
+
+Sedaj lahko definiramo delovanje te grupe na množici vozlišč (stanj) nekega londonskega grafa $V(L_h^n)$.
+
+Za začetek si oglejmo oxfordski graf $O_2^3$. Če pozabimo na barve in upoštevamo, da so vse palice enako visoke, imamo pri tem problemu pravzaprav le dve razporeditvi krogel, ki nista ekvivalentni (glede na upoštevane simetrije), in sicer: 
+\begin{itemize}
+    \item obe krogli sta na isti palici (prikazano na sliki~\ref{fig:neekviv-oxf-stanji} levo),
+    \item krogli nista na isti palici (prikazano na sliki~\ref{fig:neekviv-oxf-stanji} desno).
+\end{itemize}
+
+\begin{figure}[h]
+    \caption{Na sliki sta prikazani edini dve neekvivalentni stanji problema $O^2_3$. }
+    \label{fig:neekviv-oxf-stanji}
+\end{figure}
 
 % slovar
 \section*{Slovar strokovnih izrazov}
