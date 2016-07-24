@@ -70,7 +70,7 @@
 % operatorji
 \DeclareMathOperator {\stopnja} {deg}
 \DeclareMathOperator {\id} {id}
-
+\DeclareMathOperator {\X}{X}
 
 
 
@@ -167,7 +167,7 @@ Vozlišča grafa predstavimo s točkami v ravnini, povezavo med dvema vozlišče
     \end{equation}
 \end{lema}
 
-\begin{proof}
+\proof
     Naredimo si tabelo vozlišč in povezav:
     
     \begin{table}[h]
@@ -183,7 +183,7 @@ Vozlišča grafa predstavimo s točkami v ravnini, povezavo med dvema vozlišče
     V prvem stolpcu so našteta vozlišča grafa, v prvi vrstici pa povezave. Na mestu $i,j$ v tabeli zapišemo enico, če je vozlišče $v_i$ eno izmed krajišče povezave $e_j$, in ničlo v nasprotnem primeru. 
     
     Vemo, da ima vsaka povezava dve krajišči, torej sta v vsakem stolpcu natanko dve enici. Če po drugi strani pogledamo število enic v neki vrstici $i$, nam to pove ravno stopnjo vozlišča $v_i$. Ker mora biti rezultat enak, če seštejemo ničle in enice po stolpcih oziroma po vrsticah, sledi formula \eqref{eq:lema-o-rokovanju}.
-\end{proof}
+\endproof
 
 \begin{primer}
     \label{primer:sosedi}
@@ -480,7 +480,7 @@ Za vsako drevo z vsaj dvema vozliščema velja, da vsebuje vozlišče stopnje 1 
     Če je T drevo z $n$ vozlišči in $m$ povezavami, je $m=n-1$.
 \end{lema}
 
-\begin{proof}
+\proof
     Lemo bomo dokazali z indukcijo na število vozlišč.
     
     Baza indukcije: Če ima drevo le eno vozlišče, nima nobene povezave (velja $n = 1$ $m = 0 = n-1$).
@@ -492,11 +492,11 @@ Za vsako drevo z vsaj dvema vozliščema velja, da vsebuje vozlišče stopnje 1 
         (m-1) &= (n-1) - 1 \\
         m     &= n - 1 \qedhere
     \end{align*}
-\end{proof}
+\endproof
 
 Če želimo, da velja tudi obratno, pa moramo zahtevati še, da je graf povezan. Graf je torej drevo natanko tedaj, ko je povezan in je število njegovih povezav $m$ enako $n-1$. Dokaz tega dejstva je naveden v~\cite[str.~57]{bib:potocnik}.
 
-\begin{proof}[Dokaz izreka~\ref{izr:euler-formula}]
+\proof[Dokaz izreka~\ref{izr:euler-formula}]
     Formulo dokažemo z indukcijo na število povezav.
     
     Naj bo $m = n-1$. Imamo torej drevo, za katerega vemo, da njegova risba premore le zunanje lice, $f$ je torej enak 1. Sledi
@@ -511,7 +511,7 @@ Za vsako drevo z vsaj dvema vozliščema velja, da vsebuje vozlišče stopnje 1 
         n - (m-1) + (f-1) &= 2 \\
         n - m + f         &= 2 \qedhere
     \end{align*}
-\end{proof}
+\endproof
 
 Naslednja posledica Eulerjeve formule nam bo pomagala pri dokazu dejstva, da grafa $K_5$ in $K_{3,3}$ nista ravninska.
 
@@ -528,7 +528,7 @@ Naslednja posledica Eulerjeve formule nam bo pomagala pri dokazu dejstva, da gra
     \end{equation}
 \end{posledica}
 
-\begin{proof}
+\proof
     Če za vsako lice upoštevamo le tri povezave (to je minimalno število povezav, ki omejujejo lice, ki ni zunanje), bomo dobili kvečjemu manj, kot če preštejemo vse povezave dvakrat.
     Vsaka povezava namreč omejuje največ dve lici; če bi po vseh licih sešteli število povezav, ki omejujejo neko lice, bi torej dobili dvakratno vrednost števila povezav.
     Torej velja neenakost
@@ -543,7 +543,7 @@ Naslednja posledica Eulerjeve formule nam bo pomagala pri dokazu dejstva, da gra
     Na podoben način pokažemo formulo~\eqref{eq:posledica-euler-formula-trik}, le da začnemo z neenakostjo 
     \[ 4f \leq 2m, \]
     saj je zaradi predpostavke, da graf ne vsebuje trikotnikov, minimalno število povezav, ki omejuje lice, enako 4. 
-\end{proof}
+\endproof
 
 Z uporabo zgornje formule, ki torej mora veljati, če je graf ravninski, lahko dokažemo:
 \begin{posledica}
@@ -551,7 +551,7 @@ Z uporabo zgornje formule, ki torej mora veljati, če je graf ravninski, lahko d
     $K_5$ in $K_{3,3}$ nista ravninska grafa.
 \end{posledica}
 
-\begin{proof}
+\proof
     Polni graf na petih vozliščih $K_5$ ima {$5 \choose 2$} = 10 povezav. $n$ je torej v tem primeru enak
     5, $m$ pa je 10. Če bi bil $K_5$ ravninski, bi morala veljati formula~\eqref{eq:posledica-euler-formula},
     a temu ni tako:
@@ -561,7 +561,7 @@ Z uporabo zgornje formule, ki torej mora veljati, če je graf ravninski, lahko d
     Podobno lahko pokažemo tudi za poln dvodelni graf $K_{3,3}$, pri čemer je $n$ enak 6, število povezav $m$ pa 9. Če bi bil ta graf ravninski, bi morala veljati formula~\eqref{eq:posledica-euler-formula-trik}, a to ne drži:
     \[ 9 = m \nleq 2n - 4 = 8. \] 
     Graf $K_{3,3}$ torej ni ravninski. \qedhere
-\end{proof}
+\endproof
 
 Sedaj želimo ugotoviti, kakšnim pogojem mora ustrezati graf, da bo ravninski. Očitno velja naslednja trditev:
 
@@ -619,7 +619,7 @@ S pomočjo teh oznak lahko opišemo vsako možno stanje in narišemo graf london
     Število vseh možnih stanj klasičnega londonskega stolpa je 36.
 \end{lema}
 
-\begin{proof}
+\proof
     Najprej si oglejmo vse možne postavitve krogel, pri čemer se ne oziramo na barvo.
     Imamo dve možnosti:
     \begin{enumerate}
@@ -643,7 +643,7 @@ S pomočjo teh oznak lahko opišemo vsako možno stanje in narišemo graf london
     \end{enumerate}
     Po pravilu vsote imamo torej, če se ne oziramo na barve krogel, $3+3=6$ možnih postavitev krogel.
     V vsaki od teh lahko še premešamo barve krogel, torej imamo za vsako postavitev $3!$ možnosti. Sledi, da je vseh možnih stanj $3! \cdot 6 = 6 \cdot 6 = 36$.\qedhere
-\end{proof}
+\endproof
 
 Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ ima 36 vozlišč. Graf je ravninski, saj je na sliki~\ref{fig:tolgraph} narisan v ravnini brez križanja povezav. Hitro vidimo, da je 12 vozlišč grafa $L$ stopnje 2, drugih 12 je stopnje 3, zadnjih 12 pa stopnje 4. Preverimo lahko tudi, da je premer klasičnega londonskega grafa enak 8.
 
@@ -657,7 +657,7 @@ Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ ima 36 vozlišč. Graf je r
     Graf $L$ vsebuje Hamiltonovo pot, ne pa tudi Hamiltonovega cikla.
 \end{trditev}
 
-\begin{proof}
+\proof
     TODO
     
     Hitro lahko dokažemo, da $L$ vsebuje Hamiltonovo pot: poiščemo jo. Ena izmed Hamiltonovih poti v grafu $L$ je prikazana na sliki~\ref{}.
@@ -675,7 +675,7 @@ Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ ima 36 vozlišč. Graf je r
     \end{itemize}
     Torej ne moremo konstruirati cikla, bi vseboval vsa vozlišča našega grafa $L$ natanko enkrat. $L$ torej ni Hamiltonov.
     \qedhere
-\end{proof}
+\endproof
 
 \section{Posplošeni londonski stolp}
 Graf klasičnega problema londonskega stolpa je majhen, zato je za psihološka testiranja naloga včasih prelahka. 
@@ -753,7 +753,7 @@ Medtem ko je v splošnem težko določiti število vozlišč londonskega grafa, 
 
 \end{trditev}
 
-\begin{proof}
+\proof
     Iščemo število vseh možnih stanj krogel oxfordskega stolpa, saj je to enako številu vozlišč oxfordskega grafa.
     Podobno kot pri dokazu števila stanj klasičnega londonskega stolpa najprej pozabimo na različne barve krogel (pretvarjamo se, da so krogle enake) in se osredotočimo samo na njihovo postavitev. 
     
@@ -764,7 +764,7 @@ Medtem ko je v splošnem težko določiti število vozlišč londonskega grafa, 
     Ker je vsaka krogla drugačne barve, imamo za vsako razporeditev še $n!$ možnih permutacij barv. Število vseh stanj, in zato tudi število vozlišč, je tako enako
     
     \[ n! \cdot {n+p-1 \choose p-1} = n! \cdot \frac{(n+p-1)!}{n!(p-1)!} = \frac{(n+p-1)!}{(p-1)!}. \] \qedhere
-\end{proof}
+\endproof
 
 \begin{trditev}
     Število povezav oxfordskega grafa $O^n_p$ je enako
@@ -785,15 +785,15 @@ Preden si ogledamo izpeljavo formule~\eqref{eq:povezave-oxf}, pa si na hitro ogl
     \end{equation}
 \end{lema}
 
-\begin{proof}
+\proof
     Formulo najlažje dokažemo kombinatorično. Predstavljajmo si, da imamo v posodi $b$ črnih in $w$ belih krogel, iz posode pa izbiramo $l$ krogel.
     
     Leva stran enakosti nam predstavlja vse možne načine izbire $l$ krogel izmed $b+w$ krogel (brez vračanja). 
     
     Na to pa lahko gledamo tudi malo drugače: najprej določimo neko fiksno število $k$, toliko krogel bomo izbrali izmed črnih, preostanek pa bomo izbrali iz belih krogel. Za fiksen $k$ je število možnih izbir ravno ${b \choose k}{w \choose l-k}$. Če to sedaj seštejemo po vseh možnih $k$-jih, bomo dobili ravno vse možne načine izbire $l$ krogel izmed $b+w$ krogel, formula~\eqref{eq:binom} torej velja.
-\end{proof}
+\endproof
 
-\begin{proof}[Dokaz trditve~\ref{trd:povezave-oxf}]
+\proof[Dokaz trditve~\ref{trd:povezave-oxf}]
     Vzemimo stanje (vozlišče) s $q$ nepraznimi palicami, pri čemer je $q$ fiksen ter velja $1 \leq q \leq p$ in $n \geq q$. Preštejmo vse veljavne poteze, ki jih lahko naredimo ob takem stanju krogel. Vsako vrhnjo kroglo ene izmed $q$ palic lahko premaknemo na katerokoli palico, razen trenutne; izberemo torej eno izmed $q$ palic, s katere premaknemo kroglo, in eno izmed preostalih $p-1$ palic, kamor kroglo premaknemo. Tako vozlišče je torej stopnje $q(p-1)$. (Pri tem upoštevamo, da je povezava med dvema vozliščema grafa pravzaprav veljavna poteza med dvema stanjema.)
     
     Ugotovili smo, da so vsa stanja oziroma pripadajoča vozlišča, ki imajo točno $q$ nepraznih palic, enake stopnje. Ker želimo uporabiti lemo o rokovanju, moramo najprej prešteti, koliko je takih stanj. 
@@ -828,7 +828,7 @@ Preden si ogledamo izpeljavo formule~\eqref{eq:povezave-oxf}, pa si na hitro ogl
         &= \frac{1}{2} p n \frac{(n+p-2)!}{(p-2)!} \\
         &= \frac{np}{2} \frac{(p-2+n)!}{(p-2)!} \qedhere
     \end{align*}
-\end{proof}
+\endproof
 
 \subsection{Povezanost}
 
@@ -847,7 +847,7 @@ Izkaže se, da je ta pogoj tudi zadosten za povezanost londonskega grafa.
     \end{equation}
 \end{izrek}
 
-\begin{proof}
+\proof
     Želimo dokazati, da iz pogoja \eqref{eq:pogoj-povezanosti} sledi, da lahko najdemo pot med poljubnima dvema vozliščema v londonskem grafu, kar je ravno definicija povezanosti. Dokaza se lotimo tako, da najprej čim bolj zreduciramo splošen problem in nato rešimo zreduciran problem.
     
     Spomnimo se, da vsako vozlišče londonskega grafa predstavlja neko stanje krogel -- če torej iščemo pot v grafu med dvema vozliščema, pravzaprav rešujemo problem, kako iz začetnega stanja krogel priti v končno. Fiksirajmo poljubno začetno in končno stanje in poskusimo rešiti ta problem.
@@ -879,7 +879,7 @@ Izkaže se, da je ta pogoj tudi zadosten za povezanost londonskega grafa.
         V tem primeru je postopek še nekoliko lažji: najprej vse krogle nad $b$ premaknemo na največjo palico, nato na vrh največje palice premaknemo tudi $b$. Sedaj lahko kroglo $a$ prestavimo na njeno pravo mesto (kjer je bil prej $b$), $b$ na vrh prve palice, vse preostale krogle na največji palici pa postavimo nazaj na prejšnja mesta, nad kroglo $a$.
     \end{enumerate}
     S tem je dokaz končan, saj smo našli način, kako prehajati med dvema poljubnima stanjema krogel, in smo s tem našli tudi pot v grafu med poljubnima vozliščema.
-\end{proof}
+\endproof
 
 \subsection{Ravninskost}
 
@@ -925,7 +925,7 @@ Videli smo že, da je klasični londonski graf $L$ ravninski. Torej je ravninski
     Še vedno predpostavljamo, da so londonski grafi povezani, torej zadostujejo pogoju~\eqref{eq:pogoj-povezanosti}.
 \end{opomba}
 
-\begin{proof}
+\proof
     Videli smo že, da so grafi $L_h^2, L_{122}^3, L_{123}^3$ in $L_{133}^3$ ravninski. Dokazati moramo, da vsi ostali grafi za $n=3$ in vsi grafi za $n \geq 4$ niso ravninski. Pri tem nam bo v pomoč izrek~\ref{izr:kuratowski}, ki pravi, da je graf ravninski natanko tedaj, ko ne vsebuje subdivizije $K_5$ ali $K_{3,3}$. A v grafu $L_{222}^3$ lahko najdemo subdivizijo $K_{3,3}$, ki je na sliki~\ref{fig:L222-subdivizija} prikazana z rdečo barvo. 
     \begin{figure}[h]
         \centering
@@ -940,7 +940,7 @@ Videli smo že, da je klasični londonski graf $L$ ravninski. Torej je ravninski
     Ker mora vsak graf $L_h^4$ vsebovati ali $L_{133}^4$ ali $L_{222}^4$, ki nista ravninska, to sledi tudi za preostale grafe z $n=4$.
     
     Za $n \geq 4$ torej noben graf ni ravninski, saj vsak $L_h^n$ dobimo z dodajanjem krogel enemu izmed $L_h^4$, za katere pa zdaj vemo, da niso ravninski.
-\end{proof}
+\endproof
 
 \begin{opomba}
     [TODO] toroidalnost
@@ -971,7 +971,17 @@ Ogledali si bomo, kako lahko z upoštevanjem simetrij enostavno ugotovimo nekate
 
 enota pa je kar urejen par enot grupe $S_n$ (označimo jo z $\id_n$) in $S_p$ (označimo jo z $\id_p$), velja torej $1_{np} = (\id_n, \id_p) $. Enostavno lahko preverimo, da za tako definirano operacijo $\cdot$ in enoto $1_{np}$ res dobimo grupo. Seveda velja, da je velikost naše grupe simetrij $|\Gamma_{np}|$ enaka kar produktu velikosti množic $S_n$ in $S_p$, torej $|\Gamma_{np}| = n! \cdot p!$. 
 
-Sedaj lahko definiramo delovanje te grupe na množici vozlišč (stanj) nekega londonskega grafa $V(L_h^n)$.
+Sedaj lahko definiramo delovanje te grupe na množici vozlišč (stanj) nekega londonskega grafa $V(L_h^n)$. Označimo neko stanje krogel z $s = \Sigma_1 | \ldots | \Sigma_p$, kjer $|$ ponovno označuje začetek naslednje palice, $\Sigma_i$ pa je niz, sestavljen iz oznak krogel na $i$-ti palici; krogle kot ponavadi naštevamo od vrha palice navzdol. Grupa $\Gamma_{np}$ sedaj deluje na poljubno stanje $s$ iz množice vozlišč takole:
+
+\[ (\chi,\pi) . s = \X \left( \Sigma_{\pi^{-1}(1)} | \ldots | \Sigma_{\pi^{-1}(p)} \right), \]
+
+pri čemer je $\X$ preslikava, ki ustrezno permutira barve krogel glede na $\chi$. To je res delovanje, saj očitno velja $1_{np}.s = s$ za vsak $s \in V(L_h^n)$, enostavno pa lahko preverimo, da velja tudi
+
+\[ \left((\chi_1,\pi_1) \cdot (\chi_2,\pi_2)\right).s = (\chi_1,\pi_1) . ((\chi_2,\pi_2).s) .\]
+
+\begin{primer}
+    Vzemimo $O^2_3$ in pokažimo, da sta nalogi $2||1 \rightarrow |1|2$ in $|2|1 \rightarrow 2|1|$ v isti orbiti. Želimo poiskati par permutacij $(\chi, \pi)$, ki nam bo prvi dve stanji krogel preslikal v drugi dve; permutaciji bomo zapisali z disjunktnimi cikli. Če vzamemo $(\chi, \pi) = ((1\ 2), (3\ 2\ 1))$ in upoštevamo, da je $\pi^{-1}=(1\ 2\ 3)$, se nam prva naloga preslika v $\X(|1|2) \rightarrow \X(1|2|) = |2|1 \rightarrow 2|1|$, dobimo drugo nalogo, torej sta nalogi res v isti orbiti.
+\end{primer}
 
 Za začetek si oglejmo oxfordski graf $O_2^3$. Če pozabimo na barve in upoštevamo, da so vse palice enako visoke, imamo pri tem problemu pravzaprav le dve razporeditvi krogel, ki nista ekvivalentni (glede na upoštevane simetrije), in sicer: 
 \begin{itemize}
