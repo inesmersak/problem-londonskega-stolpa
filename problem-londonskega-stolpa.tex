@@ -965,6 +965,19 @@ Spomnimo se, da je naloga pri problemu londonskega stolpa sestavljena iz začetn
     Matematično gledano so vse naloge, ki so del istega ekvivalenčnega razreda, enako težke. Ni pa nujno, da jih tako dojema tudi oseba, ki nalogo rešuje.
 \end{opomba}
 
+(TODO) Za začetek si oglejmo oxfordski graf $O_2^3$. Če pozabimo na barve in upoštevamo, da so vse palice enako visoke, imamo pri tem problemu pravzaprav le dve razporeditvi krogel, ki nista ekvivalentni (glede na upoštevane simetrije), in sicer: 
+\begin{itemize}
+    \item obe krogli sta na isti palici (prikazano na sliki~\ref{fig:neekviv-oxf-stanji} levo),
+    \item krogli nista na isti palici (prikazano na sliki~\ref{fig:neekviv-oxf-stanji} desno).
+\end{itemize}
+
+\begin{figure}[h]
+    \includegraphics[width=200pt]{img/oxford-tower-O^2_3-towerlike.png}
+    \includegraphics[width=200pt]{img/oxford-tower-O^2_3-flat.png}
+    \caption{Na sliki sta prikazani edini dve neekvivalentni stanji problema $O^2_3$. }
+    \label{fig:neekviv-oxf-stanji}
+\end{figure}
+
 Ogledali si bomo, kako lahko z upoštevanjem simetrij enostavno ugotovimo nekatere metrične lastnosti grafa, npr.~povprečno razdaljo. Za učinkovitejšo preučevanje večjih, bolj zakompliciranih londonskih grafov definirajmo grupo $(\Gamma_{np}, \cdot, 1_{np})$, pri čemer velja $\Gamma_{np} = S_n \times S_p$; grupa $S_n$ bo pri tem predstavljala vse možne permutacije (barv) krogel, $S_p$ pa vse možne permutacije palic. Operacijo $\cdot$ definiramo takole:
 
 \[ (\chi_1,\pi_1) \cdot (\chi_2,\pi_2) = (\chi_1 \circ \chi_2,\pi_1 \circ \pi_2), \]
@@ -979,22 +992,36 @@ pri čemer je $\X$ preslikava, ki ustrezno permutira barve krogel glede na $\chi
 
 \[ \left((\chi_1,\pi_1) \cdot (\chi_2,\pi_2)\right).s = (\chi_1,\pi_1) . ((\chi_2,\pi_2).s) .\]
 
+Iz Algebre 2 vemo, da lahko na množici stanj definiramo ekvivalenčno relacijo $\sim$ takole:
+\[ s_1 \sim s_2 \iff \exists (\chi,\pi) \in \Gamma_{np}\colon \ s_2 = (\chi,\pi).s_1, \]
+množica stanj tako razpade na ekvivalenčne razrede, ki so kar orbite. Ekvivalentna bodo torej tista stanja krogel, ki bodo v istem ekvivalenčnem razredu.
+
+Analogno lahko definiramo delovanje $\Gamma_{np}$ tudi na množici vseh nalog za nek problem, torej na $V(L^n_h) \dot{\times} V(L^n_h)$ (TODO $\dot{\times}$). Ekvivalenčne razrede množice vseh stanj/nalog lahko sedaj preučujemo tako, da poiščemo negibne točke tega delovanja in uporabimo Burnsideovo lemo (TODO).
+
 \begin{primer}
-    Vzemimo $O^2_3$ in pokažimo, da sta nalogi $2||1 \rightarrow |1|2$ in $|2|1 \rightarrow 2|1|$ v isti orbiti. Želimo poiskati par permutacij $(\chi, \pi)$, ki nam bo prvi dve stanji krogel preslikal v drugi dve; permutaciji bomo zapisali z disjunktnimi cikli. Če vzamemo $(\chi, \pi) = ((1\ 2), (3\ 2\ 1))$ in upoštevamo, da je $\pi^{-1}=(1\ 2\ 3)$, se nam prva naloga preslika v $\X(|1|2) \rightarrow \X(1|2|) = |2|1 \rightarrow 2|1|$, dobimo drugo nalogo, torej sta nalogi res v isti orbiti.
+    Vzemimo oxfordski graf $O^2_3$ in pokažimo, da sta nalogi $2||1 \rightarrow |1|2$ in $|2|1 \rightarrow 2|1|$ ekvivalentni. Želimo poiskati par permutacij $(\chi, \pi)$, ki nam bo prvi dve stanji krogel preslikal v drugi dve; permutaciji bomo zapisali z disjunktnimi cikli. Če vzamemo $(\chi, \pi) = ((1\ 2), (3\ 2\ 1))$ in upoštevamo, da je $\pi^{-1}=(1\ 2\ 3)$, se nam prva naloga preslika v $\X(|1|2) \rightarrow \X(1|2|) = |2|1 \rightarrow 2|1|$, dobimo drugo nalogo, torej sta nalogi res v isti orbiti.
 \end{primer}
 
-Za začetek si oglejmo oxfordski graf $O_2^3$. Če pozabimo na barve in upoštevamo, da so vse palice enako visoke, imamo pri tem problemu pravzaprav le dve razporeditvi krogel, ki nista ekvivalentni (glede na upoštevane simetrije), in sicer: 
-\begin{itemize}
-    \item obe krogli sta na isti palici (prikazano na sliki~\ref{fig:neekviv-oxf-stanji} levo),
-    \item krogli nista na isti palici (prikazano na sliki~\ref{fig:neekviv-oxf-stanji} desno).
-\end{itemize}
+S pomočjo zgornje teorije lahko sedaj dokažemo naslednjo trditev za londonski graf $L_{222}^3$:
 
-\begin{figure}[h]
-    \includegraphics[width=200pt]{img/oxford-tower-O^2_3-towerlike.png}
-    \includegraphics[width=200pt]{img/oxford-tower-O^2_3-flat.png}
-    \caption{Na sliki sta prikazani edini dve neekvivalentni stanji problema $O^2_3$. }
-    \label{fig:neekviv-oxf-stanji}
-\end{figure}
+\begin{trditev}
+    Množica stanj londonskega grafa $L_{222}^3$, katere velikost je $42$, razpade v $2$ ekvivalenčna razreda; prvi je velikosti $6$, drugi pa $36$. Minimalna stopnja vozlišč tega grafa je 3, maksimalna 6, povprečna pa $\approx 3.43$. Premer tega grafa je $5$, povprečna razdalja med dvema vozliščema pa $\approx 3.39$. 
+    Množica nalog problema londonskega stolpa $L_{222}^3$ velikosti $1722$ razpade na $49$ ekvivalenčnih razredov, od tega jih je $47$ velikosti $36$, preostala dva pa sta velikosti $18$ in $12$.
+\end{trditev}
+
+
+Preden se lotimo dokaza, pa bomo potrebovali še dva rezultata iz Algebre 2. 
+
+\begin{izrek}
+    Naj grupa $G$ deluje na množico $X$. Označimo z $\bar{x}$ orbito elementa $x$ in z $G_x$ stabilizator elementa $x$. Potem velja
+    \[ \forall x \in X: |G| = |\bar{x}| \cdot |G_x| .\]
+\end{izrek}
+
+\begin{izrek}[Burnsidova lema]
+    Naj grupa $G$ deluje na množico $X$. Potem velja
+    \[ |X/G| = \frac{1}{|G|} \sum_{g \in G} |X^g|, \ X^g=\{ x \in X \mid gx = x \}, \]
+    oziroma z besedo: število orbit je enako povprečnemu številu negibnih točk.
+\end{izrek}
 
 % slovar
 \section*{Slovar strokovnih izrazov}
