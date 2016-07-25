@@ -1005,10 +1005,10 @@ Analogno lahko definiramo delovanje $\Gamma_{np}$ tudi na množici vseh nalog za
 S pomočjo zgornje teorije lahko sedaj dokažemo naslednjo trditev za londonski graf $L_{222}^3$:
 
 \begin{trditev}
+    \label{trd:simetrije-L222na3}
     Množica stanj londonskega grafa $L_{222}^3$, katere velikost je $42$, razpade v $2$ ekvivalenčna razreda; prvi je velikosti $6$, drugi pa $36$. Minimalna stopnja vozlišč tega grafa je 3, maksimalna 6, povprečna pa $\approx 3.43$. Premer tega grafa je $5$, povprečna razdalja med dvema vozliščema pa $\approx 3.39$. 
     Množica nalog problema londonskega stolpa $L_{222}^3$ velikosti $1722$ razpade na $49$ ekvivalenčnih razredov, od tega jih je $47$ velikosti $36$, preostala dva pa sta velikosti $18$ in $12$.
 \end{trditev}
-
 
 Preden se lotimo dokaza, pa bomo potrebovali še dva rezultata iz teorije grup. 
 
@@ -1016,33 +1016,52 @@ Preden se lotimo dokaza, pa bomo potrebovali še dva rezultata iz teorije grup.
     Naj grupa $G$ deluje na množico $X$. Označimo z $\bar{x}$ orbito elementa $x$ in z $G_x$ stabilizator elementa $x$. Potem velja
     \begin{equation}
         \forall x \in X: |G| = |\bar{x}| \cdot |G_x| .
+        \label{eq:orb-stab}
     \end{equation}
 \end{izrek}
 
 \proof
-Za dokaz se najprej spomnimo Lagrangeevega izreka, ki pravi, da za končno grupo $G$ in njeno podgrupo $H \leq G$ velja
-\[ |G| = |G/H| \cdot |H|, \]
-pri čemer je $G/H$ kvocientna množica vseh odsekov.
-V našem primeru je $H = G_x$, vemo torej, da $\forall x$ velja
-\[ |G| = |G/G_x| \cdot |G_x|. \]
-Dokazati želimo, da je $|G/G_x| = |\bar{x}|.$ Konstruiramo preslikavo $\phi \colon G/G_x \rightarrow \bar{x}$ s predpisom $\phi(gG_x) = gx$. Trdimo, da je $\phi$ bijekcija. Velja
-
-\[ gG_x=hG_x \iff h^{-1}g \in G_x \iff h^{-1}gx=x \iff gx=hx, \]
-
-torej je preslikava dobro definirana in injektivna. Surjektivnost preslikave $\phi$ pa sledi iz dejstva, da za vsak $x \in X$ lahko najdemo njegov stabilizator $G_x$, praslika elementa $gx$ za nek $g \in G$ in $x \in X$ je torej $gG_x$. 
-
-Ker med množicama obstaja bijekcija, sledi $|G/G_x| = |\bar{x}|$ in s tem
-\[ |G| = |\bar{x}| \cdot |G_x|,\ \forall x \in X. \]
+    Za dokaz se najprej spomnimo Lagrangeevega izreka, ki pravi, da za končno grupo $G$ in njeno podgrupo $H \leq G$ velja
+    \[ |G| = |G/H| \cdot |H|, \]
+    pri čemer je $G/H$ kvocientna množica vseh odsekov.
+    V našem primeru je $H = G_x$, vemo torej, da $\forall x$ velja
+    \[ |G| = |G/G_x| \cdot |G_x|. \]
+    Dokazati želimo, da je $|G/G_x| = |\bar{x}|.$ Konstruiramo preslikavo $\phi \colon G/G_x \rightarrow \bar{x}$ s predpisom $\phi(gG_x) = gx$. Trdimo, da je $\phi$ bijekcija. Velja
+    \[ gG_x=hG_x \iff h^{-1}g \in G_x \iff h^{-1}gx=x \iff gx=hx, \]
+    torej je preslikava dobro definirana in injektivna. Surjektivnost preslikave $\phi$ pa sledi iz dejstva, da za vsak $x \in X$ lahko najdemo njegov stabilizator $G_x$, praslika elementa $gx$ za nek $g \in G$ in $x \in X$ je torej $gG_x$. 
+    
+    Ker med množicama obstaja bijekcija, sledi $|G/G_x| = |\bar{x}|$ in s tem
+    \[ |G| = |\bar{x}| \cdot |G_x|,\ \forall x \in X. \]
 \endproof
 
 \begin{izrek}[Burnsidova lema]
     Naj grupa $G$ deluje na množico $X$. Potem velja
-    \[ |X/G| = \frac{1}{|G|} \sum_{g \in G} |X^g|, \ X^g=\{ x \in X \mid gx = x \}, \]
+    \begin{equation}
+        |X/G| = \frac{1}{|G|} \sum_{g \in G} |X^g|, \ X^g=\{ x \in X \mid gx = x \},
+        \label{eq:Burnside-lema}
+    \end{equation}
     oziroma z besedo: število orbit je enako povprečnemu številu negibnih točk.
 \end{izrek}
 
 \proof
+    Zapišimo vsoto vseh negibnih točk malo drugače:
+    \[
+        \sum_{g \in G} |X^g| = \sum_{g \in G} \sum_{x \in X^g} 1 = \sum_{g \in G} \sum_{\substack{x \in X \\ gx = x}} 1  
+    \]
+    Zamenjamo vrstni red seštevanja in uporabimo enakost~\eqref{eq:orb-stab}:
+    \[
+        \sum_{g \in G} |X^g| = \sum_{x \in X} \sum_{\substack{g \in G \\ gx = x}} 1 = 
+        \sum_{x \in X} |G_x| = \sum_{x \in X} \frac{|G|}{|\bar{x}|} = |G| \sum_{x \in X} \frac{1}{|\bar{x}|}
+    \]
+    Sedaj upoštevamo še, da je $X$ disjunktna unija vseh svojih orbit v $X/G$:
+    \[
+        \sum_{g \in G} |X^g| = |G| \sum_{\sigma \in X/G} \sum_{x \in \sigma} \frac{1}{|\sigma|} = |G| \sum_{\sigma \in X/G} 1 = |G| \cdot |X/G| 
+    \]
+    Enakost~\eqref{eq:Burnside-lema} od tod sledi.
+\endproof
 
+\proof[Dokaz trditve~\ref{trd:simetrije-L222na3}]
+    Blabla.
 \endproof
 
 % slovar
