@@ -992,7 +992,7 @@ pri čemer je $\X$ preslikava, ki ustrezno permutira barve krogel glede na $\chi
 
 \[ \left((\chi_1,\pi_1) \cdot (\chi_2,\pi_2)\right).s = (\chi_1,\pi_1) . ((\chi_2,\pi_2).s) .\]
 
-Iz Algebre 2 vemo, da lahko na množici stanj definiramo ekvivalenčno relacijo $\sim$ takole:
+Iz osnovne teorije grup vemo, da lahko na množici stanj definiramo ekvivalenčno relacijo $\sim$ takole:
 \[ s_1 \sim s_2 \iff \exists (\chi,\pi) \in \Gamma_{np}\colon \ s_2 = (\chi,\pi).s_1, \]
 množica stanj tako razpade na ekvivalenčne razrede, ki so kar orbite. Ekvivalentna bodo torej tista stanja krogel, ki bodo v istem ekvivalenčnem razredu.
 
@@ -1010,18 +1010,40 @@ S pomočjo zgornje teorije lahko sedaj dokažemo naslednjo trditev za londonski 
 \end{trditev}
 
 
-Preden se lotimo dokaza, pa bomo potrebovali še dva rezultata iz Algebre 2. 
+Preden se lotimo dokaza, pa bomo potrebovali še dva rezultata iz teorije grup. 
 
 \begin{izrek}
     Naj grupa $G$ deluje na množico $X$. Označimo z $\bar{x}$ orbito elementa $x$ in z $G_x$ stabilizator elementa $x$. Potem velja
-    \[ \forall x \in X: |G| = |\bar{x}| \cdot |G_x| .\]
+    \begin{equation}
+        \forall x \in X: |G| = |\bar{x}| \cdot |G_x| .
+    \end{equation}
 \end{izrek}
+
+\proof
+Za dokaz se najprej spomnimo Lagrangeevega izreka, ki pravi, da za končno grupo $G$ in njeno podgrupo $H \leq G$ velja
+\[ |G| = |G/H| \cdot |H|, \]
+pri čemer je $G/H$ kvocientna množica vseh odsekov.
+V našem primeru je $H = G_x$, vemo torej, da $\forall x$ velja
+\[ |G| = |G/G_x| \cdot |G_x|. \]
+Dokazati želimo, da je $|G/G_x| = |\bar{x}|.$ Konstruiramo preslikavo $\phi \colon G/G_x \rightarrow \bar{x}$ s predpisom $\phi(gG_x) = gx$. Trdimo, da je $\phi$ bijekcija. Velja
+
+\[ gG_x=hG_x \iff h^{-1}g \in G_x \iff h^{-1}gx=x \iff gx=hx, \]
+
+torej je preslikava dobro definirana in injektivna. Surjektivnost preslikave $\phi$ pa sledi iz dejstva, da za vsak $x \in X$ lahko najdemo njegov stabilizator $G_x$, praslika elementa $gx$ za nek $g \in G$ in $x \in X$ je torej $gG_x$. 
+
+Ker med množicama obstaja bijekcija, sledi $|G/G_x| = |\bar{x}|$ in s tem
+\[ |G| = |\bar{x}| \cdot |G_x|,\ \forall x \in X. \]
+\endproof
 
 \begin{izrek}[Burnsidova lema]
     Naj grupa $G$ deluje na množico $X$. Potem velja
     \[ |X/G| = \frac{1}{|G|} \sum_{g \in G} |X^g|, \ X^g=\{ x \in X \mid gx = x \}, \]
     oziroma z besedo: število orbit je enako povprečnemu številu negibnih točk.
 \end{izrek}
+
+\proof
+
+\endproof
 
 % slovar
 \section*{Slovar strokovnih izrazov}
