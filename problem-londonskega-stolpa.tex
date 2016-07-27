@@ -71,6 +71,7 @@
 \DeclareMathOperator {\stopnja} {deg}
 \DeclareMathOperator {\id} {id}
 \DeclareMathOperator {\X}{X}
+\DeclareMathOperator{\distance}{d}
 
 
 
@@ -966,7 +967,9 @@ Spomnimo se, da je naloga pri problemu londonskega stolpa sestavljena iz začetn
     Matematično gledano so vse naloge, ki so del istega ekvivalenčnega razreda, enako težke. Ni pa nujno, da jih tako dojema tudi oseba, ki nalogo rešuje.
 \end{opomba}
 
-(TODO) Za začetek si oglejmo oxfordski graf $O_2^3$. Če pozabimo na barve in upoštevamo, da so vse palice enako visoke, imamo pri tem problemu pravzaprav le dve razporeditvi krogel, ki nista ekvivalentni (glede na upoštevane simetrije), in sicer: 
+Problem pa postane še bolj zanimiv, če imamo (za razliko od klasičnega londonskega grafa) poleg barvnih permutacij na voljo tudi permutacije palic. Demonstrirajmo, kako lahko z upoštevanjem simetrij bolj učinkovito preučimo predvsem metrične lastnosti nekega grafa. Za začetek si le kot primer oglejmo oxfordski graf $O_2^3$, pri čemer bomo izpustili dokaze za nekatera dejstva, kasneje pa bomo izpeljali vso teorijo, potrebno za rigorozen dokaz, in s pomočjo te teorije preučili malo večji graf $L^3_{222}$. 
+
+Če upoštevamo simetrije krogel in palic, imamo pri problemu $O_2^3$ pravzaprav le dve razporeditvi krogel, ki nista ekvivalentni, in sicer: 
 \begin{itemize}
     \item obe krogli sta na isti palici (prikazano na sliki~\ref{fig:neekviv-oxf-stanji} levo),
     \item krogli nista na isti palici (prikazano na sliki~\ref{fig:neekviv-oxf-stanji} desno).
@@ -978,6 +981,12 @@ Spomnimo se, da je naloga pri problemu londonskega stolpa sestavljena iz začetn
     \caption{Na sliki sta prikazani edini dve neekvivalentni stanji problema $O^2_3$. }
     \label{fig:neekviv-oxf-stanji}
 \end{figure}
+
+Množica stanj tega problema torej razpade na dva ekvivalenčna razreda. Če za vsako izmed teh stanj upoštevamo vse možne simetrije (na voljo imamo $3!$ permutacij palic in $2$ permutaciji barv), vidimo, da sta oba ekvivalenčna razreda velikosti $6$, saj z nekaterimi izbirami permutacije za palice in barvi dobimo enako razporeditev krogel. Sedaj lahko npr.\ povprečno ekscentričnost vozlišč izračunamo tako, da ugotovimo ekscentričnost nekega predstavnika teh dveh ekvivalenčnih razredov, recimo $\epsilon(12||) = 4$ in $\epsilon(1|2|) = 3$, iz česar lahko sklepamo, da je povprečna ekscentričnost v grafu enaka $\bar{\epsilon}(O^2_3) = 3.5$. Na podoben način lahko izračunamo tudi povprečno razdaljo med dvema vozliščema v grafu tako, da najprej seštejemo vse razdalje od nekega poljubnega vozlišča do teh dveh predstavnikov, nato pa upoštevamo velikosti obeh ekvivalenčnih razredov in koliko je vseh možnih parov vozlišč:
+
+\[ \sum_{s \in V(O_3^2)} \distance(12||,s) = 26,\quad \sum_{s \in V(O_3^2)} \distance(1|2|,s) = 21 \implies \bar{\distance}(O^2_3) = \frac{6 \cdot 26 + 6 \cdot 21}{144} \approx 1.958.\]
+
+%(?) Vzemimo za primer nalogo $ 2||1 \rightarrow |1|2 $. Vidimo lahko, da je ta ekvivalentna nalogi $ |2|1 \rightarrow 2|1| $ (potrebni permutaciji barv krogel in palic sta navedeni v primeru~\ref{primer:oxf-ekv-nalogi}). Če na prvotni nalogi uporabimo vse možne kombinacije permutacij barv in palic (na voljo imamo $3!$ permutacij palic in $2$ permutaciji barv), lahko sklepamo, da je ekvivalenčni razred te naloge moči 12. Pravzaprav so $ 12|| \rightarrow 21|| $ vsi ekvivalenčni razredi razen dveh; predstavnika teh ekvivalenčnih razredov sta nalogi $12|| \rightarrow 21||$ oziroma $1|2| \rightarrow 2|1|$ , kjer je potrebna le zamenjava barv krogel. Vsak izmed teh dveh ekvivalenčnih razredov je le moči $ 6 $. $ 132 $ nalog oxfordskega grafa $ O^2_3 $ torej razpade na $ 12 $ ekvivalenčnih razredov, $ 10 $ od teh je velikosi $ 12 $, dva pa sta velikosti $ 6 $.
 
 Ogledali si bomo, kako lahko z upoštevanjem simetrij enostavno ugotovimo nekatere metrične lastnosti grafa, npr.~povprečno razdaljo. Za učinkovitejšo preučevanje večjih, bolj zakompliciranih londonskih grafov definirajmo grupo $(\Gamma_{np}, \cdot, 1_{np})$, pri čemer velja $\Gamma_{np} = S_n \times S_p$; grupa $S_n$ bo pri tem predstavljala vse možne permutacije (barv) krogel, $S_p$ pa vse možne permutacije palic. Operacijo $\cdot$ definiramo takole:
 
@@ -997,11 +1006,15 @@ Iz osnovne teorije grup vemo, da lahko na množici stanj definiramo ekvivalenčn
 \[ s_1 \sim s_2 \iff \exists (\chi,\pi) \in \Gamma_{np}\colon \ s_2 = (\chi,\pi).s_1, \]
 množica stanj tako razpade na ekvivalenčne razrede, ki so kar orbite. Ekvivalentna bodo torej tista stanja krogel, ki bodo v istem ekvivalenčnem razredu.
 
-Analogno lahko definiramo delovanje $\Gamma_{np}$ tudi na množici vseh nalog za nek problem, torej na $V(L^n_h) \dot{\times} V(L^n_h)$ (TODO $\dot{\times}$). Ekvivalenčne razrede množice vseh stanj/nalog lahko sedaj preučujemo tako, da poiščemo negibne točke tega delovanja in uporabimo Burnsideovo lemo (TODO).
+Analogno lahko definiramo delovanje $\Gamma_{np}$ tudi na množici vseh nalog za nek problem, torej na $V(L^n_h) \dot{\times} V(L^n_h)$, pri čemer je operator $\dot{\times}$ definiran takole:
+
+\[ A \dot{\times} A = \left\{ (a,b) \in A \times A \mid a \neq b \right\} .\]
 
 \begin{primer}
+    \label{primer:oxf-ekv-nalogi}
     Vzemimo oxfordski graf $O^2_3$ in pokažimo, da sta nalogi $2||1 \rightarrow |1|2$ in $|2|1 \rightarrow 2|1|$ ekvivalentni. Želimo poiskati par permutacij $(\chi, \pi)$, ki nam bo prvi dve stanji krogel preslikal v drugi dve; permutaciji bomo zapisali z disjunktnimi cikli. Če vzamemo $(\chi, \pi) = ((1\ 2), (3\ 2\ 1))$ in upoštevamo, da je $\pi^{-1}=(1\ 2\ 3)$, se nam prva naloga preslika v $\X(|1|2) \rightarrow \X(1|2|) = |2|1 \rightarrow 2|1|$, dobimo drugo nalogo, torej sta nalogi res v isti orbiti.
 \end{primer}
+\medskip
 
 S pomočjo zgornje teorije lahko sedaj dokažemo naslednjo trditev za londonski graf $L_{222}^3$:
 
@@ -1032,7 +1045,7 @@ Preden se lotimo dokaza, pa bomo potrebovali še dva rezultata iz teorije grup.
     torej je preslikava dobro definirana in injektivna. Surjektivnost preslikave $\phi$ pa sledi iz dejstva, da za vsak $x \in X$ lahko najdemo njegov stabilizator $G_x$, praslika elementa $gx$ za nek $g \in G$ in $x \in X$ je torej $gG_x$. 
     
     Ker med množicama obstaja bijekcija, sledi $|G/G_x| = |\bar{x}|$ in s tem
-    \[ |G| = |\bar{x}| \cdot |G_x|,\ \forall x \in X. \]
+    \[ |G| = |\bar{x}| \cdot |G_x|,\ \forall x \in X. \qedhere \]
 \endproof
 
 \begin{izrek}[Burnsidova lema]
@@ -1060,6 +1073,8 @@ Preden se lotimo dokaza, pa bomo potrebovali še dva rezultata iz teorije grup.
     \]
     Enakost~\eqref{eq:Burnside-lema} od tod sledi.
 \endproof
+
+Ekvivalenčne razrede množice vseh stanj/nalog lahko torej preučujemo tako, da poiščemo negibne točke zgoraj definiranega delovanja in uporabimo Burnsidovo lemo. Sedaj se lahko lotimo dokaza trditve~\ref{trd:simetrije-L222na3}.
 
 \proof[Dokaz trditve~\ref{trd:simetrije-L222na3}]
     Blabla.
