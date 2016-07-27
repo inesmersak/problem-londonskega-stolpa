@@ -10,10 +10,14 @@
 \usepackage[dvipsnames,usenames]{color}
 \usepackage{graphicx}
 \usepackage{enumitem}
+\usepackage{slashbox}
+\usepackage{array}
+\usepackage{caption}
 \usepackage{tikz}
 %\usetikzlibrary{arrows.meta}
 %\usetikzlibrary{shapes.geometric}
 \usetikzlibrary{positioning}
+
 
 % ne spreminjaj podatkov, ki vplivajo na obliko strani
 \textwidth 15cm
@@ -33,6 +37,8 @@
 \newtheorem{opomba}[definicija]{Opomba}
 
 \renewcommand\endprimer{\hfill$\diamondsuit$}
+\renewcommand{\arraystretch}{1.2}
+
 
 \theoremstyle{plain} % tekst napisan posevno
 \newtheorem{lema}[definicija]{Lema}
@@ -1077,7 +1083,41 @@ Preden se lotimo dokaza, pa bomo potrebovali še dva rezultata iz teorije grup.
 Ekvivalenčne razrede množice vseh stanj/nalog lahko torej preučujemo tako, da poiščemo negibne točke zgoraj definiranega delovanja in uporabimo Burnsidovo lemo. Sedaj se lahko lotimo dokaza trditve~\ref{trd:simetrije-L222na3}.
 
 \proof[Dokaz trditve~\ref{trd:simetrije-L222na3}]
-    Blabla.
+    Poiščimo negibne točke delovanja grupe $ (\Gamma_{33}, \cdot,1_{33} ) $ na množico vozlišč $V(L_{222}^3)$. Če vzamemo identiteto $1_{33}$, potem je množica negibnih točk za to preslikavo enaka kar celotni množici vozlišč. 
+    Možne negibne točke za preostale preslikave pa so samo tista stanja, ki imajo po eno kroglo na vsaki palici: pri stanju z npr.\ dvema kroglama na eni palici preslikava ne sme zamenjati palic, če želimo, da je to stanje negibna točka, zato pa preslikava ne sme zamenjati tudi barv.
+    Nadalje lahko opazimo, da bodo negibne točke imele le tiste preslikave $(\lambda, \pi)$, pri katerih bosta tako $\chi$ kot $pi$ ali permutaciji brez negibne točke ali pa zrcaljenji. V tabeli~\ref{tab:negibne-tocke} so predstavljene množice negibnih točk za vse preslikave iz grupe $\Gamma_{33}$.
+    
+    \begin{center}
+        $
+        \begin{array}{c||c|c|c|c|c|c|}
+            \text{\backslashbox{$\chi$}{$\pi$}} & 123 & 231 & 312 & 132 & 321 & 213 \\ \hline \hline 
+            123 & V(L^3_{222}) & \emptyset & \emptyset & \emptyset & \emptyset & \emptyset \\ \hline
+            231 & \emptyset & \begin{tabular}{@{}c@{}}1|2|3 \\ 2|3|1 \\ 3|1|2 \end{tabular} & \begin{tabular}{@{}c@{}}1|3|2 \\ 2|1|3 \\ 3|2|1 \end{tabular} & \emptyset & \emptyset & \emptyset \\ \hline
+            312 & \emptyset & \begin{tabular}{@{}c@{}}1|3|2 \\ 2|1|3 \\ 3|2|1 \end{tabular} & \begin{tabular}{@{}c@{}}1|2|3 \\ 2|3|1 \\ 3|1|2 \end{tabular} & \emptyset & \emptyset & \emptyset \\ \hline
+            132 & \emptyset & \emptyset & \emptyset & \begin{tabular}{@{}c@{}}1|2|3 \\ 1|3|2 \end{tabular} & \begin{tabular}{@{}c@{}}2|1|3 \\ 3|1|2 \end{tabular} & \begin{tabular}{@{}c@{}}2|3|1 \\ 3|2|1 \end{tabular} \\ \hline
+            321 & \emptyset & \emptyset & \emptyset & \begin{tabular}{@{}c@{}}2|1|3 \\ 2|3|1 \end{tabular} & \begin{tabular}{@{}c@{}}1|2|3 \\ 3|2|1 \end{tabular} & \begin{tabular}{@{}c@{}}1|3|2 \\ 3|1|2 \end{tabular} \\ \hline
+            132 & \emptyset & \emptyset & \emptyset & \begin{tabular}{@{}c@{}}3|1|2 \\ 3|2|1 \end{tabular} & \begin{tabular}{@{}c@{}}1|3|2 \\ 2|3|1 \end{tabular} & \begin{tabular}{@{}c@{}}1|2|3 \\ 2|1|3 \end{tabular} \\ \hline
+        \end{array}
+        $
+        \medskip
+        \captionof{table}{Negibne točke preslikav iz $\Gamma_{33}$.}
+        \label{tab:negibne-tocke}
+    \end{center}
+    
+    Iz tabele lahko preberemo, da je število vseh negibnih točk enako
+    
+    \[ \sum_{g \in \Gamma_{33}} |V(L^3_{222})^g| = 42 + 4 \cdot 3 + 9 \cdot 2 = 72, \]
+    
+    saj je število vozlišč pri tem problemu enako 42 (TODO).
+    
+    Uporabimo Burnsidovo lemo~\eqref{eq:Burnside-lema} in dobimo, da je število ekvivalenčnih razredov enako
+    \[\frac{1}{|\Gamma_{33}|} \sum_{g \in \Gamma_{33}} |V(L^3_{222})^g| = \frac{72}{3! \cdot 3!} = 2. \]
+    
+    Ker je poljubno stanje, ki ima na eni izmed palic več kot eno kroglo, fiksna točka le identične preslikave, iz formule~\eqref{eq:orb-stab} sledi, da je orbita (in s tem ekvivalenčni razred) takega stanja velikosti $36$. Torej je prvi ekvivalenčni razred sestavljen iz stanj z več kot eno kroglo na neki palici, drugi pa je sestavljen iz $6$-ih razporeditev, pri kateri je na vsaki palici točno ena krogla (te so fiksne točke šestih preslikav iz $\Gamma_{33}$.)
+    
+    Pri obravnavi lastnosti tega grafa moramo torej upoštevati le dve neekvivalentni stanji, npr.\ $s_1=12|3|$ in $s_2 = 1|2|3$. Iz grafa~\ref{fig:} lahko vidimo, da je stanje $s_1$ stopnje 3, $s_2$ pa 6. Minimalna stopnja vozlišč je torej 3, maksimalna je 6, povprečna pa je enaka $\frac{36 \cdot 3 + 6 \cdot 6}{42} \approx 3.43$.
+    
+    Sedaj
 \endproof
 
 % slovar
