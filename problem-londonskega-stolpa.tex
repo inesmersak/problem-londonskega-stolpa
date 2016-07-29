@@ -491,7 +491,8 @@ Hitro lahko vidimo, da grafa $K_5$ in $K_{3,3}$ nista ravninska (poskusimo ju na
 Spomnimo se, da je risba grafa predstavitev grafa v ravnini, pri čemer vozlišča ustrezajo točkam v ravnini, povezave pa enostavnim krivuljam med točkami. Te točke in enostavne krivulje lahko ravnino razdelijo na več delov -- takim območjem pravimo \emph{lica vložitve}. Lice, ki je neomejeno in obdaja celotno risbo grafa, je \emph{zunanje}.
 
 \begin{figure}[h]
-    \caption{Zunanje lice grafa.}
+    \includegraphics[width=200pt]{img/zunanje-lice-grafa.png}
+    \caption{Zunanje lice grafa je označeno z rdečimi poševnimi črtami.}
 \end{figure}
 
 \begin{izrek}[Eulerjeva formula]
@@ -509,6 +510,26 @@ Za dokaz Eulerjeve formule bomo potrebovali še definicijo drevesa:
 Vidimo lahko, da risba drevesa premore le eno lice -- zunanje.
 
 \begin{figure}[h]
+    \begin{tikzpicture}
+    \begin{scope}[every node/.style={circle,thick,draw}]
+    \node (1) at (-1,0) {};
+    \node (2) at (0,0) {};
+    \node (3) at (1,0) {};
+    \node (4) at (2,0) {};
+    \node (5) at (0.5,-1) {};
+    \node (6) at (0.5,1) {};
+    \node (7) at (1.5,-1) {};
+    \end{scope}
+    
+    \path[-,draw,thick] 
+    (1) edge (2)
+    (2) edge (3)
+    (3) edge (4)
+    (2) edge (5)
+    (2) edge (6)
+    (3) edge (7);
+    \end{tikzpicture}
+    
     \caption{Drevo na 7 vozliščih.}
 \end{figure}
 
@@ -698,13 +719,20 @@ Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ ima 36 vozlišč. Graf je r
 \proof
     TODO
     
-    Hitro lahko dokažemo, da $L$ vsebuje Hamiltonovo pot: poiščemo jo. Ena izmed Hamiltonovih poti v grafu $L$ je prikazana na sliki~\ref{}.
+    Hitro lahko dokažemo, da $L$ vsebuje Hamiltonovo pot: poiščemo jo. Ena izmed Hamiltonovih poti v grafu $L$ je prikazana na sliki~\ref{fig:dokaz-ham-klasicni} levo.
+    
+    \begin{figure}
+        \includegraphics[width=210pt]{img/tolgraph-ham-path.png}
+        \includegraphics[width=210pt]{img/tolgraph-ham-cycle.png}
+        \caption{Ena izmed Hamiltonovih poti v grafu $L$ (levo) in graf $L$ narisan malo drugače (desno).}
+        \label{fig:dokaz-ham-klasicni}
+    \end{figure}
     
     Da bi dokazali, da graf ni Hamiltonov, moramo najprej opaziti nekaj lastnosti tega grafa. Soseščina vsakega vozlišča stopnje 2 je sestavljena iz enega vozlišča stopnje 3 in enega stopnje 4, prav tako je presek soseščin poljubnih dveh vozlišč stopnje 2 prazen -- vsako vozlišče stopnje 2 ima torej ``svoje'' vozlišče stopnje 3 in stopnje 4. Nadalje lahko iz grafa vidimo, da poljubni dve vozlišči stopnje 3 nista sosednji.
     
     Sledi, da na ciklu $C$ v grafu, ki bi vseboval vsa vozlišča, nobeni dve vozlišči stopnje 4 nista sosednji. Ker imamo po 12 vozlišč vsake stopnje, bi v nasprotnem primeru namreč prišli do zaključka, da morata biti sosednji dve vozlišči stopnje 3, kar pa je v protislovju z zgornjim opažanjem.
     
-    Sedaj začnimo graditi cikel $C$, ki bo vseboval vsa vozlišča grafa natanko enkrat. Oglejmo si sliko~\ref{}.
+    Sedaj začnimo graditi cikel $C$, ki bo vseboval vsa vozlišča grafa natanko enkrat. Oglejmo si sliko~\ref{fig:dokaz-ham-klasicni} desno.
     Cikel $C$ mora torej gotovo iti skozi vsa vozlišča stopnje 2, kar je možno le na en način: če imamo vozlišče stopnje 2 $v$ s sosedoma $u$ stopnje 3 in $z$ stopnje 4, mora $C$ vsebovati pot $u,v,z$.
     Če začnemo pri vozlišču stopnje 2 $||\,123$, mora graf torej vsebovati pot $1||23, ||123, |1|23$. Slednje je vozlišče stopnje 4, za nadaljevanje cikla pa imamo dve možnosti: vozlišče $2|1|3$ ali $|21|3$. Ker je prvo stopnje 4 in smo že prej opazili, da dve vozlišči iste stopnje ne bosta sosednji na ciklu $C$, cikel nadaljujemo z $|21|3$. Sosed tega vozlišča je vozlišče $3|21|$ stopnje 2, zato moramo cikel gotovo nadaljevati skozi njega. Pridemo do vozlišča $3|1|2$. Imamo dve možnosti: 
     \begin{itemize}[label={-}]
@@ -953,7 +981,13 @@ Na sliki~\ref{fig:graf-2krogli} so pravzaprav prikazani grafi vseh londonskih st
 \smallskip
 
 Videli smo že, da je klasični londonski graf $L$ ravninski. Torej je ravninski tudi njegov podgraf $L_{122}^3$, saj do njega pridemo tako, da iz $L$ zbrišemo tistih šest vozlišč, kjer so vse tri krogle na največji palici, in pripadajoče povezave. 
-Če pa grafu $L$ dodamo vozlišča, kjer so vse tri krogle na srednji palici, lahko s slike~\ref{} vidimo, da je tudi $L_{133}^3$ ravninski.
+Če pa grafu $L$ dodamo vozlišča, kjer so vse tri krogle na srednji palici, lahko s slike~\ref{fig:L^3_133} vidimo, da je tudi $L_{133}^3$ ravninski (dodana vozlišča so označena z rdečo barvo).
+
+\begin{figure}[h]
+    \includegraphics[width=350pt]{img/graph-L^3_133.png}
+    \caption{Graf $L^3_{133}$ je ravninski.}
+    \label{fig:L^3_133}
+\end{figure}
 
 \begin{trditev}
     Naj bo $p=3$. Tedaj so ravninski londonski grafi natanko grafi $L_h^2, L_{122}^3, L_{123}^3$ in $L_{133}^3$.
@@ -1114,6 +1148,9 @@ Preden se lotimo dokaza, pa bomo potrebovali še dva rezultata iz teorije grup.
 Ekvivalenčne razrede množice vseh stanj/nalog lahko torej preučujemo tako, da poiščemo negibne točke zgoraj definiranega delovanja in uporabimo Burnsidovo lemo. Sedaj se lahko lotimo dokaza trditve~\ref{trd:simetrije-L222na3}.
 
 \proof[Dokaz trditve~\ref{trd:simetrije-L222na3}]
+    Utemeljimo najprej, da je moč množice vozlišč grafa $L_{222}^3$ enaka $42$. Če imamo po eno kroglo na vsaki palici, imamo $3!$ možnosti, kako razporediti krogle.
+    V nasprotnem primeru pa imamo na neki palici dve krogli, na neki drugi pa eno. Na voljo imamo torej $3 \cdot 2 \cdot 3!$ razporeditev krogel, saj se najprej odločimo, katera palica bo imela dve krogli (za to imamo na voljo $3$ možnosti), nato katera palica bo imela eno kroglo ($2$ možnosti), nato pa še premešamo barve krogel. Skupaj imamo torej $3! + 3 \cdot 2 \cdot 3! = 42$ možnih razporeditev krogel.
+
     Poiščimo negibne točke delovanja grupe $ (\Gamma_{33}, \cdot,1_{33} ) $ na množico vozlišč $V(L_{222}^3)$. Če vzamemo identiteto $1_{33}$, potem je množica negibnih točk za to preslikavo enaka kar celotni množici vozlišč. 
     Možne negibne točke za preostale preslikave pa so samo tista stanja, ki imajo po eno kroglo na vsaki palici: pri stanju z npr.\ dvema kroglama na eni palici preslikava ne sme zamenjati palic, če želimo, da je to stanje negibna točka, zato pa preslikava ne sme zamenjati tudi barv.
     Nadalje lahko opazimo, da bodo negibne točke imele le tiste preslikave $(\lambda, \pi)$, pri katerih bosta tako $\chi$ kot $pi$ ali permutaciji brez negibne točke ali pa zrcaljenji. V tabeli~\ref{tab:negibne-tocke} so predstavljene množice negibnih točk za vse preslikave iz grupe $\Gamma_{33}$.
@@ -1139,16 +1176,22 @@ Ekvivalenčne razrede množice vseh stanj/nalog lahko torej preučujemo tako, da
     
     \[ \sum_{g \in \Gamma_{33}} |V(L^3_{222})^g| = 42 + 4 \cdot 3 + 9 \cdot 2 = 72, \]
     
-    saj je število vozlišč pri tem problemu enako 42 (TODO).
+    saj je število vozlišč pri tem problemu enako 42.
     
     Uporabimo Burnsidovo lemo~\eqref{eq:Burnside-lema} in dobimo, da je število ekvivalenčnih razredov enako
     \[\frac{1}{|\Gamma_{33}|} \sum_{g \in \Gamma_{33}} |V(L^3_{222})^g| = \frac{72}{3! \cdot 3!} = 2. \]
     
     Ker je poljubno stanje, ki ima na eni izmed palic več kot eno kroglo, fiksna točka le identične preslikave, iz formule~\eqref{eq:orb-stab} sledi, da je orbita (in s tem ekvivalenčni razred) takega stanja velikosti $36$. Torej je prvi ekvivalenčni razred sestavljen iz stanj z več kot eno kroglo na neki palici, drugi pa je sestavljen iz $6$-ih razporeditev, pri kateri je na vsaki palici točno ena krogla (te so fiksne točke šestih preslikav iz $\Gamma_{33}$.)
     
-    Pri obravnavi lastnosti tega grafa moramo torej upoštevati le dve neekvivalentni stanji, npr.\ $s_1=12|3|$ in $s_2 = 1|2|3$. Iz grafa~\ref{fig:} lahko vidimo, da je stanje $s_1$ stopnje 3, $s_2$ pa 6. Minimalna stopnja vozlišč je torej 3, maksimalna je 6, povprečna pa je enaka $\frac{36 \cdot 3 + 6 \cdot 6}{42} \approx 3.43$.
+    Pri obravnavi lastnosti tega grafa moramo torej upoštevati le dve neekvivalentni stanji, npr.\ $s_1=12|3|$ in $s_2 = 1|2|3$. Iz grafa~\ref{fig:L^3_222} lahko vidimo, da je stanje $s_1$ stopnje 3, $s_2$ pa 6. Minimalna stopnja vozlišč je torej 3, maksimalna je 6, povprečna pa je enaka $\frac{36 \cdot 3 + 6 \cdot 6}{42} \approx 3.43$.
     
-    Za izračun povprečne razdalje med dvema vozliščema v tem grafu moramo določiti vse razdalje od enega izmed predstavnikov vsakega ekvivalenčnega razreda do poljubnega vozlišča, kar lahko naredimo s pomočjo risbe grafa~\ref{}. Na tej sliki smo že označili vse razdalje do stanj $s_1$ in $s_2$. Vidimo, da je za obe stanji maksimalna možna razdalja do nekega poljubnega vozlišča enaka $5$. Ekscentričnost vseh vozlišč v grafu je torej $5$, iz česar sledi, da je tudi premer enak $5$. 
+    \begin{figure}[h]
+        \includegraphics[width=400pt]{img/graph-L^3_222.png}
+        \caption{Graf $L^3_{222}$ z dopisanimi razdaljami do predstavnikov dveh ekvivalenčnih razredov, $s_1=12|3|$ in $s_2 = 1|2|3$.}
+        \label{fig:L^3_222}
+    \end{figure}
+    
+    Za izračun povprečne razdalje med dvema vozliščema v tem grafu moramo določiti vse razdalje od enega izmed predstavnikov vsakega ekvivalenčnega razreda do poljubnega vozlišča, kar lahko naredimo s pomočjo risbe grafa~\ref{fig:L^3_222}. Na tej sliki smo že označili vse razdalje do stanj $s_1$ in $s_2$. Vidimo, da je za obe stanji maksimalna možna razdalja do nekega poljubnega vozlišča enaka $5$. Ekscentričnost vseh vozlišč v grafu je torej $5$, iz česar sledi, da je tudi premer enak $5$. 
     
     Vsota vseh razdalj od stanja $s_1$ do nekega poljubnega stanja je enaka $140$, od $s_2$ pa $133$. Sledi, da je povprečna razdalja enaka
     
