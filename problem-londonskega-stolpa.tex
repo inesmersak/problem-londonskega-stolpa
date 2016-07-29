@@ -10,10 +10,14 @@
 \usepackage[dvipsnames,usenames]{color}
 \usepackage{graphicx}
 \usepackage{enumitem}
+\usepackage{slashbox}
+\usepackage{array}
+\usepackage{caption}
 \usepackage{tikz}
 %\usetikzlibrary{arrows.meta}
 %\usetikzlibrary{shapes.geometric}
 \usetikzlibrary{positioning}
+
 
 % ne spreminjaj podatkov, ki vplivajo na obliko strani
 \textwidth 15cm
@@ -33,6 +37,8 @@
 \newtheorem{opomba}[definicija]{Opomba}
 
 \renewcommand\endprimer{\hfill$\diamondsuit$}
+\renewcommand{\arraystretch}{1.2}
+
 
 \theoremstyle{plain} % tekst napisan posevno
 \newtheorem{lema}[definicija]{Lema}
@@ -71,6 +77,7 @@
 \DeclareMathOperator {\stopnja} {deg}
 \DeclareMathOperator {\id} {id}
 \DeclareMathOperator {\X}{X}
+\DeclareMathOperator{\distance}{d}
 
 
 
@@ -966,7 +973,9 @@ Spomnimo se, da je naloga pri problemu londonskega stolpa sestavljena iz začetn
     Matematično gledano so vse naloge, ki so del istega ekvivalenčnega razreda, enako težke. Ni pa nujno, da jih tako dojema tudi oseba, ki nalogo rešuje.
 \end{opomba}
 
-(TODO) Za začetek si oglejmo oxfordski graf $O_2^3$. Če pozabimo na barve in upoštevamo, da so vse palice enako visoke, imamo pri tem problemu pravzaprav le dve razporeditvi krogel, ki nista ekvivalentni (glede na upoštevane simetrije), in sicer: 
+Problem pa postane še bolj zanimiv, če imamo (za razliko od klasičnega londonskega grafa) poleg barvnih permutacij na voljo tudi permutacije palic. Demonstrirajmo, kako lahko z upoštevanjem simetrij bolj učinkovito preučimo predvsem metrične lastnosti nekega grafa. Za začetek si le kot primer oglejmo oxfordski graf $O_2^3$, pri čemer bomo izpustili dokaze za nekatera dejstva, kasneje pa bomo izpeljali vso teorijo, potrebno za rigorozen dokaz, in s pomočjo te teorije preučili malo večji graf $L^3_{222}$. 
+
+Če upoštevamo simetrije krogel in palic, imamo pri problemu $O_2^3$ pravzaprav le dve razporeditvi krogel, ki nista ekvivalentni, in sicer: 
 \begin{itemize}
     \item obe krogli sta na isti palici (prikazano na sliki~\ref{fig:neekviv-oxf-stanji} levo),
     \item krogli nista na isti palici (prikazano na sliki~\ref{fig:neekviv-oxf-stanji} desno).
@@ -978,6 +987,12 @@ Spomnimo se, da je naloga pri problemu londonskega stolpa sestavljena iz začetn
     \caption{Na sliki sta prikazani edini dve neekvivalentni stanji problema $O^2_3$. }
     \label{fig:neekviv-oxf-stanji}
 \end{figure}
+
+Množica stanj tega problema torej razpade na dva ekvivalenčna razreda. Če za vsako izmed teh stanj upoštevamo vse možne simetrije (na voljo imamo $3!$ permutacij palic in $2$ permutaciji barv), vidimo, da sta oba ekvivalenčna razreda velikosti $6$, saj z nekaterimi izbirami permutacije za palice in barvi dobimo enako razporeditev krogel. Sedaj lahko npr.\ povprečno ekscentričnost vozlišč izračunamo tako, da ugotovimo ekscentričnost nekega predstavnika teh dveh ekvivalenčnih razredov, recimo $\epsilon(12||) = 4$ in $\epsilon(1|2|) = 3$, iz česar lahko sklepamo, da je povprečna ekscentričnost v grafu enaka $\bar{\epsilon}(O^2_3) = 3.5$. Na podoben način lahko izračunamo tudi povprečno razdaljo med dvema vozliščema v grafu tako, da najprej seštejemo vse razdalje od nekega poljubnega vozlišča do teh dveh predstavnikov, nato pa upoštevamo velikosti obeh ekvivalenčnih razredov in koliko je vseh možnih parov vozlišč:
+
+\[ \sum_{s \in V(O_3^2)} \distance(12||,s) = 26,\quad \sum_{s \in V(O_3^2)} \distance(1|2|,s) = 21 \implies \bar{\distance}(O^2_3) = \frac{6 \cdot 26 + 6 \cdot 21}{144} \approx 1.958.\]
+
+%(?) Vzemimo za primer nalogo $ 2||1 \rightarrow |1|2 $. Vidimo lahko, da je ta ekvivalentna nalogi $ |2|1 \rightarrow 2|1| $ (potrebni permutaciji barv krogel in palic sta navedeni v primeru~\ref{primer:oxf-ekv-nalogi}). Če na prvotni nalogi uporabimo vse možne kombinacije permutacij barv in palic (na voljo imamo $3!$ permutacij palic in $2$ permutaciji barv), lahko sklepamo, da je ekvivalenčni razred te naloge moči 12. Pravzaprav so $ 12|| \rightarrow 21|| $ vsi ekvivalenčni razredi razen dveh; predstavnika teh ekvivalenčnih razredov sta nalogi $12|| \rightarrow 21||$ oziroma $1|2| \rightarrow 2|1|$ , kjer je potrebna le zamenjava barv krogel. Vsak izmed teh dveh ekvivalenčnih razredov je le moči $ 6 $. $ 132 $ nalog oxfordskega grafa $ O^2_3 $ torej razpade na $ 12 $ ekvivalenčnih razredov, $ 10 $ od teh je velikosi $ 12 $, dva pa sta velikosti $ 6 $.
 
 Ogledali si bomo, kako lahko z upoštevanjem simetrij enostavno ugotovimo nekatere metrične lastnosti grafa, npr.~povprečno razdaljo. Za učinkovitejšo preučevanje večjih, bolj zakompliciranih londonskih grafov definirajmo grupo $(\Gamma_{np}, \cdot, 1_{np})$, pri čemer velja $\Gamma_{np} = S_n \times S_p$; grupa $S_n$ bo pri tem predstavljala vse možne permutacije (barv) krogel, $S_p$ pa vse možne permutacije palic. Operacijo $\cdot$ definiramo takole:
 
@@ -997,19 +1012,23 @@ Iz osnovne teorije grup vemo, da lahko na množici stanj definiramo ekvivalenčn
 \[ s_1 \sim s_2 \iff \exists (\chi,\pi) \in \Gamma_{np}\colon \ s_2 = (\chi,\pi).s_1, \]
 množica stanj tako razpade na ekvivalenčne razrede, ki so kar orbite. Ekvivalentna bodo torej tista stanja krogel, ki bodo v istem ekvivalenčnem razredu.
 
-Analogno lahko definiramo delovanje $\Gamma_{np}$ tudi na množici vseh nalog za nek problem, torej na $V(L^n_h) \dot{\times} V(L^n_h)$ (TODO $\dot{\times}$). Ekvivalenčne razrede množice vseh stanj/nalog lahko sedaj preučujemo tako, da poiščemo negibne točke tega delovanja in uporabimo Burnsideovo lemo (TODO).
+Analogno lahko definiramo delovanje $\Gamma_{np}$ tudi na množici vseh nalog za nek problem, torej na $V(L^n_h) \dot{\times} V(L^n_h)$, pri čemer je operator $\dot{\times}$ definiran takole:
+
+\[ A \dot{\times} A = \left\{ (a,b) \in A \times A \mid a \neq b \right\} .\]
 
 \begin{primer}
+    \label{primer:oxf-ekv-nalogi}
     Vzemimo oxfordski graf $O^2_3$ in pokažimo, da sta nalogi $2||1 \rightarrow |1|2$ in $|2|1 \rightarrow 2|1|$ ekvivalentni. Želimo poiskati par permutacij $(\chi, \pi)$, ki nam bo prvi dve stanji krogel preslikal v drugi dve; permutaciji bomo zapisali z disjunktnimi cikli. Če vzamemo $(\chi, \pi) = ((1\ 2), (3\ 2\ 1))$ in upoštevamo, da je $\pi^{-1}=(1\ 2\ 3)$, se nam prva naloga preslika v $\X(|1|2) \rightarrow \X(1|2|) = |2|1 \rightarrow 2|1|$, dobimo drugo nalogo, torej sta nalogi res v isti orbiti.
 \end{primer}
+\medskip
 
 S pomočjo zgornje teorije lahko sedaj dokažemo naslednjo trditev za londonski graf $L_{222}^3$:
 
 \begin{trditev}
+    \label{trd:simetrije-L222na3}
     Množica stanj londonskega grafa $L_{222}^3$, katere velikost je $42$, razpade v $2$ ekvivalenčna razreda; prvi je velikosti $6$, drugi pa $36$. Minimalna stopnja vozlišč tega grafa je 3, maksimalna 6, povprečna pa $\approx 3.43$. Premer tega grafa je $5$, povprečna razdalja med dvema vozliščema pa $\approx 3.39$. 
     Množica nalog problema londonskega stolpa $L_{222}^3$ velikosti $1722$ razpade na $49$ ekvivalenčnih razredov, od tega jih je $47$ velikosti $36$, preostala dva pa sta velikosti $18$ in $12$.
 \end{trditev}
-
 
 Preden se lotimo dokaza, pa bomo potrebovali še dva rezultata iz teorije grup. 
 
@@ -1017,33 +1036,88 @@ Preden se lotimo dokaza, pa bomo potrebovali še dva rezultata iz teorije grup.
     Naj grupa $G$ deluje na množico $X$. Označimo z $\bar{x}$ orbito elementa $x$ in z $G_x$ stabilizator elementa $x$. Potem velja
     \begin{equation}
         \forall x \in X: |G| = |\bar{x}| \cdot |G_x| .
+        \label{eq:orb-stab}
     \end{equation}
 \end{izrek}
 
 \proof
-Za dokaz se najprej spomnimo Lagrangeevega izreka, ki pravi, da za končno grupo $G$ in njeno podgrupo $H \leq G$ velja
-\[ |G| = |G/H| \cdot |H|, \]
-pri čemer je $G/H$ kvocientna množica vseh odsekov.
-V našem primeru je $H = G_x$, vemo torej, da $\forall x$ velja
-\[ |G| = |G/G_x| \cdot |G_x|. \]
-Dokazati želimo, da je $|G/G_x| = |\bar{x}|.$ Konstruiramo preslikavo $\phi \colon G/G_x \rightarrow \bar{x}$ s predpisom $\phi(gG_x) = gx$. Trdimo, da je $\phi$ bijekcija. Velja
-
-\[ gG_x=hG_x \iff h^{-1}g \in G_x \iff h^{-1}gx=x \iff gx=hx, \]
-
-torej je preslikava dobro definirana in injektivna. Surjektivnost preslikave $\phi$ pa sledi iz dejstva, da za vsak $x \in X$ lahko najdemo njegov stabilizator $G_x$, praslika elementa $gx$ za nek $g \in G$ in $x \in X$ je torej $gG_x$. 
-
-Ker med množicama obstaja bijekcija, sledi $|G/G_x| = |\bar{x}|$ in s tem
-\[ |G| = |\bar{x}| \cdot |G_x|,\ \forall x \in X. \]
+    Za dokaz se najprej spomnimo Lagrangeevega izreka, ki pravi, da za končno grupo $G$ in njeno podgrupo $H \leq G$ velja
+    \[ |G| = |G/H| \cdot |H|, \]
+    pri čemer je $G/H$ kvocientna množica vseh odsekov.
+    V našem primeru je $H = G_x$, vemo torej, da $\forall x$ velja
+    \[ |G| = |G/G_x| \cdot |G_x|. \]
+    Dokazati želimo, da je $|G/G_x| = |\bar{x}|.$ Konstruiramo preslikavo $\phi \colon G/G_x \rightarrow \bar{x}$ s predpisom $\phi(gG_x) = gx$. Trdimo, da je $\phi$ bijekcija. Velja
+    \[ gG_x=hG_x \iff h^{-1}g \in G_x \iff h^{-1}gx=x \iff gx=hx, \]
+    torej je preslikava dobro definirana in injektivna. Surjektivnost preslikave $\phi$ pa sledi iz dejstva, da za vsak $x \in X$ lahko najdemo njegov stabilizator $G_x$, praslika elementa $gx$ za nek $g \in G$ in $x \in X$ je torej $gG_x$. 
+    
+    Ker med množicama obstaja bijekcija, sledi $|G/G_x| = |\bar{x}|$ in s tem
+    \[ |G| = |\bar{x}| \cdot |G_x|,\ \forall x \in X. \qedhere \]
 \endproof
 
 \begin{izrek}[Burnsidova lema]
     Naj grupa $G$ deluje na množico $X$. Potem velja
-    \[ |X/G| = \frac{1}{|G|} \sum_{g \in G} |X^g|, \ X^g=\{ x \in X \mid gx = x \}, \]
+    \begin{equation}
+        |X/G| = \frac{1}{|G|} \sum_{g \in G} |X^g|, \ X^g=\{ x \in X \mid gx = x \},
+        \label{eq:Burnside-lema}
+    \end{equation}
     oziroma z besedo: število orbit je enako povprečnemu številu negibnih točk.
 \end{izrek}
 
 \proof
+    Zapišimo vsoto vseh negibnih točk malo drugače:
+    \[
+        \sum_{g \in G} |X^g| = \sum_{g \in G} \sum_{x \in X^g} 1 = \sum_{g \in G} \sum_{\substack{x \in X \\ gx = x}} 1  
+    \]
+    Zamenjamo vrstni red seštevanja in uporabimo enakost~\eqref{eq:orb-stab}:
+    \[
+        \sum_{g \in G} |X^g| = \sum_{x \in X} \sum_{\substack{g \in G \\ gx = x}} 1 = 
+        \sum_{x \in X} |G_x| = \sum_{x \in X} \frac{|G|}{|\bar{x}|} = |G| \sum_{x \in X} \frac{1}{|\bar{x}|}
+    \]
+    Sedaj upoštevamo še, da je $X$ disjunktna unija vseh svojih orbit v $X/G$:
+    \[
+        \sum_{g \in G} |X^g| = |G| \sum_{\sigma \in X/G} \sum_{x \in \sigma} \frac{1}{|\sigma|} = |G| \sum_{\sigma \in X/G} 1 = |G| \cdot |X/G| 
+    \]
+    Enakost~\eqref{eq:Burnside-lema} od tod sledi.
+\endproof
 
+Ekvivalenčne razrede množice vseh stanj/nalog lahko torej preučujemo tako, da poiščemo negibne točke zgoraj definiranega delovanja in uporabimo Burnsidovo lemo. Sedaj se lahko lotimo dokaza trditve~\ref{trd:simetrije-L222na3}.
+
+\proof[Dokaz trditve~\ref{trd:simetrije-L222na3}]
+    Poiščimo negibne točke delovanja grupe $ (\Gamma_{33}, \cdot,1_{33} ) $ na množico vozlišč $V(L_{222}^3)$. Če vzamemo identiteto $1_{33}$, potem je množica negibnih točk za to preslikavo enaka kar celotni množici vozlišč. 
+    Možne negibne točke za preostale preslikave pa so samo tista stanja, ki imajo po eno kroglo na vsaki palici: pri stanju z npr.\ dvema kroglama na eni palici preslikava ne sme zamenjati palic, če želimo, da je to stanje negibna točka, zato pa preslikava ne sme zamenjati tudi barv.
+    Nadalje lahko opazimo, da bodo negibne točke imele le tiste preslikave $(\lambda, \pi)$, pri katerih bosta tako $\chi$ kot $pi$ ali permutaciji brez negibne točke ali pa zrcaljenji. V tabeli~\ref{tab:negibne-tocke} so predstavljene množice negibnih točk za vse preslikave iz grupe $\Gamma_{33}$.
+    
+    \begin{center}
+        $
+        \begin{array}{c||c|c|c|c|c|c|}
+            \text{\backslashbox{$\chi$}{$\pi$}} & 123 & 231 & 312 & 132 & 321 & 213 \\ \hline \hline 
+            123 & V(L^3_{222}) & \emptyset & \emptyset & \emptyset & \emptyset & \emptyset \\ \hline
+            231 & \emptyset & \begin{tabular}{@{}c@{}}1|2|3 \\ 2|3|1 \\ 3|1|2 \end{tabular} & \begin{tabular}{@{}c@{}}1|3|2 \\ 2|1|3 \\ 3|2|1 \end{tabular} & \emptyset & \emptyset & \emptyset \\ \hline
+            312 & \emptyset & \begin{tabular}{@{}c@{}}1|3|2 \\ 2|1|3 \\ 3|2|1 \end{tabular} & \begin{tabular}{@{}c@{}}1|2|3 \\ 2|3|1 \\ 3|1|2 \end{tabular} & \emptyset & \emptyset & \emptyset \\ \hline
+            132 & \emptyset & \emptyset & \emptyset & \begin{tabular}{@{}c@{}}1|2|3 \\ 1|3|2 \end{tabular} & \begin{tabular}{@{}c@{}}2|1|3 \\ 3|1|2 \end{tabular} & \begin{tabular}{@{}c@{}}2|3|1 \\ 3|2|1 \end{tabular} \\ \hline
+            321 & \emptyset & \emptyset & \emptyset & \begin{tabular}{@{}c@{}}2|1|3 \\ 2|3|1 \end{tabular} & \begin{tabular}{@{}c@{}}1|2|3 \\ 3|2|1 \end{tabular} & \begin{tabular}{@{}c@{}}1|3|2 \\ 3|1|2 \end{tabular} \\ \hline
+            132 & \emptyset & \emptyset & \emptyset & \begin{tabular}{@{}c@{}}3|1|2 \\ 3|2|1 \end{tabular} & \begin{tabular}{@{}c@{}}1|3|2 \\ 2|3|1 \end{tabular} & \begin{tabular}{@{}c@{}}1|2|3 \\ 2|1|3 \end{tabular} \\ \hline
+        \end{array}
+        $
+        \medskip
+        \captionof{table}{Negibne točke preslikav iz $\Gamma_{33}$.}
+        \label{tab:negibne-tocke}
+    \end{center}
+    
+    Iz tabele lahko preberemo, da je število vseh negibnih točk enako
+    
+    \[ \sum_{g \in \Gamma_{33}} |V(L^3_{222})^g| = 42 + 4 \cdot 3 + 9 \cdot 2 = 72, \]
+    
+    saj je število vozlišč pri tem problemu enako 42 (TODO).
+    
+    Uporabimo Burnsidovo lemo~\eqref{eq:Burnside-lema} in dobimo, da je število ekvivalenčnih razredov enako
+    \[\frac{1}{|\Gamma_{33}|} \sum_{g \in \Gamma_{33}} |V(L^3_{222})^g| = \frac{72}{3! \cdot 3!} = 2. \]
+    
+    Ker je poljubno stanje, ki ima na eni izmed palic več kot eno kroglo, fiksna točka le identične preslikave, iz formule~\eqref{eq:orb-stab} sledi, da je orbita (in s tem ekvivalenčni razred) takega stanja velikosti $36$. Torej je prvi ekvivalenčni razred sestavljen iz stanj z več kot eno kroglo na neki palici, drugi pa je sestavljen iz $6$-ih razporeditev, pri kateri je na vsaki palici točno ena krogla (te so fiksne točke šestih preslikav iz $\Gamma_{33}$.)
+    
+    Pri obravnavi lastnosti tega grafa moramo torej upoštevati le dve neekvivalentni stanji, npr.\ $s_1=12|3|$ in $s_2 = 1|2|3$. Iz grafa~\ref{fig:} lahko vidimo, da je stanje $s_1$ stopnje 3, $s_2$ pa 6. Minimalna stopnja vozlišč je torej 3, maksimalna je 6, povprečna pa je enaka $\frac{36 \cdot 3 + 6 \cdot 6}{42} \approx 3.43$.
+    
+    Sedaj
 \endproof
 
 % slovar
