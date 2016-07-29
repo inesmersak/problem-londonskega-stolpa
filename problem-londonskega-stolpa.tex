@@ -152,7 +152,38 @@ Obstajajo variacije zgornje definicije, graf je lahko npr.\ usmerjen (povezave s
 Vozlišča grafa predstavimo s točkami v ravnini, povezavo med dvema vozliščema pa kot enostavno krivuljo med ustreznima točkama v ravnini. Preslikavi, ki grafu priredi ustrezne točke in krivulje v ravnini, pravimo \emph{risba grafa} (včasih pa s tem mislimo kar na predstavitev grafa v ravnini). Graf ima lahko več različnih možnih risb -- razlikujejo se lahko npr.\ po tem, katere točke priredimo katerim vozliščem.
 
 \begin{figure}[h]
-    \caption{Možna predstavitev grafa v ravnini.}
+    \begin{tikzpicture}
+    \begin{scope}[every node/.style={circle,thick,draw}]
+    \node (1) at (-1,-1) {};
+    \node (2) at (-1,1) {};
+    \node (3) at (1,1) {};
+    \node (4) at (1,-1) {};
+    \end{scope}
+    
+    \path[-,draw,thick] 
+    (1) edge (2)
+    (1) edge (3)
+    (1) edge (4)
+    (2) edge (3)
+    (2) edge (4)
+    (3) edge (4);
+    
+    \begin{scope}[xshift=4cm, every node/.style={circle,thick,draw}]
+    \node (5) at (0,-0.2) {};
+    \node (6) at (-1.2,-1) {};
+    \node (7) at (1.2,-1) {};
+    \node (8) at (0, 1) {};
+    \path[-,draw,thick]
+    (5) edge (6)
+    (5) edge (7)
+    (5) edge (8)
+    (6) edge (7)
+    (6) edge (8)
+    (7) edge (8);
+    \end{scope}
+    \end{tikzpicture}
+    
+    \caption{Možni predstavitvi nekega grafa v ravnini.}
 \end{figure}
     
 Če je $e = \{ u,v \}$ povezava, tedaj sta $u$ in $v$ \emph{krajišči} povezave $e$, pišemo tudi $e = uv$; rečemo, da sta $u$ in $v$ \emph{sosednji vozlišči}.
@@ -1026,8 +1057,8 @@ S pomočjo zgornje teorije lahko sedaj dokažemo naslednjo trditev za londonski 
 
 \begin{trditev}
     \label{trd:simetrije-L222na3}
-    Množica stanj londonskega grafa $L_{222}^3$, katere velikost je $42$, razpade v $2$ ekvivalenčna razreda; prvi je velikosti $6$, drugi pa $36$. Minimalna stopnja vozlišč tega grafa je 3, maksimalna 6, povprečna pa $\approx 3.43$. Premer tega grafa je $5$, povprečna razdalja med dvema vozliščema pa $\approx 3.39$. 
-    Množica nalog problema londonskega stolpa $L_{222}^3$ velikosti $1722$ razpade na $49$ ekvivalenčnih razredov, od tega jih je $47$ velikosti $36$, preostala dva pa sta velikosti $18$ in $12$.
+    Množica stanj londonskega grafa $L_{222}^3$, katere velikost je $42$, razpade v $2$ ekvivalenčna razreda; prvi je velikosti $6$, drugi pa $36$. Minimalna stopnja vozlišč tega grafa je 3, maksimalna 6, povprečna pa $\approx 3.43$. Premer tega grafa je $5$, povprečna razdalja med dvema vozliščema pa $\approx 3.31$. 
+%    Množica nalog problema londonskega stolpa $L_{222}^3$ velikosti $1722$ razpade na $49$ ekvivalenčnih razredov, od tega jih je $47$ velikosti $36$, preostala dva pa sta velikosti $18$ in $12$.
 \end{trditev}
 
 Preden se lotimo dokaza, pa bomo potrebovali še dva rezultata iz teorije grup. 
@@ -1117,7 +1148,13 @@ Ekvivalenčne razrede množice vseh stanj/nalog lahko torej preučujemo tako, da
     
     Pri obravnavi lastnosti tega grafa moramo torej upoštevati le dve neekvivalentni stanji, npr.\ $s_1=12|3|$ in $s_2 = 1|2|3$. Iz grafa~\ref{fig:} lahko vidimo, da je stanje $s_1$ stopnje 3, $s_2$ pa 6. Minimalna stopnja vozlišč je torej 3, maksimalna je 6, povprečna pa je enaka $\frac{36 \cdot 3 + 6 \cdot 6}{42} \approx 3.43$.
     
-    Sedaj
+    Za izračun povprečne razdalje med dvema vozliščema v tem grafu moramo določiti vse razdalje od enega izmed predstavnikov vsakega ekvivalenčnega razreda do poljubnega vozlišča, kar lahko naredimo s pomočjo risbe grafa~\ref{}. Na tej sliki smo že označili vse razdalje do stanj $s_1$ in $s_2$. Vidimo, da je za obe stanji maksimalna možna razdalja do nekega poljubnega vozlišča enaka $5$. Ekscentričnost vseh vozlišč v grafu je torej $5$, iz česar sledi, da je tudi premer enak $5$. 
+    
+    Vsota vseh razdalj od stanja $s_1$ do nekega poljubnega stanja je enaka $140$, od $s_2$ pa $133$. Sledi, da je povprečna razdalja enaka
+    
+    \[ \frac{36 \cdot 140 + 6 \cdot 133}{{42}^2} = \frac{139}{42} .\]
+    
+    S tem je dokaz končan.
 \endproof
 
 % slovar
