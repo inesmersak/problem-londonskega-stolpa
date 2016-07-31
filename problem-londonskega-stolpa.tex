@@ -389,16 +389,16 @@ Pri polnem dvodelnem grafu z $n$ vozlišči v prvi množici, recimo ji $V_1$, in
 
 Sprehod je \emph{enostaven}, če so vsa njegova vozlišča različna. Enostaven sprehod inducira podgraf, ki je izomorfen poti (torej pot v grafu).
 
-\begin{figure}[h]
+%\begin{figure}[h]
 %    \includegraphics[width=200pt]{img/enostaven-sprehod1.png}
 %    \includegraphics[width=200pt]{img/enostaven-sprehod2.png}
-    \caption{Enostaven sprehod in pot v grafu, ki jo inducira.}
-\end{figure}
+%    \caption{Enostaven sprehod in pot v grafu, ki jo inducira.}
+%\end{figure}
 
 Naj bo $G$ graf in $\sim$ relacija, definirana na kartezičnem produktu $\vozlisca \times \vozlisca$:
 \[ x \sim y \ \stackrel{\text{def}}{\equiv} \ \exists \ x,y \text{-sprehod.} \]
 
-Preprosto lahko preverimo, da je relacija $\sim$ ekvivalenčna. Sledi, da relacija $\sim$ množico vozlišč grafa G razbije na ekvivalenčne razrede. Podgrafi, inducirani s temi razredi, so \emph{komponente} grafa $G$.
+Preprosto lahko preverimo, da je relacija $\sim$ ekvivalenčna. Sledi, da relacija $\sim$ množico vozlišč grafa $G$ razbije na ekvivalenčne razrede. Podgrafi, inducirani s temi razredi, so \emph{komponente} grafa $G$.
 
 \begin{definicija}
 	Graf je \emph{povezan}, če ima le eno komponento. Povedano drugače, za poljuben par vozlišč mora obstajati sprehod med njima.
@@ -427,7 +427,7 @@ Preprosto lahko preverimo, da je relacija $\sim$ ekvivalenčna. Sledi, da relaci
     \caption{Povezan (levo) in nepovezan (desno) graf.}
 \end{figure}
 
-Če je $G$ povezan graf, lahko definiramo \emph{razdaljo} $d_G(u,v)$ med vozliščema $u$ in $v$ kot najmanjše možno število povezav na neki $u,v$-poti.
+Če je $G$ povezan graf, lahko definiramo \emph{razdaljo} $d_G(u,v)$ med vozliščema $u$ in $v$ kot najmanjše možno število povezav na neki $u,v$-poti. Največjo možno razdaljo od danega vozlišča $u$ do poljubnega vozlišča v grafu G imenujemo \emph{ekscentričnost} vozlišča $u$.
 
 Definirajmo še \emph{premer} grafa kot največjo minimalno razdaljo med pari vozlišč. Enostavneje povedano to pomeni: če vzamemo poljubno vozlišče v grafu, potem lahko pridemo do drugega poljubnega vozlišča preko $d$ ali manj povezav, kjer je $d$ premer grafa.
 
@@ -486,7 +486,7 @@ V diplomski nalogi se bom ukvarjala tudi s tem, kdaj je graf, s pomočjo katereg
     \caption{Ravninskost grafa $K_4$ ni očitna.}
 \end{figure}
 
-Hitro lahko vidimo, da grafa $K_5$ in $K_{3,3}$ nista ravninska (poskusimo ju narisati v ravnini, a kmalu ugotovimo, da to ne bo mogoče). To dejstvo sledi tudi kot posledica ene izmed posledic Eulerjeve formule.
+Hitro lahko vidimo, da grafa $K_5$ in $K_{3,3}$ nista ravninska (poskusimo ju narisati v ravnini, a kmalu ugotovimo, da to ne bo mogoče). Videli bomo, da to dejstvo sledi tudi kot posledica ene izmed posledic Eulerjeve formule.
 
 Spomnimo se, da je risba grafa predstavitev grafa v ravnini, pri čemer vozlišča ustrezajo točkam v ravnini, povezave pa enostavnim krivuljam med točkami. Te točke in enostavne krivulje lahko ravnino razdelijo na več delov -- takim območjem pravimo \emph{lica vložitve}. Lice, ki je neomejeno in obdaja celotno risbo grafa, je \emph{zunanje}.
 
@@ -636,7 +636,7 @@ Pogledali si bomo še operacijo \emph{subdivizije}, ki prav tako ohranja lastnos
     Graf $H$ je \emph{subdivizija} grafa $G$, če ga lahko dobimo iz $G$ z zaporednim \emph{subdiviziranjem} povezav grafa $G$.\cite[str.~66]{bib:potocnik}
 \end{definicija}
 
-Iz definicije je razvidno, da je tak $H$ ravninski natanko tedaj, ko je $G$ ravninski. Iz tega dejstva, trditve~\ref{trd:podgraf} in posledice~\ref{posl:neravninska-grafa} lahko zaključimo, da graf zagotovo ni ravninski, če vsebuje subdivizijo $K_5$ ali $K_{3,3}$. Zanimivo pa je, da velja tudi obratno; dokaz tega dejstva je netrivialen in ga lahko najdemo v TODO[247-251].
+Iz definicije je razvidno, da je tak $H$ ravninski natanko tedaj, ko je $G$ ravninski. Iz tega dejstva, trditve~\ref{trd:podgraf} in posledice~\ref{posl:neravninska-grafa} lahko zaključimo, da graf zagotovo ni ravninski, če vsebuje subdivizijo $K_5$ ali $K_{3,3}$. Zanimivo pa je, da velja tudi obratno; dokaz tega dejstva je netrivialen in ga lahko najdemo v \cite[str.~247-251]{bib:west}.
 
 \begin{izrek}[Kuratowski]
     \label{izr:kuratowski}
@@ -658,10 +658,10 @@ Pri klasičnem londonskem stolpu imamo tri enako velike krogle različnih barv i
 \end{figure}
 
 Stanja in prehode med njimi si najlažje predstavljamo, če narišemo graf. V ta namen vpeljemo naslednje oznake:
-krogle bomo označili s številkami 1, 2, 3 -- npr.\ modra krogla naj ima oznako 1, rdeča 2, rumena pa 3 -- s simbolom ``|'' pa bomo označili konec prejšnje palice in začetek nove. Krogle bomo naštevali od vrha palice navzdol.
+krogle bomo označili s številkami $1$, $2$, $3$ -- npr.\ modra krogla naj ima oznako $1$, rdeča $2$, rumena pa $3$ -- s simbolom ``$|$'' pa bomo označili konec prejšnje palice in začetek nove. Krogle bomo naštevali od vrha palice navzdol.
 
 \begin{primer}
-    Začetno stanje na sliki~\ref{fig:stanji} lahko torej opišemo z $\bd 3 \ed 12$, končno stanje pa z $\bd 21 \ed 3$.
+    Začetno stanje na sliki~\ref{fig:stanji} lahko torej opišemo z $|3|12$, končno stanje pa z $|21|3$.
 \end{primer}
 \medskip
 
@@ -704,10 +704,10 @@ S pomočjo teh oznak lahko opišemo vsako možno stanje in narišemo graf london
     V vsaki od teh lahko še premešamo barve krogel, torej imamo za vsako postavitev $3!$ možnosti. Sledi, da je vseh možnih stanj $3! \cdot 6 = 6 \cdot 6 = 36$.\qedhere
 \endproof
 
-Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ ima 36 vozlišč. Graf je ravninski, saj je na sliki~\ref{fig:tolgraph} narisan v ravnini brez križanja povezav. Hitro vidimo, da je 12 vozlišč grafa $L$ stopnje 2, drugih 12 je stopnje 3, zadnjih 12 pa stopnje 4. Preverimo lahko tudi, da je premer klasičnega londonskega grafa enak 8.
+Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ 36 vozlišč. Graf je ravninski, saj je na sliki~\ref{fig:tolgraph} narisan v ravnini brez križanja povezav. Hitro vidimo, da je 12 vozlišč grafa $L$ stopnje 2, drugih 12 je stopnje 3, zadnjih 12 pa stopnje 4. Preverimo lahko tudi, da je premer klasičnega londonskega grafa enak 8.
 
 \begin{primer}
-    S pomočjo grafa na sliki~\ref{fig:tolgraph} lahko hitro ugotovimo, da za prehod med stanjema na sliki~\ref{fig:stanji} potrebujemo minimalno 4 poteze in da je to edino najkrajše možno zaporedje potez.
+    S pomočjo grafa na sliki~\ref{fig:tolgraph} lahko hitro ugotovimo, da za prehod med stanjema $|3|12$ in $|21|3$, ki sta prikazani na sliki~\ref{fig:stanji}, potrebujemo minimalno 4 poteze in da obstaja le eno najkrajše možno zaporedje potez.
 \end{primer}
 
 \bigskip
@@ -717,8 +717,6 @@ Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ ima 36 vozlišč. Graf je r
 \end{trditev}
 
 \proof
-    TODO
-    
     Hitro lahko dokažemo, da $L$ vsebuje Hamiltonovo pot: poiščemo jo. Ena izmed Hamiltonovih poti v grafu $L$ je prikazana na sliki~\ref{fig:dokaz-ham-klasicni} levo.
     
     \begin{figure}
@@ -728,32 +726,32 @@ Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ ima 36 vozlišč. Graf je r
         \label{fig:dokaz-ham-klasicni}
     \end{figure}
     
-    Da bi dokazali, da graf ni Hamiltonov, moramo najprej opaziti nekaj lastnosti tega grafa. Soseščina vsakega vozlišča stopnje 2 je sestavljena iz enega vozlišča stopnje 3 in enega stopnje 4, prav tako je presek soseščin poljubnih dveh vozlišč stopnje 2 prazen -- vsako vozlišče stopnje 2 ima torej ``svoje'' vozlišče stopnje 3 in stopnje 4. Nadalje lahko iz grafa vidimo, da poljubni dve vozlišči stopnje 3 nista sosednji.
+    Da bi dokazali, da graf ni Hamiltonov, moramo najprej opaziti nekaj lastnosti tega grafa. Soseščina vsakega vozlišča stopnje $2$ je sestavljena iz enega vozlišča stopnje $3$ in enega stopnje $4$, prav tako je presek soseščin poljubnih dveh vozlišč stopnje $2$ prazen -- vsako vozlišče stopnje $2$ ima torej ``svoje'' vozlišče stopnje $3$ in stopnje $4$. Nadalje lahko iz grafa vidimo, da poljubni dve vozlišči stopnje $3$ nista sosednji.
     
-    Sledi, da na ciklu $C$ v grafu, ki bi vseboval vsa vozlišča, nobeni dve vozlišči stopnje 4 nista sosednji. Ker imamo po 12 vozlišč vsake stopnje, bi v nasprotnem primeru namreč prišli do zaključka, da morata biti sosednji dve vozlišči stopnje 3, kar pa je v protislovju z zgornjim opažanjem.
+    Sledi, da na ciklu $C$ v grafu, ki bi vseboval vsa vozlišča, nobeni dve vozlišči stopnje $4$ nista sosednji. Ker imamo po $12$ vozlišč vsake stopnje, bi v nasprotnem primeru namreč prišli do zaključka, da morata biti sosednji dve vozlišči stopnje $3$, kar pa je v protislovju z zgornjim opažanjem.
     
     Sedaj začnimo graditi cikel $C$, ki bo vseboval vsa vozlišča grafa natanko enkrat. Oglejmo si sliko~\ref{fig:dokaz-ham-klasicni} desno.
-    Cikel $C$ mora torej gotovo iti skozi vsa vozlišča stopnje 2, kar je možno le na en način: če imamo vozlišče stopnje 2 $v$ s sosedoma $u$ stopnje 3 in $z$ stopnje 4, mora $C$ vsebovati pot $u,v,z$.
-    Če začnemo pri vozlišču stopnje 2 $||\,123$, mora graf torej vsebovati pot $1||23, ||123, |1|23$. Slednje je vozlišče stopnje 4, za nadaljevanje cikla pa imamo dve možnosti: vozlišče $2|1|3$ ali $|21|3$. Ker je prvo stopnje 4 in smo že prej opazili, da dve vozlišči iste stopnje ne bosta sosednji na ciklu $C$, cikel nadaljujemo z $|21|3$. Sosed tega vozlišča je vozlišče $3|21|$ stopnje 2, zato moramo cikel gotovo nadaljevati skozi njega. Pridemo do vozlišča $3|1|2$. Imamo dve možnosti: 
+    Cikel $C$ mora torej gotovo iti skozi vsa vozlišča stopnje $2$, kar je možno le na en način: če imamo vozlišče stopnje $2$ $v$ s sosedoma $u$ stopnje $3$ in $z$ stopnje $4$, mora $C$ vsebovati pot $u,v,z$.
+    Če začnemo pri vozlišču stopnje $2$ $||123$, mora graf torej vsebovati pot $1||23, ||123, |1|23$. Slednje je vozlišče stopnje $4$, za nadaljevanje cikla pa imamo dve možnosti: vozlišče $2|1|3$ ali $|21|3$. Ker je prvo stopnje $4$ in smo že prej opazili, da dve vozlišči enake stopnje ne bosta sosednji na ciklu $C$, cikel nadaljujemo z $|21|3$. Sosed tega vozlišča je vozlišče $3|21|$ stopnje $2$, zato moramo cikel gotovo nadaljevati skozi njega. Pridemo do vozlišča $3|1|2$. Imamo dve možnosti: 
     \begin{itemize}[label={-}]
-        \item Nadaljujemo z vozliščem $|31|2$, ki je stopnje 3 in je na notranjem ciklu. V tem primeru ne bomo notranjega cikla nikoli zapustili, saj je notranji cikel oblike: vozlišče stopnje 2, vozlišče stopnje 3 (povezano samo z vozlišči na notranjem ciklu), vozlišče stopnje 4, ki je nato povezano z vozliščem stopnje 2, skozi katerega moramo iti. Nato pa sledita vozlišče $a$ stopnje 3 (povezano z notranjim ciklom in vozliščem stopnje $w$ 4 na zunanjem ciklu) in vozlišče $b$ stopnje 4 (povezan z vozliščem $c$ stopnje 2 in še dvema drugima na notranjem ciklu ter vozliščem $w$). Ker moramo iti skozi vozlišče $c$, moramo tudi skozi $b$, od prej pa vemo, da moramo nujno tudi skozi $a$, saj je sosed vozlišča stopnje 2. Torej lahko pot speljemo le skozi $a,b,c$, saj je $w$ stopnje 4 in na ciklu zato ne sme biti soseden $b$, ki je prav tako stopnje 4.
-        \item Pot torej nadaljujemo z vozliščem stopnje 3 na zunanjem ciklu $3||12$, in tudi v nadaljevanju ostanemo na zunanjem ciklu, saj vemo, da bomo v nasprotnem primeru ostali na notranjem ciklu.
+        \item Nadaljujemo z vozliščem $|31|2$, ki je stopnje $3$ in je na notranjem ciklu. V tem primeru ne bomo notranjega cikla nikoli zapustili, saj je notranji cikel oblike: vozlišče stopnje $2$, vozlišče stopnje $3$ (povezano samo z vozlišči na notranjem ciklu), vozlišče stopnje $4$, ki je nato povezano z vozliščem stopnje $2$, skozi katerega moramo iti. Nato pa sledita vozlišče $a$ stopnje $3$ (povezano z notranjim ciklom in vozliščem $w$ stopnje $4$ na zunanjem ciklu) in vozlišče $b$ stopnje $4$ (povezan z vozliščem $c$ stopnje $2$ in še dvema drugima na notranjem ciklu ter vozliščem $w$). Ker moramo iti skozi vozlišče $c$, moramo tudi skozi $b$, od prej pa vemo, da moramo nujno tudi skozi $a$, saj je sosed vozlišča stopnje $2$. Torej lahko pot speljemo le skozi $a,b,c$, saj je $w$ stopnje $4$ in na ciklu zato ne sme biti soseden $b$, ki je prav tako stopnje $4$.
+        \item Pot torej nadaljujemo z vozliščem stopnje $3$ na zunanjem ciklu $3||12$, in tudi v nadaljevanju ostanemo na zunanjem ciklu, saj vemo, da bomo v nasprotnem primeru ostali na notranjem ciklu.
     \end{itemize}
-    Torej ne moremo konstruirati cikla, bi vseboval vsa vozlišča našega grafa $L$ natanko enkrat. $L$ torej ni Hamiltonov.
+    Ne moremo konstruirati cikla, bi vseboval vsa vozlišča našega grafa $L$ natanko enkrat, $L$ torej ni Hamiltonov.
     \qedhere
 \endproof
 
 \section{Posplošeni londonski stolp}
 Graf klasičnega problema londonskega stolpa je majhen, zato je za psihološka testiranja naloga včasih prelahka. 
-Jenny R. Tunstall je prva predlagala razširitev klasičnega londonskega stolpa na 4 krogle s podaljšanimi palicami (vsaka je podaljšana za eno enoto), mi pa si bomo v tem razdelku pogledali ta problem v splošnem, s $p \geq 3$ palicami in $n \geq 2$ kroglami.
+Jenny R.\ Tunstall je prva predlagala razširitev klasičnega londonskega stolpa na 4 krogle s podaljšanimi palicami (vsaka je podaljšana za eno enoto), mi pa si bomo v tem razdelku pogledali ta problem v splošnem, s $p \geq 3$ palicami in $n \geq 2$ kroglami.
 
 \subsection{Definicija}
 
-Posplošen londonski stolp ima $n \geq 2$ krogel, označimo jih s številkami $1,\ldots,n$, in $p \geq 3$ palic, katerih višino označimo s $h_k$ -- toliko krogel lahko postavimo na $k$-to palico. Seveda velja, da mora biti število vseh krogel manjše ali enako vsoti višin vseh palic, sicer vseh krogel ne moremo razporediti na palice. Veljati mora torej:
+Posplošen londonski stolp ima $n \geq 2$ krogel, označimo jih s številkami $1,\ldots,n$, in $p \geq 3$ palic, katerih višino označimo s $h_k$ -- toliko krogel lahko postavimo na $k$-to palico. Seveda velja, da mora biti število vseh krogel manjše ali enako vsoti višin vseh palic, sicer na palice ne moremo razporediti vseh krogel. S simboli zapišemo:
 \[ n \leq \sum_{k=1}^{p} h_k.\]
-Edina omejitev premikov krogel je ponovno višina palic, prav tako je enak cilj igre, priti iz začetnega stanja v končno stanje s čim manj premiki.
+Edina omejitev premikov krogel je ponovno višina palic, prav tako je enak cilj igre: priti iz začetnega stanja v končno stanje s čim manj premiki.
 
-Še pred definicijo splošnega londonskega grafa vpeljimo oznake, ki jih bomo uporabljali za opis stanja nekega posplošenega londonskega stolpa. Enoličen zapis lahko dosežemo, če vsako stanje predstavimo s permutacijo $s$ iz simetrijske grupe $S_{n+p}$. Pri tem $i$-ta števka permutacije predstavlja
+Pred definicijo splošnega londonskega grafa vpeljimo oznake, ki jih bomo uporabljali za opis stanja nekega splošnega londonskega stolpa. Enoličen zapis lahko dosežemo, če vsako stanje predstavimo s permutacijo $s$ iz simetrijske grupe $S_{n+p}$. Pri tem $i$-ta števka permutacije predstavlja
 
 \[ s_i =
 \begin{cases}
@@ -762,7 +760,7 @@ Edina omejitev premikov krogel je ponovno višina palic, prav tako je enak cilj 
 \end{cases}
 \]
 
-Položaje oštevilčimo od leve palice proti desni, z vrha palice proti dnu. Tako bo s številko 1 oštevilčen položaj krogle, ki je postavljena najvišje na prvi palici; če na prvi palici ni nobene krogle, bo imelo položaj 1 dno te palice.
+Položaje oštevilčimo od leve palice proti desni, z vrha palice proti dnu. Tako bo s številko $1$ oštevilčen položaj krogle, ki je postavljena najvišje na prvi palici; če na prvi palici ni nobene krogle, bo imelo položaj $1$ dno te palice.
 
 \begin{primer}
     Poiščimo permutacijo za začetni položaj na sliki~\ref{fig:stanji}, ki smo ga označili z $|3|12|$. 
@@ -782,11 +780,11 @@ Hitro vidimo, da mora veljati
 \[\forall k \in [p]\colon s_{n+k} - s_{n+k-1} \geq 1 \]
 saj je $s_{n+k}$ položaj dna palice $k$, $s_{n+k-1}$ pa položaj dna palice $k-1$, torej se mora njun položaj razlikovati najmanj za 1 -- to se zgodi, če na palici $k$ ni nobene krogle.
 
-Prav tako pa mora veljati tudi 
+Prav tako pa velja tudi 
 \[\forall k \in [p]\colon s_{n+k} - s_{n+k-1} \leq h_k + 1,\]
 kar se zgodi v primeru, če je na $k$-ti palici $h_k$ krogel.
 
-Opazimo še, da je položaj dna zadnje palice, $s_{n+p}$, vedno enak $n+p$, saj smo pred tem že oštevilčili položaje vseh $n$ krogel in ostalih $p-1$ palic.
+Opazimo še, da je položaj dna zadnje palice $s_{n+p}$ vedno enak $n+p$, saj smo pred tem že oštevilčili položaje vseh $n$ krogel in ostalih $p-1$ palic.
 
 V splošnem je londonski graf, katerega vozlišča so vsa stanja pripadajočega londonskega stolpa, torej smiselno definirati takole:
 
@@ -801,8 +799,8 @@ V splošnem je londonski graf, katerega vozlišča so vsa stanja pripadajočega 
 
 S pogojem, da so vse palice visoke največ $n$, ne izgubimo splošnosti, saj razporejamo le $n$ krogel.
 
-Očitno je klasičen londonski graf $L$ enak $L_{123}^3$, saj imamo 3 krogle in 3 palice, ki so velikosti 1, 2 in 3.
-Če smo v tem primeru lahko izračunali število vozlišč, pa je v splošnem za londonske stolpe to precej težko. V naslednjem podrazdelku bomo obravnavali poseben primer londonskih grafov, za katerega je znana formula za število vozlišč. 
+Očitno je klasičen londonski graf $L$ enak $L_{123}^3$, saj imamo $3$ krogle in $3$ palice, ki so velikosti $1$, $2$ in $3$.
+Če smo za ta primer lahko izračunali število vozlišč, pa je v splošnem za londonske stolpe to precej težko. V naslednjem podrazdelku bomo obravnavali poseben primer londonskih grafov, za katerega je znana formula za število vozlišč. 
 
 \subsection{Oxfordski graf}
 
@@ -902,7 +900,7 @@ Zaželjeno je, da lahko pri londonskem stolpu, s pomočjo katerega opravljajo te
 V nadaljevanju bomo privzeli, da so palice urejene po velikosti naraščajoče, velja torej $h_1 \leq h_2 \leq \cdots \leq h_p$.
 Potreben pogoj za povezanost londonskega grafa je očitno 
 \[ n \leq \sum_{k=1}^{p-1} h_k, \]
-oziroma z besedami, da lahko krogle razporedimo tako, da najvišja palica ostane prazna. V nasprotnem primeru bi, po tem ko bi razporedili maksimalno možno število krogel na vse preostale (manjše) palice, na največji ostalo še nekaj krogel, ki jih nikoli ne bi mogli premakniti na kakšno drugo palico.
+oziroma z besedami, da lahko krogle razporedimo tako, da najvišja palica ostane prazna. V nasprotnem primeru bi, potem ko bi razporedili maksimalno možno število krogel na vse preostale (manjše) palice, na največji ostalo še nekaj krogel, ki jih nikoli ne bi mogli premakniti na kakšno drugo palico.
 Izkaže se, da je ta pogoj tudi zadosten za povezanost londonskega grafa.
 
 \begin{izrek}
@@ -998,7 +996,7 @@ Videli smo že, da je klasični londonski graf $L$ ravninski. Torej je ravninski
 \end{opomba}
 
 \proof
-    Videli smo že, da so grafi $L_h^2, L_{122}^3, L_{123}^3$ in $L_{133}^3$ ravninski. Dokazati moramo, da vsi ostali grafi za $n=3$ in vsi grafi za $n \geq 4$ niso ravninski. Pri tem nam bo v pomoč izrek~\ref{izr:kuratowski}, ki pravi, da je graf ravninski natanko tedaj, ko ne vsebuje subdivizije $K_5$ ali $K_{3,3}$. A v grafu $L_{222}^3$ lahko najdemo subdivizijo $K_{3,3}$, ki je na sliki~\ref{fig:L222-subdivizija} prikazana z rdečo barvo. 
+    Videli smo že, da so grafi $L_h^2, L_{122}^3, L_{123}^3$ in $L_{133}^3$ ravninski. Dokazati moramo, da vsi ostali grafi za $n=3$ in vsi grafi za $n \geq 4$ niso ravninski. Pri tem nam bo v pomoč izrek~\ref{izr:kuratowski}, ki pravi, da je graf ravninski natanko tedaj, ko ne vsebuje subdivizije $K_5$ ali $K_{3,3}$. V grafu $L_{222}^3$ pa lahko najdemo subdivizijo $K_{3,3}$, ki je na sliki~\ref{fig:L222-subdivizija} prikazana z rdečo barvo. 
     \begin{figure}[h]
         \centering
         \includegraphics[width=400pt]{img/tolgraph-O^3_222-subdivision.png}
@@ -1014,9 +1012,9 @@ Videli smo že, da je klasični londonski graf $L$ ravninski. Torej je ravninski
     Za $n \geq 4$ torej noben graf ni ravninski, saj vsak $L_h^n$ dobimo z dodajanjem krogel enemu izmed $L_h^4$, za katere pa zdaj vemo, da niso ravninski.
 \endproof
 
-\begin{opomba}
-    [TODO] toroidalnost
-\end{opomba}
+%\begin{opomba}
+%    [TODO] toroidalnost
+%\end{opomba}
 
 \subsection{Simetrije londonskega stolpa}
 
@@ -1053,13 +1051,13 @@ Problem pa postane še bolj zanimiv, če imamo (za razliko od klasičnega london
     \label{fig:neekviv-oxf-stanji}
 \end{figure}
 
-Množica stanj tega problema torej razpade na dva ekvivalenčna razreda. Če za vsako izmed teh stanj upoštevamo vse možne simetrije (na voljo imamo $3!$ permutacij palic in $2$ permutaciji barv), vidimo, da sta oba ekvivalenčna razreda velikosti $6$, saj z nekaterimi izbirami permutacije za palice in barvi dobimo enako razporeditev krogel. Sedaj lahko npr.\ povprečno ekscentričnost vozlišč izračunamo tako, da ugotovimo ekscentričnost nekega predstavnika teh dveh ekvivalenčnih razredov, recimo $\epsilon(12||) = 4$ in $\epsilon(1|2|) = 3$, iz česar lahko sklepamo, da je povprečna ekscentričnost v grafu enaka $\bar{\epsilon}(O^2_3) = 3.5$. Na podoben način lahko izračunamo tudi povprečno razdaljo med dvema vozliščema v grafu tako, da najprej seštejemo vse razdalje od nekega poljubnega vozlišča do teh dveh predstavnikov, nato pa upoštevamo velikosti obeh ekvivalenčnih razredov in koliko je vseh možnih parov vozlišč:
+Množica stanj tega problema torej razpade na dva ekvivalenčna razreda. Če za vsako izmed teh stanj upoštevamo vse možne simetrije (na voljo imamo $3!$ permutacij palic in $2$ permutaciji barv), vidimo, da sta oba ekvivalenčna razreda velikosti $6$, saj z nekaterimi izbirami permutacije za palice in barvi dobimo enako razporeditev krogel. Sedaj lahko npr.\ povprečno ekscentričnost vozlišč izračunamo tako, da ugotovimo ekscentričnost nekega predstavnika teh dveh ekvivalenčnih razredov, recimo $\epsilon(12||) = 4$ in $\epsilon(1|2|) = 3$, iz česar lahko sklepamo, da je povprečna ekscentričnost v grafu enaka $\bar{\epsilon}(O^2_3) = 3.5$. Na podoben način lahko izračunamo tudi povprečno razdaljo med dvema vozliščema v grafu tako, da najprej seštejemo vse razdalje od nekega poljubnega vozlišča do teh dveh predstavnikov, nato pa upoštevamo velikosti obeh ekvivalenčnih razredov in koliko je vseh možnih parov vozlišč (število vozlišč tega grafa lahko izračunamo po formuli~\eqref{eq:oxford-vozl} in je enako $12$):
 
 \[ \sum_{s \in V(O_3^2)} \distance(12||,s) = 26,\quad \sum_{s \in V(O_3^2)} \distance(1|2|,s) = 21 \implies \bar{\distance}(O^2_3) = \frac{6 \cdot 26 + 6 \cdot 21}{144} \approx 1.958.\]
 
 %(?) Vzemimo za primer nalogo $ 2||1 \rightarrow |1|2 $. Vidimo lahko, da je ta ekvivalentna nalogi $ |2|1 \rightarrow 2|1| $ (potrebni permutaciji barv krogel in palic sta navedeni v primeru~\ref{primer:oxf-ekv-nalogi}). Če na prvotni nalogi uporabimo vse možne kombinacije permutacij barv in palic (na voljo imamo $3!$ permutacij palic in $2$ permutaciji barv), lahko sklepamo, da je ekvivalenčni razred te naloge moči 12. Pravzaprav so $ 12|| \rightarrow 21|| $ vsi ekvivalenčni razredi razen dveh; predstavnika teh ekvivalenčnih razredov sta nalogi $12|| \rightarrow 21||$ oziroma $1|2| \rightarrow 2|1|$ , kjer je potrebna le zamenjava barv krogel. Vsak izmed teh dveh ekvivalenčnih razredov je le moči $ 6 $. $ 132 $ nalog oxfordskega grafa $ O^2_3 $ torej razpade na $ 12 $ ekvivalenčnih razredov, $ 10 $ od teh je velikosi $ 12 $, dva pa sta velikosti $ 6 $.
 
-Ogledali si bomo, kako lahko z upoštevanjem simetrij enostavno ugotovimo nekatere metrične lastnosti grafa, npr.~povprečno razdaljo. Za učinkovitejšo preučevanje večjih, bolj zakompliciranih londonskih grafov definirajmo grupo $(\Gamma_{np}, \cdot, 1_{np})$, pri čemer velja $\Gamma_{np} = S_n \times S_p$; grupa $S_n$ bo pri tem predstavljala vse možne permutacije (barv) krogel, $S_p$ pa vse možne permutacije palic. Operacijo $\cdot$ definiramo takole:
+Za učinkovitejšo preučevanje simetrij večjih, bolj zakompliciranih londonskih grafov definirajmo grupo $(\Gamma_{np}, \cdot, 1_{np})$, pri čemer velja $\Gamma_{np} = S_n \times S_p$; grupa $S_n$ bo pri tem predstavljala vse možne permutacije (barv) krogel, $S_p$ pa vse možne permutacije palic. Operacijo $\cdot$ definiramo takole:
 
 \[ (\chi_1,\pi_1) \cdot (\chi_2,\pi_2) = (\chi_1 \circ \chi_2,\pi_1 \circ \pi_2), \]
 
@@ -1075,7 +1073,7 @@ pri čemer je $\X$ preslikava, ki ustrezno permutira barve krogel glede na $\chi
 
 Iz osnovne teorije grup vemo, da lahko na množici stanj definiramo ekvivalenčno relacijo $\sim$ takole:
 \[ s_1 \sim s_2 \iff \exists (\chi,\pi) \in \Gamma_{np}\colon \ s_2 = (\chi,\pi).s_1, \]
-množica stanj tako razpade na ekvivalenčne razrede, ki so kar orbite. Ekvivalentna bodo torej tista stanja krogel, ki bodo v istem ekvivalenčnem razredu.
+množica stanj razpade na ekvivalenčne razrede, ki so kar orbite. Ekvivalentna bodo torej tista stanja krogel, ki bodo v istem ekvivalenčnem razredu.
 
 Analogno lahko definiramo delovanje $\Gamma_{np}$ tudi na množici vseh nalog za nek problem, torej na $V(L^n_h) \dot{\times} V(L^n_h)$, pri čemer je operator $\dot{\times}$ definiran takole:
 
@@ -1083,7 +1081,7 @@ Analogno lahko definiramo delovanje $\Gamma_{np}$ tudi na množici vseh nalog za
 
 \begin{primer}
     \label{primer:oxf-ekv-nalogi}
-    Vzemimo oxfordski graf $O^2_3$ in pokažimo, da sta nalogi $2||1 \rightarrow |1|2$ in $|2|1 \rightarrow 2|1|$ ekvivalentni. Želimo poiskati par permutacij $(\chi, \pi)$, ki nam bo prvi dve stanji krogel preslikal v drugi dve; permutaciji bomo zapisali z disjunktnimi cikli. Če vzamemo $(\chi, \pi) = ((1\ 2), (3\ 2\ 1))$ in upoštevamo, da je $\pi^{-1}=(1\ 2\ 3)$, se nam prva naloga preslika v $\X(|1|2) \rightarrow \X(1|2|) = |2|1 \rightarrow 2|1|$, dobimo drugo nalogo, torej sta nalogi res v isti orbiti.
+    Vzemimo oxfordski graf $O^2_3$ in pokažimo, da sta nalogi $2||1 \rightarrow |1|2$ in $|2|1 \rightarrow 2|1|$ ekvivalentni. Želimo poiskati par permutacij $(\chi, \pi)$, ki nam bo prvi dve stanji krogel preslikal v drugi dve; permutaciji bomo zapisali z disjunktnimi cikli. Če vzamemo $(\chi, \pi) = ((1\ 2), (3\ 2\ 1))$ in upoštevamo, da je $\pi^{-1}=(1\ 2\ 3)$, se nam prva naloga preslika v $\X(|1|2) \rightarrow \X(1|2|) = |2|1 \rightarrow 2|1|$, dobimo drugo nalogo, torej sta nalogi res v isti orbiti in s tem v istem ekvivalenčnem razredu.
 \end{primer}
 \medskip
 
@@ -1095,7 +1093,7 @@ S pomočjo zgornje teorije lahko sedaj dokažemo naslednjo trditev za londonski 
 %    Množica nalog problema londonskega stolpa $L_{222}^3$ velikosti $1722$ razpade na $49$ ekvivalenčnih razredov, od tega jih je $47$ velikosti $36$, preostala dva pa sta velikosti $18$ in $12$.
 \end{trditev}
 
-Preden se lotimo dokaza, pa bomo potrebovali še dva rezultata iz teorije grup. 
+Preden pa se lotimo dokaza, bomo potrebovali še dva rezultata iz teorije grup. 
 
 \begin{izrek}
     Naj grupa $G$ deluje na množico $X$. Označimo z $\bar{x}$ orbito elementa $x$ in z $G_x$ stabilizator elementa $x$. Potem velja
@@ -1152,11 +1150,11 @@ Ekvivalenčne razrede množice vseh stanj/nalog lahko torej preučujemo tako, da
     V nasprotnem primeru pa imamo na neki palici dve krogli, na neki drugi pa eno. Na voljo imamo torej $3 \cdot 2 \cdot 3!$ razporeditev krogel, saj se najprej odločimo, katera palica bo imela dve krogli (za to imamo na voljo $3$ možnosti), nato katera palica bo imela eno kroglo ($2$ možnosti), nato pa še premešamo barve krogel. Skupaj imamo torej $3! + 3 \cdot 2 \cdot 3! = 42$ možnih razporeditev krogel.
 
     Poiščimo negibne točke delovanja grupe $ (\Gamma_{33}, \cdot,1_{33} ) $ na množico vozlišč $V(L_{222}^3)$. Če vzamemo identiteto $1_{33}$, potem je množica negibnih točk za to preslikavo enaka kar celotni množici vozlišč. 
-    Možne negibne točke za preostale preslikave pa so samo tista stanja, ki imajo po eno kroglo na vsaki palici: pri stanju z npr.\ dvema kroglama na eni palici preslikava ne sme zamenjati palic, če želimo, da je to stanje negibna točka, zato pa preslikava ne sme zamenjati tudi barv.
-    Nadalje lahko opazimo, da bodo negibne točke imele le tiste preslikave $(\lambda, \pi)$, pri katerih bosta tako $\chi$ kot $pi$ ali permutaciji brez negibne točke ali pa zrcaljenji. V tabeli~\ref{tab:negibne-tocke} so predstavljene množice negibnih točk za vse preslikave iz grupe $\Gamma_{33}$.
+    Možne negibne točke za preostale preslikave pa so samo tista stanja, ki imajo po eno kroglo na vsaki palici: pri stanju z npr.\ dvema kroglama na neki palici preslikava ne sme zamenjati palic, če želimo, da je to stanje negibna točka, zato pa preslikava ne sme zamenjati tudi barv.
+    Nadalje lahko opazimo, da bodo negibne točke imele le tiste preslikave $(\lambda, \pi)$, pri katerih bosta tako $\chi$ kot $\pi$ ali permutaciji brez negibne točke ali pa zrcaljenji. V tabeli~\ref{tab:negibne-tocke} so predstavljene množice negibnih točk za vse preslikave iz grupe $\Gamma_{33}$.
     
-    \begin{center}
-        $
+    \begin{table}[h]
+        \[
         \begin{array}{c||c|c|c|c|c|c|}
             \text{\backslashbox{$\chi$}{$\pi$}} & 123 & 231 & 312 & 132 & 321 & 213 \\ \hline \hline 
             123 & V(L^3_{222}) & \emptyset & \emptyset & \emptyset & \emptyset & \emptyset \\ \hline
@@ -1166,11 +1164,11 @@ Ekvivalenčne razrede množice vseh stanj/nalog lahko torej preučujemo tako, da
             321 & \emptyset & \emptyset & \emptyset & \begin{tabular}{@{}c@{}}2|1|3 \\ 2|3|1 \end{tabular} & \begin{tabular}{@{}c@{}}1|2|3 \\ 3|2|1 \end{tabular} & \begin{tabular}{@{}c@{}}1|3|2 \\ 3|1|2 \end{tabular} \\ \hline
             132 & \emptyset & \emptyset & \emptyset & \begin{tabular}{@{}c@{}}3|1|2 \\ 3|2|1 \end{tabular} & \begin{tabular}{@{}c@{}}1|3|2 \\ 2|3|1 \end{tabular} & \begin{tabular}{@{}c@{}}1|2|3 \\ 2|1|3 \end{tabular} \\ \hline
         \end{array}
-        $
+        \]
         \medskip
         \captionof{table}{Negibne točke preslikav iz $\Gamma_{33}$.}
         \label{tab:negibne-tocke}
-    \end{center}
+    \end{table}
     
     Iz tabele lahko preberemo, da je število vseh negibnih točk enako
     
@@ -1199,7 +1197,7 @@ Ekvivalenčne razrede množice vseh stanj/nalog lahko torej preučujemo tako, da
     
     S tem je dokaz končan.
 \endproof
-
+\clearpage
 % slovar
 \section*{Slovar strokovnih izrazov}
 
@@ -1211,7 +1209,9 @@ Ekvivalenčne razrede množice vseh stanj/nalog lahko torej preučujemo tako, da
 % seznam uporabljene literature
 \begin{thebibliography}{99}
 
-\bibitem{bib:tohmyths} A. M. Hinz, S. Klavžar, U. Milutinović in C. Petr, \emph{The Tower of Hanoi – Myths and Maths}, Birkhäuser, Basel, 2013.
+\bibitem{bib:tohmyths} A.\ M.\ Hinz, S.\ Klavžar, U.\ Milutinović in C.\ Petr, \emph{The Tower of Hanoi – Myths and Maths}, Birkhäuser, Basel, 2013.
+
+\bibitem{bib:west} D.\ B.\ West et al, \emph{Introduction to graph theory}, Prentice hall, Upper Saddle River, 2001.
 
 \bibitem{bib:tolspatial}
 W. K. Berg in D. L. Byrd, \emph{The Tower of London spatial problem-solving task: Enchancing clinical and research implementation}, Journal of Clinical and Experimental Neuropsychology \textbf{24} (2002) 586--604,
