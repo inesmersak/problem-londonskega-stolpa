@@ -3,27 +3,19 @@
 \usepackage[slovene]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
-\usepackage[frame]{matrika}
+\usepackage{oznake}
 \usepackage{mathtools}
 \usepackage{epstopdf}
 %\usepackage{amsmath,amssymb,amsfonts}
 \usepackage{url}
 \usepackage{enumitem}
-
-% za stevilske mnozice uporabi naslednje simbole
-\newcommand{\R}{\mathbb R}
-\newcommand{\N}{\mathbb N}
-\newcommand{\Z}{\mathbb Z}
-\newcommand{\C}{\mathbb C}
-\newcommand{\Q}{\mathbb Q}
+%\usepackage{amsthm}
+\usepackage[enotno,frame]{matrika}
 
 \newcommand{\graf}[1][G]{\ensuremath{#1 = (V(#1), E(#1))}}
 
 % operatorji
 \DeclareMathOperator {\stopnja} {deg}
-\DeclareMathOperator {\id} {id}
-\DeclareMathOperator {\X}{X}
-\DeclareMathOperator{\distance}{d}
 
 % Po potrebi se lahk dodajo drugi standardni paketi, ki ne spreminjajo izgleda dokumenta
 
@@ -38,11 +30,11 @@
 
 \institucija{Fakulteta za matematiko in fiziko \\ Univerza v Ljubljani}
 
-\klasifikacija{~} 
-\izvlecek{Problem londonskega stolpa je miselna uganka; dane imamo palice določenih višin, na katerih so razporejene krogle različnih barv. Cilj igre je s čim manj premiki krogel preiti iz začetnega stanja v neko končno (dano) stanje krogel. Za tak problem lahko narišemo graf, pri čemer so stanja krogel vozlišča, veljavne poteze pa povezave. V nalogi obravnavamo lastnosti tega grafa -- najprej za klasični problem londonskega stolpa, kjer imamo $3$ palice (višin $1$, $2$, $3$) in 3 krogle različnih barv, nato pa še za splošen primer s $p$ palicami in $n$ kroglami. Izkaže se, da je graf klasičnega problema ravninski in vsebuje Hamiltonovo pot, ni pa Hamiltonov. Pri splošnem primeru dokažemo, da je graf nekega problema londonskega stolpa povezan natanko tedaj, ko lahko krogle razporedimo tako, da najvišja palica ostane prazna. Prav tako ugotovimo, da so ravninski le grafi problemov z dvema kroglama in nekateri grafi problemov s tremi kroglami. V nalogi obravnavamo tudi poseben primer londonskega stolpa, pri katerem so vse palice enake višine $n$, imenovan oxfordski stolp. Za tak problem izpeljemo formulo za število vozlišč in povezav za poljubna $n$ in $p$. Na koncu se dotaknemo tudi simetrij grafa nekega problema londonskega stolpa in na primeru demonstriramo, kako lahko z upoštevanjem teh simetrij bolj učinkovito določimo predvsem metričnih lastnosti teh grafov.}
+\klasifikacija[MSC]{05Cxx, 05E18} 
+\izvlecek{Problem londonskega stolpa je miselna uganka; dane imamo palice določenih višin, na katerih so razporejene krogle različnih barv. Cilj igre je s čim manj premiki krogel preiti iz začetnega stanja v neko končno (dano) stanje krogel. Ker se londonski stolp pogosto uporablja za psihološka testiranja, v članku ta problem podrobneje preučimo: narišemo lahko graf, pri čemer so stanja krogel vozlišča, veljavne poteze pa povezave. Nato obravnavamo lastnosti tega grafa -- najprej za klasični problem londonskega stolpa, kjer imamo $3$ palice (višin $1$, $2$, $3$) in 3 krogle različnih barv, nato pa še za splošen primer s $p$ palicami in $n$ kroglami. Izkaže se, da je graf klasičnega problema ravninski in vsebuje Hamiltonovo pot, ni pa Hamiltonov. Pri splošnem primeru dokažemo, da je graf nekega problema londonskega stolpa povezan natanko tedaj, ko lahko krogle razporedimo tako, da najvišja palica ostane prazna. Prav tako ugotovimo, da so ravninski le grafi problemov z dvema kroglama in nekateri grafi problemov s tremi kroglami. V članku obravnavamo tudi poseben primer londonskega stolpa, pri katerem so vse palice enake višine $n$, imenovan oxfordski stolp. Za tak problem izpeljemo formulo za število vozlišč in povezav za poljubna $n$ in $p$.}
 \title{The Tower of London problem}
-\abstract{The Tower of London is a problem-solving puzzle, which consists of pegs of various heights that hold different-coloured balls of the same size. The aim of the puzzle is to get from the beginning state of the balls to the given end state with as little moves as possible. In order to study this problem, we use graph theory: a graph of the problem, called the London graph, can be drawn. Here, the vertices of the graph are all possible states and the edges are valid moves between these states. In this work, we take a look at some of the properties of London graphs. First, we analyse the graph of the classical (Shallice's) version of the problem, which consists of $3$ balls and $3$ pegs (of heights $1$, $2$, $3$, respectively), which turns out to be planar and contains a Hamiltonian path, but is not Hamiltonian.
-After that, we take a look at the graph of the generalized Tower of London with $n$ balls and $p$ pegs. We prove that such a graph is connected if and only if the balls can be rearranged in a way that the tallest peg remains empty. Furthermore, we find that only  the problems with two balls (and some of those with three balls) have planar graphs. In this work, we also take a look at a special case of the Tower of London called the Tower of Oxford, where all the pegs are of the same height $n$. We prove an explicit formula to calculate the number of vertices and edges of the Oxford graph for all $n$ and $p$. In the end, we touch upon the symmetries of the London graphs and demonstrate how we can take advantage of them in order to calculate some metric properties more effeciently.}
+\abstract{The Tower of London is a problem-solving puzzle, which consists of pegs of various heights that hold different-coloured balls of the same size. The aim of the puzzle is to get from the beginning state of the balls to the given end state with as little moves as possible. The Tower of London is often used in psychological testings, which is our motivation to study this problem  in more detail. In order to do that, we use graph theory: a graph of the problem, called the London graph, can be drawn. Here, the vertices of the graph are all possible states and the edges are valid moves between these states. In this article, we take a look at some of the properties of London graphs. First, we analyse the graph of the classical (Shallice's) version of the problem, which consists of $3$ balls and $3$ pegs (of heights $1$, $2$, $3$, respectively), which turns out to be planar and contains a Hamiltonian path, but is not Hamiltonian.
+After that, we take a look at the graph of the generalized Tower of London with $n$ balls and $p$ pegs. We prove that such a graph is connected if and only if the balls can be rearranged in a way that the tallest peg remains empty. Furthermore, we find that only  the problems with two balls (and some of those with three balls) have planar graphs. In this article, we also take a look at a special case of the Tower of London called the Tower of Oxford, where all the pegs are of the same height $n$. We prove an explicit formula to calculate the number of vertices and edges of the Oxford graph for all $n$ and $p$.}
 
 \glava\baselineskip=14.5pt
 
@@ -60,7 +52,8 @@ Osnovna verzija londonskega stolpa vsebuje tri enako velike krogle različnih ba
 Pri klasičnem londonskem stolpu imamo tri enako velike krogle različnih barv in tri palice različnih velikosti: na prvo lahko postavimo eno kroglo, na drugo dve, na tretjo pa tri (temu bomo rekli, da imajo palice višine 1, 2 in 3). Cilj igre je priti iz nekega začetnega stanja v neko vnaprej določeno končno stanje.
 
 \begin{figure}[h]
-    \includegraphics[width=250pt]{../img/london-tower.png}
+    \centering
+    \includegraphics[width=250pt]{img/london-tower.png}
     \caption{Na sliki sta prikazani dve možni stanji londonskega stolpa.}
     \label{fig:stanji}
 \end{figure}
@@ -71,13 +64,13 @@ krogle bomo označili s številkami $1$, $2$, $3$ -- npr.\ modra krogla naj ima 
 \begin{primer}
     Začetno stanje na sliki~\ref{fig:stanji} lahko torej opišemo z $|3|12$, končno stanje pa z $|21|3$.
 \end{primer}
-\medskip
 
 S pomočjo teh oznak lahko opišemo vsako možno stanje in narišemo graf londonskega stolpa (označimo ga z $L$), pri čemer so vozlišča stanja, povezave pa so med tistimi stanji, med katerimi lahko prehajamo z eno potezo (enim veljavnim premikom krogle).
 
 \begin{figure}[h!]
+    \centering
     \includegraphics[width=300pt]{img/classic-tolgraph.png}
-    \caption{Graf $L$ klasičnega Londonskega stolpa.}
+    \caption{Graf $L$ klasičnega londonskega stolpa.}
     \label{fig:tolgraph}
 \end{figure}
 
@@ -86,39 +79,37 @@ S pomočjo teh oznak lahko opišemo vsako možno stanje in narišemo graf london
     Število vseh možnih stanj klasičnega londonskega stolpa je 36.
 \end{lema}
 
-%\proof
-%Najprej si oglejmo vse možne postavitve krogel, pri čemer se ne oziramo na barvo.
-%Imamo dve možnosti:
-%\begin{enumerate}
-%    \item \textbf{Na prvi (najkrajši) palici je krogla.}
-%    Preostali dve krogli lahko razdelimo na drugi dve palici tako, da:
-%    \begin{itemize}[label={-}]
-%        \item je prazna druga palica,
-%        \item je prazna tretja palica,
-%        \item ima vsaka palica po eno kroglo.
-%    \end{itemize}
-%    Torej imamo v tem primeru tri možnosti.
-%    
-%    \item \textbf{Na prvi (najkrajši) palici ni krogle.}
-%    Na drugi dve palici moramo torej razdeliti vse tri krogle.
-%    Ponovno imamo tri možnosti:
-%    \begin{itemize}[label={-}]
-%        \item druga palica je prazna, tretja palica pa polna (na njej so tri krogle),
-%        \item na drugi palici je ena krogla, na tretji palici pa dve krogli,
-%        \item druga palica je polna (na njej sta dve krogli), na tretji palici pa je ena krogla.
-%    \end{itemize}
-%\end{enumerate}
-%Po pravilu vsote imamo torej, če se ne oziramo na barve krogel, $3+3=6$ možnih postavitev krogel.
-%V vsaki od teh lahko še premešamo barve krogel, torej imamo za vsako postavitev $3!$ možnosti. Sledi, da je vseh možnih stanj $3! \cdot 6 = 6 \cdot 6 = 36$.\qedhere
-%\endproof
+\begin{dokaz}
+Najprej si oglejmo vse možne postavitve krogel, pri čemer se ne oziramo na barvo.
+Imamo dve možnosti:
+\begin{enumerate}
+    \item \textbf{Na prvi (najkrajši) palici je krogla.}
+    Preostali dve krogli lahko razdelimo na drugi dve palici tako, da:
+    \begin{itemize}[label={--}]
+        \item je prazna druga palica,
+        \item je prazna tretja palica,
+        \item ima vsaka palica po eno kroglo.
+    \end{itemize}
+    Torej imamo v tem primeru tri možnosti.
+    
+    \item \textbf{Na prvi (najkrajši) palici ni krogle.}
+    Na drugi dve palici moramo torej razdeliti vse tri krogle.
+    Ponovno imamo tri možnosti:
+    \begin{itemize}[label={--}]
+        \item druga palica je prazna, tretja palica pa polna (na njej so tri krogle),
+        \item na drugi palici je ena krogla, na tretji palici pa dve krogli,
+        \item druga palica je polna (na njej sta dve krogli), na tretji palici pa je ena krogla.
+    \end{itemize}
+\end{enumerate}
+Po pravilu vsote imamo torej, če se ne oziramo na barve krogel, $3+3=6$ možnih postavitev krogel.
+V vsaki od teh lahko še premešamo barve krogel, torej imamo za vsako postavitev $3!$ možnosti. Sledi, da je vseh možnih stanj $3! \cdot 6 = 6 \cdot 6 = 36$.\QED
+\end{dokaz}
 
 Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ 36 vozlišč. Hitro vidimo, da je 12 vozlišč grafa $L$ stopnje 2, drugih 12 je stopnje 3, zadnjih 12 pa stopnje 4. 
 
 \begin{primer}
     S pomočjo grafa na sliki~\ref{fig:tolgraph} lahko hitro ugotovimo, da za prehod med stanjema $|3|12$ in $|21|3$, ki sta prikazani na sliki~\ref{fig:stanji}, potrebujemo minimalno 4 poteze in da obstaja le eno najkrajše možno zaporedje potez.
 \end{primer}
-
-\bigskip
 
 Preden preučimo še ostale lastnosti grafa klasičnega problema londonskega grafa, pa se spomnimo nekaj definicij. \emph{Premer} nekega grafa je definiran kot največja možna razdalja med poljubnima dvema paroma vozlišč v grafu. Premer bo pri našem problemu merilo težavnosti, saj nam bo povedal, s kakšnim številom potez je vedno mogoče priti od poljubnega začetnega do poljubnega končnega stanja.
 
@@ -135,10 +126,11 @@ Vrnimo se k grafu klasičnega problema londonskega stolpa. S pomočjo slike~\ref
     Graf $L$ vsebuje Hamiltonovo pot, ne pa tudi Hamiltonovega cikla.
 \end{trditev}
 
-\begin{proof}
+\begin{dokaz}
 Hitro lahko dokažemo, da $L$ vsebuje Hamiltonovo pot: poiščemo jo. Ena izmed Hamiltonovih poti v grafu $L$ je prikazana na sliki~\ref{fig:dokaz-ham-klasicni} levo.
 
 \begin{figure}
+    \centering
     \includegraphics[width=210pt]{img/classic-tolgraph-ham-path.png}
     \includegraphics[width=210pt]{img/classic-tolgraph-hamcycle.png}
     \caption{Ena izmed Hamiltonovih poti v grafu $L$ (levo) in graf $L$ narisan malo drugače (desno).}
@@ -157,8 +149,8 @@ Cikel $C$ mora torej gotovo iti skozi vsa vozlišča stopnje $2$, kar je možno 
     \item Pot torej nadaljujemo z vozliščem stopnje $3$ na zunanjem ciklu $3||12$, in tudi v nadaljevanju ostanemo na zunanjem ciklu, saj vemo, da bomo v nasprotnem primeru ostali na notranjem ciklu.
 \end{itemize}
 Ne moremo konstruirati cikla, bi vseboval vsa vozlišča našega grafa $L$ natanko enkrat, $L$ torej ni Hamiltonov.
-\qedhere
-\end{proof}
+\QED
+\end{dokaz}
 
 \section{Posplošeni londonski stolp}
 Graf klasičnega problema londonskega stolpa je majhen, zato je za psihološka testiranja naloga včasih prelahka. 
@@ -187,7 +179,8 @@ Položaje oštevilčimo od leve palice proti desni, z vrha palice proti dnu. Tak
     Predstavljajmo si, da oštevilčujemo krogle in dna palice, in začnimo oštevilčevati od leve proti desni, z vrha palice proti dnu, tako kot je prikazano na sliki~\ref{fig:ostev-stanji}.
     
     \begin{figure}[h]
-        \includegraphics[width=220pt]{../img/london-tower-numbered.png}
+        \centering
+        \includegraphics[width=220pt]{img/london-tower-numbered.png}
         \caption{Položaji krogel in palic za stanje $|3|12|$.}
         \label{fig:ostev-stanji}
     \end{figure}
@@ -237,7 +230,7 @@ Medtem ko je v splošnem težko določiti število vozlišč londonskega grafa, 
     
 \end{trditev}
 
-\begin{proof}
+\begin{dokaz}
 Iščemo število vseh možnih stanj krogel oxfordskega stolpa, saj je to enako številu vozlišč oxfordskega grafa.
 Podobno kot pri dokazu števila stanj klasičnega londonskega stolpa najprej pozabimo na različne barve krogel (pretvarjamo se, da so krogle enake) in se osredotočimo samo na njihovo postavitev. 
 
@@ -247,8 +240,8 @@ Sedaj lahko na problem pogledamo malo drugače: na $n+p-1$ mest razporejamo $n$ 
 
 Ker je vsaka krogla drugačne barve, imamo za vsako razporeditev še $n!$ možnih permutacij barv. Število vseh stanj, in zato tudi število vozlišč, je tako enako
 
-\[ n! \cdot {n+p-1 \choose p-1} = n! \cdot \frac{(n+p-1)!}{n!(p-1)!} = \frac{(n+p-1)!}{(p-1)!}. \] \qedhere
-\end{proof}
+\[ n! \cdot {n+p-1 \choose p-1} = n! \cdot \frac{(n+p-1)!}{n!(p-1)!} = \frac{(n+p-1)!}{(p-1)!}. \] \QED
+\end{dokaz}
 
 \begin{trditev}
     Število povezav oxfordskega grafa $O^n_p$ je enako
@@ -281,7 +274,7 @@ To lemo lahko hitro dokažemo s preprostim kombinatoričnem razmislekom, vendar 
 
 Sedaj imamo vse, kar potrebujemo za dokaz trditve o številu povezav oxfordskih grafov.
 
-\proof[Dokaz trditve~\ref{trd:povezave-oxf}]
+\begin{dokaz}[Dokaz trditve~\ref{trd:povezave-oxf}]
 Vzemimo stanje (vozlišče) s $q$ nepraznimi palicami, pri čemer je $q$ fiksen ter velja $1 \leq q \leq p$ in $n \geq q$. Preštejmo vse veljavne poteze, ki jih lahko naredimo ob takem stanju krogel. Vsako vrhnjo kroglo ene izmed $q$ palic lahko premaknemo na katerokoli palico, razen trenutne; izberemo torej eno izmed $q$ palic, s katere premaknemo kroglo, in eno izmed preostalih $p-1$ palic, kamor kroglo premaknemo. Tako vozlišče je torej stopnje $q(p-1)$. (Pri tem upoštevamo, da je povezava med dvema vozliščema grafa pravzaprav veljavna poteza med dvema stanjema.)
 
 Ugotovili smo, da so vsa stanja oziroma pripadajoča vozlišča, ki imajo točno $q$ nepraznih palic, enake stopnje. Ker želimo uporabiti lemo o rokovanju, moramo najprej prešteti, koliko je takih stanj. 
@@ -314,9 +307,9 @@ Sedaj uvedemo nov indeks $k = q-1$, upoštevamo lastnosti binomskih simbolov in 
 &= \frac{1}{2} p (p-1) n! {n + p - 2 \choose p-1} \\
 &= \frac{1}{2} p (p-1) n! \frac{(n+p-2)!}{(p-1)!\,(n-1)!} \\
 &= \frac{1}{2} p n \frac{(n+p-2)!}{(p-2)!} \\
-&= \frac{np}{2} \frac{(p-2+n)!}{(p-2)!} \qedhere
+&= \frac{np}{2} \frac{(p-2+n)!}{(p-2)!} \QED
 \end{align*}
-\endproof
+\end{dokaz}
 
 \subsection{Povezanost}
 
@@ -335,7 +328,7 @@ Izkaže se, da je ta pogoj tudi zadosten za povezanost londonskega grafa.
     \end{equation}
 \end{izrek}
 
-\proof
+\begin{dokaz}
 Želimo dokazati, da iz pogoja \eqref{eq:pogoj-povezanosti} sledi, da lahko najdemo pot med poljubnima dvema vozliščema v londonskem grafu, kar je ravno definicija povezanosti. Dokaza se lotimo tako, da najprej čim bolj zreduciramo splošen problem in nato rešimo zreduciran problem.
 
 Spomnimo se, da vsako vozlišče londonskega grafa predstavlja neko stanje krogel -- če torej iščemo pot v grafu med dvema vozliščema, pravzaprav rešujemo problem, kako iz začetnega stanja krogel priti v končno. Fiksirajmo poljubno začetno in končno stanje in poskusimo rešiti ta problem.
@@ -367,7 +360,7 @@ Sedaj si izberimo kroglo, ki ni na pravem položaju, in s tem tudi kroglo, ki je
     V tem primeru je postopek še nekoliko lažji: najprej vse krogle nad $b$ premaknemo na največjo palico, nato na vrh največje palice premaknemo tudi $b$. Sedaj lahko kroglo $a$ prestavimo na njeno pravo mesto (kjer je bil prej $b$), $b$ na vrh prve palice, vse preostale krogle na največji palici pa postavimo nazaj na prejšnja mesta, nad kroglo $a$.
 \end{enumerate}
 S tem je dokaz končan, saj smo našli način, kako prehajati med dvema poljubnima stanjema krogel, in smo s tem našli tudi pot v grafu med poljubnima vozliščema.
-\endproof
+\end{dokaz}
 
 \subsection{Ravninskost}
 
@@ -389,6 +382,7 @@ S slike~\ref{fig:graf-2krogli}, na kateri je narisan graf $O^2_3$, lahko zaklju�
 Na sliki~\ref{fig:graf-2krogli} so pravzaprav prikazani grafi vseh londonskih stolpov z dvema kroglama -- rdeča barva označuje najmanjši graf, $L^2_{111}$, nato pa z zaporednim dodajanjem vozlišč in povezav dobimo še ostale: če dodamo zelena vozlišča, dobimo $L^2_{112}$, če nato dodamo še modra vozlišča, dobimo $L^2_{122}$; celoten graf pa (kot že omenjeno) predstavlja $O^2_3$ .
 
 \begin{figure}[h]
+    \centering
     \includegraphics[width=170pt]{img/tolgraph-2balls.png}
     \caption{Vsi londonski grafi s $p=3$ in $n=2$ so ravninski.}
     \label{fig:graf-2krogli}
@@ -409,12 +403,11 @@ L_{222}^3 & \subset & L_{223}^3 & \subset & L_{233}^3 & \subset & L_{333}^3 \\
 \end{matrix}
 \end{equation}
 
-\smallskip
-
 Videli smo že, da je klasični londonski graf $L$ ravninski. Torej je ravninski tudi njegov podgraf $L_{122}^3$, saj do njega pridemo tako, da iz $L$ zbrišemo tistih šest vozlišč, kjer so vse tri krogle na največji palici, in pripadajoče povezave. 
 Če pa grafu $L$ dodamo vozlišča, kjer so vse tri krogle na srednji palici, lahko s slike~\ref{fig:L^3_133} vidimo, da je tudi $L_{133}^3$ ravninski (dodana vozlišča so označena z rdečo barvo).
 
 \begin{figure}[h]
+    \centering
     \includegraphics[width=350pt]{img/L_133.png}
     \caption{Graf $L^3_{133}$ je ravninski.}
     \label{fig:L^3_133}
@@ -428,7 +421,7 @@ Videli smo že, da je klasični londonski graf $L$ ravninski. Torej je ravninski
     Še vedno predpostavljamo, da so londonski grafi povezani, torej zadostujejo pogoju~\eqref{eq:pogoj-povezanosti}.
 \end{opomba}
 
-\proof[Oris dokaza.]
+\begin{dokaz}[Oris dokaza.]
 Videli smo že, da so grafi $L_h^2, L_{122}^3, L_{123}^3$ in $L_{133}^3$ ravninski. Dokazati moramo, da vsi ostali grafi za $n=3$ in vsi grafi za $n \geq 4$ niso ravninski, pri tem nam je v pomoč izrek Kuratowskega. Poiskati bi morali subdivizijo $K_{3,3}$ v grafu $L_{222}^3$, kar pa bomo tukaj izpustili in predpostavili, da ta graf res vsebuje subdivizijo $K_{3,3}$. Od tu sledi, da $L_{222}^3$ ni ravninski. Ker vsi preostali grafi z $n = 3$ vsebujejo graf $L_{222}^3$ (kot lahko vidimo na shemi~\eqref{eq:grafi-3krogle}), tudi $L_{223}^3, L_{233}^3, L_{333}^3=O^3_3$ niso ravninski.
 
 Dokazati moramo le še, da tudi londonski grafi za $n\geq 4$ niso ravninski.
@@ -436,9 +429,13 @@ Ker $L_{222}^3$ ni ravninski in je vsebovan v grafu $L_{222}^4$, sledi, da $L_{2
 Ker mora vsak graf $L_h^4$ vsebovati ali $L_{133}^4$ ali $L_{222}^4$, ki nista ravninska, to sledi tudi za preostale grafe z $n=4$.
 
 Za $n \geq 4$ torej noben graf ni ravninski, saj vsak $L_h^n$ dobimo z dodajanjem krogel enemu izmed $L_h^4$, za katere pa zdaj vemo, da niso ravninski.
-\endproof
+\end{dokaz}
 
-?? Dragonhack Č=
+\section{Implementacija}
+
+Eno izmed variacij londonskega stolpa (natančneje $L^4_{234}$) smo implementirali na 24-urnem hackathonu Dragonhack in dosegli 2.\ mesto (člani ekipe smo bili Marko Ljubotina, Miloš Ljubotina, Ines Meršak in Jure Slak). Ideja projekta je bila, da nekateri bolniki, ki morajo rešiti problem londonskega stolpa, zaradi tresenja rok morda ne morejo natančno uporabljati miške (npr.\ Parkinsonovi bolniki). Miško smo zato nadomestili z zapestnico Myo, ki si jo uporabnik pripne na nadlaket, zapestnica pa zaznava njegove premike zapestja, meri pa tudi pospešek. Po tem, ko pacient z gibi zapestja reši problem, se na spletni strani prikažejo njegovi rezultati in optimalna rešitev problema. S pomočjo pospeškometra pa aplikacija tudi sledi tresenju bolnikove roke. 
+
+Celotna koda zgornjega projekta je dostopna na \cite{bib:dragonhack}.
 
 
 \begin{thebibliography}{99}
@@ -446,25 +443,17 @@ Za $n \geq 4$ torej noben graf ni ravninski, saj vsak $L_h^n$ dobimo z dodajanje
 
 \bibitem{bib:west} D.\ B.\ West et al, \emph{Introduction to graph theory}, Prentice hall, Upper Saddle River, 2001.
 
-%\bibitem{bib:tolspatial}
-%W. K. Berg in D. L. Byrd, \emph{The Tower of London spatial problem-solving task: Enchancing clinical and research implementation}, Journal of Clinical and Experimental Neuropsychology \textbf{24} (2002) 586--604,
-%dostopno tudi na \\ \url{https://www.researchgate.net/publication/11201010_The_Tower_of_London_Spatial_Problem-Solving_Task_Enhancing_Clinical_and_Research_Implementation}.
-%
-%\bibitem{bib:potocnik} P. Potočnik, \emph{Zapiski predavanj iz Diskretne Matematike I}, 1.~izdaja, [ogled 29.~12.~15], dostopno na \url{http://www.fmf.uni-lj.si/~potocnik/Ucbeniki/DM-Zapiski2010.pdf}.
-%
-%\bibitem{bib:wikishal} \emph{Tim Shallice}, v: Wikipedia: The Free Encyclopedia, [ogled 8.~10.~2015], dostopno na\\ \url{https://en.wikipedia.org/wiki/Tim_Shallice}.
-%
-%\bibitem{bib:wikihamilpath} \emph{Hamiltonian path}, v: Wikipedia: The Free Encyclopedia, [ogled 28.~12.~2015], dostopno na \url{https://en.wikipedia.org/wiki/Hamiltonian_path}.
+\bibitem{bib:tolspatial}
+W. K. Berg in D. L. Byrd, \emph{The Tower of London spatial problem-solving task: Enchancing clinical and research implementation}, Journal of Clinical and Experimental Neuropsychology \textbf{24} (2002) 586--604,
+dostopno tudi na \\ \url{https://www.researchgate.net/publication/11201010_The_Tower_of_London_Spatial_Problem-Solving_Task_Enhancing_Clinical_and_Research_Implementation}.
 
-\bibitem{7} E.A. Cornell, C.E. Wieman, M.R. Matthews, J.R. Ensher in M.H. Anderson, \emph{Observation of Bose-Einstein Condensation in a Dilute Atomic Vapor}, Science \textbf{269} (1995), 198--201. 
-\bibitem{6} W. Ketterle, D.M. Kurn, D.S. Durfee, N.J. van Druten, M.R. Andrews, M.-O. Mewes in K.B. Davis, \emph{Bose-Einstein Condensation in a Gas of Sodium Atoms}, Physics Review Letters \textbf{75} (1995), 3969--3973. 
-\bibitem{3} J. Klaers, J. Schmitt, F. Vewinger in M. Weitz, \emph{Bose-Einstein condensation of photons in an optical microcavity}, Nature \textbf{468} (2010), 545--548. 
-\bibitem{10} T. Giamarchi, C. R\"uegg in O. Tchernyshyov, \emph{Bose-Einstein condensation in magnetic insulators}, Nature Physics \textbf{4} (2008), 198--204. 
-\bibitem{1} J.F. Annett, \emph{Superconductivity, Superfluids and Condensates}, Oxford University Press, 2004.
-\bibitem{8} L. Lewin, \emph{Polylogarithms and Associated Functions}, Elsevier Science Ltd., 1981. 
-\bibitem{9} H. Wagner in N.D. Mermin, \emph{Absence of Ferromagnetism or Antiferromagnetism in One- or Two-Dimensional Isotropic Heisenberg Models}, Physics Review Letters  \textbf{17} (1996), 1133--1136.
-\bibitem{2} J. Klaers, F. Vewinger in M. Weitz, \emph{Thermalization of a two-dimensional photonic gas in a ‘white-wall’ photon box}, Nature Physics \textbf{6} (2010), 512--515.
+\bibitem{bib:potocnik} P. Potočnik, \emph{Zapiski predavanj iz Diskretne Matematike I}, 1.~izdaja, [ogled 29.~12.~15], dostopno na \url{http://www.fmf.uni-lj.si/~potocnik/Ucbeniki/DM-Zapiski2010.pdf}.
 
+\bibitem{bib:wikishal} \emph{Tim Shallice}, v: Wikipedia: The Free Encyclopedia, [ogled 8.~10.~2015], dostopno na\\ \url{https://en.wikipedia.org/wiki/Tim_Shallice}.
+
+\bibitem{bib:wikihamilpath} \emph{Hamiltonian path}, v: Wikipedia: The Free Encyclopedia, [ogled 28.~12.~2015], dostopno na \url{https://en.wikipedia.org/wiki/Hamiltonian_path}.
+
+\bibitem{bib:dragonhack} \emph{Tower of London test}, na: Github, repository hosting service, [ogled 5.~8.~2016], dostopno na \url{https://github.com/jureslak/dragonhack-2016}.
 \end{thebibliography}
 
 \end{document}
