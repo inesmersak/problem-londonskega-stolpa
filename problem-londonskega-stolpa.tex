@@ -457,7 +457,7 @@ V diplomski nalogi se bomo ukvarjali tudi s tem, kdaj je graf, s pomočjo katere
     Graf je \emph{ravninski}, če ga lahko narišemo v ravnini tako, da se nobeni povezavi ne križata -- torej če obstaja risba grafa, kjer se nobeni dve povezavi ne križata.
 \end{definicija}
 
-Če je graf narisan v ravnini brez križanj povezav, rečemo, da je graf vložen v ravnino(Klavžar podčrtal). TODO a sploh rabim to
+Če je graf narisan v ravnini brez križanj povezav, rečemo, da je graf \emph{vložen v ravnino}.
 
 \begin{figure}[h]
     \begin{tikzpicture}
@@ -720,9 +720,7 @@ Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ 36 vozlišč. Graf je ravni
 
 \bigskip
 
-\begin{trditev}
-    TODO zvezdica
-    
+\begin{trditev}[{\cite[Proposition~7.1.]{bib:tohmyths}}]
     Graf $L$ vsebuje Hamiltonovo pot, ne pa tudi Hamiltonovega cikla.
 \end{trditev}
 
@@ -913,7 +911,7 @@ Potreben pogoj za povezanost londonskega grafa je očitno
 oziroma z besedami, da lahko krogle razporedimo tako, da najvišja palica ostane prazna. V nasprotnem primeru bi, potem ko bi razporedili maksimalno možno število krogel na vse preostale (manjše) palice, na največji ostalo še nekaj krogel, ki jih nikoli ne bi mogli premakniti na kakšno drugo palico.
 Izkaže se, da je ta pogoj tudi zadosten za povezanost londonskega grafa.
 
-\begin{izrek}
+\begin{izrek}[{\cite[Theorem~7.3.]{bib:tohmyths}}]
     Londonski graf $L_h^n$ je povezan natanko tedaj, ko velja pogoj
     \begin{equation}
         n \leq \sum_{k=1}^{p-1} h_k.
@@ -997,7 +995,7 @@ Videli smo že, da je klasični londonski graf $L$ ravninski. Torej je ravninski
     \label{fig:L^3_133}
 \end{figure}
 
-\begin{trditev}
+\begin{trditev}[{\cite[Proposition~7.4.]{bib:tohmyths}}]
     Naj bo $p=3$. Tedaj so ravninski londonski grafi natanko grafi $L_h^2, L_{122}^3, L_{123}^3$ in $L_{133}^3$.
 \end{trditev}
 
@@ -1093,7 +1091,7 @@ Analogno lahko definiramo delovanje $\Gamma_{np}$ tudi na množici vseh nalog za
 
 S pomočjo zgornje teorije lahko sedaj dokažemo naslednjo trditev za londonski graf $L_{222}^3$:
 
-\begin{trditev}
+\begin{trditev}[{\cite[Proposition~7.5.]{bib:tohmyths}}]
     \label{trd:simetrije-L222na3}
     Množica stanj londonskega grafa $L_{222}^3$, katere velikost je $42$, razpade v $2$ ekvivalenčna razreda; prvi je velikosti $6$, drugi pa $36$. Minimalna stopnja vozlišč tega grafa je $3$, maksimalna $6$, povprečna pa $\approx 3.43$. Premer tega grafa je $5$, povprečna razdalja med dvema vozliščema pa $\approx 3.31$. 
 %    Množica nalog problema londonskega stolpa $L_{222}^3$ velikosti $1722$ razpade na $49$ ekvivalenčnih razredov, od tega jih je $47$ velikosti $36$, preostala dva pa sta velikosti $18$ in $12$.
