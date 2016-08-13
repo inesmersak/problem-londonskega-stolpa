@@ -226,7 +226,7 @@ Vozlišča grafa predstavimo s točkami v ravnini, povezavo med dvema vozlišče
 \end{primer}
 \medskip
 
-Če imamo podano stopnjo vseh vozlišč grafa, lahko na enostaven način izračunamo število povezav tega grafa, velja sledeča lema:
+Če imamo podano stopnjo vseh vozlišč grafa, lahko na enostaven način izračunamo število povezav tega grafa:
 
 \begin{lema}[Lema o rokovanju]
     TODO pika pred naslovom
@@ -451,7 +451,7 @@ Eno izmed zanimivih vprašanj v teoriji grafov je, ali je možno najti neko pot/
 
 \subsection{Ravninski grafi}
 
-V diplomski nalogi se bomo ukvarjali tudi s tem, kdaj je graf, s pomočjo katerega predstavimo londonski stolp, ravninski.
+V nadaljevanju nas bo zanimalo tudi, kdaj je graf, s pomočjo katerega predstavimo londonski stolp, ravninski.
 
 \begin{definicija}
     Graf je \emph{ravninski}, če ga lahko narišemo v ravnini tako, da se nobeni povezavi ne križata -- torej če obstaja risba grafa, kjer se nobeni dve povezavi ne križata.
@@ -644,7 +644,7 @@ Pogledali si bomo še operacijo \emph{subdivizije}, ki prav tako ohranja lastnos
     Graf $H$ je \emph{subdivizija} grafa $G$, če ga lahko dobimo iz $G$ z zaporednim \emph{subdiviziranjem} povezav grafa $G$ \cite[str.~66]{bib:potocnik}.
 \end{definicija}
 
-Iz definicije je razvidno, da je tak $H$ ravninski natanko tedaj, ko je $G$ ravninski. Iz tega dejstva, trditve~\ref{trd:podgraf} in posledice~\ref{posl:neravninska-grafa} lahko zaključimo, da graf zagotovo ni ravninski, če vsebuje subdivizijo $K_5$ ali $K_{3,3}$. Zanimivo pa je, da velja tudi obratno; dokaz tega dejstva je netrivialen in ga lahko najdemo v \cite[str.~247-251]{bib:west}.
+Iz definicije je razvidno, da je tak $H$ ravninski natanko tedaj, ko je $G$ ravninski. Iz tega dejstva, trditve~\ref{trd:podgraf} in posledice~\ref{posl:neravninska-grafa} lahko zaključimo, da graf zagotovo ni ravninski, če vsebuje subdivizijo $K_5$ ali $K_{3,3}$. Zanimivo pa je, da velja tudi obratno; dokaz tega dejstva je netrivialen in ga lahko najdemo v \cite[str.~247--251]{bib:west}.
 
 \begin{izrek}[Kuratowski]
     \label{izr:kuratowski}
@@ -692,7 +692,7 @@ S pomočjo teh oznak lahko opišemo vsako možno stanje in narišemo graf london
     \begin{enumerate}
         \item \textbf{Na prvi (najkrajši) palici je krogla.}
         Preostali dve krogli lahko razdelimo na drugi dve palici tako, da:
-        \begin{itemize}[label={-}]
+        \begin{itemize}[label={--}]
             \item je prazna druga palica,
             \item je prazna tretja palica,
             \item ima vsaka palica po eno kroglo.
@@ -702,7 +702,7 @@ S pomočjo teh oznak lahko opišemo vsako možno stanje in narišemo graf london
         \item \textbf{Na prvi (najkrajši) palici ni krogle.}
         Na drugi dve palici moramo torej razdeliti vse tri krogle.
         Ponovno imamo tri možnosti:
-        \begin{itemize}[label={-}]
+        \begin{itemize}[label={--}]
             \item druga palica je prazna, tretja palica pa polna (na njej so tri krogle),
             \item na drugi palici je ena krogla, na tretji palici pa dve krogli,
             \item druga palica je polna (na njej sta dve krogli), na tretji palici pa je ena krogla.
@@ -741,7 +741,7 @@ Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ 36 vozlišč. Graf je ravni
     Sedaj začnimo graditi cikel $C$, ki bo vseboval vsa vozlišča grafa natanko enkrat. Oglejmo si sliko~\ref{fig:dokaz-ham-klasicni} desno.
     Cikel $C$ mora torej gotovo iti skozi vsa vozlišča stopnje $2$, kar je možno le na en način: če imamo vozlišče stopnje $2$ $v$ s sosedoma $u$ stopnje $3$ in $z$ stopnje $4$, mora $C$ vsebovati pot $u,v,z$.
     Če začnemo pri vozlišču stopnje $2$ $||123$, mora graf torej vsebovati pot $1||23, ||123, |1|23$. Slednje je vozlišče stopnje $4$, za nadaljevanje cikla pa imamo dve možnosti: vozlišče $2|1|3$ ali $|21|3$. Ker je prvo stopnje $4$ in smo že prej opazili, da dve vozlišči enake stopnje ne bosta sosednji na ciklu $C$, cikel nadaljujemo z $|21|3$. Sosed tega vozlišča je vozlišče $3|21|$ stopnje $2$, zato moramo cikel gotovo nadaljevati skozi njega. Pridemo do vozlišča $3|1|2$. Imamo dve možnosti: 
-    \begin{itemize}[label={-}]
+    \begin{itemize}[label={--}]
         \item Nadaljujemo z vozliščem $|31|2$, ki je stopnje $3$ in je na notranjem ciklu. V tem primeru ne bomo notranjega cikla nikoli zapustili, saj je notranji cikel oblike: vozlišče stopnje $2$, vozlišče stopnje $3$ (povezano samo z vozlišči na notranjem ciklu), vozlišče stopnje $4$, ki je nato povezano z vozliščem stopnje $2$, skozi katerega moramo iti. Nato pa sledita vozlišče $a$ stopnje $3$ (povezano z notranjim ciklom in vozliščem $w$ stopnje $4$ na zunanjem ciklu) in vozlišče $b$ stopnje $4$ (povezan z vozliščem $c$ stopnje $2$ in še dvema drugima na notranjem ciklu ter vozliščem $w$). Ker moramo iti skozi vozlišče $c$, moramo tudi skozi $b$, od prej pa vemo, da moramo nujno tudi skozi $a$, saj je sosed vozlišča stopnje $2$. Torej lahko pot speljemo le skozi $a,b,c$, saj je $w$ stopnje $4$ in na ciklu zato ne sme biti soseden $b$, ki je prav tako stopnje $4$.
         \item Pot torej nadaljujemo z vozliščem stopnje $3$ na zunanjem ciklu $3||12$, in tudi v nadaljevanju ostanemo na zunanjem ciklu, saj vemo, da bomo v nasprotnem primeru ostali na notranjem ciklu.
     \end{itemize}
@@ -753,7 +753,7 @@ Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ 36 vozlišč. Graf je ravni
 Graf klasičnega problema londonskega stolpa je majhen, zato je za psihološka testiranja naloga včasih prelahka. 
 Jenny R.\ Tunstall je prva predlagala razširitev klasičnega londonskega stolpa na 4 krogle s podaljšanimi palicami (vsaka je podaljšana za eno enoto), mi pa si bomo v tem razdelku pogledali ta problem v splošnem, s $p \geq 3$ palicami in $n \geq 2$ kroglami.
 
-\subsection{Definicija}
+\subsection{Definicija londonskega grafa}
 
 Posplošen londonski stolp ima $n \geq 2$ krogel, označimo jih s številkami $1,\ldots,n$, in $p \geq 3$ palic, katerih višino označimo s $h_k$ -- toliko krogel lahko postavimo na $k$-to palico. Seveda velja, da mora biti število vseh krogel manjše ali enako vsoti višin vseh palic, sicer na palice ne moremo razporediti vseh krogel. S simboli zapišemo:
 \[ n \leq \sum_{k=1}^{p} h_k.\]
@@ -785,7 +785,7 @@ Položaje oštevilčimo od leve palice proti desni, z vrha palice proti dnu. Tak
 \end{primer}
 
 Hitro vidimo, da mora veljati 
-\[\forall k \in [p]\colon s_{n+k} - s_{n+k-1} \geq 1 \]
+\[\forall k \in [p]\colon s_{n+k} - s_{n+k-1} \geq 1, \]
 saj je $s_{n+k}$ položaj dna palice $k$, $s_{n+k-1}$ pa položaj dna palice $k-1$, torej se mora njun položaj razlikovati najmanj za 1 -- to se zgodi, če na palici $k$ ni nobene krogle.
 
 Prav tako pa velja tudi 
@@ -835,7 +835,7 @@ Medtem ko je v splošnem težko določiti število vozlišč londonskega grafa, 
     
     Ker je vsaka krogla drugačne barve, imamo za vsako razporeditev še $n!$ možnih permutacij barv. Število vseh stanj, in zato tudi število vozlišč, je tako enako
     
-    \[ n! \cdot {n+p-1 \choose p-1} = n! \cdot \frac{(n+p-1)!}{n!(p-1)!} = \frac{(n+p-1)!}{(p-1)!}. \] \qedhere
+    \[ n! \cdot {n+p-1 \choose p-1} = n! \cdot \frac{(n+p-1)!}{n!(p-1)!} = \frac{(n+p-1)!}{(p-1)!}. \qedhere\] 
 \endproof
 
 \begin{trditev}
@@ -1210,18 +1210,19 @@ Ekvivalenčne razrede množice vseh stanj/nalog lahko torej preučujemo tako, da
 % seznam uporabljene literature
 \begin{thebibliography}{99}
 
-\bibitem{bib:tohmyths} A.\ M.\ Hinz, S.\ Klavžar, U.\ Milutinović in C.\ Petr, \emph{The Tower of Hanoi – Myths and Maths}, Birkhäuser, Basel, 2013.
-
-\bibitem{bib:west} D.\ B.\ West, \emph{Introduction to Graph Theory}, Prentice hall, Upper Saddle River, 2001.
-
 \bibitem{bib:tolspatial}
 W. K. Berg in D. L. Byrd, \emph{The Tower of London spatial problem-solving task: Enchancing clinical and research implementation}, Journal of Clinical and Experimental Neuropsychology \textbf{24} (2002) 586--604,
-dostopno tudi na \\ \url{https://www.researchgate.net/publication/11201010_The_Tower_of_London_Spatial_Problem-Solving_Task_Enhancing_Clinical_and_Research_Implementation}.
-\bibitem{bib:potocnik} P. Potočnik, \emph{Zapiski predavanj iz Diskretne Matematike I}, 1.~izdaja, [ogled 29.~12.~15], dostopno na \url{http://www.fmf.uni-lj.si/~potocnik/Ucbeniki/DM-Zapiski2010.pdf}.
+dostopno tudi na \url{www.researchgate.net/publication/11201010_The_Tower_of_London_Spatial_Problem-Solving_Task_Enhancing_Clinical_and_Research_Implementation}.
 
-\bibitem{bib:wikishal} \emph{Tim Shallice}, v: Wikipedia: The Free Encyclopedia, [ogled 8.~10.~2015], dostopno na\\ \url{https://en.wikipedia.org/wiki/Tim_Shallice}.
+\bibitem{bib:tohmyths} A.\ M.\ Hinz, S.\ Klavžar, U.\ Milutinović in C.\ Petr, \emph{The Tower of Hanoi – Myths and Maths}, Birkhäuser, Basel, 2013.
 
-\bibitem{bib:wikihamilpath} \emph{Hamiltonian path}, v: Wikipedia: The Free Encyclopedia, [ogled 28.~12.~2015], dostopno na \url{https://en.wikipedia.org/wiki/Hamiltonian_path}.
+\bibitem{bib:potocnik} P. Potočnik, \emph{Zapiski predavanj iz Diskretne matematike I}, 1.~izdaja, [ogled 29.~12.~15], dostopno na \url{www.fmf.uni-lj.si/~potocnik/Ucbeniki/DM-Zapiski2010.pdf}.
+
+\bibitem{bib:west} D.\ B.\ West, \emph{Introduction to Graph Theory}, Prentice Hall, Upper Saddle River, 2001.
+
+\bibitem{bib:wikihamilpath} \emph{Hamiltonian path}, v: Wikipedia: The Free Encyclopedia, [ogled 28.~12.~2015], dostopno na \url{en.wikipedia.org/wiki/Hamiltonian_path}.
+
+\bibitem{bib:wikishal} \emph{Tim Shallice}, v: Wikipedia: The Free Encyclopedia, [ogled 8.~10.~2015], dostopno na \url{en.wikipedia.org/wiki/Tim_Shallice}.
 \end{thebibliography}
 
 \end{document}
