@@ -229,7 +229,6 @@ Vozlišča grafa predstavimo s točkami v ravnini, povezavo med dvema vozlišče
 Če imamo podano stopnjo vseh vozlišč grafa, lahko na enostaven način izračunamo število povezav tega grafa:
 
 \begin{lema}[Lema o rokovanju]
-    TODO pika pred naslovom
     \label{lema:rokovanje}
     Za vsak graf \graf~velja formula
     \begin{equation}
@@ -292,7 +291,8 @@ Vozlišča grafa predstavimo s točkami v ravnini, povezavo med dvema vozlišče
 
 Poglejmo si nekaj razredov grafov, ki nam bodo prišli prav v kasnejših definicijah. 
 
-\emph{Pot} na $n$ vozliščih je graf, ki ima dve vozlišči stopnje $1$, medtem ko so preostala vozlišča stopnje $2$.
+\emph{Pot} na $n$ vozliščih je graf, pri katerem vsa vozlišča postavimo v vrsto in zaporedna med seboj povežemo. Formalno pot na $n$ vozliščih podamo takole:
+\[ V(P_n) = \{v_i \mid i=1,\dots,n\},\ E(P_n)=\{v_iv_{i+1} \mid  i=1,\dots,n-1 \} .\]
 
 \emph{Cikel} na $n$ vozliščih (označimo ga s $C_n$) je graf, ki ga dobimo iz poti na $n$ vozliščih tako, da dodamo povezavo med vozliščema stopnje $1$.
 
@@ -814,7 +814,7 @@ Očitno je klasični londonski graf $L$ enak $L_{123}^3$, saj imamo $3$ krogle i
 
 Medtem ko je v splošnem težko določiti število vozlišč londonskega grafa, pa je to precej bolj preprosto za oxfordski graf. Še več, določimo lahko tudi število povezav.
 
-\begin{trditev}
+\begin{trditev}[{\cite[Exercise~7.3.]{bib:tohmyths}}]
     Število vozlišč oxfordskega grafa $O^n_p$ je enako 
     \begin{equation}
         \label{eq:oxford-vozl}
@@ -836,7 +836,7 @@ Medtem ko je v splošnem težko določiti število vozlišč londonskega grafa, 
     \[ n! \cdot {n+p-1 \choose p-1} = n! \cdot \frac{(n+p-1)!}{n!(p-1)!} = \frac{(n+p-1)!}{(p-1)!}. \qedhere\] 
 \endproof
 
-\begin{trditev}
+\begin{trditev}[{\cite[Exercise~7.4.]{bib:tohmyths}}]
     Število povezav oxfordskega grafa $O^n_p$ je enako
     \begin{equation}
         \label{eq:povezave-oxf}
