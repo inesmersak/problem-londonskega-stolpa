@@ -76,7 +76,7 @@ S pomočjo teh oznak lahko opišemo vsako možno stanje in narišemo graf london
 
 \begin{lema}
     \label{lem:stanja-klas-lond}
-    Število vseh možnih stanj klasičnega londonskega stolpa je 36.
+    Število vseh možnih stanj klasičnega londonskega stolpa je $36$.
 \end{lema}
 
 \begin{dokaz}
@@ -102,7 +102,7 @@ Imamo dve možnosti:
     \end{itemize}
 \end{enumerate}
 Po pravilu vsote imamo torej, če se ne oziramo na barve krogel, $3+3=6$ možnih postavitev krogel.
-V vsaki od teh lahko še premešamo barve krogel, torej imamo za vsako postavitev $3!$ možnosti. Sledi, da je vseh možnih stanj $3! \cdot 6 = 6 \cdot 6 = 36$.\QED
+V vsaki od teh lahko še premešamo barve krogel, torej imamo za vsako postavitev $3!$ možnosti. Sledi, da je vseh možnih stanj $3! \cdot 6 = 6 \cdot 6 = 36$. \QED
 \end{dokaz}
 
 Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ 36 vozlišč. Hitro vidimo, da je 12 vozlišč grafa $L$ stopnje 2, drugih 12 je stopnje 3, zadnjih 12 pa stopnje 4. 
@@ -148,8 +148,7 @@ Cikel $C$ mora torej gotovo iti skozi vsa vozlišča stopnje $2$, kar je možno 
     \item Nadaljujemo z vozliščem $|31|2$, ki je stopnje $3$ in je na notranjem ciklu. V tem primeru ne bomo notranjega cikla nikoli zapustili, saj je notranji cikel oblike: vozlišče stopnje $2$, vozlišče stopnje $3$ (povezano samo z vozlišči na notranjem ciklu), vozlišče stopnje $4$, ki je nato povezano z vozliščem stopnje $2$, skozi katerega moramo iti. Nato pa sledita vozlišče $a$ stopnje $3$ (povezano z notranjim ciklom in vozliščem $w$ stopnje $4$ na zunanjem ciklu) in vozlišče $b$ stopnje $4$ (povezan z vozliščem $c$ stopnje $2$ in še dvema drugima na notranjem ciklu ter vozliščem $w$). Ker moramo iti skozi vozlišče $c$, moramo tudi skozi $b$, od prej pa vemo, da moramo nujno tudi skozi $a$, saj je sosed vozlišča stopnje $2$. Torej lahko pot speljemo le skozi $a,b,c$, saj je $w$ stopnje $4$ in na ciklu zato ne sme biti soseden $b$, ki je prav tako stopnje $4$.
     \item Pot torej nadaljujemo z vozliščem stopnje $3$ na zunanjem ciklu $3||12$, in tudi v nadaljevanju ostanemo na zunanjem ciklu, saj vemo, da bomo v nasprotnem primeru ostali na notranjem ciklu.
 \end{itemize}
-Ne moremo konstruirati cikla, bi vseboval vsa vozlišča našega grafa $L$ natanko enkrat, $L$ torej ni Hamiltonov.
-\QED
+Ne moremo konstruirati cikla, bi vseboval vsa vozlišča našega grafa $L$ natanko enkrat, $L$ torej ni Hamiltonov. \QED
 \end{dokaz}
 
 \section{Posplošeni londonski stolp}
@@ -240,7 +239,8 @@ Sedaj lahko na problem pogledamo malo drugače: na $n+p-1$ mest razporejamo $n$ 
 
 Ker je vsaka krogla drugačne barve, imamo za vsako razporeditev še $n!$ možnih permutacij barv. Število vseh stanj, in zato tudi število vozlišč, je tako enako
 
-\[ n! \cdot {n+p-1 \choose p-1} = n! \cdot \frac{(n+p-1)!}{n!(p-1)!} = \frac{(n+p-1)!}{(p-1)!}. \] \QED
+\[ n! \cdot {n+p-1 \choose p-1} = n! \cdot \frac{(n+p-1)!}{n!(p-1)!} = \frac{(n+p-1)!}{(p-1)!}. \]
+Trditev je s tem dokazana. \QED 
 \end{dokaz}
 
 \begin{trditev}
@@ -285,7 +285,7 @@ Iz tega razmisleka sledi, da je število vseh stanj, ki imajo točno $q$ neprazn
 \begin{align*}
 {p \choose q} \frac{n!}{(n-q)!} \cdot |V(O^{n-q}_q)| &=
 {p \choose q} \frac{n!}{(n-q)!} \frac{(n-q+q-1)!}{(q-1)!} \\ &= n! {p \choose q} \frac{(n-1)!}{(q-1)!\,(n-q)!} \\ &=
-n! {p \choose q} {n-1 \choose q-1}
+n! {p \choose q} {n-1 \choose q-1}.
 \end{align*}
 
 Sedaj po $q$ seštejemo stopnje vseh vozlišč (upoštevamo, da imajo vsa vozlišča, kjer je nepraznih točno $q$ palic, enako stopnjo) in uporabimo formulo~\eqref{eq:lema-o-rokovanju} iz leme o rokovanju:
@@ -296,7 +296,7 @@ Sedaj po $q$ seštejemo stopnje vseh vozlišč (upoštevamo, da imajo vsa vozli�
 &= \frac{1}{2} (p-1) n! \sum_{q=1}^{p} q {p \choose q} {n-1 \choose q-1} \\
 &= \frac{1}{2} (p-1) n! \sum_{q=1}^{p} q \frac{p!}{q! \, (p-q)!} {n-1 \choose q-1} \\
 &= \frac{1}{2} (p-1) n! \sum_{q=1}^{p} p \frac{(p-1)!}{(q-1)! \, (p-q)!} {n-1 \choose q-1} \\
-&= \frac{1}{2} p (p-1) n! \sum_{q=1}^{p} {p-1 \choose q-1} {n-1 \choose q-1}
+&= \frac{1}{2} p (p-1) n! \sum_{q=1}^{p} {p-1 \choose q-1} {n-1 \choose q-1}.
 \end{align*}
 Sedaj uvedemo nov indeks $k = q-1$, upoštevamo lastnosti binomskih simbolov in uporabimo zgoraj dokazano formulo~\eqref{eq:binom}:
 \begin{align*}
@@ -307,8 +307,9 @@ Sedaj uvedemo nov indeks $k = q-1$, upoštevamo lastnosti binomskih simbolov in 
 &= \frac{1}{2} p (p-1) n! {n + p - 2 \choose p-1} \\
 &= \frac{1}{2} p (p-1) n! \frac{(n+p-2)!}{(p-1)!\,(n-1)!} \\
 &= \frac{1}{2} p n \frac{(n+p-2)!}{(p-2)!} \\
-&= \frac{np}{2} \frac{(p-2+n)!}{(p-2)!} \QED
+&= \frac{np}{2} \frac{(p-2+n)!}{(p-2)!}.
 \end{align*}
+Trditev je s tem dokazana. \QED
 \end{dokaz}
 
 \subsection{Povezanost}
@@ -359,14 +360,14 @@ Sedaj si izberimo kroglo, ki ni na pravem položaju, in s tem tudi kroglo, ki je
     \item \textbf{Krogla $b$ ni na prvi palici.}
     V tem primeru je postopek še nekoliko lažji: najprej vse krogle nad $b$ premaknemo na največjo palico, nato na vrh največje palice premaknemo tudi $b$. Sedaj lahko kroglo $a$ prestavimo na njeno pravo mesto (kjer je bil prej $b$), $b$ na vrh prve palice, vse preostale krogle na največji palici pa postavimo nazaj na prejšnja mesta, nad kroglo $a$.
 \end{enumerate}
-S tem je dokaz končan, saj smo našli način, kako prehajati med dvema poljubnima stanjema krogel, in smo s tem našli tudi pot v grafu med poljubnima vozliščema.
+S tem je dokaz končan, saj smo našli način, kako prehajati med dvema poljubnima stanjema krogel, in smo s tem našli tudi pot v grafu med poljubnima vozliščema. \QED
 \end{dokaz}
 
 \subsection{Ravninskost}
 
-Povedali smo že, da se problem londonskega stolpa pogosto uporablja kot psihološki test. Psihologi rezultate testov radi prikažejo kar na grafu uporabljenega problema, zato je zanimivo tudi vprašanje ravninskosti londonskih grafov -- križanje povezav namreč lahko vodi do zmede pri prikazu rezultatov. Ker se za testiranje uporablja le londonski stolp s tremi palicami, se bomo tudi pri obravnavi ravninskosti omejili na ta primer, torej naj bo $p=3$.
+Povedali smo že, da se problem londonskega stolpa pogosto uporablja kot psihološki test. Psihologi rezultate testov radi prikažejo kar na grafu uporabljenega problema, zato je zanimivo tudi vprašanje ravninskosti londonskih grafov---križanje povezav namreč lahko vodi do zmede pri prikazu rezultatov. Ker se za testiranje uporablja le londonski stolp s tremi palicami, se bomo tudi pri obravnavi ravninskosti omejili na ta primer, torej naj bo $p=3$.
 
-Spomnimo se izreka, ki nam bo pomagal pri klasifikaciji ravninskih grafov. Dokaz bomo zaradi jedrnatosti in dolžine izpustili, naveden pa je v~\cite[str.~247-251]{bib:west}.
+Spomnimo se izreka, ki nam bo pomagal pri klasifikaciji ravninskih grafov. Dokaz bomo zaradi jedrnatosti in dolžine izpustili, naveden pa je v~\cite[str.~247--251]{bib:west}.
 
 \begin{izrek}[Kuratowski]
     \label{izr:kuratowski}
@@ -428,7 +429,7 @@ Dokazati moramo le še, da tudi londonski grafi za $n\geq 4$ niso ravninski.
 Ker $L_{222}^3$ ni ravninski in je vsebovan v grafu $L_{222}^4$, sledi, da $L_{222}^4$ ni ravninski. Pokazali bi lahko, da tudi graf $L_{133}^4$ ni ravninski, vendar si pri tem ne moremo pomagati z njegovim ravninskim podgrafom $L_{133}^3$, zato bi morali znotraj $L_{133}^4$ poiskati subdivizijo $K_{3,3}$, kar bomo prav tako izpustili.
 Ker mora vsak graf $L_h^4$ vsebovati ali $L_{133}^4$ ali $L_{222}^4$, ki nista ravninska, to sledi tudi za preostale grafe z $n=4$.
 
-Za $n \geq 4$ torej noben graf ni ravninski, saj vsak $L_h^n$ dobimo z dodajanjem krogel enemu izmed $L_h^4$, za katere pa zdaj vemo, da niso ravninski.
+Za $n \geq 4$ torej noben graf ni ravninski, saj vsak $L_h^n$ dobimo z dodajanjem krogel enemu izmed $L_h^4$, za katere pa zdaj vemo, da niso ravninski. \QED
 \end{dokaz}
 
 \section{Implementacija}
@@ -439,23 +440,23 @@ Celotna koda zgornjega projekta je dostopna na \cite{bib:dragonhack}.
 
 
 \begin{thebibliography}{99}
-\bibitem{bib:tohmyths} A.\ M.\ Hinz, S.\ Klavžar, U.\ Milutinović in C.\ Petr, \emph{The Tower of Hanoi – Myths and Maths}, Birkhäuser, Basel, 2013.
+    \bibitem{bib:tolspatial}
+    W. K. Berg in D. L. Byrd, \emph{The Tower of London spatial problem-solving task: Enchancing clinical and research implementation}, Journal of Clinical and Experimental Neuropsychology \textbf{24} (2002) 586--604,
+    dostopno tudi na \\ \url{https://www.researchgate.net/publication/11201010_The_Tower_of_London_Spatial_Problem-Solving_Task_Enhancing_Clinical_and_Research_Implementation}.
+    
+    \bibitem{bib:tohmyths} A.\ M.\ Hinz, S.\ Klavžar, U.\ Milutinović in C.\ Petr, \emph{The Tower of Hanoi – Myths and Maths}, Birkhäuser, Basel, 2013.
+    
+    \bibitem{bib:diploma} I.\ Meršak, \emph{Problem londonskega stolpa}, delo diplomskega seminarja, Fakulteta za matematiko in fiziko, Univerza v Ljubljani, 2016.
+    
+    \bibitem{bib:potocnik} P. Potočnik, \emph{Zapiski predavanj iz Diskretne Matematike I}, 1.~izdaja, [ogled 29.~12.~15], dostopno na \url{http://www.fmf.uni-lj.si/~potocnik/Ucbeniki/DM-Zapiski2010.pdf}.
+    
+    \bibitem{bib:west} D.\ B.\ West, \emph{Introduction to Graph Theory}, Prentice Hall, Upper Saddle River, 2001.
 
-\bibitem{bib:diploma} I.\ Meršak, \emph{Problem londonskega stolpa}, delo diplomskega seminarja, Fakulteta za matematiko in fiziko, Univerza v Ljubljani, 2016.
-
-\bibitem{bib:west} D.\ B.\ West et al, \emph{Introduction to graph theory}, Prentice hall, Upper Saddle River, 2001.
-
-\bibitem{bib:tolspatial}
-W. K. Berg in D. L. Byrd, \emph{The Tower of London spatial problem-solving task: Enchancing clinical and research implementation}, Journal of Clinical and Experimental Neuropsychology \textbf{24} (2002) 586--604,
-dostopno tudi na \\ \url{https://www.researchgate.net/publication/11201010_The_Tower_of_London_Spatial_Problem-Solving_Task_Enhancing_Clinical_and_Research_Implementation}.
-
-\bibitem{bib:potocnik} P. Potočnik, \emph{Zapiski predavanj iz Diskretne Matematike I}, 1.~izdaja, [ogled 29.~12.~15], dostopno na \url{http://www.fmf.uni-lj.si/~potocnik/Ucbeniki/DM-Zapiski2010.pdf}.
-
-\bibitem{bib:wikishal} \emph{Tim Shallice}, v: Wikipedia: The Free Encyclopedia, [ogled 8.~10.~2015], dostopno na\\ \url{https://en.wikipedia.org/wiki/Tim_Shallice}.
-
-\bibitem{bib:wikihamilpath} \emph{Hamiltonian path}, v: Wikipedia: The Free Encyclopedia, [ogled 28.~12.~2015], dostopno na \url{https://en.wikipedia.org/wiki/Hamiltonian_path}.
-
-\bibitem{bib:dragonhack} \emph{Tower of London test}, na: Github, repository hosting service, [ogled 5.~8.~2016], dostopno na \url{https://github.com/jureslak/dragonhack-2016}.
+    \bibitem{bib:wikihamilpath} \emph{Hamiltonian path}, v: Wikipedia: The Free Encyclopedia, [ogled 28.~12.~2015], dostopno na \url{https://en.wikipedia.org/wiki/Hamiltonian_path}.
+    
+    \bibitem{bib:wikishal} \emph{Tim Shallice}, v: Wikipedia: The Free Encyclopedia, [ogled 8.~10.~2015], dostopno na\\ \url{https://en.wikipedia.org/wiki/Tim_Shallice}.
+    
+    \bibitem{bib:dragonhack} \emph{Tower of London test}, na: Github, repository hosting service, [ogled 5.~8.~2016], dostopno na \url{https://github.com/jureslak/dragonhack-2016}.
 \end{thebibliography}
 
 \end{document}
