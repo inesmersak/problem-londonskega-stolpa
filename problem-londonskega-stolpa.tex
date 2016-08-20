@@ -78,6 +78,7 @@
 \DeclareMathOperator {\X}{X}
 \DeclareMathOperator{\distance}{d}
 
+\hyphenation{izu-mil}
 
 
 \begin{document}
@@ -124,8 +125,8 @@ The Tower of London is a problem-solving puzzle, which consists of pegs of vario
 After that, we take a look at the graph of the generalized Tower of London with $n$ balls and $p$ pegs. We prove that such a graph is connected if and only if the balls can be rearranged in a way that the tallest peg remains empty. Furthermore, we find that only  the problems with two balls (and some of those with three balls) have planar graphs. In this work, we also take a look at a special case of the Tower of London called the Tower of Oxford, where all the pegs are of the same height $n$. We prove an explicit formula to calculate the number of vertices and edges of the Oxford graph for all $n$ and $p$. In the end, we touch upon the symmetries of the London graphs and demonstrate how we can take advantage of them in order to calculate some metric properties more effeciently.
 \vfill\noindent
 {\bf Math. Subj. Class. (2010):} 05Cxx, 05E18 \\[1mm]  
-{\bf Klju"cne besede:} klasični problem londonskega stolpa, londonski graf, oxfordski graf, ravninskost, povezanost, simetrije \\[1mm]  
-{\bf Keywords:} Shallice's Tower of London, London graph, Oxford graph, planarity, connectedness, symmetries
+{\bf Klju"cne besede:} klasični problem londonskega stolpa, londonski graf, oxfordski graf, ravninskost, povezanost, simetrije grafov \\[1mm]  
+{\bf Keywords:} Shallice's Tower of London, London graph, Oxford graph, planarity, connectedness, graph symmetries
 \pagebreak
 
 
@@ -133,14 +134,27 @@ After that, we take a look at the graph of the generalized Tower of London with 
 % tu se zacne tekst seminarja
 \section{Uvod}
 
-Test londonskega stolpa je ena izmed variacij igre hanojskega stolpa. Pri hanojskem stolpu imamo tri enako velike palice, pri čemer so na prvi palici postavljeni različno veliki diski (največji je na dnu palice, najmanjši pa na vrhu). Cilj igre je prestaviti ta stolp iz tako zloženih diskov na eno izmed drugih dveh palic, pri čemer lahko premikamo le en disk naenkrat in moramo upoštevati t.~i.~\emph{božansko pravilo}: večji disk ne smemo položiti nad manjši disk. To uganko je leta 1883 izumil Edouard Lucas in jo predvsem za namene trženja poimenoval po mestu Hanoj, katerega so leta 1882 zavzeli Francozi, leto kasneje pa so ga konstantno napadali kitajski vojaki, zato se je to mesto pogosto pojavljalo v novicah. Lucasova originalna verzija te igre je imela $8$ diskov in je še danes ohranjena v muzeju v Parizu. Obstaja pa tudi legenda, ki govori o indijskem templju s tremi diamantnimi palicami, na eni izmed njih pa je kar $64$ diskov; ta verzija uganke se imenuje brahminski stolp. Po legendi naj bi svečeniki dan in noč neutrudno premikali diske, in ko bodo stolp iz diskov v celoti uspeli prestaviti iz začetne palice na eno izmed preostalih dveh, se bo svet končal. Zaradi te zgodbe je hanojski stolp pogosto poimenovan tudi brahminski stolp.
+Test londonskega stolpa je ena izmed variacij igre hanojskega stolpa. Pri hanojskem stolpu imamo tri enako velike palice, pri čemer so na prvi palici postavljeni različno veliki diski (največji je na dnu palice, najmanjši pa na vrhu). Cilj igre je prestaviti ta stolp iz tako zloženih diskov na eno izmed drugih dveh palic, pri čemer lahko premikamo le en disk naenkrat in moramo upoštevati t.~i.~\emph{božansko pravilo}: večjega diska ne smemo položiti nad manjši disk. To uganko je leta 1883 izumil \'Edouard Lucas in jo predvsem za namene trženja poimenoval po mestu Hanoj, katerega so leta 1882 zavzeli Francozi, leto kasneje pa so ga konstantno napadali kitajski vojaki, zato se je to mesto pogosto pojavljalo v novicah. Lucasova originalna verzija te igre je imela $8$ diskov in je še danes ohranjena v muzeju v Parizu (prikazana je na sliki~\ref{fig:orig-toh}). 
+\begin{figure}[h]
+    \includegraphics[width=300pt]{img/original-toh.png}
+    \caption{Originalna verzija hanojskega stolpa.\\
+        {\small © Musée des arts et métiers--Cnam Paris / slika M. Favareille}}
+    \label{fig:orig-toh}
+\end{figure}
+Obstaja pa tudi legenda, ki govori o indijskem templju s tremi diamantnimi palicami, na eni izmed njih pa je kar $64$ diskov; ta verzija uganke se imenuje brahminski stolp. Po legendi naj bi svečeniki dan in noč neutrudno premikali diske, in ko bodo stolp iz diskov v celoti uspeli prestaviti iz začetne palice na eno izmed preostalih dveh, se bo svet končal. Zaradi te zgodbe je hanojski stolp pogosto poimenovan tudi brahminski stolp.
 
-Pri londonskem stolpu pa diske zamenjajo krogle, namesto božanskega pravila pa imamo naravno pravilo, da lahko kroglo položimo na neko palico le, če ta še ni polna (palice so pri tej uganki namreč različnih velikosti). Londonski stolp je izumil britanski nevropsiholog Tim Shallice leta 1982, predvsem za potrebe v psihologiji \cite{bib:wikishal}. Na tem področju je zelo pogosto uporabljen še danes, predvsem na področju nevropsihologije, saj s pomočjo te igre ugotavljajo stanje pacientove psihe, opazujejo pa lahko tudi napredek bolezni pri npr.\ Parkinsonovih ali pa Alzheimerjevih bolnikih; izguba sposobnosti načrtovanja in reševanja ugank je namreč eden izmed simptomov teh bolezni.
+Pri londonskem stolpu pa diske zamenjajo krogle, namesto božanskega pravila pa imamo naravno pravilo, da lahko kroglo položimo na neko palico le, če ta še ni polna (palice so pri tej uganki namreč različnih velikosti). Londonski stolp je izumil britanski nevropsiholog Tim Shallice leta 1982, predvsem za potrebe v psihologiji~\cite{bib:wikishal}. Na tem področju je zelo pogosto uporabljen še danes, predvsem v nevropsihologiji, saj s pomočjo te igre ugotavljajo stanje pacientove psihe, opazujejo pa lahko tudi napredek bolezni pri npr.\ Parkinsonovih ali pa Alzheimerjevih bolnikih; izguba sposobnosti načrtovanja in sposobnosti reševanja ugank je namreč eden izmed simptomov teh bolezni.
 
-Osnovna verzija londonskega stolpa vsebuje tri enako velike krogle različnih barv in tri palice. Na prvo palico lahko postavimo samo eno kroglo, na drugo le dve krogli, na tretjo pa tri. Cilj igre je priti iz nekega danega stanja v neko drugo želeno stanje s čim manj koraki. 
-Zaradi vsestranske uporabnosti tega testa v psihologiji so bile kmalu po izumu osnovne verzije predstavljene njene različice, npr.~londonski stolp s štirimi kroglami in palicami višine $2,3,4$.
+Osnovna verzija londonskega stolpa vsebuje tri enako velike krogle različnih barv in tri palice. Na prvo palico lahko postavimo samo eno kroglo, na drugo le dve krogli, na tretjo pa tri. Cilj igre je priti iz nekega danega stanja v neko drugo želeno stanje s čim manj koraki; primer nekega začetnega in končnega stanja pri osnovni verziji londonskega stolpa je prikazan na sliki~\ref{fig:osnovna-verzija}.
+Zaradi vsestranske uporabnosti tega testa v psihologiji pa so bile kmalu po izumu osnovne verzije predstavljene njene različice, npr.~londonski stolp s štirimi kroglami in palicami višine $2,3,4$.
 
-Diplomska naloga je razdeljena na tri dele: v prvem delu bomo najprej opisali vse pojme, navedli (in nekatere tudi dokazali) vse trditve, izreke in posledice teorije grafov, ki nam bodo v pomoč pri obravnavi problema londonskega stolpa. V drugem delu bomo podrobneje opisali klasični londonski stolp in lastnosti pripadajočega grafa, v zadnjem delu pa bomo obravnavali posplošeni problem londonskega stolpa.
+\begin{figure}[h]
+    \includegraphics[width=250pt]{img/london-tower.png}
+    \caption{Osnovna verzija uganke londonskega stolpa.}
+    \label{fig:osnovna-verzija}
+\end{figure}
+
+Diplomska naloga je razdeljena na tri dele: v prvem delu bomo najprej opisali vse pojme, navedli vse trditve, izreke in posledice teorije grafov, ki nam bodo v pomoč pri obravnavi problema londonskega stolpa, in nekatere tudi dokazali. V drugem delu bomo podrobneje opisali klasični londonski stolp in lastnosti pripadajočega grafa, v zadnjem delu pa bomo obravnavali posplošeni problem londonskega stolpa.
 
 
 \section{Osnovni pojmi teorije grafov}
