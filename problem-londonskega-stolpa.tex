@@ -761,6 +761,7 @@ Položaje oštevilčimo od leve palice proti desni, z vrha palice proti dnu. Tak
     Sedaj le preberemo položaje vseh krogel (od prve do tretje) in vseh palic (od leve proti desni) -- prva (modra) krogla je oštevilčena s 4, druga (rdeča) s 5, \ldots
     To stanje lahko torej predstavimo s permutacijo $s=452136$.
 \end{primer}
+\medskip
 
 Hitro vidimo, da mora veljati 
 \[\forall k \in [p]\colon s_{n+k} - s_{n+k-1} \geq 1, \]
@@ -807,7 +808,7 @@ Medtem ko je v splošnem težko določiti število vozlišč londonskega grafa, 
     Iščemo število vseh možnih stanj krogel oxfordskega stolpa, saj je to enako številu vozlišč oxfordskega grafa.
     Podobno kot pri dokazu števila stanj klasičnega londonskega stolpa najprej pozabimo na različne barve krogel (pretvarjamo se, da so krogle enake) in se osredotočimo samo na njihovo postavitev. 
     
-    Na koliko načinov lahko $n$ enakih krogel razporedimo na $p$ palic višine $n$? Pri tem nimamo nobenih omejitev, saj so palice dovolj visoke, da lahko vse krogle postavimo tudi na eno samo palico. Lahko si predstavljamo, da imamo vse krogle zložene v vrsto, označene naj bodo z 0, nato pa na poljubna mesta (s ponavljanjem) vrivamo 1, ki naj pomeni konec neke palice in začetek neke druge. Ko vrinemo $p-1$ enic, smo določili $p$ palic in s tem razporeditev krogel. 
+    Na koliko načinov lahko $n$ enakih krogel razporedimo na $p$ palic višine $n$? Pri tem nimamo nobenih omejitev, saj so palice dovolj visoke, da lahko vse krogle postavimo tudi na eno samo palico. Lahko si predstavljamo, da imamo vse krogle zložene v vrsto, označene naj bodo z $0$, nato pa na poljubna mesta (s ponavljanjem) vrivamo $1$, ki naj pomeni konec neke palice in začetek neke druge. Ko vrinemo $p-1$ enic, smo določili $p$ palic in s tem razporeditev krogel. 
     
     Sedaj lahko na problem pogledamo malo drugače: na $n+p-1$ mest razporejamo $n$ ničel, ki predstavljajo krogle, in $p-1$ enic, ki predstavljajo začetek nove palice. Če razporedimo vse enice, bodo vsa preostala mesta zasedle ničle, razporeditev bo s tem točno določena. Načinov za izbiro $p-1$ mest za enice izmed $n+p-1$ položajev je ${n+p-1 \choose p-1}$. Če privzamemo, da so vse krogle enake, je vseh možnih razporeditev torej ${n+p-1 \choose p-1}$.
     
@@ -1175,7 +1176,7 @@ Ekvivalenčne razrede množice vseh stanj/nalog lahko torej preučujemo tako, da
 % slovar
 \section*{Slovar strokovnih izrazov}
 
-\geslo{graph connectivity}{povezanost grafa}
+\geslo{graph connectedness}{povezanost grafa}
 
 \geslo{graph planarity}{ravninskost grafa}
 
