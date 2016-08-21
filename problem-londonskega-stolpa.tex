@@ -344,31 +344,6 @@ Z besedami, vsa vozlišča polnega grafa so med sabo povezana.
             }
         }
     \end{scope}
-    
-%    \begin{scope}[xshift=8.5cm, every node/.style={circle,thick,draw}]
-%    \node (1) at (-0.7,1) {};
-%    \node (2) at (0.7,1) {};
-%    \node (3) at (1.5,0) {};
-%    \node (4) at (0.7,-1) {};
-%    \node (5) at (-0.7,-1) {};
-%    \node (6) at (-1.5,0) {};
-%    \path[-,draw,thick]
-%    (1) edge (2)
-%    (1) edge (3)
-%    (1) edge (4)
-%    (1) edge (5)
-%    (1) edge (6)
-%    (2) edge (3)
-%    (2) edge (4)
-%    (2) edge (5)
-%    (2) edge (6)
-%    (3) edge (4)
-%    (3) edge (5)
-%    (3) edge (6)
-%    (4) edge (5)
-%    (4) edge (6)
-%    (5) edge (6);
-%    \end{scope}    
     \end{tikzpicture}
     \caption{Primer poti (levo), cikla (sredina) in polnega grafa (desno) na šestih vozliščih.}
 \end{figure}
@@ -412,12 +387,6 @@ Pri polnem dvodelnem grafu z $n$ vozlišči v prvi množici, recimo ji $V_1$, in
 \emph{Sprehod} v grafu $G$ je zaporedje vozlišč $v_1, v_2, \ldots, v_k$, tako da velja $v_i v_{i+1} \in E(G),$ pri čemer je $1 \leq i \leq k-1$. Če označimo $x = x_1$ in $y = x_k$, potem takemu sprehodu rečemo $x,y$-sprehod.
 
 Sprehod je \emph{enostaven}, če so vsa njegova vozlišča različna. Enostaven sprehod inducira podgraf, ki je izomorfen poti (torej pot v grafu).
-
-%\begin{figure}[h]
-%    \includegraphics[width=200pt]{img/enostaven-sprehod1.png}
-%    \includegraphics[width=200pt]{img/enostaven-sprehod2.png}
-%    \caption{Enostaven sprehod in pot v grafu, ki jo inducira.}
-%\end{figure}
 
 Naj bo $G$ graf in $\sim$ relacija, definirana na kartezičnem produktu $\vozlisca \times \vozlisca$:
 \[ x \sim y \ \stackrel{\text{def}}{\equiv} \ \exists \ x,y \text{-sprehod.} \]
@@ -648,7 +617,7 @@ Sedaj želimo ugotoviti, kakšnim pogojem mora ustrezati graf, da bo ravninski. 
 
 \begin{trditev}
     \label{trd:podgraf}
-    Če je graf ravninski, potem je tudi vsak njegov podgraf ravninski. %\cite{bib:potocnik}
+    Če je graf ravninski, potem je tudi vsak njegov podgraf ravninski.
 \end{trditev}
 
 Operacija ``podgraf'' torej ohranja ravninskost grafa.
@@ -664,11 +633,6 @@ Iz definicije je razvidno, da je tak $H$ ravninski natanko tedaj, ko je $G$ ravn
     \label{izr:kuratowski}
     Graf G je ravninski natanko tedaj, ko ne vsebuje subdivizije $K_5$ niti subdivizije $K_{3,3}$.
 \end{izrek}
-%\begin{definicija}
-%	\emph{Barvanje} grafa $\graf$ je preslikava 
-%	\[ c\colon \vozlisca \to \N, \text{ tako da velja } av \in \povezave \implies c(a) \neq c(v). \]
-%	Če je $c\colon \vozlisca \to [k]$, rečemo, da je $c$ $k$-barvanje. \emph{Kromatično število} grafa $G$, $\mathcal{X}(G)$, je najmanjši $k$, za katerega obstaja $k$-barvanje grafa G.
-%\end{definicija}
 
 \section{Klasični problem londonskega stolpa}
 Pri klasičnem londonskem stolpu imamo tri enako velike krogle različnih barv in tri palice različnih velikosti: na prvo lahko postavimo eno kroglo, na drugo dve, na tretjo pa tri (temu bomo rekli, da imajo palice višine $1$, $2$ in $3$). Cilj igre je priti iz nekega začetnega stanja v neko vnaprej določeno končno stanje.
@@ -906,7 +870,10 @@ Preden si ogledamo izpeljavo formule~\eqref{eq:povezave-oxf}, pa si na hitro ogl
     \begin{align*}
         |E(O^n_p)|
         &= \frac{1}{2} p (p-1) n! \sum_{k=0}^{p-1} {p-1 \choose k} {n-1 \choose k} \\
-        &= \frac{1}{2} p (p-1) n! \sum_{k=0}^{p-1} {p-1 \choose p-1-k} {n-1 \choose k} \\
+        &= \frac{1}{2} p (p-1) n! \sum_{k=0}^{p-1} {p-1 \choose p-1-k} {n-1 \choose k}
+    \end{align*}
+    \begin{align*}
+        %\phantom{|E(O^n_p)|}
         &= \frac{1}{2} p (p-1) n! {p-1 + n-1 \choose p-1} \\
         &= \frac{1}{2} p (p-1) n! {n + p - 2 \choose p-1} \\
         &= \frac{1}{2} p (p-1) n! \frac{(n+p-2)!}{(p-1)!\,(n-1)!} \\
@@ -1033,10 +1000,6 @@ Videli smo že, da je klasični londonski graf $L$ ravninski. Torej je ravninski
     Za $n \geq 4$ torej noben graf ni ravninski, saj vsak $L_h^n$ dobimo z dodajanjem krogel enemu izmed $L_h^4$, za katere pa zdaj vemo, da niso ravninski.
 \endproof
 
-%\begin{opomba}
-%    [TODO] toroidalnost
-%\end{opomba}
-
 \subsection{Simetrije londonskega stolpa}
 
 Zamislimo si za trenutek problem londonskega stolpa, pri katerem so vse palice različne višine. Simetrije pripadajočega grafa so ravno vse možne permutacije barv krogel.
@@ -1076,8 +1039,6 @@ Množica stanj tega problema torej razpade na dva ekvivalenčna razreda. Če za 
 
 \[ \sum_{s \in V(O_3^2)} \distance(12||,s) = 26,\quad \sum_{s \in V(O_3^2)} \distance(1|2|,s) = 21 \implies \bar{\distance}(O^2_3) = \frac{6 \cdot 26 + 6 \cdot 21}{144} \approx 1.958.\]
 
-%(?) Vzemimo za primer nalogo $ 2||1 \rightarrow |1|2 $. Vidimo lahko, da je ta ekvivalentna nalogi $ |2|1 \rightarrow 2|1| $ (potrebni permutaciji barv krogel in palic sta navedeni v primeru~\ref{primer:oxf-ekv-nalogi}). Če na prvotni nalogi uporabimo vse možne kombinacije permutacij barv in palic (na voljo imamo $3!$ permutacij palic in $2$ permutaciji barv), lahko sklepamo, da je ekvivalenčni razred te naloge moči 12. Pravzaprav so $ 12|| \rightarrow 21|| $ vsi ekvivalenčni razredi razen dveh; predstavnika teh ekvivalenčnih razredov sta nalogi $12|| \rightarrow 21||$ oziroma $1|2| \rightarrow 2|1|$ , kjer je potrebna le zamenjava barv krogel. Vsak izmed teh dveh ekvivalenčnih razredov je le moči $ 6 $. $ 132 $ nalog oxfordskega grafa $ O^2_3 $ torej razpade na $ 12 $ ekvivalenčnih razredov, $ 10 $ od teh je velikosi $ 12 $, dva pa sta velikosti $ 6 $.
-
 Za učinkovitejšo preučevanje simetrij večjih londonskih grafov definirajmo grupo $(\Gamma_{np}, \cdot, 1_{np})$, pri čemer velja $\Gamma_{np} = S_n \times S_p$; grupa $S_n$ bo pri tem predstavljala vse možne permutacije (barv) krogel, $S_p$ pa vse možne permutacije palic. Operacijo $\cdot$ definiramo takole:
 \[ (\chi_1,\pi_1) \cdot (\chi_2,\pi_2) = (\chi_1 \circ \chi_2,\pi_1 \circ \pi_2), \]
 enota pa je kar urejen par enot grupe $S_n$ (označimo jo z $\id_n$) in $S_p$ (označimo jo z $\id_p$), velja torej $1_{np} = (\id_n, \id_p) $. Enostavno lahko preverimo, da za tako definirano operacijo $\cdot$ in enoto $1_{np}$ res dobimo grupo. Seveda velja, da je velikost naše grupe simetrij $|\Gamma_{np}|$ enaka kar produktu velikosti množic $S_n$ in $S_p$, torej $|\Gamma_{np}| = n! \cdot p!$. 
@@ -1107,7 +1068,6 @@ S pomočjo zgornje teorije lahko sedaj dokažemo naslednjo trditev za londonski 
 \begin{trditev}[{\cite[Proposition~7.5.]{bib:tohmyths}}]
     \label{trd:simetrije-L222na3}
     Množica stanj londonskega grafa $L_{222}^3$, katere velikost je $42$, razpade v $2$ ekvivalenčna razreda; prvi je velikosti $6$, drugi pa $36$. Minimalna stopnja vozlišč tega grafa je $3$, maksimalna $6$, povprečna pa $\approx 3.43$. Premer tega grafa je $5$, povprečna razdalja med dvema vozliščema pa $\approx 3.31$. 
-%    Množica nalog problema londonskega stolpa $L_{222}^3$ velikosti $1722$ razpade na $49$ ekvivalenčnih razredov, od tega jih je $47$ velikosti $36$, preostala dva pa sta velikosti $18$ in $12$.
 \end{trditev}
 
 Preden se lotimo dokaza, bomo potrebovali še dva rezultata iz teorije grup. 
@@ -1215,10 +1175,12 @@ Ekvivalenčne razrede množice vseh stanj/nalog lahko torej preučujemo tako, da
 % slovar
 \section*{Slovar strokovnih izrazov}
 
-%\geslo{}{}
-%
-%\geslo{}{}
-%
+\geslo{graph connectivity}{povezanost grafa}
+
+\geslo{graph planarity}{ravninskost grafa}
+
+\geslo{eccentricity of a vertex}{ekscentričnost vozlišča -- največja možna razdalja med danim vozliščem in poljubnim vozliščem v grafu}
+
 
 % seznam uporabljene literature
 \begin{thebibliography}{99}
