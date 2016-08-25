@@ -1,0 +1,52 @@
+\documentclass[12pt,a4paper]{amsart}
+\usepackage[slovene]{babel}
+\usepackage[cp1250]{inputenc}
+\textwidth 15cm
+\textheight 24cm
+\oddsidemargin.5cm
+\evensidemargin.5cm
+\topmargin-5mm
+\addtolength{\footskip}{10pt}
+\pagestyle{plain}
+
+\overfullrule=15pt % oznaci predogo vrstico
+\newif\ifsomentor\somentorfalse
+
+
+\def\ImePriimekAvtorja{Ines Meršak} % vstavi svoje Ime Priimek
+\def\NaslovDela{Problem londonskega stolpa} % vstavi naslov dela
+\def\ImePriimekMentorja{prof.~dr.~Sandija Klavžarja} % vstavi naziv in ime mentorja (v tozilniku): doc.~dr.~/prof.~dr.~Ime Priimek
+% ce imas somentorja, odkomentiraj naslednji vrstici in vpisi njegovo ime
+% \somentortrue
+% \def\ImePriimekSomentorja{} % vstavi naziv in ime somentorja: doc.~dr.~/prof.~dr.~Ime Priimek
+\def\Datum{29.\,8.\,2016}  % vstavi datum prijave zagovora dela v obliki xx.\,xx.\,xxxx
+
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\ifsomentor\vspace*{18cm}\else\vspace*{18.5cm}\fi
+
+\noindent
+Podpisana  \ImePriimekAvtorja\  izjavljam:
+
+\begin{itemize}
+
+\item[--] da sem delo diplomskega seminarja z naslovom \textit\NaslovDela\ 
+izdelala samostojno pod mentorstvom   \ImePriimekMentorja\    
+\ifsomentor ter somentorstvom \ImePriimekSomentorja\ \fi
+in 
+\vskip3mm   
+
+\item[--] da Fakulteti za matematiko in fiziko Univerze v Ljubljani dovoljujem objavo elektronske oblike svojega dela na spletnih straneh.
+\end{itemize}
+\vskip7mm
+
+\noindent
+Ljubljana, \Datum \hfill {Podpis:} \hbox to5.5cm{\dotfill}
+\pagebreak
+
+
+\end{document}
+
