@@ -27,7 +27,9 @@
 \newcommand{\ed}{\ensuremath{\,|}}
 % operatorji
 \DeclareMathOperator {\stopnja} {deg}
-
+\DeclareMathOperator {\id} {id}
+\DeclareMathOperator {\X}{X}
+\DeclareMathOperator{\distance}{d}
 
 \title{Problem londonskega stolpa}
 \author[Ines Meršak]{Ines Meršak \\[5px] mentor: prof.~dr.~Sandi Klavžar}
@@ -224,7 +226,16 @@
 \end{frame}
 
 \begin{frame}{Simetrije}
-    TODO
+    Definirajmo grupo $(\Gamma_{np}, \cdot, 1_{np})$:
+    \begin{itemize}
+        \item $\Gamma_{np} = S_n \times S_p$,
+        \item $(\chi_1,\pi_1) \cdot (\chi_2,\pi_2) = (\chi_1 \circ \chi_2,\pi_1 \circ \pi_2), $
+        \item  $1_{np} = (\id_n, \id_p).$
+    \end{itemize}
+    \medskip
+    Sedaj lahko definiramo delovanje te grupe na množici vozlišč (stanj) nekega londonskega grafa $V(L_h^n)$:
+    \[ (\chi,\pi) . s = \X \left( \Sigma_{\pi^{-1}(1)} | \ldots | \Sigma_{\pi^{-1}(p)} \right), s \in V(L_h^n) \]
+    pri čemer je $\X$ preslikava, ki ustrezno permutira barve krogel glede na $\chi$.
 \end{frame}
 
 \section{Oxfordski graf}
