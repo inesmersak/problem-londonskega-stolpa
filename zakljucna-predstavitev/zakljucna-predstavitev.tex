@@ -52,10 +52,10 @@
 
 \section{Klasični problem londonskega stolpa}
 \begin{frame}{Klasični problem londonskega stolpa (Shallice)}
-    \begin{figure}
-        \centering
-        \includegraphics[height=100pt]{../img/london-tower.png}
-    \end{figure}
+%    \begin{figure}
+%        \centering
+%        \includegraphics[height=100pt]{../img/london-tower.png}
+%    \end{figure}
     \begin{itemize}
         \item izumljen leta 1982
         \item 3 enako velike krogle različnih barv
@@ -120,12 +120,12 @@
     \end{figure}
 \end{frame}
 
-\begin{frame}
-    \begin{figure}
-        \centering
-        \includegraphics[height=190pt]{../img/tolgraph-ham-cycle.png}
-    \end{figure}
-\end{frame}
+%\begin{frame}
+%    \begin{figure}
+%        \centering
+%        \includegraphics[height=190pt]{../img/tolgraph-ham-cycle.png}
+%    \end{figure}
+%\end{frame}
 
 \section{Posplošen londonski stolp}
 \begin{frame}{Oznake}
@@ -144,7 +144,7 @@
 \begin{frame}{Primer}
     \begin{figure}
         \centering
-        \includegraphics[height=150pt]{../img/london-tower.png}
+        \includegraphics[height=150pt]{../img/london-tower-numbered.png}
     \end{figure}
 \end{frame}
 
@@ -191,7 +191,29 @@
     \begin{block}{Trditev}
            	Naj bo $p=3$. Tedaj so ravninski londonski grafi natanko grafi $L_h^2, L_{122}^3,L_{123}^3 = L$ in $ L_{133}^3$.
     \end{block}
+\end{frame}
 
+\begin{frame}
+    \begin{equation*}
+    \label{eq:grafi-3krogle}
+    \begin{matrix}
+    & & L & & & & \\
+    & & \parallel & & & & \\
+    L_{122}^3 & \subset & L_{123}^3 & \subset & L_{133}^3 & & \\
+    \cap & & \cap & & \cap & & \\
+    L_{222}^3 & \subset & L_{223}^3 & \subset & L_{233}^3 & \subset & L_{333}^3 \\
+    & & & & & & \parallel \\
+    & & & & & & O^3_3 \\
+    \end{matrix}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}
+    \begin{figure}[h]
+        \includegraphics[width=200pt]{../img/graph-L^3_133.png}
+        \caption{Graf $L^3_{133}$ je ravninski.}
+        \label{fig:L^3_133}
+    \end{figure}
 \end{frame}
 
 \begin{frame}
@@ -223,26 +245,26 @@
 
 \end{frame}
 
-\begin{frame}{Dokaz formule za število povezav oxfordskega grafa}
-    \begin{block}{Lema o rokovanju}
-        Za vsak graf $\graf$ velja formula
-        \begin{equation*}
-        \sum_{u \in V(G)}\!\! \stopnja u = 2 \cdot |E(G)|.
-        \end{equation*}
-    \end{block}
-    
-    Spomnimo se še, da velja formula 
-    \[ {b+w \choose l} = \sum_{k=0}^{l}{b \choose k}{w \choose l-k} \]
-\end{frame}
-
-%\section{Uporaba}
-%\begin{frame}{Primeri uporabe}
-%    \begin{itemize}
-%        \item Problem londonskega stolpa je bil razvit z namenom merjenja sposobnosti načrtovanja in reševanja problemov pri bolnikih s poškodbami čelnega režnja možganov.
-%        \item Slabo reševanje londonskega stolpa se interpretira kot nezmožnost učinkovitega načrtovanja.
-%        \item Uporabljen je bil za ocenjevanje napredka bolezni pri bolnikih z Alzheimerjevo in Parkinsonovo boleznijo.
-%        \item Uporabljen je bil tudi za opazovanje vedenja majhnih otrok pri reševanju problemov.
-%    \end{itemize}
+%\begin{frame}{Dokaz formule za število povezav oxfordskega grafa}
+%    \begin{block}{Lema o rokovanju}
+%        Za vsak graf $\graf$ velja formula
+%        \begin{equation*}
+%        \sum_{u \in V(G)}\!\! \stopnja u = 2 \cdot |E(G)|.
+%        \end{equation*}
+%    \end{block}
+%    
+%    Spomnimo se še, da velja formula 
+%    \[ {b+w \choose l} = \sum_{k=0}^{l}{b \choose k}{w \choose l-k} \]
 %\end{frame}
+
+\section{Uporaba}
+\begin{frame}{Primeri uporabe}
+    \begin{itemize}
+        \item Problem londonskega stolpa je bil razvit z namenom merjenja sposobnosti načrtovanja in reševanja problemov pri bolnikih s poškodbami čelnega režnja možganov.
+        \item Slabo reševanje londonskega stolpa se interpretira kot nezmožnost učinkovitega načrtovanja.
+        \item Uporabljen je bil za ocenjevanje napredka bolezni pri bolnikih z Alzheimerjevo in Parkinsonovo boleznijo.
+        \item Uporabljen je bil tudi za opazovanje vedenja majhnih otrok pri reševanju problemov.
+    \end{itemize}
+\end{frame}
 
 \end{document}
