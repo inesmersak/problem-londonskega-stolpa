@@ -60,9 +60,11 @@
 %    \end{figure}
     \begin{itemize}
         \item izumljen leta 1982
+        \item uporabljen predvsem na področju nevropsihologije
         \item 3 enako velike krogle različnih barv
         \item 3 palice različnih velikosti
         \item cilj igre je priti iz trenutnega stanja v neko dano stanje z minimalnim številom potez
+        \item oznake: krogle oštevilčimo, začetek nove palice označimo s $|$
     \end{itemize}
 \end{frame}
 
@@ -90,6 +92,7 @@
     \begin{figure}
         \centering
         \includegraphics[height=150pt]{../img/london-tower.png}
+        \caption{Začetni položaj označimo s $|3|12$, končni položaj pa z $|21|3$.}
     \end{figure}
 \end{frame}
 
@@ -119,6 +122,7 @@
     \begin{figure}
         \centering
         \includegraphics[height=190pt]{../img/tolgraph-ham-path.png}
+        \caption{Ena izmed Hamiltonovih poti v grafu $L$.}
     \end{figure}
 \end{frame}
 
@@ -132,13 +136,13 @@
 \section{Posplošen londonski stolp}
 \begin{frame}{Oznake}
     \begin{itemize}
-        \item J.\ R.\ Tunstall je prva predlagala razširitev na 4 krogle s podaljšanimi palicami
+%        \item J.\ R.\ Tunstall je prva predlagala razširitev na 4 krogle s podaljšanimi palicami
         \item $n$ krogel različnih barv, $n \geq 2$
         \item $p$ palic, $p \geq 3$
         \item vsako palico označimo s številom $k \in [p]$, njeno višino pa s $h_k$
         \item veljati mora $n \leq \sum_{k=1}^p h_k$
         \item veljavnost poteze
-        \item vsako stanje lahko enolično predstavimo s permutacijo $s \in S_{n+p}$
+        \item vsako stanje enolično predstavimo s permutacijo $s \in S_{n+p} \colon$ \[s=\underbrace{s_1 \ldots s_n}_{\text{položaji krogel}} \underbrace{s_{n+1} \ldots s_{n+p}}_{\text{položaji palic}}\]
         \item položaje oštevilčimo od leve palice proti desni, z vrha palice proti dnu
     \end{itemize}
 \end{frame}
@@ -147,6 +151,7 @@
     \begin{figure}
         \centering
         \includegraphics[height=150pt]{../img/london-tower-numbered.png}
+        \caption{Prikazano stanje označimo s permutacijo $s=452136$.}
     \end{figure}
 \end{frame}
 
@@ -159,12 +164,14 @@
             \item povezave: vsaki dve stanji (oz.\ pripadajoči permutaciji), med katerima lahko prehajamo z veljavno potezo, sta povezani
         \end{itemize}
     \end{block}
+    \medskip
+    Graf klasičnega problema londonskega stolpa torej označimo z $L^3_{123}$.
 
 \end{frame}
 
 \section{Oxfordski graf}
 \begin{frame}{Oxfordski graf}
-    \alert{Oxfordski graf} je poseben primer londonskega grafa, kjer velja, da so vse palice velikosti $n$, pri čemer je $n$ število krogel. Oxfordski graf označimo z $O^n_p$, zanj torej velja $O^n_p := L^n_{n^p}$.
+    \alert{Oxfordski graf} je poseben primer londonskega grafa, pri katerem so vse palice velikosti $n$, pri čemer je $n$ število krogel. Oxfordski graf označimo z $O^n_p$, zanj torej velja $O^n_p := L^n_{n^p}$.
 \end{frame}
 
 \begin{frame}{Lastnosti}
@@ -177,8 +184,8 @@
     \end{block}    
 \end{frame}
 
-
-\begin{frame}{Povezanost grafa}
+\section{Lastnosti londonskih grafov}
+\begin{frame}{Povezanost}
     V nadaljevanju bomo privzeli, da so palice urejene po velikosti naraščajoče, velja torej $h_1 \leq h_2 \leq \cdots \leq h_p$.
     
     Potreben pogoj za povezanost londonskega grafa je 
@@ -189,7 +196,7 @@
     \end{block}
 \end{frame}
 
-\begin{frame}{Ravninskost grafa}
+\begin{frame}{Ravninskost}
     \begin{figure}[h]
         \includegraphics[width=150pt]{../img/tolgraph-2balls.png}
         \caption{Vsi londonski grafi s $p=3$ in $n=2$ so ravninski. Prikazani so: 
