@@ -215,27 +215,8 @@ Izkaže se, da je ta pogoj tudi zadosten za povezanost londonskega grafa.
     \end{equation}
 \end{izrek}
 
-\begin{proof}
-    Želimo dokazati, da iz pogoja \eqref{eq:pogoj-povezanosti} sledi, da lahko najdemo pot med poljubnima dvema vozliščema v londonskem grafu, kar je ravno definicija povezanosti. Dokaza se lotimo tako, da poskušamo splošen problem čim bolj zreducirati.
-    
-    Predpostavili bomo, da je število vseh krogel enako kar vsoti višin vseh palic brez največje, saj lahko v nasprotnem primeru vpeljemo navidezne krogle, katerih premike kasneje zanemarimo. Velja naj torej $n = \sum_{k=1}^{p-1}h_k$.
-    
-    Spomnimo se, da vsako vozlišče grafa predstavlja neko stanje krogel -- če torej iščemo pot v grafu med dvema vozliščema, pravzaprav rešujemo problem, kako iz začetnega stanja krogel priti v končno. Predpostavimo lahko, da je tako pri začetnem kot tudi pri končnem stanju krogel največja palica prazna. V nasprotnem primeru jih lahko na začetku razporedimo na preostale palice, na koncu pa preprosto prestavimo na največjo palico.
-    
-    Sedaj postopamo tako, da izberemo kroglo, ki še ni na svojem (končnem) položaju, in jo zamenjamo s kroglo, ki se trenutno nahaja na tem položaju; ta postopek ponavljamo. Če lahko zamenjavo naredimo tako, da se pri tem ne spremeni položaj nobene druge krogle, je po koncu zamenjave še ena krogla več na pravem mestu.
-    Ker je največja palica prazna, vse druge pa zapolnjene, se po koncu ponavljanja tega postopka ne more zgoditi, da je le ena krogla na napačnem mestu. (TODO zakaj?)
-    
-    Predpostavimo lahko še, da je ena izmed krogel, ki ju bomo zamenjali, na vrhu prve, najmanjše, palice. Namreč, s tremi zamenjavami, pri katerih je ena izmed krogel vedno na vrhu prve palice, lahko nadomestimo splošno zamenjavo dveh poljubnih krogel.
-    
-    Sedaj si izberimo kroglo, ki ni na pravem položaju, in s tem tudi kroglo, ki je trenutno na njenem položaju. Predpostavili smo, da je ena izmed teh krogel na prvi palici -- to kroglo označimo z $a$, drugo pa z $b$. Ločimo dva primera:
-    
-    \begin{enumerate}
-        \item \textbf{Krogla $b$ je na prvi palici.}
-        Vrhnjo kroglo druge palice, označimo jo s $c$, premaknemo na največjo ($p$-to) palico. Nato kroglo $a$ premaknemo na vrh druge palice, preostale krogle na prvi palici z do vključno kroglo $b$ pa premaknemo (seveda eno naenkrat) na največjo palico. Krogla $a$ lahko sedaj zasede svoj pravi položaj na prvi palici, $b$ pa premaknemo iz vrha največje palice na vrh druge. Sedaj lahko vrnemo vse preostale krogle (razen $c$) na prejšnje mesto na prvi palici, nato lahko na vrh prve palice postavimo $b$, ki tako zavzame prejšnji položaj krogle $a$. Za konec premaknemo še kroglo $c$ z največje palice na vrh druge palice.
-        \item \textbf{Krogla $b$ ni na prvi palici.}
-        V tem primeru je postopek še nekoliko lažji: najprej vse krogle nad $b$ premaknemo na največjo palico, nato na vrh največje palice premaknemo tudi $b$. Sedaj lahko kroglo $a$ prestavimo na njeno pravo mesto (kjer je bil prej $b$), $b$ na vrh prve palice, vse preostale krogle na največji palici pa postavimo nazaj na prejšnja mesta, nad kroglo $a$.
-    \end{enumerate}
-    S tem je dokaz končan, saj smo našli način, kako prehajati med dvema poljubnima stanjema krogel, in smo s tem našli tudi pot v grafu med poljubnima vozliščema.
+\begin{proof}[Oris dokaza]
+    Želimo dokazati, da lahko najdemo pot med poljubnima dvema vozliščema v londonskem grafu, oziroma da lahko prehajamo med poljubnima dvema stanjema krogel. Dokaza se lotimo tako, da problem zreduciramo na vprašanje, ali lahko zamenjamo poljubni dve krogli, brez da bi pri tem spremenili položaj katerekoli krogle, nato pa pokažemo, da je to mogoče.
 \end{proof}
 
 \subsection{Ravninskost}
@@ -244,39 +225,39 @@ Omenili smo že, da se problem londonskega stolpa pogosto uporablja kot psiholo�
 
 Najprej si poglejmo problem za dve krogli ($n=2$): vsi grafi so ravninski, kot je prikazano na sliki.
 
-Preden si ogledamo problem za $n=3$, vpeljimo novo operacijo na grafih:
-
-\begin{itemize}
-    \item operacija \emph{subdivizije} ohranja ravninskost: vzamemo neko povezavo $e$ grafa $G$ in na sredino te povezave dodamo še eno vozlišče 
-    \item graf $H$ je \emph{subdivizija} grafa $G$, če ga lahko dobimo iz $G$ z zaporednim \emph{subdiviziranjem} povezav grafa $G$; očitno je tak $H$ ravninski natanko tedaj, ko je $G$ ravninski
-    \item hitro lahko vidimo, da grafa $K_5$ in $K_{3,3}$ nista ravninska (poskusimo ju narisati v ravnini, a kmalu ugotovimo, da to ne bo mogoče)
-    \item graf torej zagotovo ni ravninski, če vsebuje subdivizijo $K_5$ ali $K_{3,3}$; zanimivo pa je, da velja tudi obratno; dokaz tega dejstva je netrivialen in ga bom preskočila
-\end{itemize}
+Preden si ogledamo problem za $n=3$, se spomnimo operacije \emph{subdivizije}: vzamemo neko povezavo $e$ grafa in na sredino te povezave dodamo še eno vozlišče. Ta operacija ohranja ravninskost.   
+%    \item graf $H$ je \emph{subdivizija} grafa $G$, če ga lahko dobimo iz $G$ z zaporednim \emph{subdiviziranjem} povezav grafa $G$; očitno je tak $H$ ravninski natanko tedaj, ko je $G$ ravninski
+%    \item hitro lahko vidimo, da grafa $K_5$ in $K_{3,3}$ nista ravninska (poskusimo ju narisati v ravnini, a kmalu ugotovimo, da to ne bo mogoče)
+Graf torej zagotovo ni ravninski, če vsebuje subdivizijo $K_5$ ali $K_{3,3}$ (ta dva grafa nista ravninska); zanimivo pa je, da velja tudi obratno.
 
 \medskip
 
 \begin{izrek}[Kuratowski]
-    Graf G je ravninski natanko tedaj, ko ne vsebuje subdivizije $K_5$ niti subdivizije $K_{3,3}$.
+    Graf $G$ je ravninski natanko tedaj, ko ne vsebuje subdivizije $K_5$ niti subdivizije $K_{3,3}$.
 \end{izrek}
+
+\medskip
 
 \begin{trditev}
     Naj bo $p=3$. Tedaj so londonski grafi $L_h^2, L_{122}^3,L_{123}^3$ in $ L_{133}^3$ ravninski.
 \end{trditev}
-
-Za $n=3$ dobimo sledečo shemo:
-
-\[
-\begin{matrix}
-& & L & & & & \\
-& & \parallel & & & & \\
-L_{122}^3 & \subset & L_{123}^3 & \subset & L_{133}^3 & & \\
-\cap & & \cap & & \cap & & \\
-L_{222}^3 & \subset & L_{223}^3 & \subset & L_{233}^3 & \subset & L_{333}^3 \\
-& & & & & & \parallel \\
-& & & & & & O^3_3 \\
-\end{matrix}
-\]
-
+\begin{proof}[Oris dokaza]
+    Za $n=3$ dobimo sledečo shemo:
+    
+    \[
+    \begin{matrix}
+    & & L & & & & \\
+    & & \parallel & & & & \\
+    L_{122}^3 & \subset & L_{123}^3 & \subset & L_{133}^3 & & \\
+    \cap & & \cap & & \cap & & \\
+    L_{222}^3 & \subset & L_{223}^3 & \subset & L_{233}^3 & \subset & L_{333}^3 \\
+    & & & & & & \parallel \\
+    & & & & & & O^3_3 \\
+    \end{matrix}
+    \]
+    
+    Dokazati moramo še, da londonski grafi za $n \geq 4$ niso ravninski. Pri tem upoštevamo, da nekateri grafi z $n = 4$ vsebujejo nekatere neravninske grafe, v nekaterih moramo pa ponovno poiskati subdivizijo $K_{3,3}$. S tem ugotovimo, da noben londonski graf za $n=4$ ni ravninski, zato niso ravninski tudi grafi za $n>4$.
+\end{proof}
 
 % seznam uporabljene literature
 \begin{thebibliography}{99}
