@@ -259,10 +259,18 @@
         \item $(\chi_1,\pi_1) \cdot (\chi_2,\pi_2) = (\chi_1 \circ \chi_2,\pi_1 \circ \pi_2), $
         \item  $1_{np} = (\id_n, \id_p).$
     \end{itemize}
-    \medskip
+\end{frame}
+
+\begin{frame}
     Sedaj lahko definiramo delovanje te grupe na množici vozlišč (stanj) nekega londonskega grafa $V(L_h^n)$:
     \[ (\chi,\pi) . s = \X \left( \Sigma_{\pi^{-1}(1)} | \ldots | \Sigma_{\pi^{-1}(p)} \right), s \in V(L_h^n) \]
     pri čemer je $\X$ preslikava, ki ustrezno permutira barve krogel glede na $\chi$.
+    
+    \medskip
+    
+    Iz teorije grup vemo, da lahko na množici stanj definiramo ekvivalenčno relacijo $\sim$ takole:
+    \[ s_1 \sim s_2 \iff \exists (\chi,\pi) \in \Gamma_{np}\colon \ s_2 = (\chi,\pi).s_1, \]
+    množica stanj razpade na ekvivalenčne razrede, ki so kar orbite. Ekvivalentna so torej tista stanja krogel, ki so v isti orbiti.
 \end{frame}
 
 \begin{frame}
@@ -272,6 +280,13 @@
         \caption{Na sliki sta prikazani edini dve neekvivalentni stanji problema $O^2_3$. }
         \label{fig:neekviv-oxf-stanji}
     \end{figure}
+\end{frame}
+
+\begin{frame}
+    \begin{block}{Trditev}
+        \label{trd:simetrije-L222na3}
+        Množica stanj londonskega grafa $L_{222}^3$, katere velikost je $42$, razpade v $2$ ekvivalenčna razreda; prvi je velikosti $6$, drugi pa $36$. Minimalna stopnja vozlišč tega grafa je $3$, maksimalna $6$, povprečna pa $\approx 3.43$. Premer tega grafa je $5$, povprečna razdalja med dvema vozliščema pa $\approx 3.31$. 
+    \end{block}
 \end{frame}
 
 %\begin{frame}{Dokaz formule za število povezav oxfordskega grafa}

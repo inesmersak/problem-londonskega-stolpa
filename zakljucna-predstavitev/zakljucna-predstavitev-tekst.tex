@@ -57,6 +57,10 @@
 \newcommand{\povezave}[1][G]{\ensuremath{E(#1)}}
 \newcommand{\bd}{\ensuremath{|\,}}
 \newcommand{\ed}{\ensuremath{\,|}}
+\DeclareMathOperator {\id} {id}
+\DeclareMathOperator {\X}{X}
+\DeclareMathOperator{\distance}{d}
+
 % operatorji
 \DeclareMathOperator {\stopnja} {deg}
 
@@ -259,17 +263,56 @@ Graf torej zagotovo ni ravninski, če vsebuje subdivizijo $K_5$ ali $K_{3,3}$ (t
     Dokazati moramo še, da londonski grafi za $n \geq 4$ niso ravninski. Pri tem upoštevamo, da nekateri grafi z $n = 4$ vsebujejo nekatere neravninske grafe, v nekaterih moramo pa ponovno poiskati subdivizijo $K_{3,3}$. S tem ugotovimo, da noben londonski graf za $n=4$ ni ravninski, zato niso ravninski tudi grafi za $n>4$.
 \end{proof}
 
+\subsection{Simetrije}
+
+Za učinkovitejšo preučevanje simetrij večjih londonskih grafov definirajmo grupo $(\Gamma_{np}, \cdot, 1_{np})$, pri čemer velja $\Gamma_{np} = S_n \times S_p$; grupa $S_n$ bo pri tem predstavljala vse možne permutacije (barv) krogel, $S_p$ pa vse možne permutacije palic. Operacijo $\cdot$ definiramo takole:
+\[ (\chi_1,\pi_1) \cdot (\chi_2,\pi_2) = (\chi_1 \circ \chi_2,\pi_1 \circ \pi_2), \]
+enota pa je kar urejen par enot grupe $S_n$ (označimo jo z $\id_n$) in $S_p$ (označimo jo z $\id_p$), velja torej $1_{np} = (\id_n, \id_p) $. Enostavno lahko preverimo, da za tako definirano operacijo $\cdot$ in enoto $1_{np}$ res dobimo grupo. Seveda velja, da je velikost naše grupe simetrij $|\Gamma_{np}|$ enaka kar produktu velikosti množic $S_n$ in $S_p$, torej $|\Gamma_{np}| = n! \cdot p!$. 
+
+Sedaj lahko definiramo delovanje te grupe na množici vozlišč (stanj) nekega londonskega grafa $V(L_h^n)$. Označimo neko stanje krogel z $s = \Sigma_1 | \ldots | \Sigma_p$, kjer $|$ ponovno označuje začetek naslednje palice, $\Sigma_i$ pa je niz, sestavljen iz oznak krogel na $i$-ti palici; krogle kot ponavadi naštevamo od vrha palice navzdol. Grupa $\Gamma_{np}$ sedaj deluje na poljubno stanje $s$ iz množice vozlišč takole:
+\[ (\chi,\pi) . s = \X \left( \Sigma_{\pi^{-1}(1)} | \ldots | \Sigma_{\pi^{-1}(p)} \right), \]
+pri čemer je $\X$ preslikava, ki ustrezno permutira barve krogel glede na $\chi$. To je res delovanje, saj očitno velja $1_{np}.s = s$ za vsak $s \in V(L_h^n)$, enostavno pa lahko preverimo, da velja tudi
+
+\[ \left((\chi_1,\pi_1) \cdot (\chi_2,\pi_2)\right).s = (\chi_1,\pi_1) . ((\chi_2,\pi_2).s) .\]
+
+Iz osnovne teorije grup vemo, da lahko na množici stanj definiramo ekvivalenčno relacijo $\sim$ takole:
+\[ s_1 \sim s_2 \iff \exists (\chi,\pi) \in \Gamma_{np}\colon \ s_2 = (\chi,\pi).s_1, \]
+množica stanj razpade na ekvivalenčne razrede, ki so kar orbite. Ekvivalentna so torej tista stanja krogel, ki so v isti orbiti.
+
+Če upoštevamo simetrije krogel in palic, imamo pri problemu $O_2^3$ pravzaprav le dve razporeditvi krogel, ki nista ekvivalentni, in sicer: 
+\begin{itemize}
+    \item obe krogli sta na isti palici (prikazano na sliki levo),
+    \item krogli nista na isti palici (prikazano na sliki desno).
+\end{itemize}
+
+Množica stanj tega problema torej razpade na dva ekvivalenčna razreda. Če za vsako izmed teh stanj upoštevamo vse možne simetrije (na voljo imamo $3!$ permutacij palic in $2$ permutaciji barv), vidimo, da sta oba ekvivalenčna razreda velikosti $6$, saj z nekaterimi izbirami permutacije za palice in barvi dobimo enako razporeditev krogel. Sedaj lahko npr.\ povprečno ekscentričnost vozlišč izračunamo tako, da ugotovimo ekscentričnost nekega predstavnika teh dveh ekvivalenčnih razredov, recimo $\epsilon(12||) = 4$ in $\epsilon(1|2|) = 3$, iz česar lahko sklepamo, da je povprečna ekscentričnost v grafu enaka $\bar{\epsilon}(O^2_3) = 3.5$. Na podoben način lahko izračunamo tudi povprečno razdaljo med dvema vozliščema v grafu tako, da najprej seštejemo vse razdalje od nekega poljubnega vozlišča do teh dveh predstavnikov, nato pa upoštevamo velikosti obeh ekvivalenčnih razredov in koliko je vseh možnih parov vozlišč (število vozlišč tega grafa lahko izračunamo po formuli~\eqref{eq:oxford-vozl} in je enako $12$):
+
+\[ \sum_{s \in V(O_3^2)} \distance(12||,s) = 26,\quad \sum_{s \in V(O_3^2)} \distance(1|2|,s) = 21 \implies \bar{\distance}(O^2_3) = \frac{6 \cdot 26 + 6 \cdot 21}{144} \approx 1.958.\]
+
+S pomočjo zgornje teorije lahko sedaj dokažemo naslednjo trditev za londonski graf $L_{222}^3$:
+
+\medskip
+
+\begin{trditev}
+    \label{trd:simetrije-L222na3}
+    Množica stanj londonskega grafa $L_{222}^3$, katere velikost je $42$, razpade v $2$ ekvivalenčna razreda; prvi je velikosti $6$, drugi pa $36$. Minimalna stopnja vozlišč tega grafa je $3$, maksimalna $6$, povprečna pa $\approx 3.43$. Premer tega grafa je $5$, povprečna razdalja med dvema vozliščema pa $\approx 3.31$. 
+\end{trditev}
+
+\begin{proof}[Oris dokaza]
+    Pomagamo si z znanim dejstvom iz teorije grup o tem, da je moč grupe enaka moči orbite krat moči stabilizatorja elementa in z Burnsidovo lemo, ki pravi, da je število orbit enako povprečnemu številu negibnih točk.
+\end{proof}
+
 % seznam uporabljene literature
-\begin{thebibliography}{99}
-
-\bibitem{bib:tohmyths} A. M. Hinz, S. Klavžar, U. Milutinović in C. Petr, \emph{The Tower of Hanoi – Myths and Maths}, Birkhäuser, Basel, 2013.
-
-\bibitem{bib:potocnik} P. Potočnik, \emph{Zapiski predavanj iz Diskretne Matematike I}, 1.~izdaja, [ogled 29.~12.~15], dostopno na \url{http://www.fmf.uni-lj.si/~potocnik/Ucbeniki/DM-Zapiski2010.pdf}
-
-\bibitem{bib:wikishal} \emph{Tim Shallice}, v: Wikipedia: The Free Encyclopedia, [ogled 8.~10.~2015], dostopno na\\ \url{https://en.wikipedia.org/wiki/Tim_Shallice}.
-
-\bibitem{bib:wikihamilpath} \emph{Hamiltonian path}, v: Wikipedia: The Free Encyclopedia, [ogled 28.~12.~2015], dostopno na \url{https://en.wikipedia.org/wiki/Hamiltonian_path}.
-\end{thebibliography}
+%\begin{thebibliography}{99}
+%
+%\bibitem{bib:tohmyths} A. M. Hinz, S. Klavžar, U. Milutinović in C. Petr, \emph{The Tower of Hanoi – Myths and Maths}, Birkhäuser, Basel, 2013.
+%
+%\bibitem{bib:potocnik} P. Potočnik, \emph{Zapiski predavanj iz Diskretne Matematike I}, 1.~izdaja, [ogled 29.~12.~15], dostopno na \url{http://www.fmf.uni-lj.si/~potocnik/Ucbeniki/DM-Zapiski2010.pdf}
+%
+%\bibitem{bib:wikishal} \emph{Tim Shallice}, v: Wikipedia: The Free Encyclopedia, [ogled 8.~10.~2015], dostopno na\\ \url{https://en.wikipedia.org/wiki/Tim_Shallice}.
+%
+%\bibitem{bib:wikihamilpath} \emph{Hamiltonian path}, v: Wikipedia: The Free Encyclopedia, [ogled 28.~12.~2015], dostopno na \url{https://en.wikipedia.org/wiki/Hamiltonian_path}.
+%\end{thebibliography}
 
 \end{document}
 
