@@ -176,7 +176,8 @@
 
 \begin{frame}{Lastnosti}
     \begin{block}{Trditev}
-        Število vozlišč oxfordskega grafa $O^n_p$ je enako \[\frac{(n+p-1)!}{(p-1)!}.\]
+        Število vozlišč oxfordskega grafa $O^n_p$ je enako 
+        \[ n! \cdot {n+p-1 \choose p-1} = \frac{(n+p-1)!}{(p-1)!}.\]
     \end{block}    
     \begin{block}{Trditev}
         Število povezav oxfordskega grafa $O^n_p$ je enako
@@ -211,17 +212,10 @@
 \end{frame}
 
 \begin{frame}
-    Operacija \alert{subdivizije} ohranja ravninskost.
-    \begin{block}{Izrek Kuratowskega}
-           	Graf G je ravninski natanko tedaj, ko ne vsebuje subdivizije $K_5$ niti subdivizije $K_{3,3}$.
-    \end{block}
-
+%    Operacija \alert{subdivizije} ohranja ravninskost.
     \begin{block}{Trditev}
            	Naj bo $p=3$. Tedaj so ravninski londonski grafi natanko grafi $L_h^2, L_{122}^3,L_{123}^3 = L$ in $ L_{133}^3$.
     \end{block}
-\end{frame}
-
-\begin{frame}
     Za povezane londonske grafe s tremi kroglami velja spodnja shema.
     \begin{equation*}
     \label{eq:grafi-3krogle}
@@ -246,6 +240,10 @@
 \end{frame}
 
 \begin{frame}
+    \begin{block}{Izrek Kuratowskega}
+        Graf G je ravninski natanko tedaj, ko ne vsebuje subdivizije $K_5$ niti subdivizije $K_{3,3}$.
+    \end{block}
+    
     \begin{equation*}
         \begin{matrix}
             & & L & & & & \\
