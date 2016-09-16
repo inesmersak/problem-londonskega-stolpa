@@ -385,7 +385,7 @@ Pri polnem dvodelnem grafu z $n$ vozlišči v prvi množici, recimo ji $V_1$, in
 
 \subsection{Povezanost grafa}
 
-\emph{Sprehod} v grafu $G$ je tako zaporedje vozlišč $v_1, v_2, \ldots, v_k$, da velja $v_i v_{i+1} \in E(G),$ pri čemer je $1 \leq i \leq k-1$. Če označimo $x = x_1$ in $y = x_k$, potem takemu sprehodu rečemo $x,y$-sprehod.
+\emph{Sprehod} v grafu $G$ je tako zaporedje vozlišč $v_1, v_2, \ldots, v_k$, da velja $v_i v_{i+1} \in E(G),$ pri čemer je $1 \leq i \leq k-1$. Če označimo $x = v_1$ in $y = v_k$, potem takemu sprehodu rečemo $x,y$-sprehod.
 
 Sprehod je \emph{enostaven}, če so vsa njegova vozlišča različna. Enostaven sprehod inducira podgraf, ki je izomorfen poti (torej pot v grafu).
 
@@ -750,7 +750,7 @@ Položaje oštevilčimo od leve palice proti desni, z vrha palice proti dnu. Tak
 
 \begin{primer}
     Poiščimo permutacijo za začetni položaj na sliki~\ref{fig:stanji}, ki smo ga označili z $|3|12|$. 
-    Predstavljajmo si, da oštevilčujemo krogle in dna palice, in začnimo oštevilčevati od leve proti desni, z vrha palice proti dnu, tako kot je prikazano na sliki~\ref{fig:ostev-stanji}.
+    Predstavljajmo si, da oštevilčujemo krogle in dna palic, in začnimo oštevilčevati od leve proti desni, z vrha palice proti dnu, tako kot je prikazano na sliki~\ref{fig:ostev-stanji}.
     
     \begin{figure}[h]
         \includegraphics[width=220pt]{img/london-tower-numbered.png}
@@ -769,7 +769,7 @@ saj je $s_{n+k}$ položaj dna palice $k$, $s_{n+k-1}$ pa položaj dna palice $k-
 
 Prav tako pa velja tudi 
 \[\forall k \in [p]\colon s_{n+k} - s_{n+k-1} \leq h_k + 1,\]
-kar se zgodi v primeru, če je na $k$-ti palici $h_k$ krogel.
+kar se zgodi v primeru, če je na $k$-ti palici $h_k$ krogel. Pri obeh primerih smo definirali, da je $ s_{n+0} = 0 $.
 
 Opazimo še, da je položaj dna zadnje palice $s_{n+p}$ vedno enak $n+p$, saj smo pred tem že oštevilčili položaje vseh $n$ krogel in ostalih $p-1$ palic.
 
@@ -779,7 +779,7 @@ V splošnem je londonski graf, katerega vozlišča so vsa stanja pripadajočega 
     Za \emph{londonski graf} $L_h^n$, kjer je $p \geq 3,\ n \geq 2,\ h \in [n]^p,\  \sum_{k=1}^p h_k \geq n$ velja:
     \begin{itemize}
         \item vozlišča so vse permutacije $s \in S_{n+p}$, za katere velja:
-        \[\forall k \in [p]:\ 1 \leq s_{n+k} - s_{n+k-1} \leq h_k + 1,\ s_{n+p} = n + p ,\]
+        \[\forall k \in [p]:\ 1 \leq s_{n+k} - s_{n+k-1} \leq h_k + 1,\ s_{n+p} = n + p \]
         \item vsaki dve stanji (oz.\ pripadajoči permutaciji), med katerima lahko prehajamo z veljavno potezo, sta povezani.
     \end{itemize}
 \end{definicija}
@@ -787,7 +787,7 @@ V splošnem je londonski graf, katerega vozlišča so vsa stanja pripadajočega 
 S pogojem, da so vse palice visoke največ $n$, ne izgubimo splošnosti, saj razporejamo le $n$ krogel.
 
 Očitno je klasični londonski graf $L$ enak $L_{123}^3$, saj imamo $3$ krogle in $3$ palice, ki so velikosti $1$, $2$ in $3$.
-Če smo za ta primer lahko izračunali število vozlišč, pa je v splošnem za londonske stolpe to precej težko. V naslednjem podrazdelku bomo obravnavali poseben primer londonskih grafov, za katerega je znana formula za število vozlišč. 
+Če smo za ta primer lahko izračunali število vozlišč, pa je v splošnem za londonske stolpe to precej težko. V naslednjem podrazdelku bomo obravnavali poseben primer londonskih grafov, za katerega lahko preprosto izpeljemo formulo za število vozlišč. 
 
 \subsection{Oxfordski graf}
 
@@ -903,7 +903,7 @@ Izkaže se, da je ta pogoj tudi zadosten za povezanost londonskega grafa.
 \proof
     Želimo dokazati, da iz pogoja \eqref{eq:pogoj-povezanosti} sledi, da lahko najdemo pot med poljubnima dvema vozliščema v londonskem grafu, kar je ravno definicija povezanosti. Dokaza se lotimo tako, da najprej čim bolj zreduciramo splošen problem in nato rešimo reduciran problem.
     
-    Spomnimo se, da vsako vozlišče londonskega grafa predstavlja neko stanje krogel -- če torej iščemo pot v grafu med dvema vozliščema, pravzaprav rešujemo problem, kako iz začetnega stanja krogel priti v končno. Fiksirajmo poljubno začetno in končno stanje in poskusimo rešiti ta problem.
+    Spomnimo se, da vsako vozlišče londonskega grafa predstavlja neko stanje krogel -- če torej iščemo pot v grafu med dvema vozliščema, pravzaprav rešujemo problem, kako priti iz začetnega stanja krogel v končno. Fiksirajmo poljubno začetno in končno stanje in poskusimo rešiti ta problem.
     
     Predpostavili bomo, da je število vseh krogel kar enako vsoti višin vseh palic brez največje, saj lahko v nasprotnem primeru vpeljemo navidezne krogle, katerih premike kasneje zanemarimo. Velja naj torej $n = \sum_{k=1}^{p-1}h_k$.
     
@@ -936,7 +936,7 @@ Izkaže se, da je ta pogoj tudi zadosten za povezanost londonskega grafa.
 
 \subsection{Ravninskost}
 
-Omenili smo že, da se problem londonskega stolpa pogosto uporablja kot psihološki test. Psihologi rezultate testov radi prikažejo kar na grafu uporabljenega problema, zato je zanimivo tudi vprašanje ravninskosti londonskih grafov -- križanje povezav namreč lahko vodi do zmede pri prikazu rezultatov. Ker se za testiranje uporablja le londonski stolp s tremi palicami, se bomo tudi pri obravnavi ravninskosti omejili na ta primer, torej naj bo $p=3$.
+Omenili smo že, da se problem londonskega stolpa pogosto uporablja kot psihološki test. Psihologi rezultate testov radi prikažejo kar na grafu uporabljenega problema, zato je zanimivo tudi vprašanje ravninskosti londonskih grafov -- križanje povezav namreč lahko vodi do zmede pri prikazu rezultatov. Ker se za testiranje uporablja londonski stolp s tremi palicami, ki je rešljiv za poljubno začetno in poljubno končno stanje krogel, se bomo tudi pri obravnavi ravninskosti omejili na ta primer; naj bo torej $p=3$ in naj bo graf pripadajočega problema povezan.
 
 Najprej obravnavajmo primer londonskega stolpa z dvema kroglama ($n=2$, to so torej grafi $L^2_h$). V tem primeru imamo grafe 
 $L^2_{111}, L^2_{112}, L^2_{122}$ in $L^2_{222} = O^2_3$ (še vedno predpostavljamo, da so palice razvrščene po velikosti naraščajoče). Hitro lahko vidimo, da je npr.\ $L^2_{111}$ podgraf $L^2_{112}$: iz prvega lahko pridemo do drugega tako, da dodamo vozlišči, kjer sta obe krogli na največji palici, in ustrezno dodamo povezave z že obstoječimi stanji. Če s $ \subset $ označimo relacijo podgraf, lahko vidimo sledeče:
@@ -985,7 +985,7 @@ Videli smo že, da je klasični londonski graf $L$ ravninski. Torej je ravninski
 \end{opomba}
 
 \proof
-    Videli smo že, da so grafi $L_h^2, L_{122}^3, L_{123}^3$ in $L_{133}^3$ ravninski. Dokazati moramo, da vsi ostali grafi za $n=3$ in vsi grafi za $n \geq 4$ niso ravninski. Pri tem nam bo v pomoč izrek~\ref{izr:kuratowski}, ki pravi, da je graf ravninski natanko tedaj, ko ne vsebuje subdivizije $K_5$ ali $K_{3,3}$. V grafu $L_{222}^3$ pa lahko najdemo subdivizijo $K_{3,3}$, ki je na sliki~\ref{fig:L222-subdivizija} prikazana z rdečo barvo. 
+    Videli smo že, da so grafi $L_h^2, L_{122}^3, L_{123}^3$ in $L_{133}^3$ ravninski. Dokazati moramo, da vsi ostali grafi za $n=3$ in vsi grafi za $n \geq 4$ niso ravninski. Pri tem nam bo v pomoč izrek~\ref{izr:kuratowski}, ki pravi, da je graf ravninski natanko tedaj, ko ne vsebuje subdivizije $K_5$ niti $K_{3,3}$. V grafu $L_{222}^3$ pa lahko najdemo subdivizijo $K_{3,3}$, ki je na sliki~\ref{fig:L222-subdivizija} prikazana z rdečo barvo. 
     \begin{figure}[h]
         \centering
         \includegraphics[width=400pt]{img/tolgraph-O^3_222-subdivision.png}
@@ -995,7 +995,7 @@ Videli smo že, da je klasični londonski graf $L$ ravninski. Torej je ravninski
     Iz tega po izreku~\ref{izr:kuratowski} sledi, da $L_{222}^3$ ni ravninski. Ker vsi preostali grafi z $n = 3$ vsebujejo graf $L_{222}^3$ (kot lahko vidimo na shemi~\eqref{eq:grafi-3krogle}), tudi $L_{223}^3, L_{233}^3, L_{333}^3=O^3_3$ niso ravninski.
     
     Dokazati moramo le še, da tudi londonski grafi za $n\geq 4$ niso ravninski.
-    Ker $L_{222}^3$ ni ravninski in je vsebovan v grafu $L_{222}^4$, sledi, da $L_{222}^4$ ni ravninski. Pokazali bi lahko, da tudi graf $L_{133}^4$ ni ravninski, vendar si pri tem ne moremo pomagati z njegovim ravninskim podgrafom $L_{133}^3$, zato bi morali znotraj $L_{133}^4$ poiskati subdivizijo $K_{3,3}$. Ta naloga je precej mučna zaradi velikosti grafa, zato jo bomo izpustili.
+    Če grafu $L_{222}^3$ dodamo eno kroglo, lahko preprosto vidimo, da je graf $L_{222}^4$ njegova subdivizija (dodatno kroglo lahko vedno umaknemo). Ker $L_{222}^3$ ni ravninski, sledi, da tudi njegova subdivizija $L_{222}^4$ ni ravninska. Pokazali bi lahko, da tudi graf $L_{133}^4$ ni ravninski, vendar si pri tem ne moremo pomagati z njegovim ravninskim podgrafom $L_{133}^3$, zato bi morali znotraj $L_{133}^4$ poiskati subdivizijo $K_{3,3}$. Ta naloga je precej mučna zaradi velikosti grafa, zato jo bomo izpustili.
     Ker mora vsak graf $L_h^4$ vsebovati ali $L_{133}^4$ ali $L_{222}^4$, ki nista ravninska, to sledi tudi za preostale grafe z $n=4$.
     
     Za $n \geq 4$ torej noben graf ni ravninski, saj vsak $L_h^n$ dobimo z dodajanjem krogel enemu izmed $L_h^4$, za katere pa zdaj vemo, da niso ravninski.
