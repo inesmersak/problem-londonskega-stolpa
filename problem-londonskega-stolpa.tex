@@ -644,7 +644,7 @@ Pri klasičnem londonskem stolpu imamo tri enako velike krogle različnih barv i
 \end{figure}
 
 Stanja in prehode med njimi si najlažje predstavljamo, če narišemo graf. V ta namen vpeljemo naslednje oznake:
-krogle bomo označili s številkami $1$, $2$, $3$ -- npr.\ modra krogla naj ima oznako $1$, rdeča $2$, rumena pa $3$ -- s simbolom ``$|$'' pa bomo označili konec prejšnje palice in začetek nove. Krogle bomo naštevali od vrha palice navzdol.
+krogle bomo označili s številkami $1$, $2$, $3$ -- npr.\ modra krogla naj ima oznako $1$, rdeča $2$, rumena pa $3$ --, s simbolom ``$|$'' pa bomo označili konec prejšnje palice in začetek nove. Krogle bomo naštevali od vrha palice navzdol.
 
 \begin{primer}
     Začetno stanje na sliki~\ref{fig:stanji} lahko torej opišemo z $|3|12$, končno stanje pa z $|21|3$.
@@ -714,7 +714,7 @@ Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ $36$ vozlišč. Graf je rav
     
     Da bi dokazali, da graf ni Hamiltonov, moramo najprej opaziti nekaj lastnosti tega grafa. Soseščina vsakega vozlišča stopnje $2$ je sestavljena iz enega vozlišča stopnje $3$ in enega stopnje $4$, prav tako je presek soseščin poljubnih dveh vozlišč stopnje $2$ prazen -- vsako vozlišče stopnje $2$ ima torej ``svoje'' vozlišče stopnje $3$ in stopnje $4$. Nadalje lahko iz grafa vidimo, da poljubni dve vozlišči stopnje $3$ nista sosednji.
     
-    Sledi, da na ciklu $C$ v grafu, ki bi vseboval vsa vozlišča, nobeni dve vozlišči stopnje $4$ nista sosednji. Ker imamo po $12$ vozlišč vsake stopnje, bi v nasprotnem primeru namreč prišli do zaključka, da morata biti sosednji dve vozlišči stopnje $3$, kar pa je v nasprotju z zgornjim opažanjem.
+    Sledi, da na ciklu $C$ v grafu, ki bi vseboval vsa vozlišča, nobeni dve vozlišči stopnje $4$ nista sosednji. Vemo, da bo imelo vsako vozlišče stopnje $4$ na ciklu dva soseda, eden izmed teh sosedov pa bo gotovo vozlišče stopnje $2$. Prav tako bo imelo vozlišče stopnje $3$ na ciklu dva soseda in eden izmed teh sosedov je ponovno neko vozlišče stopnje $2$. Recimo, da sta dve vozlišči stopnje $4$ sosednji na ciklu. Ker imamo po $12$ vozlišč vsake stopnje, bi zato na ciklu morali biti sosednji tudi dve vozlišči stopnje $3$, kar pa je v nasprotju z zgornjim opažanjem. Torej na ciklu $C$ nobeni dve vozlišči stopnje $4$ ne bosta sosednji. 
     
     Sedaj začnimo graditi cikel $C$, ki bo vseboval vsa vozlišča grafa natanko enkrat. Oglejmo si sliko~\ref{fig:dokaz-ham-klasicni} desno.
     Cikel $C$ mora torej gotovo iti skozi vsa vozlišča stopnje $2$, kar je možno le na en način: če imamo vozlišče $v$ stopnje $2$ s sosedoma $u$ stopnje $3$ in $z$ stopnje $4$, mora $C$ vsebovati pot $u,v,z$.
