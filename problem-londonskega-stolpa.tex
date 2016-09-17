@@ -566,7 +566,7 @@ Za vsako drevo z vsaj dvema vozliščema velja, da vsebuje vozlišče stopnje $1
 Naslednja posledica Eulerjeve formule nam bo pomagala pri dokazu dejstva, da grafa $K_5$ in $K_{3,3}$ nista ravninska.
 
 \begin{posledica}
-    Če je $G$ povezan ravninski graf na $n$ vozliščih in $m$ povezavah, pri čemer imamo vsaj $3$ vozlišča, velja
+    Če je $G$ povezan ravninski graf na $n$ vozliščih in $m$ povezavah, pri čemer ima $G$ vsaj $3$ vozlišča, velja
     \begin{equation} 
     \label{eq:posledica-euler-formula}
     m \leq 3n - 6.
@@ -579,7 +579,9 @@ Naslednja posledica Eulerjeve formule nam bo pomagala pri dokazu dejstva, da gra
 \end{posledica}
 
 \proof
-    Če za vsako lice upoštevamo le tri povezave (to je minimalno število povezav, ki omejujejo lice, ki ni zunanje; zunanje lice pa prav tako vedno meji na vsaj tri povezave), bomo dobili kvečjemu manj, kot če preštejemo vse povezave dvakrat.
+    Če ima graf $G$ tri vozlišča in manj kot tri povezave, potem mora zaradi povezanosti nujno imeti dve povezavi (torej je izomorfen $P_3$). V tem primeru nimamo trikotnikov in formuli očitno veljata. 
+    
+    Sedaj predpostavimo, da imamo graf z vsaj tremi povezavami. Če za vsako lice upoštevamo le tri povezave (to je minimalno število povezav, ki omejujejo lice, ki ni zunanje; zunanje lice pa prav tako vedno meji na vsaj tri povezave), bomo dobili kvečjemu manj, kot če preštejemo vse povezave dvakrat.
     Vsaka povezava namreč omejuje največ dve lici; če bi po vseh licih sešteli število povezav, ki omejujejo neko lice, bi torej dobili dvakratno vrednost števila povezav.
     Torej velja neenakost
     \[ 3f \leq 2m .\]
@@ -714,7 +716,7 @@ Iz leme~\ref{lem:stanja-klas-lond} sledi, da ima $L$ $36$ vozlišč. Graf je rav
     
     Da bi dokazali, da graf ni Hamiltonov, moramo najprej opaziti nekaj lastnosti tega grafa. Soseščina vsakega vozlišča stopnje $2$ je sestavljena iz enega vozlišča stopnje $3$ in enega stopnje $4$, prav tako je presek soseščin poljubnih dveh vozlišč stopnje $2$ prazen -- vsako vozlišče stopnje $2$ ima torej ``svoje'' vozlišče stopnje $3$ in stopnje $4$. Nadalje lahko iz grafa vidimo, da poljubni dve vozlišči stopnje $3$ nista sosednji.
     
-    Sledi, da na ciklu $C$ v grafu, ki bi vseboval vsa vozlišča, nobeni dve vozlišči stopnje $4$ nista sosednji. Vemo, da bo imelo vsako vozlišče stopnje $4$ na ciklu dva soseda, eden izmed teh sosedov pa bo gotovo vozlišče stopnje $2$. Prav tako bo imelo vozlišče stopnje $3$ na ciklu dva soseda in eden izmed teh sosedov je ponovno neko vozlišče stopnje $2$. Recimo, da sta dve vozlišči stopnje $4$ sosednji na ciklu. Ker imamo po $12$ vozlišč vsake stopnje, bi zato na ciklu morali biti sosednji tudi dve vozlišči stopnje $3$, kar pa je v nasprotju z zgornjim opažanjem. Torej na ciklu $C$ nobeni dve vozlišči stopnje $4$ ne bosta sosednji. 
+    Sledi, da na ciklu $C$ v grafu, ki bi vseboval vsa vozlišča, nobeni dve vozlišči stopnje $4$ nista sosednji. Vemo, da bo imelo vsako vozlišče stopnje $4$ na ciklu dva soseda, eden izmed teh sosedov pa bo gotovo vozlišče stopnje $2$. Prav tako bo imelo vozlišče stopnje $3$ na ciklu dva soseda in eden izmed teh sosedov bo ponovno neko vozlišče stopnje $2$. Recimo, da sta dve vozlišči stopnje $4$ sosednji na ciklu. Ker imamo po $12$ vozlišč vsake stopnje, bi zato na ciklu morali biti sosednji tudi dve vozlišči stopnje $3$, kar pa je v nasprotju z zgornjim opažanjem. Torej na ciklu $C$ nobeni dve vozlišči stopnje $4$ ne bosta sosednji. 
     
     Sedaj začnimo graditi cikel $C$, ki bo vseboval vsa vozlišča grafa natanko enkrat. Oglejmo si sliko~\ref{fig:dokaz-ham-klasicni} desno.
     Cikel $C$ mora torej gotovo iti skozi vsa vozlišča stopnje $2$, kar je možno le na en način: če imamo vozlišče $v$ stopnje $2$ s sosedoma $u$ stopnje $3$ in $z$ stopnje $4$, mora $C$ vsebovati pot $u,v,z$.
@@ -863,6 +865,10 @@ Preden si ogledamo izpeljavo formule~\eqref{eq:povezave-oxf}, si na hitro oglejm
         &= \frac{1}{2} \sum_{q=1}^{p} \overbrace{q(p-1)}^{\text{stopnja vozlišča}} 
         \overbrace{n! {p \choose q} {n-1 \choose q-1} }^{\text{št.~vozlišč s to stopnjo}} \\
         &= \frac{1}{2} (p-1) n! \sum_{q=1}^{p} q {p \choose q} {n-1 \choose q-1} \\
+        &= \frac{1}{2} (p-1) n! \sum_{q=1}^{p} q \frac{p!}{q! \, (p-q)!} {n-1 \choose q-1} 
+    \end{align*}
+    \begin{align*}
+        \phantom{\qquad |E(O^n_p)|}
         &= \frac{1}{2} (p-1) n! \sum_{q=1}^{p} q \frac{p!}{q! \, (p-q)!} {n-1 \choose q-1} \\
         &= \frac{1}{2} (p-1) n! \sum_{q=1}^{p} p \frac{(p-1)!}{(q-1)! \, (p-q)!} {n-1 \choose q-1} \\
         &= \frac{1}{2} p (p-1) n! \sum_{q=1}^{p} {p-1 \choose q-1} {n-1 \choose q-1}.
@@ -871,9 +877,9 @@ Preden si ogledamo izpeljavo formule~\eqref{eq:povezave-oxf}, si na hitro oglejm
     \begin{align*}
         |E(O^n_p)|
         &= \frac{1}{2} p (p-1) n! \sum_{k=0}^{p-1} {p-1 \choose k} {n-1 \choose k} \\
-        &= \frac{1}{2} p (p-1) n! \sum_{k=0}^{p-1} {p-1 \choose p-1-k} {n-1 \choose k}
-    \end{align*}
-    \begin{align*}
+        &= \frac{1}{2} p (p-1) n! \sum_{k=0}^{p-1} {p-1 \choose p-1-k} {n-1 \choose k} \\
+%    \end{align*}
+%    \begin{align*}
         %\phantom{|E(O^n_p)|}
         &= \frac{1}{2} p (p-1) n! {p-1 + n-1 \choose p-1} \\
         &= \frac{1}{2} p (p-1) n! {n + p - 2 \choose p-1} \\
@@ -917,10 +923,8 @@ Izkaže se, da je ta pogoj tudi zadosten za povezanost londonskega grafa.
     Če torej dokažemo, da lahko poljubni dve krogli zamenjamo tako, da se pri tem ne spremeni položaj nobene druge krogle, bomo s ponavaljanjem zgornjega postopka lahko prešli iz začetnega v končno stanje krogel, graf bo povezan.
     
     Sedaj predpostavimo še, da je ena izmed krogel, ki ju bomo zamenjali, na vrhu prve, najmanjše, palice. Namreč, s tremi zamenjavami, pri katerih je ena izmed krogel vedno na vrhu prve palice, lahko nadomestimo splošno zamenjavo dveh poljubnih krogel. Recimo, da želimo zamenjati poljubni krogli $a$ in $b$ (zaradi lažjega razumevanja bosta prikazani na različnih palicah). Če uporabimo notacijo klasičnega problema, s $c$ označimo vrhnjo kroglo prve palice, z $x$ pa poljubno število nekih poljubnih krogel in če izpustimo palice, ki na to menjavo ne bodo imele vpliva, lahko menjavo $a$ in $b$ opravimo takole:
-    
     \[ cx|xax|xbx| \rightarrow bx|xax|xcx| \rightarrow ax|xbx|xcx| \rightarrow cx|xbx|xax|. \]
-    
-    Pri tem je bila v vsaki menjavi udeležena vrhnja krogla prve palice. Podobno lahko menjavo krogel opravimo tudi, če je katera izmed krogel $a$ in $b$ prav tako na prvi palici.
+    Pri tem je bila v vsaki menjavi udeležena vrhnja krogla prve palice. Podobno lahko menjavo krogel opravimo tudi, če je katera izmed krogel $a$ in $b$ na prvi palici oziroma če sta krogli na isti palici.
     Dovolj je torej dokazati, da lahko naredimo menjavo vrhnje krogle prve palice in neke druge poljubne krogle, brez da bi pri tem pokvarili položaj ostalih krogel.
     
     Sedaj si izberimo kroglo, ki ni na pravem položaju, in s tem tudi kroglo, ki je trenutno na njenem položaju. Predpostavili smo, da je ena izmed teh krogel na prvi palici -- to kroglo označimo z $a$, drugo pa z $b$. Ločimo dva primera:
@@ -938,6 +942,12 @@ Izkaže se, da je ta pogoj tudi zadosten za povezanost londonskega grafa.
 
 Omenili smo že, da se problem londonskega stolpa pogosto uporablja kot psihološki test. Psihologi rezultate testov radi prikažejo kar na grafu uporabljenega problema, zato je zanimivo tudi vprašanje ravninskosti londonskih grafov -- križanje povezav namreč lahko vodi do zmede pri prikazu rezultatov. Ker se za testiranje uporablja londonski stolp s tremi palicami, ki je rešljiv za poljubno začetno in poljubno končno stanje krogel, se bomo tudi pri obravnavi ravninskosti omejili na ta primer; naj bo torej $p=3$ in naj bo graf pripadajočega problema povezan.
 
+\begin{figure}[h]
+    \includegraphics[width=200pt]{img/tolgraph-2balls.png}
+    \caption{Vsi londonski grafi s $p=3$ in $n=2$ so ravninski.}
+    \label{fig:graf-2krogli}
+\end{figure}
+
 Najprej obravnavajmo primer londonskega stolpa z dvema kroglama ($n=2$, to so torej grafi $L^2_h$). V tem primeru imamo grafe 
 $L^2_{111}, L^2_{112}, L^2_{122}$ in $L^2_{222} = O^2_3$ (še vedno predpostavljamo, da so palice razvrščene po velikosti naraščajoče). Hitro lahko vidimo, da je npr.\ $L^2_{111}$ podgraf $L^2_{112}$: iz prvega lahko pridemo do drugega tako, da dodamo vozlišči, kjer sta obe krogli na največji palici, in ustrezno dodamo povezave z že obstoječimi stanji. Če s $ \subset $ označimo relacijo podgraf, lahko vidimo sledeče:
 \[ L^2_{111} \subset L^2_{112} \subset L^2_{122} \subset L^2_{222} = O^2_3 .\]
@@ -945,9 +955,9 @@ S slike~\ref{fig:graf-2krogli}, na kateri je narisan graf $O^2_3$, lahko zaklju�
 Na sliki~\ref{fig:graf-2krogli} so pravzaprav prikazani grafi vseh londonskih stolpov z dvema kroglama -- rdeča barva označuje najmanjši graf, $L^2_{111}$, nato pa z zaporednim dodajanjem vozlišč in povezav dobimo še ostale: če dodamo zelena vozlišča, dobimo $L^2_{112}$, če nato dodamo še modra vozlišča, dobimo $L^2_{122}$; celoten graf pa (kot že omenjeno) predstavlja $O^2_3$ .
 
 \begin{figure}[h]
-    \includegraphics[width=170pt]{img/tolgraph-2balls.png}
-    \caption{Vsi londonski grafi s $p=3$ in $n=2$ so ravninski.}
-    \label{fig:graf-2krogli}
+    \includegraphics[width=350pt]{img/graph-L^3_133.png}
+    \caption{Graf $L^3_{133}$ je ravninski.}
+    \label{fig:L^3_133}
 \end{figure}
 
 Če si sedaj pogledamo problem londonskega stolpa s tremi kroglami ($n=3$), na podoben način kot za dve krogli dobimo sledečo shemo:
@@ -969,12 +979,6 @@ Na sliki~\ref{fig:graf-2krogli} so pravzaprav prikazani grafi vseh londonskih st
 
 Videli smo že, da je klasični londonski graf $L$ ravninski. Torej je ravninski tudi njegov podgraf $L_{122}^3$, saj do njega pridemo tako, da iz $L$ zbrišemo tistih šest vozlišč, kjer so vse tri krogle na največji palici, in pripadajoče povezave. 
 Če pa grafu $L$ dodamo vozlišča, kjer so vse tri krogle na srednji palici, lahko s slike~\ref{fig:L^3_133} vidimo, da je tudi $L_{133}^3$ ravninski (dodana vozlišča so označena z rdečo barvo).
-
-\begin{figure}[h]
-    \includegraphics[width=350pt]{img/graph-L^3_133.png}
-    \caption{Graf $L^3_{133}$ je ravninski.}
-    \label{fig:L^3_133}
-\end{figure}
 
 \begin{trditev}[{\cite[Proposition~7.4.]{bib:tohmyths}}]
     Naj bo $p=3$. Tedaj so ravninski londonski grafi natanko grafi $L_h^2, L_{122}^3, L_{123}^3$ in $L_{133}^3$.
@@ -1007,13 +1011,13 @@ Zamislimo si za trenutek problem londonskega stolpa, pri katerem so vse palice r
 Če pa pri našem problemu obstaja nekaj palic, ki so enake višine, pa so simetrije grafa tudi permutacije palic enake višine.
 V temu poglavju bomo najprej omenili simetrije klasičnega problema londonskega stolpa, nato pa preučili še simetrije nekaterih ostalih problemov s tremi palicami, z uporabo simetrijskih lastnosti pa bomo potem sklepali nekaj več o lastnostih pripadajočih grafov.
 
-Pri klasičnem problemu londonskega stolpa imamo $3$ palice različnih višin, torej so edine možne simetrije permutacije barv krogel. 
-Izračunali smo že, da je število vseh možnih stanj krogel za ta primer enako $36$, pri tem pa vemo, da imamo zaradi treh krogel $3! = 6$ možnih barvnih permutacij. Med temi $36$ stanji je torej pravzaprav le $6$ različnih geometrijskih razporeditev krogel (neupoštevajoč barve), vsaka izmed teh razporeditev pa ima potem še $6$ permutacij barv krogel.
-
-\begin{figure}
+\begin{figure}[h]
     \includegraphics[width=400pt]{img/london-tower-nocolor-all.png}
     \caption{Na slikah so prikazane vse možne geometrijske razporeditve krogel za klasični problem $L_{123}^3$.}
 \end{figure}
+
+Pri klasičnem problemu londonskega stolpa imamo $3$ palice različnih višin, torej so edine možne simetrije permutacije barv krogel. 
+Izračunali smo že, da je število vseh možnih stanj krogel za ta primer enako $36$, pri tem pa vemo, da imamo zaradi treh krogel $3! = 6$ možnih barvnih permutacij. Med temi $36$ stanji je torej pravzaprav le $6$ različnih geometrijskih razporeditev krogel (neupoštevajoč barve), vsaka izmed teh razporeditev pa ima potem še $6$ permutacij barv krogel.
 
 Spomnimo se, da je naloga pri problemu londonskega stolpa sestavljena iz začetnega in končnega stanja krogel, matematično jo torej lahko opišemo kot urejen par dveh možnih stanj. Ker ima klasični problem 36 možnih stanj, je število vseh nalog enako $36 \cdot 35$. Razdelimo jih lahko v $6$ blokov glede na barvno permutacijo, ki jim pripada -- če ne upoštevamo barv, imamo tako na voljo le $210$ različnih nalog, vsaka izmed njih je predstavnik enega ekvivalenčnega razreda na množici vseh nalog glede na permutacije barv krogel. Vsak tak ekvivalenčni razred je velikosti $6$, saj imamo toliko možnih barvnih permutacij. Rešitve nalog, ki spadajo v isti ekvivalenčni razred (``izo-naloge''), so sestavljene iz enakih potez;  razlikujejo se le v barvah krogel, ki jih premikamo \cite[str.\ 591]{bib:tolspatial}.
 
@@ -1023,7 +1027,7 @@ Spomnimo se, da je naloga pri problemu londonskega stolpa sestavljena iz začetn
 
 Problem pa postane še bolj zanimiv, če imamo (za razliko od klasičnega londonskega grafa) poleg barvnih permutacij na voljo tudi permutacije palic. Demonstrirajmo, kako lahko z upoštevanjem simetrij bolj učinkovito preučimo predvsem metrične lastnosti nekega grafa. Za začetek si le kot primer oglejmo oxfordski graf $O_3^2$, pri čemer bomo izpustili dokaze za nekatera dejstva, kasneje pa bomo izpeljali vso teorijo, potrebno za celovit dokaz, in s pomočjo te teorije preučili malo večji graf $L^3_{222}$. 
 
-Če upoštevamo simetrije krogel in palic, imamo pri problemu $O_2^3$ pravzaprav le dve razporeditvi krogel, ki nista ekvivalentni, in sicer: 
+Če upoštevamo simetrije krogel in palic, imamo pri problemu $O_3^2$ pravzaprav le dve razporeditvi krogel, ki nista ekvivalentni, in sicer: 
 \begin{itemize}
     \item obe krogli sta na isti palici (prikazano na sliki~\ref{fig:neekviv-oxf-stanji} levo),
     \item krogli nista na isti palici (prikazano na sliki~\ref{fig:neekviv-oxf-stanji} desno).
